@@ -13,56 +13,20 @@ protocol custCellProtocol {
     func configureCell(post: Post) -> String
 }
 
-
-
 class custCell : UICollectionViewCell {
-    
-    
     var delegate: custCellProtocol?
-    
 
-   
-    
     @IBOutlet weak var imageCell: UIImageView!
-    
     @IBOutlet weak var titleCell: UILabelX!
-    
     @IBOutlet weak var dateCell: UILabelX!
-       
-    
- 
-    
-    
-    
     
     func configureCell(post: Post) {
-        
-    
-         self.titleCell.text = ("\(post.city)")
-       
-     self.imageCell.layer.cornerRadius = 8
-        
-   
-    
+        self.titleCell.text = ("\(post.city)")
+        self.imageCell.layer.cornerRadius = 8
         self.titleCell.alpha = 1
-       //  self.titleCell.font = UIFont(name: "Helvetica", size: 10)
-        
-        
-      
-        
         self.dateCell.alpha = 1
-       
-       // self.dateCell.font = UIFont(name: "Helvetica", size: 10)
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    }
+}
     
     
     

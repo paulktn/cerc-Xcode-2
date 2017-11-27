@@ -107,7 +107,7 @@ class report: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
        func flagIt(post: Post, completed: @escaping ()->Void){
             
             let postRef = databaseRef.child("removals").child(reason).childByAutoId()
-            postRef.setValue(post.toAnyObject()) { (error, ref) in
+            postRef.setValue(post.serialized) { (error, ref) in
                 if let error = error {
                     print(error.localizedDescription)
                 }

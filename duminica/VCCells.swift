@@ -28,7 +28,6 @@ import Firebase
 
 class SenderCell: UITableViewCell {
     
-   
     @IBOutlet weak var profilePic: RoundedImageView!
     @IBOutlet weak var message: UITextView!
     @IBOutlet weak var messageBackground: UIImageView!
@@ -47,6 +46,7 @@ class SenderCell: UITableViewCell {
         self.messageBackground.clipsToBounds = true
     }
 }
+
 class ReceiverCell: UITableViewCell {
     
     @IBOutlet weak var message: UITextView!
@@ -75,11 +75,6 @@ class itemReceptCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSou
     @IBOutlet weak var sugestedValue: UILabel!
     @IBOutlet weak var enterValue: UIButton!
     @IBOutlet weak var descriptiontext: UILabel!
-    
-    @IBOutlet weak var requestButton: UIButton!
-    
-    
-    
     @IBOutlet weak var picker: UIPickerView!
     
     override func awakeFromNib() {
@@ -93,7 +88,6 @@ class itemReceptCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSou
     
     @IBAction func presentPicker(_ sender: Any) {
        self.picker.alpha = 1
-        
     }
 
     
@@ -132,7 +126,6 @@ class itemReceptCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSou
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 20
-        
     }
 
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -147,21 +140,10 @@ class itemReceptCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSou
         
         return pickerLabel!
     }
-    
-    
-    
-    
-    
-    
-    
+  
     func clearCellData() {
         self.itemName.text = nil
-
     }
     
 }
-
-
-
-
 

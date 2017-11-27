@@ -15,7 +15,6 @@ import SDWebImage
 
 class Appliances : UITableViewCell,  UICollectionViewDataSource, UICollectionViewDelegate, CLLocationManagerDelegate  {
     
-    
     fileprivate let sectionInsets = UIEdgeInsets(top: 0, left: 5.0, bottom: 0, right: 5)
     fileprivate let itemsPerRow: CGFloat = 3.1
     
@@ -159,24 +158,11 @@ class Appliances : UITableViewCell,  UICollectionViewDataSource, UICollectionVie
             self.collectionView.reloadData()
         }
     }
-    
-    
-    
-    
-    
+ 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sweetToDisplay.count
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "custCell", for: indexPath) as! custCell
         

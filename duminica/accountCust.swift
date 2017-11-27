@@ -9,37 +9,25 @@
 import UIKit
 import Firebase
 
-
-
-
-
 class accountCust : UICollectionViewCell {
-    
     @IBOutlet weak var imageCell: UIImageView!
-    
     @IBOutlet weak var dateCell: UILabel!
-    
     @IBOutlet weak var titleCell: CustomLabel!
-    
     @IBOutlet weak var markAsPickedUp: UIButton!
-    
     @IBOutlet weak var viewItem: UIButton!
 
     func configureCell(post: Post) {
         
-self.dateCell.textColor = UIColor.white
-        }}
-
+        self.dateCell.textColor = UIColor.white
+    }
+}
 
 class wishCust: UICollectionViewCell{
-    
     @IBOutlet weak var imageCell: UIImageView!
-    
     @IBOutlet weak var dateCell: UILabel!
-    
     @IBOutlet weak var titleCell: UILabel!
     
     func configureCell(post: Post) {
-        
         self.dateCell.textColor = UIColor.white
-    }}
+    }
+}

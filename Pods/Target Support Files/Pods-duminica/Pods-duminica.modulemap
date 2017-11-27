@@ -1,0 +1,6 @@
+framework module Pods_duminica {
+  umbrella header "Pods-duminica-umbrella.h"
+
+  export *
+  module * { export * }
+}

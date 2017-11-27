@@ -25,14 +25,8 @@ import Foundation
 
 class PhotoCell : UICollectionViewCell {
   
-    }
-
-
-
+}
 
 class keywordCell: UICollectionViewCell {
-    
     @IBOutlet weak var keywords: CustomLabel!
-    
-    
 }

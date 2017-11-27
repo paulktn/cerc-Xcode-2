@@ -1093,7 +1093,7 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
                 
                     
                     let postRef = databaseRef.child("posts").child(postId)
-                    postRef.setValue(post.toAnyObject()) { (error, ref) in
+                    postRef.setValue(post.serialized) { (error, ref) in
                         if let error = error {
                             print(error.localizedDescription)
                         } else

@@ -663,7 +663,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         
         let postRef = databaseRef.child("wishlist").child(currentUserID).child("\((self.passPost?.postId)!)")
         
-        postRef.setValue(post.toAnyObject()) { (error, ref) in
+        postRef.setValue(post.serialized) { (error, ref) in
             if let error = error {
                 print(error.localizedDescription)
             }else { }

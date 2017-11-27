@@ -9,8 +9,7 @@
 import Foundation
 import Firebase
 
-struct Recept {
-    
+class Recept {
     var donorName: String
     var receptNumber: String
     var date: String

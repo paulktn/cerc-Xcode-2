@@ -695,7 +695,7 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
    
     
     func takeToInfo() {
-        let infoVC = self.storyboard?.instantiateViewController(withIdentifier: "infoVC") as! info
+        let infoVC = self.storyboard?.instantiateViewController(withIdentifier: "infoVC") as! OnboardingPresentationVC
         self.show(infoVC, sender: nil)
     }
     
