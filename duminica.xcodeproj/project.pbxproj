@@ -101,6 +101,7 @@
 		7EE6C5481FCB3AA600ABBAE8 /* String+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C5471FCB3AA600ABBAE8 /* String+Common.swift */; };
 		7EE6C54A1FCB3AFE00ABBAE8 /* UIColor+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C5491FCB3AFE00ABBAE8 /* UIColor+Common.swift */; };
 		7EE6C54C1FCB3B7000ABBAE8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C54B1FCB3B7000ABBAE8 /* Post.swift */; };
+		7EF8E7831FD31898003E42FE /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF8E7821FD31898003E42FE /* HomeVC.swift */; };
 		C3FA740205A5A4147CD84FA5 /* Pods_duminica.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84BF03B2F933165F33F97ED /* Pods_duminica.framework */; };
 /* End PBXBuildFile section */
 
@@ -220,6 +221,7 @@
 		7EE6C5471FCB3AA600ABBAE8 /* String+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Common.swift"; sourceTree = "<group>"; };
 		7EE6C5491FCB3AFE00ABBAE8 /* UIColor+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Common.swift"; sourceTree = "<group>"; };
 		7EE6C54B1FCB3B7000ABBAE8 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		7EF8E7821FD31898003E42FE /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		8D3A35B2E351B884C2CAB506 /* Pods-duminica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-duminica.debug.xcconfig"; path = "Pods/Target Support Files/Pods-duminica/Pods-duminica.debug.xcconfig"; sourceTree = "<group>"; };
 		D84BF03B2F933165F33F97ED /* Pods_duminica.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_duminica.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -299,6 +301,7 @@
 				33BB4DDA1F2EA8FC00DB49FD /* locationBar.swift */,
 				330654D91F540B8D00EC922F /* recepts.swift */,
 				331EFE761F5DF44100A748E5 /* settings.swift */,
+				7EF8E7821FD31898003E42FE /* HomeVC.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 				33BB4E921F2EA95600DB49FD /* Toys.swift in Sources */,
 				33BB4EB71F2EB0FE00DB49FD /* LoginNew.swift in Sources */,
 				338B206C1F2E9F4C005B6D2C /* UISliderX.swift in Sources */,
+				7EF8E7831FD31898003E42FE /* HomeVC.swift in Sources */,
 				338B20711F2E9F4C005B6D2C /* UIView3.swift in Sources */,
 				338B20681F2E9F4C005B6D2C /* CustomizableTextfield.swift in Sources */,
 				33BB4DD41F2EA8E200DB49FD /* sendmessage.swift in Sources */,

@@ -93,12 +93,6 @@ class User: NSObject {
                 let user = User.init(name: name, email: email, id: id)
                 completion(user)
             }
-        
-
-            
-            
-            
-            
         }) { (error) in
             print(error.localizedDescription)
             
