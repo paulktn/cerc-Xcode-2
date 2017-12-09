@@ -120,6 +120,7 @@
 		7EE6C54A1FCB3AFE00ABBAE8 /* UIColor+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C5491FCB3AFE00ABBAE8 /* UIColor+Common.swift */; };
 		7EE6C54C1FCB3B7000ABBAE8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C54B1FCB3B7000ABBAE8 /* Post.swift */; };
 		C3FA740205A5A4147CD84FA5 /* Pods_duminica.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84BF03B2F933165F33F97ED /* Pods_duminica.framework */; };
+		E1BA494B1FDC707C0040EB25 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BA494A1FDC707C0040EB25 /* ChatVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -502,6 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				7E3DFA1F1FDC56F9007E7BFC /* MessagesFlow.storyboard */,
+				E1BA494A1FDC707C0040EB25 /* ChatVC.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -918,6 +920,7 @@
 				33BB4E8C1F2EA95600DB49FD /* Appliances.swift in Sources */,
 				33BB4DDB1F2EA8FC00DB49FD /* locationBar.swift in Sources */,
 				338B20691F2E9F4C005B6D2C /* UIButtonX.swift in Sources */,
+				E1BA494B1FDC707C0040EB25 /* ChatVC.swift in Sources */,
 				338B20641F2E9F4C005B6D2C /* CustomizableImageView.swift in Sources */,
 				338B20301F2E9788005B6D2C /* AppDelegate.swift in Sources */,
 				33BB4ED11F2EB1ED00DB49FD /* IQUIScrollView+Additions.swift in Sources */,
