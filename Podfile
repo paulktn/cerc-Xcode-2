@@ -18,6 +18,7 @@ pod 'SDWebImage', '~>3.8'
 pod 'FBSDKCoreKit'
 pod 'FBSDKShareKit'
 pod 'FBSDKLoginKit'
-pod 'paper-onboarding', '~> 2.0.1' 
+pod 'paper-onboarding', '~> 2.0.1'
+pod 'JSQMessagesViewController'
 
 end

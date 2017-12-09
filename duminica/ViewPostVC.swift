@@ -6,55 +6,32 @@ import MapKit
 import CoreLocation
 import Social
 
-
-
 class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, PostDelegate {
     
     @IBOutlet weak var antet: UIViewX!
     @IBOutlet weak var collectionViewCategory: UICollectionView!
     @IBOutlet var viewMap: UIView!
     @IBOutlet weak var inputTextField: IQTextView!
-    
     @IBOutlet weak var flagButton: UIButton!
     @IBOutlet weak var locationLabel: CustomLabel!
     @IBOutlet var pageControl: UIPageControl!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var viewPostTitle: UILabel!
-    
     @IBOutlet weak var tweeterButton: CustomizableButton!
-    
     @IBOutlet weak var facebookButton: CustomizableButton!
-    
     @IBOutlet var contact: CustomizableButton!
-    
     @IBOutlet weak var doneButton: CustomizableButton!
-    
     @IBOutlet weak var donButton: UIButtonX!
-    
-    
-    
     @IBOutlet weak var mapView: MKMapView!
-    
     @IBOutlet weak var keywordLabel: UILabel!
-    
     @IBOutlet var largerMap: UIView!
-    
     @IBOutlet weak var aDouaHarta: MKMapView!
-    
     @IBOutlet weak var toLargerMap: UIButton!
-    
     @IBOutlet var messageView: UIView!
-    
     @IBOutlet weak var titleFromCustCell: UILabel!
-    
     @IBOutlet weak var blurEffect: UIVisualEffectView!
-    
     @IBOutlet weak var profilePic: UIImageView!
-    
     @IBOutlet weak var shareOptions: UIButton!
-    
-    
-    
     
     var passPost: Post?
     

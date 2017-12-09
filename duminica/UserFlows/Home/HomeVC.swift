@@ -440,10 +440,10 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
     }
     
     func takeToMessages() {
-        let myMessagesVC = self.storyboard?.instantiateViewController(withIdentifier: "myMessagesVC") as! myMessagePage
+        let myMessagesVC = UIStoryboard(name: "MessagesFlow", bundle: nil)
+            .instantiateInitialViewController() as! myMessagePage
         self.show(myMessagesVC, sender: nil)
     }
-    
     
     func takeToAccount(){
         let accountVC = self.storyboard?.instantiateViewController(withIdentifier: "MyAccountVC") as! AccountVC
@@ -465,9 +465,7 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
         UIView.animate(withDuration: 0.3, animations: {
             self.view.layoutSubviews()
         })
-        
     }
-    
     
     @IBAction func myMessagesClicked(_ sender: Any) {
         Auth.auth().addStateDidChangeListener { auth, user in
@@ -482,8 +480,6 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
         self.takeToInfo()
     }
     
-    
-    
     @IBAction func addClicked(_ sender: UIButton) {
         Auth.auth().addStateDidChangeListener { auth, user in
             if user != nil {
@@ -493,7 +489,6 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
             }
         }
     }
-    
     
     @IBAction func accountClicked(_ sender: UIButton) {
         Auth.auth().addStateDidChangeListener { auth, user in
