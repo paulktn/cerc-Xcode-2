@@ -48,8 +48,7 @@ class myMessagePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func pushTomainView() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeVC
-        self.show(vc, sender: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -196,10 +195,6 @@ class myMessagePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
         self.present(navVC, animated: true)
     }
     
-    
-   
-
-    
     func fetchData() {
         Conversation.showConversations { (conversations) in
             self.items = conversations
@@ -212,10 +207,8 @@ class myMessagePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
                     }
                 }
             }
-        }}
-    
-    
-    
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -224,20 +217,10 @@ class myMessagePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
     func pushToUserMesssages(notification: NSNotification) {
         if let user = notification.userInfo?["user"] as? User {
             self.selectedUser = user
             self.performSegue(withIdentifier: "toChat", sender: self)
         }
-    }
-    
-    
-    
+    }    
 }

@@ -50,20 +50,8 @@ class ConversationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 
                 
             })
-        }}
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        }
+    }
     
     func pushToUserMesssages(notification: NSNotification) {
         if let user = notification.userInfo?["user"] as? User {
@@ -71,7 +59,6 @@ class ConversationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             self.performSegue(withIdentifier: "segue", sender: self)
         }
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segue" {
