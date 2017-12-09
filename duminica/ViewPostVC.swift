@@ -8,12 +8,9 @@ import Social
 
 
 
-class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, PostDelegate {
-    
-    
+class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, PostDelegate {
     
     @IBOutlet weak var antet: UIViewX!
-    
     @IBOutlet weak var collectionViewCategory: UICollectionView!
     @IBOutlet var viewMap: UIView!
     @IBOutlet weak var inputTextField: IQTextView!
@@ -21,12 +18,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
     @IBOutlet weak var flagButton: UIButton!
     @IBOutlet weak var locationLabel: CustomLabel!
     @IBOutlet var pageControl: UIPageControl!
-    
-   // @IBOutlet var backgroundViewPost: UIView!
-    
     @IBOutlet var scrollView: UIScrollView!
-    
- 
     @IBOutlet weak var viewPostTitle: UILabel!
     
     @IBOutlet weak var tweeterButton: CustomizableButton!
@@ -39,7 +31,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
     
     @IBOutlet weak var donButton: UIButtonX!
     
-  
+    
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -75,7 +67,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
     var isChecked = true
     
     
-     var useridFromDatabase: String!
+    var useridFromDatabase: String!
     var linkPic: String!
     var items = [Message]()
     var currentUser: User?
@@ -92,30 +84,13 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         return Storage.storage().reference()
     }
     
- 
-    
-    
-    
-    
-  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     @IBOutlet weak var postDetaliiView: UIViewX!
     
     @IBOutlet var postdetalii: UILabel!
     
     
     @IBAction func close(_ sender: AnyObject) {
-       pushTomainView()
+        pushTomainView()
         
     }
     
@@ -128,33 +103,28 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         
         self.facebookButton.alpha = 0
         self.tweeterButton.alpha = 0
-      postDetaliiView.alpha = 0
+        postDetaliiView.alpha = 0
         keywordLabel.text! = "\((passPost?.postTitle)!)"
         self.useridFromDatabase = "\((passPost?.userId)!)"
         viewPostTitle.text! = "\((passPost?.category.rawValue) ?? "")"
         self.databaseRef.child("users").child(self.useridFromDatabase).child("credentials").child("email").observe(.value, with: { (snapshot) in
             if snapshot.exists(){
-                
                 let removal: [Character] = [".", "#", "$", "@"]
-                
                 let unfilteredCharacters = ("\(snapshot.value! as! String)").characters
-                
                 let filteredCharacters = unfilteredCharacters.filter { !removal.contains($0) }
-                
                 let filtered = String(filteredCharacters)
-                
-        self.databaseRef.child("users").child("emailProfilePictures").child("\(filtered)").observe(.value, with: { (snapshot) in
-            if snapshot.exists(){
-                self.profilePic.sd_setImage(with: URL(string: "\(snapshot.value! as! String)"))
-            } else {
-                
-                
-                self.databaseRef.child("users").child(self.useridFromDatabase).child("credentials").child("id").observe(.value, with: { (snapshot) in
-                    if snapshot.exists() {
-                        self.profilePic.sd_setImage(with: URL(string: "https://graph.facebook.com/\(snapshot.value! as! String)/picture?type=small"))
+                self.databaseRef.child("users").child("emailProfilePictures").child("\(filtered)").observe(.value, with: { (snapshot) in
+                    if snapshot.exists(){
+                        self.profilePic.sd_setImage(with: URL(string: "\(snapshot.value! as! String)"))
+                    } else {
                         
-                        print(snapshot.value!)}}
-                )}})}})
+                        
+                        self.databaseRef.child("users").child(self.useridFromDatabase).child("credentials").child("id").observe(.value, with: { (snapshot) in
+                            if snapshot.exists() {
+                                self.profilePic.sd_setImage(with: URL(string: "https://graph.facebook.com/\(snapshot.value! as! String)/picture?type=small"))
+                                
+                                print(snapshot.value!)}}
+                        )}})}})
         
         self.databaseRef.child("users").child(self.useridFromDatabase).child("credentials").child("name").observe(.value, with: { (snapshot) in
             if snapshot.exists(){
@@ -165,21 +135,21 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         
         
         
-       inputTextField.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.sendMessageFromKeyboard))
+        inputTextField.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.sendMessageFromKeyboard))
         
         //IQKeyboardManager.sharedManager().toolbarDoneBarButtonItemText = "Send"
         
         
         //   locateIt()
         inputTextField.alpha = 1
-      
-     //   donButton.contentHorizontalAlignment = .left
+        
+        //   donButton.contentHorizontalAlignment = .left
         
         
         //    inputTextField.delegate = self
         
-       
-      //  contact.contentHorizontalAlignment = .left
+        
+        //  contact.contentHorizontalAlignment = .left
         
         mapView.delegate = self
         aDouaHarta.delegate = self
@@ -209,9 +179,9 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         locationLabel.text! = "          \((passPost?.city)!)"
         //       postUserId.text! = (passPost?.userId)!
         postdetalii.text! = (passPost?.postDetails)!
-       
-       // self.postdetalii.isHidden = false
-    self.postdetalii.clipsToBounds = true
+        
+        // self.postdetalii.isHidden = false
+        self.postdetalii.clipsToBounds = true
         viewMaps()
         
         mapView.alpha = 1
@@ -236,7 +206,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         
         
         let imgOne = UIImageView(frame: CGRect(x: 0, y: 0, width: scrollViewWidth, height: scrollViewHeight))
-
+        
         let imgTwo = UIImageView(frame: CGRect(x: scrollViewWidth, y: 0, width: scrollViewWidth, height: scrollViewHeight))
         let imgThree = UIImageView(frame: CGRect(x: scrollViewWidth*2, y: 0, width: scrollViewWidth, height:scrollViewHeight))
         
@@ -336,7 +306,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
             self.sweets = posts
             self.filteredSweets = self.sweets.filter {
                 $0.category == self.passPost?.category && $0.longit.isLessThanOrEqualTo( ((self.passPost?.longit)! + 1))
-            
+                
             }
             
             self.filteredSweets.sort(by: { (post1, post2) -> Bool in
@@ -375,7 +345,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         
         
         
-       
+        
         cell.configureCell(post: self.filteredSweets[indexPath.item])
         
         
@@ -384,12 +354,12 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         
         
         return cell
-        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-    postDelegate?.selectedPost(post: self.filteredSweets[indexPath.item])
-    self.passPost = self.filteredSweets[indexPath.item]
+        postDelegate?.selectedPost(post: self.filteredSweets[indexPath.item])
+        self.passPost = self.filteredSweets[indexPath.item]
     }
     
     
@@ -397,9 +367,9 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
     func selectedPost(post: Post) {
         
         
-            self.performSegue(withIdentifier: "fromSimilar   ", sender: post)
+        self.performSegue(withIdentifier: "fromSimilar   ", sender: post)
         
-       }
+    }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -410,10 +380,10 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
             postDetailPage?.passPostEdit = passPost
             
         }
-        
+            
         else if segue.identifier == "fromSimilar" {
             
-            let toSimilarObjects = segue.destination as? ViewPost
+            let toSimilarObjects = segue.destination as? ViewPostVC
             if let indexPath = self.collectionViewCategory?.indexPath(for: sender as! UICollectionViewCell) {
                 toSimilarObjects?.passPost = filteredSweets[indexPath.row]
             }
@@ -447,25 +417,25 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
     }
     
     @IBAction func shareOnTwitter(_ sender: Any) {
-         let vc = SLComposeViewController(forServiceType:SLServiceTypeTwitter)
+        let vc = SLComposeViewController(forServiceType:SLServiceTypeTwitter)
         vc?.add(URL(string: ("https://stackoverflow.com/questions/41902776/facebook-login-using-firebase-swift-ios")))
         vc?.setInitialText("Check out this item from Cerc")
         self.present(vc!, animated: true, completion: nil)
-        }
+    }
     
     @IBAction func shareOptionsAction(_ sender: Any) {
         if self.facebookButton.alpha == 0 {
-             self.facebookButton.alpha = 1
-        self.tweeterButton.alpha = 1
+            self.facebookButton.alpha = 1
+            self.tweeterButton.alpha = 1
             self.flagButton.alpha = 0
-        
-       // self.shareOptions.alpha = 0
+            
+            // self.shareOptions.alpha = 0
         } else {
             self.facebookButton.alpha = 0
             self.tweeterButton.alpha = 0
             self.flagButton.alpha = 1
         }
-       
+        
     }
     
     
@@ -481,7 +451,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         
     }
     
-   
+    
     
     
     @IBAction func toLargerMapAction(_ sender: Any) {
@@ -540,7 +510,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
     
     @IBAction func removeLargerMap(_ sender: Any) {
         self.largerMap.removeFromSuperview()
-       // self.aDouaHarta.delegate = nil
+        // self.aDouaHarta.delegate = nil
         //self.aDouaHarta.removeFromSuperview()
         //self.aDouaHarta = nil
         blurEffect.alpha = 0
@@ -564,7 +534,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         let locationId = (passPost?.postId)!
         
         
-    //    viewMap.layer.cornerRadius = 10
+        //    viewMap.layer.cornerRadius = 10
         
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         
@@ -602,7 +572,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
             let diskOverlay: MKCircle = MKCircle.init(center: location, radius: 700)
             self.mapView.add(diskOverlay)
             
-        
+            
             
         } )
     }
@@ -613,19 +583,19 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
     
     func doneClicked() {
         view.endEditing(true)
-    //    scrollView.alpha = 1
-   //     pageControl.alpha = 1
-    //    titleFromCustCell.alpha = 1
+        //    scrollView.alpha = 1
+        //     pageControl.alpha = 1
+        //    titleFromCustCell.alpha = 1
         
-    //    facebookButton.alpha = 1
-   //     tweeterButton.alpha = 1
-   //     pinterestButton.alpha = 1
+        //    facebookButton.alpha = 1
+        //     tweeterButton.alpha = 1
+        //     pinterestButton.alpha = 1
         
-    //    postdetalii.alpha = 1
-   //     contact.alpha = 1
-   //     doneButton.alpha = 1
-   //     flagButton.alpha = 1
-   //     flagButton.alpha = 1
+        //    postdetalii.alpha = 1
+        //     contact.alpha = 1
+        //     doneButton.alpha = 1
+        //     flagButton.alpha = 1
+        //     flagButton.alpha = 1
         
         
     }
@@ -659,20 +629,16 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         
         if  let currentUserID = Auth.auth().currentUser?.uid {
             let post = Post(allPosts: "\((self.passPost?.allPosts)!)", postId: "\((self.passPost?.postId)!)", userId: "\((self.passPost?.userId)!)", postImageURL1: "\((self.passPost?.postImageURL1)!)", postImageURL2: "\((self.passPost?.postImageURL2)!)", postImageURL3: "\((self.passPost?.postImageURL3)!)", postThumbURL: "\((self.passPost?.postThumbURL)!)",  postDate: ((self.passPost?.postDate)!), key: "\((self.passPost?.postId)!)", location: "\((self.passPost?.postId)!)", postTitle: "\((self.passPost?.postTitle)!)", postDetails: "\((self.passPost?.postDetails)!)", postCategory: self.passPost!.category.rawValue, city: "\((self.passPost?.city)!)", latit: (self.passPost?.latit)!, longit: (self.passPost?.longit)!)
-        
-        
-        let postRef = databaseRef.child("wishlist").child(currentUserID).child("\((self.passPost?.postId)!)")
-        
-        postRef.setValue(post.serialized) { (error, ref) in
-            if let error = error {
-                print(error.localizedDescription)
-            }else { }
+            
+            
+            let postRef = databaseRef.child("wishlist").child(currentUserID).child("\((self.passPost?.postId)!)")
+            
+            postRef.setValue(post.serialized) { (error, ref) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }else { }
             }}
     }
-    
-  
-    
-    
     
     func postuploadMessage(withValues: [String: Any], toID: String, completion: @escaping (Bool) -> Swift.Void) {
         if let currentUserID = Auth.auth().currentUser?.uid {
@@ -684,16 +650,13 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
                 self.saveToWishList()
                 completion(true)
             })
-}
+        }
     }
-    
     
     func pushTomainView() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeVC
         self.show(vc, sender: nil)
     }
-    
-    
     
     func takeToAccount(){
         
@@ -749,33 +712,33 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         
         messageView.frame.origin.y = (viewMap.frame.origin.y + viewMap.frame.height)
         
-    // messageView.frame = CGRect(x:0, y: 200, width: view.frame.width, height: messageView.frame.height)
+        // messageView.frame = CGRect(x:0, y: 200, width: view.frame.width, height: messageView.frame.height)
         
-     //   messageView.frame = CGRect(x: 0 , y: mapView.frame.origin.y, width: view.frame.width, height: mapView.frame.height)
-        
-        
-        
-    //    inputTextField.frame = CGRect(x: 0, y: 0, width: messageView.frame.width, height: messageView.frame.height)
+        //   messageView.frame = CGRect(x: 0 , y: mapView.frame.origin.y, width: view.frame.width, height: mapView.frame.height)
         
         
         
+        //    inputTextField.frame = CGRect(x: 0, y: 0, width: messageView.frame.width, height: messageView.frame.height)
         
         
-     //   inputTextField.placeholderOld = "  Type a message"
-     //   scrollView.alpha = 0
-     //   pageControl.alpha = 0
-    //    titleFromCustCell.alpha = 0
         
-    //    facebookButton.alpha = 0
-   //     tweeterButton.alpha = 0
-    //    pinterestButton.alpha = 0
         
-   //     postdetalii.alpha = 0
-    //    contact.alpha = 0
-   //     doneButton.alpha = 0
-   //     flagButton.alpha = 0
-   //     flagButton.alpha = 0
-    //    shareButton.alpha = 0
+        
+        //   inputTextField.placeholderOld = "  Type a message"
+        //   scrollView.alpha = 0
+        //   pageControl.alpha = 0
+        //    titleFromCustCell.alpha = 0
+        
+        //    facebookButton.alpha = 0
+        //     tweeterButton.alpha = 0
+        //    pinterestButton.alpha = 0
+        
+        //     postdetalii.alpha = 0
+        //    contact.alpha = 0
+        //     doneButton.alpha = 0
+        //     flagButton.alpha = 0
+        //     flagButton.alpha = 0
+        //    shareButton.alpha = 0
         
         
         
@@ -798,20 +761,20 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
             
         }
         self.messageView.removeFromSuperview()
-    //    scrollView.alpha = 1
-    //    pageControl.alpha = 1
-    //    titleFromCustCell.alpha = 1
+        //    scrollView.alpha = 1
+        //    pageControl.alpha = 1
+        //    titleFromCustCell.alpha = 1
         
-   //     facebookButton.alpha = 1
-    //    tweeterButton.alpha = 1
-    //    pinterestButton.alpha = 1
+        //     facebookButton.alpha = 1
+        //    tweeterButton.alpha = 1
+        //    pinterestButton.alpha = 1
         
-     //   postdetalii.alpha = 1
-   //     contact.alpha = 1
-   //     doneButton.alpha = 1
-   //     flagButton.alpha = 1
-   //     flagButton.alpha = 1
-   //     shareButton.alpha = 1
+        //   postdetalii.alpha = 1
+        //     contact.alpha = 1
+        //     doneButton.alpha = 1
+        //     flagButton.alpha = 1
+        //     flagButton.alpha = 1
+        //     shareButton.alpha = 1
         
         blurEffect.alpha = 0
     }
@@ -821,20 +784,17 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
             if text.characters.count > 0 {
                 self.postcomposeMessage(content: self.inputTextField.text!)
                 self.inputTextField.text = ""
-                
-                
-                
-                
             }
         }
+        
         self.messageView.removeFromSuperview()
         scrollView.alpha = 1
         pageControl.alpha = 1
         titleFromCustCell.alpha = 1
         
-       // facebookButton.alpha = 1
-       // tweeterButton.alpha = 1
-   
+        // facebookButton.alpha = 1
+        // tweeterButton.alpha = 1
+        
         
         postdetalii.alpha = 1
         contact.alpha = 1
@@ -843,45 +803,20 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         flagButton.alpha = 1
     }
     
-    func removeNastyMapMemory() {
-        
-      
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-     
-      
-        
-        
-        
-        
-     //   self.aDouaHarta.delegate = nil
-      //  self.mapView.delegate = nil
-        
-      //  self.aDouaHarta.removeFromSuperview()
-    //    self.mapView.removeFromSuperview()
-        
-    }
-    
     override func viewDidDisappear(_ animated: Bool) {
         
         self.aDouaHarta.mapType = MKMapType.hybrid
-        self.mapView.mapType = MKMapType.hybrid
+        //        self.mapView.mapType = MKMapType.hybrid
         
         self.aDouaHarta.showsUserLocation = false
-        self.mapView.showsUserLocation = false
+        //        self.mapView.showsUserLocation = false
         
         self.locationManager.delegate = nil
         
         
-        self.viewMap.removeFromSuperview()
-        self.largerMap.removeFromSuperview()
+        //        self.viewMap.removeFromSuperview()
+        //        self.largerMap.removeFromSuperview()
         self.viewMap = nil
         self.largerMap = nil
     }
-    
-    
-    
 }
-
-

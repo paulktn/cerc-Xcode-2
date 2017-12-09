@@ -28,7 +28,7 @@ extension CLPlacemark {
         return nil
     }}
 
-class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionViewDataSource, UINavigationControllerDelegate, CLLocationManagerDelegate, UICollectionViewDelegate {
+class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollectionViewDataSource, UINavigationControllerDelegate, CLLocationManagerDelegate, UICollectionViewDelegate {
     
     @IBOutlet weak var savingBackground: UIView!
     @IBOutlet weak var locationViewBand: UIView!
@@ -68,43 +68,44 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
         didSet{
             if poza1 != "" {
                 self.savingBackground.alpha = 0
-             self.postButton.alpha = 1
+                self.postButton.alpha = 1
             }
         }
     }
-   
+    
     
     var poza2: String! = ""{
         didSet{
             if poza2 != "" {
                 self.savingBackground.alpha = 0
                 self.postButton.alpha = 1
-             
-               
+            }
         }
-        }}
+    }
+    
     var poza3: String! = ""{
         didSet{
-        if poza3 != "" {
-     
-            self.savingBackground.alpha = 0
-            self.postButton.alpha = 1
-           
+            if poza3 != "" {
+                
+                self.savingBackground.alpha = 0
+                self.postButton.alpha = 1
+                
+            }
         }
-        }}
+    }
     
     var geoFire: GeoFire!
     
     var geoFireRef: DatabaseReference!
     
-   
+    
     
     var clothingWords = ["blouse", "boots", "coat", "dress", "handbag", "jacket", "jeans", "pijamas","pants", "raincoat", "shirt", "suit", "shoes", "skirt", "slacks", "shorts", "snowsuit", "sweater", "tuxedo", "women's accesories", "other"]
-   
+    
     var furnitureWords = ["bed(single)", "bed(f/q/k)", "folding bed", "bedroom set", "chair", "chest", "china cabinet", "clothes closet", "coffee table", "crib", "desk", "dining room set", "dresser", "end table", "hi riser", "kitchen cabinet", "mattress", "rugs", "secretary", "sofa", "sleeper sofa", "trunk", "wardrobe", "other"]
     
     var householdWords = ["bakeware", "bedspread/quilt", "chair/sofa cover", "coffeemaker", "curtains", "drapes", "fireplace set", "floor lamp", "glass/cup", "griddle", "kitchen utensils", "lamp", "mixer/blender", "picture/painting", "pillow", "pot/pan", "sheets", "throw rug", "towels", "vacuum", "other"]
-   
+    
     var electronicsWords = ["cell phone", "computer monitor", "computer desktop", "copier", "dvd", "dvd player", "radio/cd player", "printer", "tv", "other"]
     
     var appliancesWords = ["air conditioner", "dryer", "electric stove", "gas stove", "microwave", "refrigerator", "tv", "washing machine", "other"]
@@ -121,12 +122,6 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
     
     
     let cellIdentifiers = ["appliances", "clothing & accesories", "electronics", "furniture", "home improvement", "household items", "sporting goods", "toys & games", "miscellaneous"]
-
-    
-    
-    
-    
-    
     
     var databaseRef: DatabaseReference! {
         return Database.database().reference()
@@ -137,22 +132,15 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
     }
     
     lazy var geocoder = CLGeocoder()
-    
     var locationManager = CLLocationManager()
     
-    var lati: Double!
-    
-    var longi: Double!
+    private var currentLocation: CLLocationCoordinate2D!
     
     var canSendLocation = true
-    
     var postIdLocation: String! = ""
-    
     var pozaurl: String! = ""
-
     
     @IBOutlet weak var errorLabelCategory: CustomLabel!
-    
     @IBOutlet weak var errorLabelLocation: CustomLabel!
     
     override func viewDidLoad() {
@@ -167,21 +155,16 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
         errorPhotoLabel.isHidden = true
         button2.alpha = 0
         button3.alpha = 0
-        
         postImageView.alpha = 1
         postImageView2.alpha = 0
         postImageView3.alpha = 0
-        
         locationViewBand.alpha = 0
-        
         keywordCollection.alpha = 0
-        
         geoFireRef = Database.database().reference().child("postLocations")
         geoFire = GeoFire(firebaseRef: geoFireRef)
-        
         keywordCollection.delegate = self
         keywordCollection.dataSource = self
-       collectionCategories.dataSource = self
+        collectionCategories.dataSource = self
         collectionCategories.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -194,10 +177,8 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
         switch2.isOn = false
         switch3.isOn = false
         
-       // postButton.backgroundColor = UIColor.clear
         details.alpha = 0
         
-      //  keyword.addTarget (self, action: #selector(editAlertGone), for: .touchDown)
         self.locationManager.delegate = self
     }
     
@@ -212,9 +193,6 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
         categoriesIcon.alpha = 1
         presentDetailView.alpha = 1
         detailsIcon.alpha = 1
-        
-        
-        
         presentDetailView.setTitle("\(details.text!)", for: .normal)
         view.endEditing(true)
     }
@@ -222,20 +200,15 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
     func doneClicked() {
         view.endEditing(true)
     }
-
-@IBAction func dismissAddPost(_ sender: AnyObject) {
+    
+    @IBAction func dismissAddPost(_ sender: AnyObject) {
         
-         dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     
     ///// CATEGORIES PICKER
-
-  
     
-    
-
-  
     @IBAction func enterDetails(_ sender: Any) {
         keyword.alpha = 0
         chooseCategoryButton.alpha = 0
@@ -243,11 +216,11 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
         hashtagIcon.alpha = 0
         categoriesIcon.alpha = 0
         presentDetailView.alpha = 0
-      detailsIcon.alpha = 0
+        detailsIcon.alpha = 0
         
     }
     
-@IBAction func presentKeywordCollection(_ sender: AnyObject) {
+    @IBAction func presentKeywordCollection(_ sender: AnyObject) {
         
         keywordCollection.alpha = 1
         keywordCollection.reloadData()
@@ -255,18 +228,18 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
         detailsIcon.alpha = 0
     }
     @IBAction func presentCategories(_ sender: Any) {
-     self.collectionCategories.alpha = 1
+        self.collectionCategories.alpha = 1
         self.presentDetailView.alpha = 0
-    self.keywordCollection.alpha = 0
+        self.keywordCollection.alpha = 0
         self.keyword.alpha = 0
         hashtagIcon.alpha = 0
         self.details.alpha = 0
         detailsIcon.alpha = 0
-        }
+    }
     @IBAction func presentLocationView(_ sender: AnyObject) {
         
         locationViewBand.alpha = 1
-      locationButton.alpha = 0
+        locationButton.alpha = 0
         errorLabelLocation.isHidden = true
         
     }
@@ -294,7 +267,7 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
         
         // Geocode Address String
         geocoder.geocodeAddressString(address) { (placemarks, error) in
-       
+            
             self.processResponse(withPlacemarks: placemarks, error: error)
         }}
     
@@ -308,38 +281,32 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
             
         } else {
             if let placemarks = placemarks,
-            let placemark = placemarks.first {
+                let placemark = placemarks.first {
                 
                 if let lat = placemark.location?.coordinate.latitude,
-                let lon = placemark.location?.coordinate.longitude {
-                print("\(String(describing: lat))")
-                print("\(String(describing: lon))")
+                    let lon = placemark.location?.coordinate.longitude {
+                    print("\(String(describing: lat))")
+                    print("\(String(describing: lon))")
                     
-                    lati = lat
-                    longi = lon
-                
+                    currentLocation = CLLocationCoordinate2D(latitude: lat,
+                                                             longitude: lon)
+                    
                     let coordinates = ("\(String(describing: lat))") + ":" + ("\(String(describing: lon))")
                     print(coordinates)
                     postIdLocation = coordinates
-                    }
+                }
                 view.endEditing(true)
                 locationButton.setTitle(placemark.compactAddress, for: .normal)
                 
                 locationViewBand.alpha = 0
                 chooseCategoryButton.alpha = 1
                 keyword.alpha = 1
-               
+                
                 locationButton.alpha = 1
                 postButton.alpha = 1
-                
-                
-                
-                
-                
-            }}}
-            
-                
-            
+            }
+        }
+    }
     
     func checkLocationPermission() -> Bool {
         var state = false
@@ -353,7 +320,7 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
         return state
     }
     
-
+    
     @IBAction func useCurentLocation(_ sender: AnyObject)
     {
         
@@ -364,24 +331,10 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
         } else {
             self.locationManager.requestWhenInUseAuthorization()
         }
-    
-    
         
         locationButton.alpha = 1
-       locationViewBand.alpha = 0
-      
-        
-        
+        locationViewBand.alpha = 0
     }
-    
-    
-
-    
-    
-    
-    
-    
-    
     
     private func xxxprocessResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
         // Update View
@@ -393,30 +346,20 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
             if let placemarks = placemarks, let placemark = placemarks.first {
                 
                 locationButton.setTitle(placemark.compactAddress, for: .normal)
-              
+                
                 locationViewBand.alpha = 0
                 chooseCategoryButton.alpha = 1
                 keyword.alpha = 1
                 postButton.alpha = 1
-            } else
-                
-                
-                
-                
-            {
+            } else {
                 locationButton.setTitle("No matching location", for: .normal)
             }
         }
     }
     
-    ////////////////////
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
     }
-    
-    
-
-    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
@@ -427,13 +370,12 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
         // Call stopUpdatingLocation() to stop listening for location updates,
         // other wise this function will be called every time when user location changes.
         
-            lati = userLocation.coordinate.latitude
-            longi = userLocation.coordinate.longitude
+        currentLocation = userLocation.coordinate
         
         print("user latitude = \(userLocation.coordinate.latitude)")
         print("user longitude = \(userLocation.coordinate.longitude)")
         
-         let coordinates = String(userLocation.coordinate.latitude) + ":" + String(describing: userLocation.coordinate.longitude)
+        let coordinates = String(userLocation.coordinate.latitude) + ":" + String(describing: userLocation.coordinate.longitude)
         print(coordinates)
         postIdLocation = coordinates
         print(postIdLocation)
@@ -442,7 +384,7 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
             // Process Response
             self.xxxprocessResponse(withPlacemarks: placemarks, error: error)
             
-             self.stopUpdatingLocation() }
+            self.stopUpdatingLocation() }
         
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
         {
@@ -450,7 +392,7 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
         }}
     
     
-  
+    
     
     
     //// PicturesView
@@ -460,14 +402,14 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
     func grabPhotos() {
         
         let imgManager = PHImageManager.default()
-       
+        
         let requestOptions = PHImageRequestOptions()
         
         requestOptions.version = .original
         requestOptions.isSynchronous = true
         requestOptions.deliveryMode = .highQualityFormat
-      requestOptions.resizeMode = .exact
-     //   requestOptions.normalizedCropRect = (0.0, 0.0)
+        requestOptions.resizeMode = .exact
+        //   requestOptions.normalizedCropRect = (0.0, 0.0)
         
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
@@ -485,19 +427,19 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
                 imgManager.requestImage(for: fetchResult.object(at: i) , targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFill, options: requestOptions, resultHandler: {
                     image, error in
                     self.imageArray.append(image!)
-                    })}} else {
+                })}} else {
             self.collectionView?.reloadData()
-            }}
+        }}
     
     
-
+    
     
     private func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       
+        
         
         if collectionView == self.collectionCategories  {
             return cellIdentifiers.count
@@ -507,31 +449,31 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
         }  else  if collectionView == self.keywordCollection {
             switch self.chooseCategoryButton.titleLabel!.text! {
                 
-                case "choose category":
+            case "choose category":
                 return 1
-                case "appliances":
-                    return appliancesWords.count
-                case "clothing & accesories":
+            case "appliances":
+                return appliancesWords.count
+            case "clothing & accesories":
                 return clothingWords.count
-                case "electronics":
-            return electronicsWords.count
-                case "furniture":
+            case "electronics":
+                return electronicsWords.count
+            case "furniture":
                 return furnitureWords.count
             case "household items":
-            return householdWords.count
+                return householdWords.count
             case "sporting goods":
                 return sportingWords.count
-                case "toys & games":
+            case "toys & games":
                 return toysWords.count
             case "home improvement":
                 return homeimprovementWords.count
-                case "miscellaneous":
+            case "miscellaneous":
                 return miscellaneousWords.count
                 
             default:
                 return 1 }}
             
-        
+            
         else   {
             return imageArray.count }    }
     
@@ -545,68 +487,68 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionCategories {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifiers[indexPath.item], for: indexPath)
-        }
-        
-        else if collectionView == self.collectionView  {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath as IndexPath) as! PhotoCell
-        let Cam = cell.viewWithTag(1) as! UIImageView
-        Cam.image = imageArray[indexPath.row]
-        return cell
+            return collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifiers[indexPath.item], for: indexPath)
         }
             
-            else {
+        else if collectionView == self.collectionView  {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath as IndexPath) as! PhotoCell
+            let Cam = cell.viewWithTag(1) as! UIImageView
+            Cam.image = imageArray[indexPath.row]
+            return cell
+        }
+            
+        else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "keywordCell", for: indexPath as IndexPath) as! keywordCell
             
             switch self.chooseCategoryButton.titleLabel!.text! {
-                 
-                 case "appliances":
+                
+            case "appliances":
                 cell.keywords.text! = self.appliancesWords[indexPath.item]
                 return cell;
-                   
-                    
-                case "clothing & accesories":
+                
+                
+            case "clothing & accesories":
                 cell.keywords.text! = self.clothingWords[indexPath.item]
                 return cell;
                 
-                case "electronics":
+            case "electronics":
                 cell.keywords.text! = self.electronicsWords[indexPath.item]
                 return cell;
                 
-                case "furniture":
+            case "furniture":
                 cell.keywords.text! = self.furnitureWords[indexPath.row]
                 return cell;
                 
-                case "household items":
+            case "household items":
                 cell.keywords.text! = self.householdWords[indexPath.item]
                 return cell;
                 
-                case "sporting goods":
+            case "sporting goods":
                 cell.keywords.text! = self.sportingWords[indexPath.item]
                 return cell;
-                case "toys & games":
-              
+            case "toys & games":
+                
                 cell.keywords.text! = self.toysWords[indexPath.item]
                 return cell;
                 
-                case "home improvement":
+            case "home improvement":
                 cell.keywords.text! = self.homeimprovementWords[indexPath.item]
                 return cell
                 
-                case "miscellaneous":
+            case "miscellaneous":
                 cell.keywords.text! = self.miscellaneousWords[indexPath.item]
                 return cell;
-               
-                case "choose category":
+                
+            case "choose category":
                 cell.keywords.text! = self.miscellaneousWords[indexPath.item]
                 return cell;
-
-                    default:
-                    cell.keywords.text! = "please first choose a category"
-                    return cell
+                
+            default:
+                cell.keywords.text! = "please first choose a category"
+                return cell
             }}}
-            
-            
+    
+    
     
     
     
@@ -618,65 +560,65 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
+        
         if collectionView == self.collectionView {
-        if collectionView.cellForItem(at: indexPath) != nil {
+            if collectionView.cellForItem(at: indexPath) != nil {
+                
+                if self.switch1.isOn == true {
+                    
+                    self.postImageView.image = self.imageArray[indexPath.item]
+                    button1.alpha = 0
+                    button2.alpha = 1
+                    button3.alpha = 0
+                    self.switch1.isOn = false
+                    self.picturesOut()
+                    self.PicturesView.alpha = 0
+                    self.postButton.alpha = 0
+                    self.savingBackground.alpha = 1
+                    self.savingPost.text! = "one moment please"
+                    self.checkMark.image = #imageLiteral(resourceName: "loading")
+                }
+                else if switch2.isOn == true {
+                    
+                    self.postImageView2.image = self.imageArray[indexPath.item]
+                    button1.alpha = 0
+                    button2.alpha = 0
+                    button3.alpha = 1
+                    self.switch2.isOn = false
+                    self.picturesOut()
+                    self.PicturesView.alpha = 0
+                    self.savingBackground.alpha = 1
+                    self.savingPost.text! = "one moment please"
+                    self.checkMark.image = #imageLiteral(resourceName: "loading")
+                    
+                    self.postButton.alpha = 0
+                } else if switch3.isOn == true {
+                    
+                    self.postImageView3.image = self.imageArray[indexPath.item]
+                    button1.alpha = 0
+                    button2.alpha = 0
+                    button3.alpha = 0
+                    self.picturesOut()
+                    self.PicturesView.alpha = 0
+                    self.savingBackground.alpha = 1
+                    self.savingPost.text! = "one moment please"
+                    self.checkMark.image = #imageLiteral(resourceName: "loading")
+                    self.postButton.alpha = 0
+                }}}
             
-            if self.switch1.isOn == true {
-                
-                self.postImageView.image = self.imageArray[indexPath.item]
-                button1.alpha = 0
-                button2.alpha = 1
-                button3.alpha = 0
-                self.switch1.isOn = false
-                    self.picturesOut()
-                self.PicturesView.alpha = 0
-                self.postButton.alpha = 0
-                self.savingBackground.alpha = 1
-                self.savingPost.text! = "one moment please"
-                self.checkMark.image = #imageLiteral(resourceName: "loading")
-                          }
-            else if switch2.isOn == true {
-                
-                self.postImageView2.image = self.imageArray[indexPath.item]
-                button1.alpha = 0
-                button2.alpha = 0
-                button3.alpha = 1
-                self.switch2.isOn = false
-                    self.picturesOut()
-                self.PicturesView.alpha = 0
-                self.savingBackground.alpha = 1
-                self.savingPost.text! = "one moment please"
-                self.checkMark.image = #imageLiteral(resourceName: "loading")
-                
-                self.postButton.alpha = 0
-            } else if switch3.isOn == true {
-                
-                self.postImageView3.image = self.imageArray[indexPath.item]
-               button1.alpha = 0
-                button2.alpha = 0
-                button3.alpha = 0
-                    self.picturesOut()
-                self.PicturesView.alpha = 0
-                self.savingBackground.alpha = 1
-                self.savingPost.text! = "one moment please"
-                self.checkMark.image = #imageLiteral(resourceName: "loading")
-                self.postButton.alpha = 0
-            }}}
-        
-   
-        
+            
+            
         else if collectionView == self.keywordCollection {
             
             switch self.chooseCategoryButton.titleLabel!.text! {
-               
                 
-             case "     choose category":
+                
+            case "     choose category":
                 
                 self.keyword.setTitle("first choose category", for: .normal)
             case "appliances":
                 self.keyword.setTitle("\(self.appliancesWords[indexPath.item])", for: .normal)
-            keywordCollection.alpha = 0
+                keywordCollection.alpha = 0
                 presentDetailView.alpha = 1
                 detailsIcon.alpha = 1
                 errorLabelCategory.text = ""
@@ -686,23 +628,23 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
                 presentDetailView.alpha = 1
                 detailsIcon.alpha = 1
                 errorLabelCategory.text = ""
-             case "electronics":
-               self.keyword.setTitle("\(self.electronicsWords[indexPath.item])", for: .normal)
-               keywordCollection.alpha = 0
-               presentDetailView.alpha = 1
-               detailsIcon.alpha = 1
+            case "electronics":
+                self.keyword.setTitle("\(self.electronicsWords[indexPath.item])", for: .normal)
+                keywordCollection.alpha = 0
+                presentDetailView.alpha = 1
+                detailsIcon.alpha = 1
                 errorLabelCategory.text = ""
             case "furniture":
-               self.keyword.setTitle("\(self.furnitureWords[indexPath.item])", for: .normal)
-               keywordCollection.alpha = 0
-               presentDetailView.alpha = 1
-               detailsIcon.alpha = 1
+                self.keyword.setTitle("\(self.furnitureWords[indexPath.item])", for: .normal)
+                keywordCollection.alpha = 0
+                presentDetailView.alpha = 1
+                detailsIcon.alpha = 1
                 errorLabelCategory.text = ""
             case "household items":
-               self.keyword.setTitle("\(self.householdWords[indexPath.item])", for: .normal)
-               keywordCollection.alpha = 0
-               presentDetailView.alpha = 1
-               detailsIcon.alpha = 1
+                self.keyword.setTitle("\(self.householdWords[indexPath.item])", for: .normal)
+                keywordCollection.alpha = 0
+                presentDetailView.alpha = 1
+                detailsIcon.alpha = 1
                 errorLabelCategory.text = ""
             case "sporting goods":
                 self.keyword.setTitle("\(self.sportingWords[indexPath.item])", for: .normal)
@@ -728,7 +670,7 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
                 presentDetailView.alpha = 1
                 detailsIcon.alpha = 1
                 errorLabelCategory.text = ""
-            
+                
             default:
                 self.keyword.setTitle("\(self.cellIdentifiers[indexPath.item])", for: .normal)
                 keywordCollection.alpha = 0
@@ -737,9 +679,9 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
                 errorLabelCategory.text = ""
                 
             }}
-     
-        
-        
+            
+            
+            
         else if collectionView == self.collectionCategories {
             self.chooseCategoryButton.setTitle("\(self.cellIdentifiers[indexPath.item])", for: .normal)
             self.collectionCategories.alpha = 0
@@ -749,26 +691,18 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
             hashtagIcon.alpha = 1
             errorLabel.text = ""
             self.keywordCollection.reloadData()
-            
-        }}
-    
-    
-    
-    
-    
-    
-    
-    
+        }
+    }
     
     @IBAction func back(_ sender: Any) {
-        self.pushTomainView()
+        self.dismiss(animated: true, completion: nil)
+        //self.pushTomainView()
     }
+    
     func pushTomainView() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeVC
-        self.show(vc, sender: nil) }
-    
-    
-    
+        self.show(vc, sender: nil)
+    }
     
     @IBAction func takePhoto(_ sender: AnyObject) {
         let pickerController = UIImagePickerController()
@@ -796,7 +730,7 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
             self.postImageView3.image = image
             button3.alpha = 0
             self.picturesOut()}
-     
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -814,7 +748,7 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
             PicturesView.alpha = 1
             errorPhotoLabel.alpha = 0
             errorPhotoLabel.isHidden = true
-                        switch1.isOn = true;
+            switch1.isOn = true;
             
         case button2:
             PicturesView.alpha = 1
@@ -826,8 +760,8 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
             
             PicturesView.alpha = 1
             errorPhotoLabel.alpha = 0
-
-
+            
+            
             switch3.isOn = true;
             
         default: break;
@@ -836,7 +770,7 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
     
     
     func picturesOut() {
-                let postId = NSUUID().uuidString
+        let postId = NSUUID().uuidString
         let image1 = self.postImageView.image
         let image2 = self.postImageView2.image
         let image3 = self.postImageView3.image
@@ -848,7 +782,7 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
         let imageData3 = UIImageJPEGRepresentation(image3!, CGFloat(1))
         let postThumbData = postThumb?.jpeg(.lowest)
         
-         
+        
         
         
         
@@ -867,13 +801,13 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
             
         }
         
-         if postImageView2.image != UIImage(named: "photoPlaceholder") {
+        if postImageView2.image != UIImage(named: "photoPlaceholder") {
             postImageView3.alpha = 1
             button1.alpha = 0
             button2.alpha = 0
             button3.alpha = 1
-
-        
+            
+            
         };   if postImageView3.image != UIImage(named: "photoPlaceholder") {
             
             button1.alpha = 0
@@ -882,12 +816,12 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
         }
         
         
-   // PicturesView.alpha = 0
+        // PicturesView.alpha = 0
         switch1.isOn = false
         switch2.isOn = false
         switch3.isOn = false
         
-       
+        
     }
     
     func uploadImageToFirebase(postId: String, imageData1: Data, imageData2: Data, imageData3:Data, postThumb:Data, completion: @escaping (URL)->()){
@@ -924,9 +858,9 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
                 {
                     self.thumbLink = "\(postThumbURL)"
                     completion(postThumbURL) }
-                }}
+            }}
         
-    postImageRef1.putData(imageData1, metadata: postImageMetadata) { (newPostImageMD, error) in
+        postImageRef1.putData(imageData1, metadata: postImageMetadata) { (newPostImageMD, error) in
             if let error = error {
                 print(error.localizedDescription)
             }else {
@@ -935,11 +869,10 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
                     self.poza1 = "\(postImageURL1)"
                     print(self.poza1)
                     completion(postImageURL1) }
-            }}
+            }
+        }
         
         postImageRef2.putData(imageData2, metadata: postImageMetadata) { (newPostImageMD, error) in
-            
-            
             if let error = error {
                 print(error.localizedDescription)
             }else {
@@ -949,17 +882,16 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
                         self.poza2 = "no image"
                         
                     }else {
-                    self.poza2 = "\(postImageURL2)"
-                    completion(postImageURL2) }
+                        self.poza2 = "\(postImageURL2)"
+                        completion(postImageURL2) }
                 }
-                
             }
         }
         
         postImageRef3.putData(imageData3, metadata: postImageMetadata) { (newPostImageMD, error) in
             if let error = error {
                 print(error.localizedDescription)
-            }else {
+            } else {
                 if let postImageURL3 = newPostImageMD?.downloadURL() {
                     if self.postImageView3.image == UIImage(named: "photoPlaceholder") {
                         self.poza3 = "no image"
@@ -967,41 +899,34 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
                     }else {
                         self.poza3 = "\(postImageURL3)"
                         completion(postImageURL3) }
+                    
+                }
                 
             }
-            
-        }}
-    
-  ///////
+        }
     }
     
-        
-       @IBAction func savePost(_ sender: AnyObject) {
+    @IBAction func savePost(_ sender: AnyObject) {
         self.view.endEditing(true)
         
-        
-        
-        
         func checkSave() {
-            
             if self.keyword.titleLabel!.text! == "   choose a keyword" {
                 errorLabelCategory.text = "!"
                 
                 errorLabelCategory.isHidden = false
             } else {
                 checkCategory()
-            }}
+            }
+        }
         
         func checkCategory() {
-            if    self.chooseCategoryButton.titleLabel!.text! == "   choose category"   {
-                
+            if self.chooseCategoryButton.titleLabel!.text! == "   choose category"   {
                 errorLabel.text = "!"
                 errorLabel.isHidden = false
-                
-                
             } else {
                 print("category ok")
-            }}
+            }
+        }
         
         func checkLocation() {
             if self.locationButton.titleLabel!.text! == "Location" {
@@ -1027,114 +952,113 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
                 checkSave()
                 checkCategory()
                 checkLocation()
-               
+                
                 print("nu-i gata")
             }  else if keyword.titleLabel!.text! != "   choose a keyword" && self.chooseCategoryButton.titleLabel!.text! != "   choose category"  && self.locationButton.titleLabel!.text! != "Location" &&  postImageView.image != UIImage(named: "photoPlaceholder") {
                 
-            let allPosts = "allPosts"
-                    let postTitle = keyword.titleLabel!.text!
-                    let postDetails = details.text!
-                    let postCategory = chooseCategoryButton.titleLabel!.text!
-                    let postId = NSUUID().uuidString
-                    let postDate = NSDate().timeIntervalSince1970 as NSNumber
-                    let city =  locationButton.titleLabel!.text!
-                    var url2: String! = ""
-                    let post = Post(allPosts: allPosts, postId: postId, userId: Auth.auth().currentUser!.uid, postImageURL1: poza1, postImageURL2: poza2, postImageURL3: poza3, postThumbURL: thumbLink, postDate: postDate, location: "coordinates",  postTitle: postTitle, postDetails: postDetails, postCategory: postCategory, city: city, latit: lati, longit: longi)
+                let allPosts = "allPosts"
+                let postTitle = keyword.titleLabel!.text!
+                let postDetails = details.text!
+                let postCategory = chooseCategoryButton.titleLabel!.text!
+                let postId = NSUUID().uuidString
+                let postDate = NSDate().timeIntervalSince1970 as NSNumber
+                let city =  locationButton.titleLabel!.text!
+                var url2: String! = ""
+                let post = Post(allPosts: allPosts,
+                                postId: postId,
+                                userId: Auth.auth().currentUser!.uid,
+                                postImageURL1: poza1,
+                                postImageURL2: poza2,
+                                postImageURL3: poza3,
+                                postThumbURL: thumbLink,
+                                postDate: postDate,
+                                location: "coordinates",
+                                postTitle: postTitle,
+                                postDetails: postDetails,
+                                postCategory: postCategory,
+                                city: city,
+                                latit: currentLocation.latitude,
+                                longit: currentLocation.longitude)
                 
                 
-                    func geoset() {
-                        let coordinates = postIdLocation.components(separatedBy: ":")
-                        print(coordinates)
-                        
-                        let location = CLLocation(latitude: CLLocationDegrees(coordinates[0])!, longitude: CLLocationDegrees(coordinates[1])!)
-                        geoFire!.setLocation(location, forKey: postId) { (error) in
-                            if (error != nil) {
-                                debugPrint("An error occured: \(String(describing: error))")
-                            } else {
-                                print("Saved location successfully!")
-                            }}}
-                
+                func geoset() {
+                    let coordinates = postIdLocation.components(separatedBy: ":")
+                    print(coordinates)
                     
-                    let postRef = databaseRef.child("posts").child(postId)
-                    postRef.setValue(post.serialized) { (error, ref) in
-                        if let error = error {
-                            print(error.localizedDescription)
-                        } else
-                        {
-                            geoset()
-                            
-                            print(postId)
-                        }}
-                
-               func delay(delay: Double, closure: @escaping () -> ()) {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                        closure()
-                    }}
-                
-            
-               delay(delay: 2) {
-                self.savingBackground.alpha = 1
-                self.checkMark.image = #imageLiteral(resourceName: "Done")
-                self.savingPost.text! = "post saved succesfully"
-                
-                delay(delay: 3) {
-                    self.pushTomainView()
+                    let location = CLLocation(latitude: CLLocationDegrees(coordinates[0])!, longitude: CLLocationDegrees(coordinates[1])!)
+                    geoFire!.setLocation(location, forKey: postId) { (error) in
+                        if (error != nil) {
+                            debugPrint("An error occured: \(String(describing: error))")
+                        } else {
+                            print("Saved location successfully!")
+                        }
+                    }
                 }
                 
+                let postRef = databaseRef.child("posts").child(postId)
+                postRef.setValue(post.serialized) { (error, ref) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        geoset()
+                        
+                        print(postId)
+                    }
+                }
+                
+                func delay(delay: Double, closure: @escaping () -> ()) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                        closure()
+                    }
+                }
+                
+                delay(delay: 2) {
+                    self.savingBackground.alpha = 1
+                    self.checkMark.image = #imageLiteral(resourceName: "Done")
+                    self.savingPost.text! = "post saved succesfully"
+                    
+                    delay(delay: 3) {
+                        self.pushTomainView()
+                    }
+                    
+                }
             }
-               }
-                
-                
-                
-                
-                
-}
+        }
         
-        postIt()   }
-    
-    
-    
-    
-       func editAlertGone() {
+        postIt()
+    }
+
+    func editAlertGone() {
         errorLabel.isHidden = true
         view.endEditing(true)
     }
 }
 
-
-
-extension AddPost:  UICollectionViewDelegateFlowLayout {
+extension AddPostVC:  UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if collectionView == self.collectionView {
-        let sectionInsets = UIEdgeInsets(top: 0, left: 1.0, bottom: 0, right: 1)
-        let itemsPerRow: CGFloat = 3.2
-        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-        let availableWidth = collectionView.frame.width - paddingSpace
-        let widthPerItem = availableWidth / itemsPerRow
-        
-        return CGSize(width: widthPerItem, height: widthPerItem)
+            let sectionInsets = UIEdgeInsets(top: 0, left: 1.0, bottom: 0, right: 1)
+            let itemsPerRow: CGFloat = 3.2
+            let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+            let availableWidth = collectionView.frame.width - paddingSpace
+            let widthPerItem = availableWidth / itemsPerRow
+            
+            return CGSize(width: widthPerItem, height: widthPerItem)
         } else {
-           
             return CGSize(width: 150, height: 35)
-            
-            
         }
-        
     }
     
-
-    
-    // 4
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         if collectionView == self.collectionView {
-        
-        
-        let sectionInsets = UIEdgeInsets(top: 1, left: 1.0, bottom: 1, right: 1)
-        return sectionInsets
+            
+            
+            let sectionInsets = UIEdgeInsets(top: 1, left: 1.0, bottom: 1, right: 1)
+            return sectionInsets
         } else {
             let sectionInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
             return sectionInsets
@@ -1146,8 +1070,8 @@ extension AddPost:  UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         if collectionView == self.collectionView {
-        let sectionInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
-        return sectionInsets.left
+            let sectionInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+            return sectionInsets.left
         } else {
             let sectionInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
             return sectionInsets.left
@@ -1173,7 +1097,7 @@ extension UIImage {
         return UIGraphicsGetImageFromCurrentImageContext()
     }
     
-
+    
     func jpeg(_ quality: JPEGQuality) -> Data? {
         return UIImageJPEGRepresentation(self, quality.rawValue)
     }}

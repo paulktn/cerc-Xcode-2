@@ -425,7 +425,7 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
     }
     
     func takeToPostAdd(){
-        let AddPostVC = self.storyboard?.instantiateViewController(withIdentifier: "Add Post") as! AddPost
+        let AddPostVC = self.storyboard?.instantiateViewController(withIdentifier: "Add Post") as! AddPostVC
         self.show(AddPostVC, sender: nil)
     }
     
@@ -527,6 +527,11 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ViewPostSegue" {
+            guard let post = sender as? Post,
+                let reviewPostVc = segue.destination as? ViewPostVC else {return}
+            reviewPostVc.passPost = post            
+        }
 //        if segue.identifier == "fromSearch" {
 //            let postDetailPage = segue.destination as? ViewPost
 //            if let indexPath = self.collectionView?.indexPath(for: sender as! UICollectionViewCell) {
@@ -550,13 +555,15 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionTableViewCell") as? CollectionTableViewCell {
-            let postsCollection = PostsCollectionDataSource()
+            let postsCollectionManager = PostsCollectionCollectionManager()
+            postsCollectionManager.delegate = self
             if let category = categoryForRow[indexPath.section] {
-                postsCollection.posts = allPosts.filter { $0.category == category }
+                postsCollectionManager.posts = allPosts.filter { $0.category == category }
             } else {
-                postsCollection.posts = allPosts
+                postsCollectionManager.posts = allPosts
             }
-            cell.dataSource = postsCollection
+            cell.collectionManager = postsCollectionManager
+            
             return cell
         }
         
@@ -585,27 +592,6 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-//        let getTextForDate: ((Date, Date) -> String?) = { (fromDate, toDate) in
-//
-//            let differenceOfDate = Calendar.current.dateComponents([.second,.minute,.hour,.day,.weekOfMonth], from: fromDate as Date, to: toDate as Date)
-//
-//            if differenceOfDate.second! <= 0 {
-//                return "now"
-//            } else if differenceOfDate.second! > 0 && differenceOfDate.minute == 0 {
-//                return "\(differenceOfDate.second!) seconds"
-//            }else if differenceOfDate.minute! > 0 && differenceOfDate.hour! == 0 {
-//                return "\(differenceOfDate.minute!) minutes"
-//            }else if differenceOfDate.hour! > 0 && differenceOfDate.day! == 0 {
-//                return "\(differenceOfDate.hour!) hours"
-//            }else if differenceOfDate.day! > 0 && differenceOfDate.weekOfMonth! == 0 {
-//                return"\(differenceOfDate.day!) days"
-//            }else if differenceOfDate.weekOfMonth! > 0 {
-//                return "\(differenceOfDate.weekOfMonth!) weeks"
-//            }
-//
-//            return nil
-//        }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionItemCell", for: indexPath) as! CollectionItemCell
         let sweet = filteredPosts[indexPath.item]
@@ -682,6 +668,11 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
             return 1
         }
     }
-    
+}
+
+extension HomeVC: PostsCollectionCollectionManagerDelegate {
+    func selectedPost(_ post: Post) {
+        performSegue(withIdentifier: "ViewPostSegue", sender: post)
+    }
 }
 

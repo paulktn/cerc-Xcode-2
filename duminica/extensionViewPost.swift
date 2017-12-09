@@ -9,10 +9,7 @@
 import Foundation
 import UIKit
 
-
-
-
-extension ViewPost: UICollectionViewDelegateFlowLayout {
+extension ViewPostVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
@@ -22,8 +19,4 @@ extension ViewPost: UICollectionViewDelegateFlowLayout {
         layout.invalidateLayout()
         return CGSize(width: ((self.view.frame.width/2.2) - 6), height: ((self.view.frame.width / 2.2) - 6))
     }
-    
-    
-    
-    
 }

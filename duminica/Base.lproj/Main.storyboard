@@ -1464,6 +1464,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <outlet property="searchBarHeight" destination="zpQ-rg-clz" id="xi4-z8-YtX"/>
                         <outlet property="searchView" destination="abG-if-Lve" id="I1V-Cy-KQb"/>
                         <outlet property="tableView" destination="lxv-KJ-nBZ" id="S5a-UL-dlS"/>
+                        <segue destination="fcN-48-kFa" kind="show" identifier="ViewPostSegue" id="Vx2-SP-A7e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1652,7 +1653,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
         <!--Add Post-->
         <scene sceneID="1ew-uA-COz">
             <objects>
-                <viewController storyboardIdentifier="Add Post" title="Add Post" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nZH-u1-jLd" customClass="AddPost" customModule="duminica" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Add Post" title="Add Post" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nZH-u1-jLd" customClass="AddPostVC" customModule="duminica" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hTT-Lf-eyh"/>
                         <viewControllerLayoutGuide type="bottom" id="6cA-ha-hKS"/>
@@ -2464,6 +2465,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="PicturesView" destination="uuN-Ya-z83" id="cN8-Dw-hxo"/>
                         <outlet property="button1" destination="DTI-1n-2Qt" id="6XZ-M0-HC4"/>
                         <outlet property="button2" destination="hD4-KV-P4y" id="Na0-7J-Bil"/>
                         <outlet property="button3" destination="WLO-sd-8vv" id="t4I-hx-0AU"/>
@@ -2471,6 +2473,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <outlet property="checkMark" destination="e73-Gh-wog" id="UCz-2Y-CcK"/>
                         <outlet property="chooseCategoryButton" destination="4BS-X3-euq" id="cmh-sD-lGe"/>
                         <outlet property="collectionCategories" destination="6IU-aV-5tk" id="GCM-YS-Wh6"/>
+                        <outlet property="collectionView" destination="Ov8-Wz-Kgg" id="xr5-jz-OXy"/>
                         <outlet property="details" destination="1qT-J9-rwq" id="0pl-e5-zQI"/>
                         <outlet property="detailsIcon" destination="6Bh-sS-yxn" id="egB-e5-AhD"/>
                         <outlet property="enterZipcode" destination="15l-rx-xjv" id="9Et-hR-tDy"/>
@@ -2519,7 +2522,35 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                 <view contentMode="scaleToFill" id="uuN-Ya-z83">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ov8-Wz-Kgg">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DUa-zT-m2B">
+                                <size key="itemSize" width="50" height="50"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                            <cells>
+                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2r8-yC-EmJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </view>
+                                </collectionViewCell>
+                            </cells>
+                        </collectionView>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Ov8-Wz-Kgg" secondAttribute="trailing" id="Lck-Zo-oaC"/>
+                        <constraint firstAttribute="bottom" secondItem="Ov8-Wz-Kgg" secondAttribute="bottom" id="cI2-us-wXa"/>
+                        <constraint firstItem="Ov8-Wz-Kgg" firstAttribute="leading" secondItem="uuN-Ya-z83" secondAttribute="leading" id="cqI-8H-nRY"/>
+                        <constraint firstItem="Ov8-Wz-Kgg" firstAttribute="top" secondItem="uuN-Ya-z83" secondAttribute="top" id="h5U-rG-For"/>
+                    </constraints>
                 </view>
             </objects>
             <point key="canvasLocation" x="-4171.0144927536239" y="1197.554347826087"/>
@@ -2599,10 +2630,10 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
             </objects>
             <point key="canvasLocation" x="-3474" y="1925"/>
         </scene>
-        <!--View Post-->
+        <!--View PostVC-->
         <scene sceneID="Krw-ej-EZl">
             <objects>
-                <viewController id="fcN-48-kFa" customClass="ViewPost" customModule="duminica" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fcN-48-kFa" customClass="ViewPostVC" customModule="duminica" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vij-hp-aq9"/>
                         <viewControllerLayoutGuide type="bottom" id="04T-7J-Kpg"/>
@@ -5710,10 +5741,8 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="accountCust" id="TdG-qC-Wi2" customClass="accountCust" customModule="duminica" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="4" width="136" height="131"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                            <rect key="frame" x="0.0" y="0.0" width="136" height="131"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gd1-S6-Xr4">

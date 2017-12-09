@@ -182,13 +182,6 @@ class EditPost: UIViewController, UIImagePickerControllerDelegate,  UICollection
         return  newText.characters.count <= 200
     }
     
-    
-    
-    
- 
-    
-    
-    
     var imageArray = [UIImage]()
     
     func grabPhotos() {
@@ -218,17 +211,11 @@ class EditPost: UIViewController, UIImagePickerControllerDelegate,  UICollection
                     self.imageArray.append(image!)
                     
                 })
-                
             }
-            
-            
         } else {
-            
-            self.collectionViewPictures?.reloadData()}}
-    
-    
-    
-    
+            self.collectionViewPictures?.reloadData()
+        }
+    }
     
     
     @IBAction func photosIn(_ sender: UIButton) {
@@ -251,17 +238,10 @@ class EditPost: UIViewController, UIImagePickerControllerDelegate,  UICollection
             PicturesView.center = view.center
             switch3.isOn = true;
             
-        default: break;
-        
+        default:
+            break
+        }
     }
-    }
-    
-    
-    
-    
-    
-    
-    
     
     private func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1

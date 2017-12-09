@@ -12,22 +12,18 @@ class CollectionTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    public var dataSource: PostsCollectionDataSource? {
+    public var collectionManager: PostsCollectionCollectionManager? {
         didSet {
-            collectionView.dataSource = dataSource
-            dataSource?.collectionView = collectionView
+            collectionView.dataSource = collectionManager
+            collectionView.delegate = collectionManager
+            collectionManager?.collectionView = collectionView
             collectionView.reloadData()
         }
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        dataSource = nil
+        collectionManager = nil
     }
 }

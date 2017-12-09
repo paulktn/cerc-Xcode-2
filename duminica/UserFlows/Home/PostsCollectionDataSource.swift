@@ -1,5 +1,5 @@
 //
-//  PostsCollectionDataSource.swift
+//  PostsCollectionCollectionManager.swift
 //  duminica
 //
 //  Created by Olexa Boyko on 03.12.17.
@@ -9,8 +9,13 @@
 import Foundation
 import UIKit
 
-class PostsCollectionDataSource: NSObject {
+protocol PostsCollectionCollectionManagerDelegate: class {
+    func selectedPost(_ post: Post)
+}
+
+class PostsCollectionCollectionManager: NSObject {
     weak var collectionView: UICollectionView?
+    weak var delegate: PostsCollectionCollectionManagerDelegate?
     var posts: [Post] = [] {
         didSet {
             collectionView?.reloadData()
@@ -18,7 +23,7 @@ class PostsCollectionDataSource: NSObject {
     }
 }
 
-extension PostsCollectionDataSource: UICollectionViewDataSource {
+extension PostsCollectionCollectionManager: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
     }
@@ -36,5 +41,13 @@ extension PostsCollectionDataSource: UICollectionViewDataSource {
         }
         
         return UICollectionViewCell()
+    }
+}
+
+extension PostsCollectionCollectionManager: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let post = posts[indexPath.item]
+        
+        delegate?.selectedPost(post)
     }
 }

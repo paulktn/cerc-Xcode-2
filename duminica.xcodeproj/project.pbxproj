@@ -39,7 +39,7 @@
 		33A37D3D1F5AAFC30021365C /* SocialMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A37D3C1F5AAFC30021365C /* SocialMedia.swift */; };
 		33BB4DC91F2EA8CD00DB49FD /* report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4DC41F2EA8CD00DB49FD /* report.swift */; };
 		33BB4DCB1F2EA8CD00DB49FD /* placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4DC61F2EA8CD00DB49FD /* placeholder.swift */; };
-		33BB4DCC1F2EA8CD00DB49FD /* Popoverfinal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4DC71F2EA8CD00DB49FD /* Popoverfinal.swift */; };
+		33BB4DCC1F2EA8CD00DB49FD /* AddPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4DC71F2EA8CD00DB49FD /* AddPostVC.swift */; };
 		33BB4DCD1F2EA8CD00DB49FD /* EditPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4DC81F2EA8CD00DB49FD /* EditPost.swift */; };
 		33BB4DD31F2EA8E200DB49FD /* chatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4DCE1F2EA8E200DB49FD /* chatVC.swift */; };
 		33BB4DD41F2EA8E200DB49FD /* sendmessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4DCF1F2EA8E200DB49FD /* sendmessage.swift */; };
@@ -47,7 +47,7 @@
 		33BB4DD61F2EA8E200DB49FD /* myMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4DD11F2EA8E200DB49FD /* myMessages.swift */; };
 		33BB4DD91F2EA8F000DB49FD /* UserHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4DD81F2EA8F000DB49FD /* UserHeaderTableViewCell.swift */; };
 		33BB4DDB1F2EA8FC00DB49FD /* locationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4DDA1F2EA8FC00DB49FD /* locationBar.swift */; };
-		33BB4DDD1F2EA90300DB49FD /* ViewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4DDC1F2EA90300DB49FD /* ViewPost.swift */; };
+		33BB4DDD1F2EA90300DB49FD /* ViewPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4DDC1F2EA90300DB49FD /* ViewPostVC.swift */; };
 		33BB4E8C1F2EA95600DB49FD /* Appliances.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E811F2EA95600DB49FD /* Appliances.swift */; };
 		33BB4E8D1F2EA95600DB49FD /* Clothing & Accesories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E821F2EA95600DB49FD /* Clothing & Accesories.swift */; };
 		33BB4E8E1F2EA95600DB49FD /* Electronics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E831F2EA95600DB49FD /* Electronics.swift */; };
@@ -169,7 +169,7 @@
 		33A37D3C1F5AAFC30021365C /* SocialMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialMedia.swift; sourceTree = "<group>"; };
 		33BB4DC41F2EA8CD00DB49FD /* report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = report.swift; sourceTree = "<group>"; };
 		33BB4DC61F2EA8CD00DB49FD /* placeholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = placeholder.swift; sourceTree = "<group>"; };
-		33BB4DC71F2EA8CD00DB49FD /* Popoverfinal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popoverfinal.swift; sourceTree = "<group>"; };
+		33BB4DC71F2EA8CD00DB49FD /* AddPostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPostVC.swift; sourceTree = "<group>"; };
 		33BB4DC81F2EA8CD00DB49FD /* EditPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPost.swift; sourceTree = "<group>"; };
 		33BB4DCE1F2EA8E200DB49FD /* chatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatVC.swift; sourceTree = "<group>"; };
 		33BB4DCF1F2EA8E200DB49FD /* sendmessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sendmessage.swift; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 		33BB4DD11F2EA8E200DB49FD /* myMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myMessages.swift; sourceTree = "<group>"; };
 		33BB4DD81F2EA8F000DB49FD /* UserHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		33BB4DDA1F2EA8FC00DB49FD /* locationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = locationBar.swift; sourceTree = "<group>"; };
-		33BB4DDC1F2EA90300DB49FD /* ViewPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPost.swift; sourceTree = "<group>"; };
+		33BB4DDC1F2EA90300DB49FD /* ViewPostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPostVC.swift; sourceTree = "<group>"; };
 		33BB4E811F2EA95600DB49FD /* Appliances.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appliances.swift; sourceTree = "<group>"; };
 		33BB4E821F2EA95600DB49FD /* Clothing & Accesories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Clothing & Accesories.swift"; sourceTree = "<group>"; };
 		33BB4E831F2EA95600DB49FD /* Electronics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Electronics.swift; sourceTree = "<group>"; };
@@ -331,14 +331,14 @@
 				7E8C1B6D1FD5E8A000EAA156 /* LoginVC.swift */,
 				7E8C1B6F1FD5F01500EAA156 /* CreateNewUserVC.swift */,
 				7E8C1B711FD5F04900EAA156 /* NewSessionVC.swift */,
-				33BB4DDC1F2EA90300DB49FD /* ViewPost.swift */,
+				33BB4DDC1F2EA90300DB49FD /* ViewPostVC.swift */,
 				33BB4DCE1F2EA8E200DB49FD /* chatVC.swift */,
 				33BB4DCF1F2EA8E200DB49FD /* sendmessage.swift */,
 				33BB4DD01F2EA8E200DB49FD /* AccountVC.swift */,
 				33BB4DD11F2EA8E200DB49FD /* myMessages.swift */,
 				33BB4DC41F2EA8CD00DB49FD /* report.swift */,
 				33BB4DC61F2EA8CD00DB49FD /* placeholder.swift */,
-				33BB4DC71F2EA8CD00DB49FD /* Popoverfinal.swift */,
+				33BB4DC71F2EA8CD00DB49FD /* AddPostVC.swift */,
 				33BB4DC81F2EA8CD00DB49FD /* EditPost.swift */,
 				33BB4DD81F2EA8F000DB49FD /* UserHeaderTableViewCell.swift */,
 				33BB4DDA1F2EA8FC00DB49FD /* locationBar.swift */,
@@ -837,7 +837,7 @@
 				33BB4DCB1F2EA8CD00DB49FD /* placeholder.swift in Sources */,
 				7E8C1B951FD5F47C00EAA156 /* QBAlbumsViewController.m in Sources */,
 				7EE6C54C1FCB3B7000ABBAE8 /* Post.swift in Sources */,
-				33BB4DDD1F2EA90300DB49FD /* ViewPost.swift in Sources */,
+				33BB4DDD1F2EA90300DB49FD /* ViewPostVC.swift in Sources */,
 				33BB4ED31F2EB1ED00DB49FD /* IQUIView+Hierarchy.swift in Sources */,
 				7E8C1B921FD5F47C00EAA156 /* QBVideoIndicatorView.m in Sources */,
 				33BB4DC91F2EA8CD00DB49FD /* report.swift in Sources */,
@@ -849,7 +849,7 @@
 				33BB4EB11F2EAFA600DB49FD /* Message.swift in Sources */,
 				33BB4DD31F2EA8E200DB49FD /* chatVC.swift in Sources */,
 				338B206D1F2E9F4C005B6D2C /* UITextFieldX.swift in Sources */,
-				33BB4DCC1F2EA8CD00DB49FD /* Popoverfinal.swift in Sources */,
+				33BB4DCC1F2EA8CD00DB49FD /* AddPostVC.swift in Sources */,
 				338B20721F2E9F4C005B6D2C /* UIViewXRadialGradient.swift in Sources */,
 				33BB4EAF1F2EAFA600DB49FD /* Helper Files.swift in Sources */,
 				33BB4ED61F2EB1ED00DB49FD /* IQKeyboardManagerConstants.swift in Sources */,
