@@ -353,7 +353,7 @@ class LoginActually: UIViewController, UICollectionViewDelegate, UICollectionVie
         User.registerUser(withName: nameField.text!, email: emailAdres.text!, password: passwordField.text!, completion: {_ in 
             self.login()
             self.delay(delay: 2){
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeView
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeVC
                 self.show(vc, sender: nil)
             }
        
@@ -419,10 +419,9 @@ func login(){
                     
                     print("false room doesn't exist")
                 }
-                })
-            }}
-    
-    
+            })
+        }
+    }
     
     @IBAction func noAccount(_ sender: Any) {
         
@@ -436,25 +435,11 @@ func login(){
             createAccButton.alpha = 0 
             self.loginWithEmail.setTitle("create account", for: .normal)
         self.loginWithEmail.isEnabled = false
-     
-            
-         }
-    
-    
-    
-    
-    
-    
+    }
     
     
     @IBAction func CancelLogin(_ sender: AnyObject) {
         
         dismiss(animated: true, completion: nil)
     }
-    
-    
-    
-    
-    
-    
 }

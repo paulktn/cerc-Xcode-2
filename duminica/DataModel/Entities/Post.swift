@@ -13,6 +13,25 @@ class Post {
     
     //  MARK: - Stored Properties
     
+    enum Category: String {
+        case clothingAndAccesories = "clothing & accesories"
+        case electronics
+        case furniture
+        case householdItems = "household items"
+        case appliances
+        case toysAndGames = "toys & games"
+        case homeImprovement = "home improvement"
+        case miscellaneous
+        case sportingGoods = "sporting goods"
+        case constructionMaterials = "construction materials"
+        case tools
+        case unknown
+        
+        init?(string: String) {
+            self.init(rawValue: string.lowercased())
+        }
+    }
+    
     var postId: String
     var userId: String
     var postImageURL1: String
@@ -25,7 +44,7 @@ class Post {
     var location: String
     var postTitle: String
     var postDetails: String
-    var postCategory: String
+    var category: Category
     var allPosts: String
     var city: String
     var latit: Double
@@ -34,7 +53,7 @@ class Post {
     //  MARK: - Computed Properties
     
     var serialized: [String: AnyObject] {
-        return ["allPosts":self.allPosts as AnyObject,  "postId":self.postId as AnyObject,"postDate":self.postDate,"postImageURL1":self.postImageURL1 as AnyObject,"postImageURL2":self.postImageURL2 as AnyObject,"postImageURL3":self.postImageURL3 as AnyObject, "postThumbURL":self.postThumbURL as AnyObject, "userId":self.userId as AnyObject, "location":self.location as AnyObject, "postTitle":self.postTitle as AnyObject, "postDetails":self.postDetails as AnyObject, "postCategory":self.postCategory as AnyObject, "city":self.city as AnyObject, "latit": self.latit as AnyObject, "longit": self.longit as AnyObject]
+        return ["allPosts":self.allPosts as AnyObject,  "postId":self.postId as AnyObject,"postDate":self.postDate,"postImageURL1":self.postImageURL1 as AnyObject,"postImageURL2":self.postImageURL2 as AnyObject,"postImageURL3":self.postImageURL3 as AnyObject, "postThumbURL":self.postThumbURL as AnyObject, "userId":self.userId as AnyObject, "location":self.location as AnyObject, "postTitle":self.postTitle as AnyObject, "postDetails":self.postDetails as AnyObject, "postCategory":self.category.rawValue as AnyObject, "city":self.city as AnyObject, "latit": self.latit as AnyObject, "longit": self.longit as AnyObject]
     }
     
     //  MARK: - Initializers
@@ -52,7 +71,7 @@ class Post {
         self.location = location
         self.postTitle = postTitle
         self.postDetails = postDetails
-        self.postCategory = postCategory
+        self.category = Category(rawValue: postCategory) ?? .unknown
         self.allPosts = allPosts
         self.city = city
         self.latit = latit
@@ -76,7 +95,14 @@ class Post {
         self.location = (snapshot.value! as! NSDictionary)["location"] as! String
         self.postTitle = (snapshot.value! as! NSDictionary)["postTitle"] as! String
         self.postDetails = (snapshot.value! as! NSDictionary)["postDetails"] as! String
-        self.postCategory = (snapshot.value! as! NSDictionary)["postCategory"] as! String
+        if let dict = snapshot.value as? NSDictionary,
+            let categoryString = dict["postCategory"] as? String,
+            let category = Category(rawValue: categoryString) {
+            self.category = category
+        } else {
+            self.category = .unknown
+        }
+        
         self.allPosts = (snapshot.value! as! NSDictionary)["allPosts"] as! String
         self.city = (snapshot.value! as! NSDictionary)["city"] as! String
         self.latit = (snapshot.value! as! NSDictionary)["latit"] as! Double

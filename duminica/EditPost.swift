@@ -14,11 +14,6 @@ import Photos
 
 class EditPost: UIViewController, UIImagePickerControllerDelegate,  UICollectionViewDelegate, UICollectionViewDataSource,  UINavigationControllerDelegate {
     
-   
-    
-    
-   
-    
     var passPostEdit: Post?
     
     
@@ -35,40 +30,21 @@ class EditPost: UIViewController, UIImagePickerControllerDelegate,  UICollection
         
         return Storage.storage().reference()
     }
-    
-    
     @IBOutlet var imageFromCustCell3: CustomizableImageView!
-    
     @IBOutlet var imageFromCustCell2: CustomizableImageView!
-    
-   
-    
     @IBOutlet weak var titleFromCustCell: IQTextView!
-    
     @IBOutlet weak var imageFromCustCell: CustomizableImageView!
-    
     @IBOutlet weak var editCategory: CustomizableButton!
-
     @IBOutlet var PicturesView: UIView!
-    
     @IBOutlet var camButton: UIButton!
-    
     @IBOutlet weak var collectionCategories: UICollectionView!
-    
     @IBOutlet var collectionViewPictures: UICollectionView!
-    
     @IBOutlet var button1: UIButton!
-    
     @IBOutlet var button2: UIButton!
-    
     @IBOutlet var button3: UIButton!
-    
     @IBOutlet var switch1: UISwitch!
-    
     @IBOutlet var switch2: UISwitch!
-    
     @IBOutlet var switch3: UISwitch!
-    
     @IBOutlet var kakaa: UILabel!
     
     @IBOutlet var kakaa2: UILabel!
@@ -112,7 +88,7 @@ class EditPost: UIViewController, UIImagePickerControllerDelegate,  UICollection
          newDetails.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.detailsAlpha))
         
         titleFromCustCell.text! = (passPostEdit?.postTitle)!
-        editCategory.titleLabel!.text! = (passPostEdit?.postCategory)!
+        editCategory.titleLabel!.text! = passPostEdit!.category.rawValue
        
         newDetails.text! = (passPostEdit?.postDetails)!
         kakaa.text! = (passPostEdit?.postImageURL1)!
@@ -437,9 +413,6 @@ class EditPost: UIViewController, UIImagePickerControllerDelegate,  UICollection
         let imageData2 = UIImageJPEGRepresentation(image2!, CGFloat(0.35))
         let imageData3 = UIImageJPEGRepresentation(image3!, CGFloat(0.35))
         uploadImageToFirebase(postId: postId, imageData1: imageData1!, imageData2:imageData2!, imageData3: imageData3!, completion: { (url) in
-            
-            
-            
         })
         
         
@@ -453,34 +426,15 @@ class EditPost: UIViewController, UIImagePickerControllerDelegate,  UICollection
     }
     
     func uploadImageToFirebase(postId: String, imageData1: Data, imageData2: Data, imageData3:Data, completion: @escaping (URL)->()){
-        
-        
-        
-        
-        
-        
-        
-        
         let postImagePath1 = "postImages/\(postId)image1.jpg"
         let postImageRef1 = storageRef.child(postImagePath1)
-        
         let postImagePath2 = "postImages/\(postId)image2.jpg"
         let postImageRef2 = storageRef.child(postImagePath2)
-        
-        
         let postImagePath3 = "postImages/\(postId)image3.jpg"
         let postImageRef3 = storageRef.child(postImagePath3)
-        
-        
-        
         let postImageMetadata = StorageMetadata()
+        
         postImageMetadata.contentType = "image/jpeg"
-        
-        
-        
-        
-        
-        
         postImageRef1.putData(imageData1, metadata: postImageMetadata) { (newPostImageMD, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -600,7 +554,7 @@ databaseRef.child("posts").child(key).updateChildValues(["postImageURL3":newURL3
 
 
     func pushTomainView() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeView
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeVC
         self.show(vc, sender: nil)
     }
     

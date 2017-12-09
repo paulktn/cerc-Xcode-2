@@ -8,21 +8,20 @@
 
 import Foundation
 import UIKit
+import MessageUI
 
-class InformationVC: UIViewController {
+class InformationVC: UIViewController, MFMailComposeViewControllerDelegate {
     
     @IBOutlet var aboutUsView: UIView!
     @IBOutlet var privacyPolicyView: UIView!
-    
     @IBOutlet var termsOfUse: UIView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     func pushTomainView() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeView
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeVC
         self.show(vc, sender: nil)
     }
     
@@ -36,6 +35,7 @@ class InformationVC: UIViewController {
     @IBAction func dismissTermsOfUse(_ sender: Any) { self.termsOfUse.removeFromSuperview()
     }
     
+
     @IBAction func presentPrivacyPolicyView(_ sender: Any) {
         self.view.addSubview(privacyPolicyView)
         }
@@ -44,17 +44,32 @@ class InformationVC: UIViewController {
         self.privacyPolicyView.removeFromSuperview()
     }
     
-    @IBAction func presentTermsOfUse(_ sender: Any) { self.view.addSubview(termsOfUse)
+    @IBAction func presentTermsOfUse(_ sender: Any) {
+        self.view.addSubview(termsOfUse)
     }
     
+    @IBAction func presentContactUs(_ sender: Any) {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["contact@reuseit.io"])
+            mail.setSubject("Contact us")
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
     
     @IBAction func back(_ sender: Any) {
       self.pushTomainView()
     }
     
-    @IBAction func stop(_ sender: Any) {
-        
+    @IBAction func stop(_ sender: Any) {    
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
     
 }

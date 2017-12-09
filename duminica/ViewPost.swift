@@ -131,7 +131,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
       postDetaliiView.alpha = 0
         keywordLabel.text! = "\((passPost?.postTitle)!)"
         self.useridFromDatabase = "\((passPost?.userId)!)"
-        viewPostTitle.text! = "\((passPost?.postCategory)!)"
+        viewPostTitle.text! = "\((passPost?.category.rawValue) ?? "")"
         self.databaseRef.child("users").child(self.useridFromDatabase).child("credentials").child("email").observe(.value, with: { (snapshot) in
             if snapshot.exists(){
                 
@@ -335,7 +335,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         fetchAllPost {(posts) in
             self.sweets = posts
             self.filteredSweets = self.sweets.filter {
-                $0.postCategory.contains((self.passPost?.postCategory)!) && $0.longit.isLessThanOrEqualTo( ((self.passPost?.longit)! + 1))
+                $0.category == self.passPost?.category && $0.longit.isLessThanOrEqualTo( ((self.passPost?.longit)! + 1))
             
             }
             
@@ -366,7 +366,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         
         let sweet = filteredSweets[indexPath.row]
         
-        cell.titleCell.text = sweet.postCategory
+        cell.titleCell.text = sweet.category.rawValue.capitalized
         
         
         cell.imageCell.sd_setImage(with: URL(string: sweet.postImageURL1))
@@ -658,7 +658,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
         
         
         if  let currentUserID = Auth.auth().currentUser?.uid {
-            let post = Post(allPosts: "\((self.passPost?.allPosts)!)", postId: "\((self.passPost?.postId)!)", userId: "\((self.passPost?.userId)!)", postImageURL1: "\((self.passPost?.postImageURL1)!)", postImageURL2: "\((self.passPost?.postImageURL2)!)", postImageURL3: "\((self.passPost?.postImageURL3)!)", postThumbURL: "\((self.passPost?.postThumbURL)!)",  postDate: ((self.passPost?.postDate)!), key: "\((self.passPost?.postId)!)", location: "\((self.passPost?.postId)!)", postTitle: "\((self.passPost?.postTitle)!)", postDetails: "\((self.passPost?.postDetails)!)", postCategory: "\((self.passPost?.postCategory)!)", city: "\((self.passPost?.city)!)", latit: (self.passPost?.latit)!, longit: (self.passPost?.longit)!)
+            let post = Post(allPosts: "\((self.passPost?.allPosts)!)", postId: "\((self.passPost?.postId)!)", userId: "\((self.passPost?.userId)!)", postImageURL1: "\((self.passPost?.postImageURL1)!)", postImageURL2: "\((self.passPost?.postImageURL2)!)", postImageURL3: "\((self.passPost?.postImageURL3)!)", postThumbURL: "\((self.passPost?.postThumbURL)!)",  postDate: ((self.passPost?.postDate)!), key: "\((self.passPost?.postId)!)", location: "\((self.passPost?.postId)!)", postTitle: "\((self.passPost?.postTitle)!)", postDetails: "\((self.passPost?.postDetails)!)", postCategory: self.passPost!.category.rawValue, city: "\((self.passPost?.city)!)", latit: (self.passPost?.latit)!, longit: (self.passPost?.longit)!)
         
         
         let postRef = databaseRef.child("wishlist").child(currentUserID).child("\((self.passPost?.postId)!)")
@@ -689,7 +689,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
     
     
     func pushTomainView() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeView
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeVC
         self.show(vc, sender: nil)
     }
     
@@ -697,7 +697,7 @@ class ViewPost: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegat
     
     func takeToAccount(){
         
-        let accountVC = self.storyboard?.instantiateViewController(withIdentifier: "MyAccountVC") as! account
+        let accountVC = self.storyboard?.instantiateViewController(withIdentifier: "MyAccountVC") as! AccountVC
         self.show(accountVC, sender: nil)
     }
     

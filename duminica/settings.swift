@@ -326,8 +326,13 @@ class settingsPage: UIViewController,  UIImagePickerControllerDelegate,  UIColle
 
     
     func takeToLogin() {
-        let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginActually
-        self.show(loginVC, sender: nil)
+        let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "Login") as! LoginVC
+        let navVC = UINavigationController(rootViewController: loginVC)
+        navVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navVC.navigationBar.tintColor = UIColor.black
+        navVC.navigationBar.shadowImage = UIImage()
+        navVC.navigationBar.isTranslucent = true
+        self.present(navVC, animated: true)
     }
     
     func getEmail() {

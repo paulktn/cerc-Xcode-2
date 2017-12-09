@@ -29,7 +29,7 @@ class Mix : UITableViewCell,  UICollectionViewDataSource, UICollectionViewDelega
         return Storage.storage().reference()
     }
     
-    var homeView: HomeView!
+    var HomeVC: HomeVC!
     
     var sweets: [Post] = [Post]()
     

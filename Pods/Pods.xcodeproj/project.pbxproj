@@ -305,7 +305,7 @@
 		7BC1ACD2505F5D4FB528545275E6E15B /* FBSDKButton.h in Headers */ = {isa = PBXBuildFile; fileRef = DCCF2D5B2A6D3985508E9C5CB1E5BADA /* FBSDKButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7BD750A5306898E8AF3A846BFB4DDE5A /* FBSDKLikeButtonPopWAV.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D96ED7244AB2511E96025AE8E16D240 /* FBSDKLikeButtonPopWAV.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7C37AE9BE6145B024F9F308E1CAFA3B7 /* GPBDescriptor_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AD518B3A7F1C981D459D0F5404743AC /* GPBDescriptor_PackagePrivate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7EE6C53A1FCB345500ABBAE8 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15779F0A17EC668AE02AB3AA85DC86C0 /* FirebaseDatabase.framework */; };
+		7EDC0BD51FD7307100C38D33 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15779F0A17EC668AE02AB3AA85DC86C0 /* FirebaseDatabase.framework */; };
 		7F232B364E5D8E00F3A2C6CD3A90BFB5 /* FBSDKViewImpressionTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E20E6A6C62CF5C457D17452074AAD /* FBSDKViewImpressionTracker.m */; };
 		7F3677FD26EB887B876E568DA412A605 /* FBSDKBridgeAPIProtocolWebV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DE92E77C7253D7B7F52E6D9315F4F8 /* FBSDKBridgeAPIProtocolWebV2.m */; };
 		7FB944CF6B1591C3D9CA1E00593EEA27 /* GPBUnknownField.h in Headers */ = {isa = PBXBuildFile; fileRef = E76784FDD1D8227478430E9931DE2419 /* GPBUnknownField.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1460,7 +1460,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EE6C53A1FCB345500ABBAE8 /* FirebaseDatabase.framework in Frameworks */,
+				7EDC0BD51FD7307100C38D33 /* FirebaseDatabase.framework in Frameworks */,
 				72FB0A0B7CC16F19E94D1790A4C4FBCC /* CoreLocation.framework in Frameworks */,
 				25879CDBE7CF862BA00EEB95CD33F310 /* Foundation.framework in Frameworks */,
 				36897F1A564529FA0F6EDC6E56978E5A /* GoogleToolboxForMac.framework in Frameworks */,

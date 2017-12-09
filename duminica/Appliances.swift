@@ -28,7 +28,7 @@ class Appliances : UITableViewCell,  UICollectionViewDataSource, UICollectionVie
         return Storage.storage().reference()
     }
     
-    var homeView: HomeView!
+    var HomeVC: HomeVC!
     
     var sweets: [Post] = [Post]()
     
@@ -99,7 +99,7 @@ class Appliances : UITableViewCell,  UICollectionViewDataSource, UICollectionVie
                 self.sweets = posts
                 
                 self.sweetToDisplay = self.sweets.filter{
-                    $0.postCategory.contains("appliances")
+                    $0.category == .appliances
                 }
                 self.collectionView.reloadData()
             }})}
@@ -166,16 +166,9 @@ class Appliances : UITableViewCell,  UICollectionViewDataSource, UICollectionVie
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "custCell", for: indexPath) as! custCell
         
-        
         let sweet = sweetToDisplay[indexPath.row]
         
-        // cell.titleCell.text = sweet.city
-        
         cell.imageCell.sd_setImage(with: URL(string: sweet.postImageURL1))
-        
-        
-        
-        
         
         let fromDate = NSDate(timeIntervalSince1970: TimeInterval(sweet.postDate))
         let toDate = NSDate()

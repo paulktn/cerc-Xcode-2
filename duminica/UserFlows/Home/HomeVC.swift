@@ -4,12 +4,11 @@ import CoreLocation
 import Firebase
 import Social
 
-class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextFieldDelegate, ModernSearchBarDelegate {
+class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextFieldDelegate, ModernSearchBarDelegate {
     
     // MARK: - IBOutlet
     
     @IBOutlet weak var searchBar: ModernSearchBar!
-    @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var menuBlur: UIVisualEffectView!
     @IBOutlet weak var contact: CustomizableButton!
     @IBOutlet var menuView: UIView!
@@ -25,19 +24,9 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
     @IBOutlet weak var search: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var searchView: UIView!
-    @IBOutlet weak var noItems: UILabel!
-    @IBOutlet weak var homeDismissButton: UIButton!
-    @IBOutlet weak var allItemsCollection: UICollectionView!
-    @IBOutlet weak var clothingCollection: UICollectionView!
-    @IBOutlet weak var furnitureCollection: UICollectionView!
-    @IBOutlet weak var electronicsCollection: UICollectionView!
-    @IBOutlet weak var appliancesCollection: UICollectionView!
-    @IBOutlet weak var householdCollection: UICollectionView!
-    @IBOutlet weak var sportingCollection: UICollectionView!
-    @IBOutlet weak var toysCollection: UICollectionView!
-    @IBOutlet weak var constructionCollection: UICollectionView!
-    @IBOutlet weak var miscellaneousCollection: UICollectionView!
-    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var searchBarHeight: NSLayoutConstraint!
     
     // MARK: - Properties
     
@@ -52,30 +41,8 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
     var constructionUsers = [String]()
     var miscUsers = [String]()
     var cuvinteCheie = String ()
-    var filteredSweets = [Post] ()
-    var searchToDisplay = [Post]()
-    var allPostsToDisplay: [Post] = [Post] ()
-    var clothingToDisplay = [Post] ()
-    var furnitureToDisplay = [Post] ()
-    var electronicsToDisplay = [Post] ()
-    var appliancesToDisplay = [Post] ()
-    var householdToDisplay = [Post] ()
-    var sportingToDisplay = [Post]()
-    var miscToDisplay = [Post]()
-    var toysToDisplay = [Post]()
-    var constructionToDisplay = [Post]()
-    var postArray = [Post]()
-    var sweets: [Post] = [Post]()
-    var clothingPosts: [Post] = [Post]()
-    var furniturePosts: [Post] = [Post]()
-    var electronicsPosts: [Post] = [Post]()
-    var appliancesPosts: [Post] = [Post]()
-    var householdPosts: [Post] = [Post]()
-    var allItemsPosts: [Post] = [Post]()
-    var sportingPosts: [Post] = [Post]()
-    var miscPosts: [Post] = [Post]()
-    var constructionPosts: [Post] = [Post]()
-    var toysPosts: [Post] = [Post]()
+    var allPosts: [Post] = []
+    var filteredPosts: [Post] = []
     var passPost: Post?
     var final = [String]()
     var postDelegate: PostDelegate?
@@ -105,10 +72,19 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
         return Storage.storage().reference()
     }
     
-    
     let sectionInsets = UIEdgeInsets(top: 0, left: 5.0, bottom: 0, right: 5)
     let itemsPerRow: CGFloat = 2
     var nearbyUsers = [String] ()
+    
+    let categoryForRow: [Int: Post.Category] = [1: .clothingAndAccesories,
+                                                2: .electronics,
+                                                3: .furniture,
+                                                4: .householdItems,
+                                                5: .appliances,
+                                                6: .toysAndGames,
+                                                7: .homeImprovement,
+                                                8: .miscellaneous,
+                                                9: .sportingGoods]
     
     // MARK: - Controller Life Cycle
     
@@ -116,42 +92,19 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
         super.viewDidLoad()
         
         collectionView.delegate = self
-        allItemsCollection.delegate = self
-        clothingCollection.delegate = self
-        furnitureCollection.delegate = self
-        electronicsCollection.delegate = self
-        appliancesCollection.delegate = self
-        householdCollection.delegate = self
-        sportingCollection.delegate = self
-        toysCollection.delegate = self
-        constructionCollection.delegate = self
-        miscellaneousCollection.delegate = self
-        
         locationManager.delegate = self
-        
         collectionView.dataSource = self
-        allItemsCollection.dataSource = self
-        clothingCollection.dataSource = self
-        furnitureCollection.dataSource = self
-        electronicsCollection.dataSource = self
-        appliancesCollection.dataSource = self
-        householdCollection.dataSource = self
-        sportingCollection.dataSource = self
-        toysCollection.dataSource = self
-        constructionCollection.dataSource = self
-        miscellaneousCollection.dataSource = self
         
         self.configureSearchBar()
         
         customizeHome()
         
-        self.searchBar.alpha = 0
-        self.noItems.alpha = 0
-        fetchData()
+        self.searchBarHeight.constant = 0
+        //fetchData()
         searchBar.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.searchKey))
         
-        //getCollections()
         useCurentLocation()
+        getAllPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -177,12 +130,65 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
         
         ///Set datas to search bar
         self.searchBar.setDatas(datas: suggestionList)
-        
-        
-        
         ///Custom design with all paramaters if you want to
         //self.customDesign()
         
+    }
+    
+    private func getAllPosts() {
+        let ref = self.databaseRef.child("posts")
+        ref.observe(.value, with: { (snapshot) in
+            
+            if let data = snapshot.children.allObjects as? [DataSnapshot] {
+                for postData in data {
+                    let post = Post(snapshot: postData)
+                    self.allPosts.append(post)
+                }
+            }
+        })
+    }
+    
+    private func fetchAllPosts(completion: @escaping ([Post])->()) {
+        var allArray = [Post]()
+        
+        print("\(lati)")
+        let finalRef = self.databaseRef.child("posts").queryOrdered(byChild: "latit")
+            //.queryStarting(atValue: lati - 1).queryEnding(atValue: (lati + 1))
+        print(lati)
+        finalRef.observe(.value, with: { (snapshot) in
+            if snapshot.exists(){
+                for posts in snapshot.children.allObjects as! [DataSnapshot]   {
+                    let householdObject = Post(snapshot: posts )
+                    allArray.append(householdObject)
+                    
+                    completion(allArray)
+                    self.allPosts = allArray
+                }
+            }
+        })
+    }
+    
+    private func fetchSearchPosts(completion: @escaping ([Post])->()) {
+        var allArray = [Post]()
+        
+        print("\(lati)")
+        let finalRef = self.databaseRef.child("posts").queryOrdered(byChild: "latit").queryStarting(atValue: lati - 1).queryEnding(atValue: (lati + 1))
+        print(lati)
+        finalRef.observe(.value, with: { (snapshot) in
+            
+            if snapshot.exists(){
+                
+                
+                for posts in snapshot.children.allObjects as! [DataSnapshot]   {
+                    let householdObject = Post(snapshot: posts )
+                    allArray.append(householdObject)
+                    
+                    completion(allArray)
+                    self.allPosts = allArray
+                    
+                }
+            }
+        })
     }
     
     // MARK: - IBAction
@@ -233,91 +239,16 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
     }
     
     func getCollections() {
-        
-        fetchAllPosts {(posts) in
-            self.allItemsPosts = posts
+        fetchAllPosts { (posts) in
             
-            self.allPostsToDisplay = self.allItemsPosts.filter{
+            self.allPosts = posts.filter{
                 $0.allPosts.contains("allPosts") && $0.longit.isLessThanOrEqualTo((self.longi + 1))
             }
-            self.allPostsToDisplay.sort(by: { (post1, post2) -> Bool in
+            self.allPosts.sort(by: { (post1, post2) -> Bool in
                 Int(post1.postDate) > Int(post2.postDate)
             })
             
-            self.allItemsCollection.reloadData()
-
-            self.clothingToDisplay = self.allItemsPosts.filter{
-                $0.longit.isLessThanOrEqualTo((self.longi + 1)) && $0.postCategory.contains("clothing & accesories")
-            }
-            self.clothingToDisplay.sort(by: { (post1, post2) -> Bool in
-                Int(post1.postDate) > Int(post2.postDate)
-            })
-            self.clothingCollection.reloadData()
-            
-            self.electronicsToDisplay = self.allItemsPosts.filter{
-                $0.postCategory.contains("electronics") && $0.longit.isLessThanOrEqualTo((self.longi + 1))
-            }
-            self.electronicsToDisplay.sort(by: { (post1, post2) -> Bool in
-                Int(post1.postDate) > Int(post2.postDate)
-            })
-            self.electronicsCollection.reloadData()
-
-            self.furnitureToDisplay = self.allItemsPosts.filter{
-                $0.postCategory.contains("furniture") && $0.longit.isLessThanOrEqualTo((self.longi + 1))
-            }
-            self.furnitureToDisplay.sort(by: { (post1, post2) -> Bool in
-                Int(post1.postDate) > Int(post2.postDate)
-            })
-            self.furnitureCollection.reloadData()
-
-            self.householdToDisplay = self.allItemsPosts.filter{
-                $0.postCategory.contains("household items") && $0.longit.isLessThanOrEqualTo((self.longi + 1))
-            }
-            self.householdToDisplay.sort(by: { (post1, post2) -> Bool in
-                Int(post1.postDate) > Int(post2.postDate)
-            })
-            self.householdCollection.reloadData()
-
-            self.appliancesToDisplay = self.allItemsPosts.filter{
-                $0.postCategory.contains("appliances") && $0.longit.isLessThanOrEqualTo((self.longi + 1))
-            }
-            self.appliancesToDisplay.sort(by: { (post1, post2) -> Bool in
-                Int(post1.postDate) > Int(post2.postDate)
-            })
-            self.appliancesCollection.reloadData()
-
-            self.toysToDisplay = self.allItemsPosts.filter{
-                $0.postCategory.contains("toys & games") && $0.longit.isLessThanOrEqualTo((self.longi + 1))
-            }
-            self.toysToDisplay.sort(by: { (post1, post2) -> Bool in
-                Int(post1.postDate) > Int(post2.postDate)
-            })
-            self.toysCollection.reloadData()
-
-            self.constructionToDisplay = self.allItemsPosts.filter{
-                $0.postCategory.contains("home improvement") && $0.longit.isLessThanOrEqualTo((self.longi + 1))
-            }
-            self.constructionToDisplay.sort(by: { (post1, post2) -> Bool in
-                Int(post1.postDate) > Int(post2.postDate)
-            })
-            self.constructionCollection.reloadData()
-
-            self.miscToDisplay = self.allItemsPosts.filter{
-                $0.postCategory.contains("miscellaneous") && $0.longit.isLessThanOrEqualTo((self.longi + 1))
-            }
-            self.miscToDisplay.sort(by: { (post1, post2) -> Bool in
-                Int(post1.postDate) > Int(post2.postDate)
-            })
-            self.miscellaneousCollection.reloadData()
-
-            self.sportingToDisplay = self.allItemsPosts.filter{
-                $0.postCategory.contains("sporting goods") && $0.longit.isLessThanOrEqualTo((self.longi + 1))
-            }
-            self.sportingToDisplay.sort(by: { (post1, post2) -> Bool in
-                Int(post1.postDate) > Int(post2.postDate)
-            })
-            self.sportingCollection.reloadData()
-            
+            self.tableView.reloadData()
         }
     }
     
@@ -345,7 +276,6 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
         menuBlur.alpha = 0
         menuView.alpha = 0
         
-        homeDismissButton.alpha = 0
         more.alpha = 1
         search.alpha = 1
         appName.frame.origin.x = (self.view.frame.origin.x - appName.frame.width)
@@ -353,9 +283,6 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
         menuBlur.frame.origin.y = (menuBlur.frame.origin.y - menuBlur.frame.height)
         menuView.frame.origin.y = (menuView.frame.origin.y - menuView.frame.height)
     }
-    
-    
-    
     
     func checkLocationPermission() -> Bool {
         var state = false
@@ -394,7 +321,7 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
         
         print("user latitude = \(userLocation.coordinate.latitude)")
         print("user longitude = \(userLocation.coordinate.longitude)")
-
+        
         self.getCollections()
         
         self.stopUpdatingLocation()
@@ -415,7 +342,6 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
     @IBAction func showMenu(_ sender: AnyObject) {
         if more.currentImage == #imageLiteral(resourceName: "Menu") {
             
-            homeDismissButton.alpha = 1
             menuBlur.alpha = 1
             UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: .curveEaseInOut,  animations:  {
                 self.menuBlur.frame = CGRect(x: 0, y: 0, width: 80, height: self.view.frame.height)
@@ -454,17 +380,14 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
             self.appName.alpha = 1
             
             searchView.removeFromSuperview()
-            searchBar.alpha = 0
+            self.searchBarHeight.constant = 0
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutSubviews()
+            })
             add.alpha = 1
             self.more.setImage(#imageLiteral(resourceName: "Menu"), for: .normal)
-            self.noItems.alpha = 0
-            self.mainScrollView.alpha = 1
-        }}
-    
-    
-    
-    
-    
+        }
+    }
     
     @IBAction func removeMenu(_ sender: AnyObject) {
         UIView.animate(withDuration: 0.3, animations: {
@@ -473,13 +396,8 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
         UIView.animate(withDuration: 0.2, animations: {
             self.menuBlur.frame.origin.y = (self.menuBlur.frame.origin.y - self.menuBlur.frame.height)
         })
-        homeDismissButton.alpha = 0
         add.alpha = 1
     }
-    
-    
-    
-    
     
     @IBAction func dismissMenu(_ sender: Any) {
         //dismissButton
@@ -489,8 +407,6 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
         UIView.animate(withDuration: 0.2, animations: {
             self.menuBlur.frame.origin.y = (self.menuBlur.frame.origin.y - self.menuBlur.frame.height)
         })
-        //menuBlur.alpha = 0
-        homeDismissButton.alpha = 0
         add.alpha = 1
         
     }
@@ -503,13 +419,8 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
             button.setImage(offImage, for: .normal)
         }}
     
-    
-    
-    
-    
-    
     func takeToInfo() {
-        let infoVC = self.storyboard?.instantiateViewController(withIdentifier: "infoVC") as! OnboardingPresentationVC
+        let infoVC = self.storyboard?.instantiateViewController(withIdentifier: "infoVC") as! InformationVC
         self.show(infoVC, sender: nil)
     }
     
@@ -518,10 +429,14 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
         self.show(AddPostVC, sender: nil)
     }
     
-    
     func takeToLogin() {
-        let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginActually
-        self.show(loginVC, sender: nil)
+        let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "Login") as! LoginVC
+        let navVC = UINavigationController(rootViewController: loginVC)
+        navVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navVC.navigationBar.tintColor = UIColor.black
+        navVC.navigationBar.shadowImage = UIImage()
+        navVC.navigationBar.isTranslucent = true
+        self.present(navVC, animated: true)
     }
     
     func takeToMessages() {
@@ -531,29 +446,25 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
     
     
     func takeToAccount(){
-        let accountVC = self.storyboard?.instantiateViewController(withIdentifier: "MyAccountVC") as! account
+        let accountVC = self.storyboard?.instantiateViewController(withIdentifier: "MyAccountVC") as! AccountVC
         self.show(accountVC, sender: nil)
     }
-    
     
     func doneClicked() {
         view.endEditing(true)
     }
     
-    
-    
-    
-    
-    
     @IBAction func searchClicked(_ sender: UIButton) {
         UIView.animate(withDuration: 0.4, animations: {
             // self.enterKeyword.frame = CGRect(x: 0, y: 70, width: self.view.frame.width, height: 30)
         })
-        self.mainScrollView.alpha = 0
         self.add.alpha = 0
         self.more.setImage(#imageLiteral(resourceName: "homeNew"), for: .normal)
         
-        self.searchBar.alpha = 1
+        self.searchBarHeight.constant = 56
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutSubviews()
+        })
         
     }
     
@@ -579,7 +490,9 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
                 self.takeToPostAdd()
             } else {
                 self.takeToLogin()
-            }}}
+            }
+        }
+    }
     
     
     @IBAction func accountClicked(_ sender: UIButton) {
@@ -588,31 +501,20 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
                 self.takeToAccount()
             } else {
                 self.takeToLogin()
-            }}}
-    
-    
-    
-    
-    
+            }
+        }
+    }
     
     func searchKey() {
-        self.mainScrollView.alpha = 0
         self.view.addSubview(searchView)
         self.searchView.frame.origin.y =  100
         
-        
-        
         fetchAllPosts {(posts) in
-            self.allItemsPosts = posts
-            
-            
-            //print(String(describing: self.searchBar.text!))
-            self.searchToDisplay = self.allItemsPosts.filter{
+            self.filteredPosts = posts.filter{
                 $0.postTitle.contains(String(describing: self.searchBar.text!)) && $0.longit.isLessThanOrEqualTo((self.longi + 1))
-            }
-            self.searchToDisplay.sort(by: { (post1, post2) -> Bool in
+                }.sorted{ (post1, post2) -> Bool in
                 Int(post1.postDate) > Int(post2.postDate)
-            })
+            }
             
             self.collectionView.reloadData()
         }
@@ -621,96 +523,164 @@ class HomeView: UIViewController, CLLocationManagerDelegate, PostDelegate, UITex
     }
     
     func selectedPost(post: Post) {
-        if  collectionView == self.allItemsCollection {
-            self.performSegue(withIdentifier: "fromCustCell", sender: IndexPath.self)
-        } else if collectionView == self.clothingCollection {
-            self.performSegue(withIdentifier: "fromClothing", sender: IndexPath.self)
-        }
-        else if collectionView == self.furnitureCollection {
-            self.performSegue(withIdentifier: "fromFurniture", sender: post)
-        }
-        else if collectionView == self.electronicsCollection {
-            self.performSegue(withIdentifier: "fromElectronics", sender: post)
-        }
-        else if collectionView == self.appliancesCollection {
-            self.performSegue(withIdentifier: "fromAppliances", sender: post)
-        }
-        else if collectionView == self.householdCollection {
-            self.performSegue(withIdentifier: "fromHousehold", sender: post)
-        }
-        else if collectionView == self.sportingCollection {
-            self.performSegue(withIdentifier: "fromSporting", sender: post)
-        }else if collectionView == self.toysCollection {
-            self.performSegue(withIdentifier: "fromToys", sender: post)
-        }else if collectionView == self.constructionCollection {
-            self.performSegue(withIdentifier: "fromConstruction", sender: post)
-        }else if collectionView == self.miscellaneousCollection {
-            self.performSegue(withIdentifier: "fromMisc", sender: post)
-        }
-        else {
-            self.performSegue(withIdentifier: "fromSearch", sender: IndexPath.self)
-        }}
+        
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "fromSearch" {
+//            let postDetailPage = segue.destination as? ViewPost
+//            if let indexPath = self.collectionView?.indexPath(for: sender as! UICollectionViewCell) {
+//                postDetailPage?.passPost = searchToDisplay[indexPath.row]
+//            }
+//        }
+    }
+}
+
+// MARK: - UITableViewDataSource
+
+extension HomeVC: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return categoryForRow.count + 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if segue.identifier == "fromCustCell"{
-            
-            let postDetailPage = segue.destination as? ViewPost
-            if let indexPath = self.allItemsCollection?.indexPath(for: sender as! UICollectionViewCell) {
-                postDetailPage?.passPost = allPostsToDisplay[indexPath.row]
-            }}
-        else if segue.identifier == "fromClothing"{
-            let postDetailPage = segue.destination as? ViewPost
-            if let indexPath = self.clothingCollection?.indexPath(for: sender as! UICollectionViewCell) {
-                postDetailPage?.passPost = clothingToDisplay[indexPath.row]
-            }}
-        else if segue.identifier == "fromFurniture"{
-            let postDetailPage = segue.destination as? ViewPost
-            if let indexPath = self.furnitureCollection?.indexPath(for: sender as! UICollectionViewCell) {
-                postDetailPage?.passPost = furnitureToDisplay[indexPath.row]
-            }}
-        else if segue.identifier == "fromElectronics"{
-            let postDetailPage = segue.destination as? ViewPost
-            if let indexPath = self.electronicsCollection?.indexPath(for: sender as! UICollectionViewCell) {
-                postDetailPage?.passPost = electronicsToDisplay[indexPath.row]
-            }}
-        else if segue.identifier == "fromAppliances"{
-            let postDetailPage = segue.destination as? ViewPost
-            if let indexPath = self.appliancesCollection?.indexPath(for: sender as! UICollectionViewCell) {
-                postDetailPage?.passPost = appliancesToDisplay[indexPath.row]
-            }}
-        else if segue.identifier == "fromHousehold"{
-            let postDetailPage = segue.destination as? ViewPost
-            if let indexPath = self.householdCollection?.indexPath(for: sender as! UICollectionViewCell) {
-                postDetailPage?.passPost = householdToDisplay[indexPath.row]
-            }}
-        else if segue.identifier == "fromSporting"{
-            let postDetailPage = segue.destination as? ViewPost
-            if let indexPath = self.sportingCollection?.indexPath(for: sender as! UICollectionViewCell) {
-                postDetailPage?.passPost = sportingToDisplay[indexPath.row]
-            }}
-        else if segue.identifier == "fromToys"{
-            let postDetailPage = segue.destination as? ViewPost
-            if let indexPath = self.toysCollection?.indexPath(for: sender as! UICollectionViewCell) {
-                postDetailPage?.passPost = toysToDisplay[indexPath.row]
-            }}
-        else if segue.identifier == "fromConstruction"{
-            let postDetailPage = segue.destination as? ViewPost
-            if let indexPath = self.constructionCollection?.indexPath(for: sender as! UICollectionViewCell) {
-                postDetailPage?.passPost = constructionToDisplay[indexPath.row]
-            }}
-        else if segue.identifier == "fromMisc"{
-            let postDetailPage = segue.destination as? ViewPost
-            if let indexPath = self.miscellaneousCollection?.indexPath(for: sender as! UICollectionViewCell) {
-                postDetailPage?.passPost = miscToDisplay[indexPath.row]
-            }}
-        else if segue.identifier == "fromSearch" {
-            let postDetailPage = segue.destination as? ViewPost
-            if let indexPath = self.collectionView?.indexPath(for: sender as! UICollectionViewCell) {
-                postDetailPage?.passPost = searchToDisplay[indexPath.row]
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionTableViewCell") as? CollectionTableViewCell {
+            let postsCollection = PostsCollectionDataSource()
+            if let category = categoryForRow[indexPath.section] {
+                postsCollection.posts = allPosts.filter { $0.category == category }
+            } else {
+                postsCollection.posts = allPosts
             }
+            cell.dataSource = postsCollection
+            return cell
         }
         
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 165
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let category = categoryForRow[section] {
+            return category.rawValue.capitalized
+        } else {
+            return "All posts"
+        }
+    }
+}
+
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate
+
+extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return filteredPosts.count
+    }
+    
+    internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+//        let getTextForDate: ((Date, Date) -> String?) = { (fromDate, toDate) in
+//
+//            let differenceOfDate = Calendar.current.dateComponents([.second,.minute,.hour,.day,.weekOfMonth], from: fromDate as Date, to: toDate as Date)
+//
+//            if differenceOfDate.second! <= 0 {
+//                return "now"
+//            } else if differenceOfDate.second! > 0 && differenceOfDate.minute == 0 {
+//                return "\(differenceOfDate.second!) seconds"
+//            }else if differenceOfDate.minute! > 0 && differenceOfDate.hour! == 0 {
+//                return "\(differenceOfDate.minute!) minutes"
+//            }else if differenceOfDate.hour! > 0 && differenceOfDate.day! == 0 {
+//                return "\(differenceOfDate.hour!) hours"
+//            }else if differenceOfDate.day! > 0 && differenceOfDate.weekOfMonth! == 0 {
+//                return"\(differenceOfDate.day!) days"
+//            }else if differenceOfDate.weekOfMonth! > 0 {
+//                return "\(differenceOfDate.weekOfMonth!) weeks"
+//            }
+//
+//            return nil
+//        }
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionItemCell", for: indexPath) as! CollectionItemCell
+        let sweet = filteredPosts[indexPath.item]
+        cell.itemImageView.sd_setImage(with: URL(string: sweet.postThumbURL))
+//        let fromDate = Date(timeIntervalSince1970: TimeInterval(sweet.postDate))
+//        let toDate = Date()
+//
+//        cell.itemDateLabel.text = getTextForDate(fromDate, toDate)
+        
+        cell.tag = indexPath.item
+        return cell
+    }
+    
+}
+
+
+
+
+
+func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+ 
+    // TODO: - Perform some segue
+    
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension HomeVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == self.collectionView {
+            let itemsPerRow: CGFloat = 2.08
+            let sectionInsets = UIEdgeInsets(top: 1, left: 1.0, bottom: 1, right: 1)
+            let paddingSpace = sectionInsets.top * (itemsPerRow + 1)
+            let availableWidth = collectionView.frame.width - paddingSpace
+            let widthPerItem = availableWidth / itemsPerRow
+            return CGSize(width: widthPerItem, height: widthPerItem)
+            
+        }  else {
+            let sectionInsets = UIEdgeInsets(top: 0, left: 1.0, bottom: 0, right: 1)
+            let itemsPerRow: CGFloat = 3.2
+            let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+            let availableWidth = collectionView.frame.width - paddingSpace
+            let widthPerItem = availableWidth / itemsPerRow
+            
+            return CGSize(width: widthPerItem, height: widthPerItem)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        let sectionInsets = UIEdgeInsets(top: 1, left: 1.0, bottom: 1, right: 1)
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if collectionView == self.collectionView {
+            let sectionInsets = UIEdgeInsets(top: 4, left: 2.0, bottom: 4, right: 2)
+            return sectionInsets.left            } else {
+            
+            let sectionInsets = UIEdgeInsets(top: 0, left: 3.0, bottom: 0, right: 3)
+            return sectionInsets.left
+        }
+    }
+    
+    func maximumNumberOfColumns(for collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout) -> Int {
+        
+        if collectionView == self.collectionView {
+            let numColumns: Int = Int(2.0)
+            return numColumns
+        } else {
+            return 1
+        }
     }
     
 }

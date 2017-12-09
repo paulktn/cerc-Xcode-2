@@ -7,58 +7,43 @@ import Firebase
 import Photos
 import SDWebImage
 
-class account : UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
-    
-  
-  
-    
+class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     var selectedUser: User?
+    
     @IBOutlet weak var settingsIcon: UIImageView!
     @IBOutlet weak var settingsButton: UIButton!
-    
     @IBOutlet weak var settingsView: UIView!
-    
     @IBOutlet weak var editProfilePic: RoundedImageView!
-    
     @IBOutlet weak var profilePic: UIImageView!
-    
     @IBOutlet var manageItemsView: UIView!
-
     @IBOutlet var receivedItems: UIView!
-    
     @IBOutlet var wishlist: UIView!
-    
     @IBOutlet var picturesView: UIViewX3!
-    
     @IBOutlet weak var emailAdresButton: UIButton!
-    
     @IBOutlet weak var nameButton: UIButton!
-    
     @IBOutlet weak var collectionPicturesProfile: UICollectionView!
     
     @IBOutlet weak var nameField: IQTextView!
-    
     @IBOutlet weak var button1: UIButton!
-    
     @IBOutlet weak var picSwitch: UISwitch!
-    
     @IBOutlet weak var switchEmailReminders: UISwitch!
-    
     @IBOutlet weak var switchEmailMessages: UISwitch!
-    
     @IBOutlet weak var switchPushMessages: UISwitch!
-    
     @IBOutlet weak var switchPushItems: UISwitch!
-    
     @IBOutlet weak var receiptsIcon: UIImageView!
-    
     @IBOutlet weak var myPostingsIcon: UIImageView!
-    
     @IBOutlet weak var receivedIcon: UIImageView!
-    
     @IBOutlet weak var savedIcon: UIImageView!
     
+    private enum OpenedOption {
+        case myPostings
+        case receivedItems
+        case saved
+        case settings
+        case none
+    }
+    
+    private var currentOption: OpenedOption = .none
     
     var adresaDeSchimbat: String!
     
@@ -73,22 +58,21 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
     }
     
     @IBOutlet weak var nnameLabel: UILabel!
-    
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var wishCollectionView: UICollectionView!
-    
     @IBOutlet weak var receivedCollectionView: UICollectionView!
     
     
+    //  MARK: - Collection View Height
     
+    @IBOutlet weak var myPostingsHeight: NSLayoutConstraint!
+    @IBOutlet weak var receivedItemsHeight: NSLayoutConstraint!
+    @IBOutlet weak var savedItemsHeight: NSLayoutConstraint!
     
     
     var sweets: [Post] = [Post]()
     var Wishsweets: [Post] = [Post]()
     var Receivedsweets: [PickedUp] = [PickedUp]()
-  
-    
     var selectedPost1: Post?
     var poza: String!
     var link: String!
@@ -97,7 +81,7 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
     
     var cellSelected : Int = 0
     
-  //  var picUrl: String
+    //  MARK: - Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,49 +103,193 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
         fetchAllReceivedPost()
         grabPhotos()
         
-        
-       // test()
-       
-       wishCollectionView.delegate = self
+        wishCollectionView.delegate = self
         wishCollectionView.dataSource = self
-    getURL()
+        getURL()
         getEmail()
         
         nameField.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.changeNameAction))
         nameField.alpha = 0
+    }
+    
+    //  MARK: - IBAction
+    
+    @IBAction func animateSettings(_ sender: Any) {
+        selectOption(.settings)
+    }
+    
+    @IBAction func emailRemainders(_ sender: Any) {
+        if let currentUser = Auth.auth().currentUser?.uid {
+            switch self.switchEmailReminders.isOn {
+            case false :
+                databaseRef.child("users").child(currentUser).child("options").child("emailReminders").setValue("no"){ (error, ref) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }}
+            default:
+                databaseRef.child("users").child(currentUser).child("options").child("emailReminders").setValue("yes"){ (error, ref) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func emailMessages(_ sender: Any) {
+        if let currentUser = Auth.auth().currentUser?.uid {
+            switch self.switchEmailMessages.isOn {
+            case false :
+                databaseRef.child("users").child(currentUser).child("options").child("emailMessages").setValue("no"){ (error, ref) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }}
+            default:
+                databaseRef.child("users").child(currentUser).child("options").child("emailMessages").setValue("yes"){ (error, ref) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func PushNotifications(_ sender: Any) {
+        if let currentUser = Auth.auth().currentUser?.uid {
+            switch self.switchPushMessages.isOn {
+            case false :
+                databaseRef.child("users").child(currentUser).child("options").child("pushMessages").setValue("no"){ (error, ref) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }}
+            default:
+                databaseRef.child("users").child(currentUser).child("options").child("pushMessages").setValue("yes"){ (error, ref) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func PushNewItems(_ sender: Any) {
+        if let currentUser = Auth.auth().currentUser?.uid {
+            switch self.switchPushItems.isOn {
+            case false :
+                databaseRef.child("users").child(currentUser).child("options").child("pushNewItems").setValue("no"){ (error, ref) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }}
+            default:
+                databaseRef.child("users").child(currentUser).child("options").child("pushNewItems").setValue("yes"){ (error, ref) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func presentPicView(_ sender: Any) {
+        self.view.addSubview(picturesView)
+        self.picturesView.center = self.view.center
+    }
+    
+    @IBAction func changeName(_ sender: Any) {
+        self.nameField.alpha = 1
+        self.nameButton.alpha = 0
+    }
+    
+    @IBAction func takePhoto(_ sender: AnyObject) {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.allowsEditing = true
+        pickerController.sourceType = .camera
+        self.present(pickerController, animated: true, completion: nil)
+    }
+    
+    @IBAction func presentWishlist(_ sender: Any) {
+        selectOption(.saved)
+    }
+    
+    @IBAction func logOut(_ sender: AnyObject) {
         
+        User.logOutUser { (status) in
+            if status == true {
+                self.pushTomainView()
+            }
+        }
+    }
+    
+    @IBAction func presentManage(_ sender: AnyObject) {
+        selectOption(.myPostings)
+    }
+    
+    @IBAction func presentReceived(_ sender: Any) {
+        selectOption(.receivedItems)
+    }
+    
+    @IBAction func back(_ sender: AnyObject) {
+        pushTomainView()
+    }
+    
+    //  MARK: - Private
+    
+    private func selectOption(_ newOption: OpenedOption) {
         
+        defer {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
         
+        closeAllCollections()
         
+        guard currentOption != newOption else {
+            currentOption = .none
+            return
+        }
         
+        switch newOption {
+        case .myPostings:
+            myPostingsHeight.constant = 139.0
+            collectionView.alpha = 1
+        case .receivedItems:
+            receivedItemsHeight.constant = 139.0
+            receivedCollectionView.alpha = 1
+        case .saved:
+            savedItemsHeight.constant = 139.0
+            wishCollectionView.alpha = 1
+        case .settings:
+            settingsView.alpha = 1
+        case .none:
+            break
+        }
         
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+        })
+        
+        currentOption = newOption
+    }
+    
+    private func closeAllCollections() {
+        savedItemsHeight.constant = 0
+        myPostingsHeight.constant = 0
+        receivedItemsHeight.constant = 0
+        collectionView.alpha = 0
+        wishCollectionView.alpha = 0
+        receivedCollectionView.alpha = 0
+        
+        settingsView.alpha = 0
     }
     
     func doneClicked() {
         view.endEditing(true)
-        
     }
     
-    @IBAction func animateSettings(_ sender: Any) {
-        if self.settingsView.alpha == 0{
-        self.settingsView.alpha = 1
-            self.settingsIcon.alpha = 0
-            self.receivedItems.alpha = 0
-            self.manageItemsView.alpha = 0
-        } else if self.settingsView.alpha == 1{
-            self.settingsView.alpha = 0
-            self.settingsIcon.alpha = 1
-        }}
+    var imageArray = [UIImage]()
     
-    
-    
-    
-    
-    
-    
-    
-    
-      var imageArray = [UIImage]()
     func grabPhotos() {
         
         let imgManager = PHImageManager.default()
@@ -178,10 +306,7 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
         let fetchResult : PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         
         if fetchResult.count > 0 {
-            
-            
             for i in 0..<fetchResult.count {
-                
                 imgManager.requestImage(for: fetchResult.object(at: i) , targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFill, options: requestOptions, resultHandler: {
                     
                     image, error in
@@ -189,76 +314,11 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
                     self.imageArray.append(image!)
                     
                 })
-                
             }
-            } else {
-            self.collectionPicturesProfile?.reloadData()}}
-    
-    
-    
-    @IBAction func emailRemainders(_ sender: Any) {
-        if let currentUser = Auth.auth().currentUser?.uid {
-            switch self.switchEmailReminders.isOn {
-            case false :
-                databaseRef.child("users").child(currentUser).child("options").child("emailReminders").setValue("no"){ (error, ref) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }}
-            default:
-                databaseRef.child("users").child(currentUser).child("options").child("emailReminders").setValue("yes"){ (error, ref) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }}
-            }}    }
-    
-    @IBAction func emailMessages(_ sender: Any) {
-        if let currentUser = Auth.auth().currentUser?.uid {
-            switch self.switchEmailMessages.isOn {
-            case false :
-                databaseRef.child("users").child(currentUser).child("options").child("emailMessages").setValue("no"){ (error, ref) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }}
-            default:
-                databaseRef.child("users").child(currentUser).child("options").child("emailMessages").setValue("yes"){ (error, ref) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }}
-            }}
+        } else {
+            self.collectionPicturesProfile?.reloadData()
+        }
     }
-    
-    @IBAction func PushNotifications(_ sender: Any) {
-        if let currentUser = Auth.auth().currentUser?.uid {
-            switch self.switchPushMessages.isOn {
-            case false :
-                databaseRef.child("users").child(currentUser).child("options").child("pushMessages").setValue("no"){ (error, ref) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }}
-            default:
-                databaseRef.child("users").child(currentUser).child("options").child("pushMessages").setValue("yes"){ (error, ref) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }}
-            }}
-    }
-    
-    @IBAction func PushNewItems(_ sender: Any) {
-        if let currentUser = Auth.auth().currentUser?.uid {
-            switch self.switchPushItems.isOn {
-            case false :
-                databaseRef.child("users").child(currentUser).child("options").child("pushNewItems").setValue("no"){ (error, ref) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }}
-            default:
-                databaseRef.child("users").child(currentUser).child("options").child("pushNewItems").setValue("yes"){ (error, ref) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }}
-            }}
-    }
-    
     
     func customization() {
         if let currentUser = Auth.auth().currentUser?.uid {
@@ -268,16 +328,14 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
                     self.nnameLabel.text! = snapshot.value! as! String
                  
                     
-                }})}
+                }
+            })
+        }
         else {
             takeToLogin()
-        }}
-    
-    
-    @IBAction func presentPicView(_ sender: Any) {
-        self.view.addSubview(picturesView)
-        self.picturesView.center = self.view.center
+        }
     }
+    
     func getEmail() {
         if let currentUser = Auth.auth().currentUser?.uid {
             databaseRef.child("users").child(currentUser).child("credentials").child("email").observe(.value, with: { (snapshot) in
@@ -285,15 +343,11 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
                     self.emailAdresButton.setTitle("\(snapshot.value!)", for: .normal)
                     self.adresaDeSchimbat = snapshot.value! as! String
                     // print(snapshot.value!)
-                }})}}
-    
-
-    
-    @IBAction func changeName(_ sender: Any) {
-        self.nameField.alpha = 1
-        self.nameButton.alpha = 0
-        
+                }
+            })
+        }
     }
+    
     func changeNameAction(){
         if let currentUser = Auth.auth().currentUser?.uid {
             databaseRef.child("users").child(currentUser).child("credentials").child("name").setValue("\(nameField.text!)"){ (error, ref) in
@@ -305,17 +359,6 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
         self.nameButton.alpha = 1
         view.endEditing(true)
     }
-    
-    
-    @IBAction func takePhoto(_ sender: AnyObject) {
-        
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        pickerController.allowsEditing = true
-        pickerController.sourceType = .camera
-        self.present(pickerController, animated: true, completion: nil)
-    }
-    
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
@@ -355,8 +398,10 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
                     print(self.poza)
                     self.button1.setTitle("", for: .normal)
                     completion(postImageURL1)
-                }}}}
-
+                }
+            }
+        }
+    }
     
     func getURL() {
         let currentUser = Auth.auth().currentUser!.uid
@@ -366,117 +411,34 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
                 self.editProfilePic.sd_setImage(with: URL(string: "https://graph.facebook.com/\(snapshot.value! as! String)/picture?type=small"))
                 print(snapshot.value!)
                 
-                
-                
             }   else
-            
-            { if let id = Auth.auth().currentUser?.uid {
-                 User.info(forUserID: id, completion: { [weak weakSelf = self] (user) in
-                    let removal: [Character] = [".", "#", "$", "@"]
-                    
-                    let unfilteredCharacters = ("\(user.email)")
-                    
-                    let filteredCharacters = unfilteredCharacters.filter { !removal.contains($0) }
-                    
-                    let filtered = String(filteredCharacters)
-                  weakSelf?.link = ("\(user.email)")
-                    self.databaseRef.child("users").child("emailProfilePictures").child("\(filtered)").observe(.value, with: { (snapshot) in
-                    if snapshot.exists(){
-                       self.profilePic.sd_setImage(with: URL(string: "\(snapshot.value! as! String)"))
-                        self.editProfilePic.sd_setImage(with: URL(string: "\(snapshot.value! as! String)"))
-                    }})})}}})}
                 
-          
-    
-    
-
-    
- //   let urlString = cur
-    
-    
-  //  let profilePicURL = URL(string: )
-    
-    
-    
-    
-  //  func test () {
-   //     let currentUser = FIRAuth.auth()?.currentUser?.uid
-     
-        
-  //      databaseRef.child("test").child("name").observe(.value) { (snap: FIRDataSnapshot) in
-      //      self.manage.text! = (snap.value as! //String).description }
-        
-    //    databaseRef.child("w").setValue(currentUser)}
-    
-    
-    
-    
-    @IBAction func logOut(_ sender: AnyObject) {
-        
-        User.logOutUser { (status) in
-            if status == true {
-                self.pushTomainView()
+            {
+                if let id = Auth.auth().currentUser?.uid {
+                    User.info(forUserID: id, completion: { [weak weakSelf = self] (user) in
+                        let removal: [Character] = [".", "#", "$", "@"]
+                        
+                        let unfilteredCharacters = ("\(user.email)")
+                        
+                        let filteredCharacters = unfilteredCharacters.filter { !removal.contains($0) }
+                        
+                        let filtered = String(filteredCharacters)
+                        weakSelf?.link = ("\(user.email)")
+                        self.databaseRef.child("users").child("emailProfilePictures").child("\(filtered)").observe(.value, with: { (snapshot) in
+                            if snapshot.exists(){
+                                self.profilePic.sd_setImage(with: URL(string: "\(snapshot.value! as! String)"))
+                                self.editProfilePic.sd_setImage(with: URL(string: "\(snapshot.value! as! String)"))
+                            }
+                        })
+                    })
+                }
             }
-        }
-        
-        
+        })
     }
-   
-    
-  
-    
-    
-    
-    @IBAction func presentManage(_ sender: AnyObject) {
-        if manageItemsView.alpha == 0 {
-            settingsButton.alpha = 0
-            settingsIcon.alpha = 0
-            settingsView.alpha = 0
-            manageItemsView.alpha = 1
-            receivedItems.alpha = 0
-            wishlist.alpha = 0
-            
-        } else { manageItemsView.alpha = 0
-            settingsButton.alpha = 1
-           
-            settingsIcon.alpha = 1
-    }}
-    
-  
-    @IBAction func presentReceived(_ sender: Any) {
-        if receivedItems.alpha == 0 {
-            receivedItems.alpha = 1
-           manageItemsView.alpha = 0
-            wishlist.alpha = 0
-            settingsButton.alpha = 0
-            settingsIcon.alpha = 0
-            settingsView.alpha = 0
-        } else { receivedItems.alpha = 0
-            settingsButton.alpha = 1
-           
-            settingsIcon.alpha = 1
-        }
-    }
-    
-    @IBAction func presentWishlist(_ sender: Any) {
-        if wishlist.alpha == 0 {
-        wishlist.alpha = 1
-            settingsButton.alpha = 0
-            settingsIcon.alpha = 0
-            settingsView.alpha = 0
-            manageItemsView.alpha = 0
-            receivedItems.alpha = 0
-        } else {
-            wishlist.alpha = 0
-            settingsButton.alpha = 1
-            settingsIcon.alpha = 1
-        }}
-    
     
     
     func fetchAllPost(completion: @escaping ([Post])->()) {
         
-     
         let currentUser = Auth.auth().currentUser!.uid
         
         databaseRef.child("posts").queryOrdered(byChild: "userId").queryEqual(toValue: currentUser).observe(.value, with: { (snapshot) in
@@ -492,15 +454,20 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
             self.collectionView.reloadData()
             }) { (error:Error) in
             print(error.localizedDescription)
-        }}
+        }
+    }
+    
     func takeToLogin() {
         
-        let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginActually
-        self.show(loginVC, sender: nil)
+        let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "Login") as! LoginVC
+        let navVC = UINavigationController(rootViewController: loginVC)
+        navVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navVC.navigationBar.tintColor = UIColor.black
+        navVC.navigationBar.shadowImage = UIImage()
+        navVC.navigationBar.isTranslucent = true
+        self.present(navVC, animated: true)
     }
 
-    
-    
     private func fetchAllPost(){
         Auth.auth().addStateDidChangeListener { auth, user in
             if user != nil {
@@ -511,12 +478,14 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
             })
             
             self.collectionView.reloadData()
-                }}  else {
+                }
+            }  else {
                 self.takeToLogin()
-            }}    }
+            }
+        }
+    }
+    
     func fetchAllWishPost(completion: @escaping ([Post])->()) {
-        
-        
         let currentUser = Auth.auth().currentUser!.uid
         databaseRef.child("wishlist").child(currentUser).observe(.value, with: { (snapshot) in
             
@@ -530,18 +499,12 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
             self.Wishsweets = WishpostArray
             self.wishCollectionView.reloadData()
             
-            
-            
         }) { (error:Error) in
             print(error.localizedDescription)
         }
         
     }
-    
-   
-    
-   
-    
+ 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -549,11 +512,6 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
         self.receivedItems.alpha = 0
         self.manageItemsView.alpha = 0
     }
-    
-    
-    
-  
-    
     
     private func fetchAllWishPost(){
         Auth.auth().addStateDidChangeListener { auth, user in
@@ -568,14 +526,12 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
                     self.wishCollectionView.reloadData()
                 }}  else {
                 self.takeToLogin()
-            }}    }
-    
-   
-    
+            }
+        }
+    }
     
     func fetchAllReceivedPost(completion: @escaping ([PickedUp])->()) {
-        
-        
+
         let currentUser = Auth.auth().currentUser!.uid
         
         databaseRef.child("pickedup").child(currentUser).observe(.value, with: { (snapshot) in
@@ -591,12 +547,9 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
             self.receivedCollectionView.reloadData()
         }) { (error:Error) in
             print(error.localizedDescription)
-        }}
+        }
+    }
   
-    
-    
-    
-    
     private func fetchAllReceivedPost(){
         Auth.auth().addStateDidChangeListener { auth, user in
             if user != nil {
@@ -607,13 +560,12 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
                     })
                     
                     self.receivedCollectionView.reloadData()
-                }}  else {
+                }
+            }  else {
                 self.takeToLogin()
-            }}    }
-
-    
-    
-    
+            }
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
        
@@ -626,12 +578,8 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
             return imageArray.count
         } else {
              return Wishsweets.count
-        }}
-    
-   
-    
-    
-    
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
@@ -711,11 +659,9 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
         Wishcell.tag = indexPath.item
         return Wishcell
             
-        }}
+        }
+    }
    
-    
-    
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
         
@@ -740,16 +686,11 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
             postRef.setValue(pickedUpItem.toAnyObject()) { (error, ref) in
                 if let error = error {
                     print(error.localizedDescription)
-                   
-}
-                
-                
-                else {
-                    // insert "thank you " page
-                    
+                } else {
                     self.dismiss(animated: true, completion: nil)
-
-                }}} else if collectionView == self.collectionPicturesProfile {
+                }
+            }
+        } else if collectionView == self.collectionPicturesProfile {
             if collectionView.cellForItem(at: indexPath) != nil {
                 
                 self.profilePic.image = self.imageArray[indexPath.item]
@@ -758,22 +699,17 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
                 
             }
         } else if collectionView == self.wishCollectionView {
-            }}
-    
-  
+            
+        }
+    }
     
     @IBAction func markAsPicked(_ sender: Any) {
         
-        }
-    
+    }
     
     @IBAction func viewItem(_ sender: Any) {
         
-        }
-    
-    
-    
-    
+    }
     
     func selectedPost(post: Post) {
         self.performSegue(withIdentifier: "ToEdit", sender: IndexPath.self)
@@ -782,50 +718,26 @@ class account : UIViewController, UICollectionViewDataSource, UICollectionViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToEdit" {
             
-           
+            
             let postDetailPage = segue.destination as? EditPost
             if let indexPath = self.collectionView?.indexPath(for: sender as! UICollectionViewCell) {
                 postDetailPage?.passPostEdit = sweets[indexPath.row]
-            }}
-        
-        else if segue.identifier == "toChat" {
-                let vc = segue.destination as! ChatVC
-                vc.currentUser = self.selectedUser
-               }
+            }
         }
-    
-     
-    
-    
-    
-    
-    @IBAction func back(_ sender: AnyObject) {
-        
-        pushTomainView()
+            
+        else if segue.identifier == "toChat" {
+            let vc = segue.destination as! ChatVC
+            vc.currentUser = self.selectedUser
+        }
     }
-    
     
     func pushTomainView() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeView
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeVC
         self.show(vc, sender: nil)
     }
-    
-   
-    
 }
 
-
-
-
-
-
-
-
-
-
-
-
-extension account : UICollectionViewDelegateFlowLayout {
+extension AccountVC : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
        

@@ -28,7 +28,7 @@ class Household : UITableViewCell,  UICollectionViewDataSource, UICollectionView
         return Storage.storage().reference()
     }
     
-    var homeView: HomeView!
+    var HomeVC: HomeVC!
     
     var sweets: [Post] = [Post]()
     
@@ -98,7 +98,7 @@ class Household : UITableViewCell,  UICollectionViewDataSource, UICollectionView
                 self.sweets = posts
                 
                 self.sweetToDisplay = self.sweets.filter{
-                    $0.postCategory.contains("HOUSEHOLD ITEMS")
+                    $0.category == .householdItems
                 }
                 self.collectionView.reloadData()
             }})}

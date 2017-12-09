@@ -194,9 +194,8 @@ class recepts: UIViewController, UITableViewDelegate, UITableViewDataSource   {
         }}
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
-        
-        
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch self.items.count {
         case 0:
@@ -232,23 +231,11 @@ class recepts: UIViewController, UITableViewDelegate, UITableViewDataSource   {
         }
         
     }
-
-    
-
-    
-    
-    
+   
     private func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-              
                self.ttableView.reloadData()
     }
-
-
-
-
 }
-
-
 
 extension ClosedRange {
     func clamp(_ value : Bound) -> Bound {
@@ -257,5 +244,3 @@ extension ClosedRange {
             : value
     }
 }
-
-

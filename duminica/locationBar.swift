@@ -13,28 +13,11 @@ import UIKit
 
 
 class locationBar: UIViewController {
-    
-    
-    
-    
-    
-   
-    
-    
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    
-    
     @IBAction func dismmmmis(_ sender: Any) {
-        
         dismiss(animated: true, completion: nil)
     }
-    
-    
 }

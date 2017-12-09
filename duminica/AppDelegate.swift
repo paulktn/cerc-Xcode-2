@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func takeToHome(){
         
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let homeVC = storyboard.instantiateViewController(withIdentifier: "Homes") as! HomeView
+        let homeVC = storyboard.instantiateViewController(withIdentifier: "Homes") as! HomeVC
         self.window?.rootViewController = homeVC
     }
     

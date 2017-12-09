@@ -30,7 +30,7 @@ class Clothing : UITableViewCell,  UICollectionViewDataSource, UICollectionViewD
         return Storage.storage().reference()
     }
     
-    var homeView: HomeView!
+    var HomeVC: HomeVC!
     
     var sweets: [Post] = [Post]()
     
@@ -100,7 +100,7 @@ class Clothing : UITableViewCell,  UICollectionViewDataSource, UICollectionViewD
                 self.sweets = posts
                 
                 self.sweetToDisplay = self.sweets.filter{
-                    $0.postCategory.contains("CLOTHING & ACCESORIES")
+                    $0.category == .clothingAndAccesories
                 }
                 self.collectionView.reloadData()
             }})}

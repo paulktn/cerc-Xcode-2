@@ -19,7 +19,7 @@ class Electronics : UITableViewCell,  UICollectionViewDataSource, UICollectionVi
         return Storage.storage().reference()
     }
     
-    var homeView: HomeView!
+    var HomeVC: HomeVC!
     
     var sweets: [Post] = [Post]()
     var postDelegate: PostDelegate?
@@ -88,7 +88,7 @@ class Electronics : UITableViewCell,  UICollectionViewDataSource, UICollectionVi
                 self.sweets = posts
                 
                 self.sweetToDisplay = self.sweets.filter{
-                    $0.postCategory.contains("ELECTRONICS")
+                    $0.category == .electronics
                 }
                 self.collectionView.reloadData()
             }})}

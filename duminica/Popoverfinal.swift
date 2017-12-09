@@ -31,75 +31,37 @@ extension CLPlacemark {
 class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionViewDataSource, UINavigationControllerDelegate, CLLocationManagerDelegate, UICollectionViewDelegate {
     
     @IBOutlet weak var savingBackground: UIView!
-    
     @IBOutlet weak var locationViewBand: UIView!
-   
     @IBOutlet weak var keyword: CustomizableButton!
-    
     @IBOutlet weak var keywordCollection: UICollectionView!
-    
+    @IBOutlet weak var collectionCategories: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var details: IQTextView!
-    
     @IBOutlet weak var checkMark: UIImageView!
     @IBOutlet weak var savingPost: UILabel!
-    
-    
-   
     @IBOutlet var PicturesView: UIView!
-    
-  
-    @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var postImageView: CustomizableImageView!
-    
     @IBOutlet weak var postImageView2: CustomizableImageView!
-    
     @IBOutlet weak var postImageView3: CustomizableImageView!
-    
     @IBOutlet weak var postButton: UIButtonX!
-    
     @IBOutlet weak var locationButton: CustomizableButton!
-    
     @IBOutlet weak var switch1: UISwitch!
-    
     @IBOutlet weak var switch2: UISwitch!
-    
     @IBOutlet weak var switch3: UISwitch!
-    
-   
     @IBOutlet weak var button1: UIButton!
-    
     @IBOutlet weak var button2: UIButton!
-    
     @IBOutlet weak var button3: UIButton!
-    
     @IBOutlet weak var enterZipcode: IQTextView!
-    
     @IBOutlet weak var chooseCategoryButton: CustomizableButton!
-    
-    @IBOutlet weak var collectionCategories: UICollectionView!
-    
     @IBOutlet weak var errorLabel: UILabel!
-    
     @IBOutlet weak var presentDetailView: CustomizableButton!
-    
     @IBOutlet weak var errorPhotoLabel: UILabel!
-    
     @IBOutlet weak var locationIcon: UIImageView!
-    
     @IBOutlet weak var detailsIcon: UIImageView!
-    
     @IBOutlet weak var categoriesIcon: UIImageView!
-    
     @IBOutlet weak var hashtagIcon: UIImageView!
-    
-    
-   
-    
-    
     var coordinatesGhost: String!
     var thumbImage: UIImage!
-    
     var thumbLink: String!
     
     var poza1: String! = "" {
@@ -107,8 +69,9 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
             if poza1 != "" {
                 self.savingBackground.alpha = 0
              self.postButton.alpha = 1
+            }
         }
-        }}
+    }
    
     
     var poza2: String! = ""{
@@ -801,7 +764,7 @@ class AddPost: UIViewController, UIImagePickerControllerDelegate, UICollectionVi
         self.pushTomainView()
     }
     func pushTomainView() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeView
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeVC
         self.show(vc, sender: nil) }
     
     
@@ -1190,8 +1153,6 @@ extension AddPost:  UICollectionViewDelegateFlowLayout {
             return sectionInsets.left
             
         }
-        
-        
     }
 }
 

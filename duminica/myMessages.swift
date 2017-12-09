@@ -48,7 +48,7 @@ class myMessagePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func pushTomainView() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeView
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeVC
         self.show(vc, sender: nil)
     }
     
@@ -187,8 +187,13 @@ class myMessagePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     func takeToLogin() {
         
-        let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginActually
-        self.show(loginVC, sender: nil)
+        let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "Login") as! LoginVC
+        let navVC = UINavigationController(rootViewController: loginVC)
+        navVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navVC.navigationBar.tintColor = UIColor.black
+        navVC.navigationBar.shadowImage = UIImage()
+        navVC.navigationBar.isTranslucent = true
+        self.present(navVC, animated: true)
     }
     
     

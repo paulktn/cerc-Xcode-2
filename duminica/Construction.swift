@@ -28,7 +28,7 @@ class Construction : UITableViewCell,  UICollectionViewDataSource, UICollectionV
         return Storage.storage().reference()
     }
     
-    var homeView: HomeView!
+    var HomeVC: HomeVC!
     
     var sweets: [Post] = [Post]()
     
@@ -98,7 +98,7 @@ class Construction : UITableViewCell,  UICollectionViewDataSource, UICollectionV
                 self.sweets = posts
                 
                 self.sweetToDisplay = self.sweets.filter{
-                    $0.postCategory.contains("CONSTRUCTION MATERIALS")
+                    $0.category == .constructionMaterials
                 }
                 self.collectionView.reloadData()
             }})}

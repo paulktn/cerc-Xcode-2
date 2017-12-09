@@ -27,7 +27,7 @@ class Sporting : UITableViewCell,  UICollectionViewDataSource, UICollectionViewD
         return Storage.storage().reference()
     }
     
-    var homeView: HomeView!
+    var HomeVC: HomeVC!
     
     var sweets: [Post] = [Post]()
     
@@ -97,7 +97,7 @@ class Sporting : UITableViewCell,  UICollectionViewDataSource, UICollectionViewD
                 self.sweets = posts
                 
                 self.sweetToDisplay = self.sweets.filter{
-                    $0.postCategory.contains("SPORTING GOODS")
+                    $0.category == .sportingGoods
                 }
                 self.collectionView.reloadData()
             }})}

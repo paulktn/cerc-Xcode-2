@@ -29,7 +29,7 @@ class Toys : UITableViewCell,  UICollectionViewDataSource, UICollectionViewDeleg
         return Storage.storage().reference()
     }
     
-    var homeView: HomeView!
+    var HomeVC: HomeVC!
     
     var sweets: [Post] = [Post]()
     
@@ -99,7 +99,7 @@ class Toys : UITableViewCell,  UICollectionViewDataSource, UICollectionViewDeleg
                 self.sweets = posts
                 
                 self.sweetToDisplay = self.sweets.filter{
-                    $0.postCategory.contains("TOYS & GAMES")
+                    $0.category == .toysAndGames
                 }
                 self.collectionView.reloadData()
             }})}
