@@ -523,7 +523,4 @@
         <image name="Back" width="100" height="100"/>
         <image name="Profile" width="100" height="100"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="rMO-gQ-4fh"/>
-    </inferredMetricsTieBreakers>
 </document>

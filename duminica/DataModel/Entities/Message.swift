@@ -39,7 +39,7 @@ class Message {
     //MARK: Methods
     class func downloadAllMessages(forUserID: String, completion: @escaping (Message) -> Swift.Void) {
         if let currentUserID = Auth.auth().currentUser?.uid {
-            Database.database().reference().child("users").child(currentUserID).child("conversations").child(forUserID).observe(.value, with: { (snapshot) in
+            Database.database().reference().child("ios_users").child(currentUserID).child("conversations").child(forUserID).observe(.value, with: { (snapshot) in
                 if snapshot.exists() {
                     let data = snapshot.value as! [String: String]
                     let location = data["location"]!
@@ -96,7 +96,7 @@ class Message {
     
     class func markMessagesRead(forUserID: String)  {
         if let currentUserID = Auth.auth().currentUser?.uid {
-            Database.database().reference().child("users").child(currentUserID).child("conversations").child(forUserID).observeSingleEvent(of: .value, with: { (snapshot) in
+            Database.database().reference().child("ios_users").child(currentUserID).child("conversations").child(forUserID).observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.exists() {
                     let data = snapshot.value as! [String: String]
                     let location = data["location"]!
@@ -129,7 +129,7 @@ class Message {
     
     class func uploadMessage(withValues: [String: Any], toID: String, completion: @escaping (Bool) -> Swift.Void) {
         if let currentUserID = Auth.auth().currentUser?.uid {
-            Database.database().reference().child("users").child(currentUserID).child("conversations").child(toID).observeSingleEvent(of: .value, with: { (snapshot) in
+            Database.database().reference().child("ios_users").child(currentUserID).child("conversations").child(toID).observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.exists() {
                     let data = snapshot.value as! [String: String]
                     let location = data["location"]!
@@ -143,8 +143,8 @@ class Message {
                 } else {
                     Database.database().reference().child("conversations").childByAutoId().childByAutoId().setValue(withValues, withCompletionBlock: { (error, reference) in
                         let data = ["location": reference.parent!.key]
-                        Database.database().reference().child("users").child(currentUserID).child("conversations").child(toID).updateChildValues(data)
-                        Database.database().reference().child("users").child(toID).child("conversations").child(currentUserID).updateChildValues(data)
+                        Database.database().reference().child("ios_users").child(currentUserID).child("conversations").child(toID).updateChildValues(data)
+                        Database.database().reference().child("ios_users").child(toID).child("conversations").child(currentUserID).updateChildValues(data)
                         completion(true)
                     })
                 }

@@ -111,11 +111,11 @@ class myMessagePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
                     
                     let filtered = String(filteredCharacters)
         
-                    self.databaseRef.child("users").child("emailProfilePictures").child("\(filtered)").observe(.value, with: { (snapshot) in
+                    self.databaseRef.child("ios_users").child("emailProfilePictures").child("\(filtered)").observe(.value, with: { (snapshot) in
                         if snapshot.exists(){
                          cell.profilePic.sd_setImage(with: URL(string: "\(snapshot.value! as! String)"))
                         } else {
-                            self.databaseRef.child("users").child(self.facebookid).child("credentials").child("id").observe(.value, with: { (snapshot) in
+                            self.databaseRef.child("ios_users").child(self.facebookid).child("credentials").child("id").observe(.value, with: { (snapshot) in
                                 if snapshot.exists() {
                             cell.profilePic.sd_setImage(with: URL(string: "https://graph.facebook.com/\(snapshot.value! as! String)/picture?type=small"))
                              

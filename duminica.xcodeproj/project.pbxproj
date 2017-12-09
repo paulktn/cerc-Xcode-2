@@ -95,6 +95,7 @@
 		33CC20BF1FB10F9600CD8A79 /* ModernSearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC20BA1FB10F9500CD8A79 /* ModernSearchBarDelegate.swift */; };
 		33CC20C01FB10F9600CD8A79 /* ModernSearchBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC20BB1FB10F9500CD8A79 /* ModernSearchBarIcon.swift */; };
 		33CC20C11FB10F9600CD8A79 /* ModernSearchBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC20BC1FB10F9500CD8A79 /* ModernSearchBarModel.swift */; };
+		7E0718A91FDC78F800C1E669 /* PHAsset+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0718A81FDC78F800C1E669 /* PHAsset+Common.swift */; };
 		7E3DFA201FDC56F9007E7BFC /* MessagesFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E3DFA1F1FDC56F9007E7BFC /* MessagesFlow.storyboard */; };
 		7E8C1B6E1FD5E8A100EAA156 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C1B6D1FD5E8A000EAA156 /* LoginVC.swift */; };
 		7E8C1B701FD5F01500EAA156 /* CreateNewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C1B6F1FD5F01500EAA156 /* CreateNewUserVC.swift */; };
@@ -229,6 +230,7 @@
 		33CC20BB1FB10F9500CD8A79 /* ModernSearchBarIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModernSearchBarIcon.swift; sourceTree = "<group>"; };
 		33CC20BC1FB10F9500CD8A79 /* ModernSearchBarModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModernSearchBarModel.swift; sourceTree = "<group>"; };
 		3E40A920BD7556CA9B302E01 /* Pods-duminica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-duminica.release.xcconfig"; path = "Pods/Target Support Files/Pods-duminica/Pods-duminica.release.xcconfig"; sourceTree = "<group>"; };
+		7E0718A81FDC78F800C1E669 /* PHAsset+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAsset+Common.swift"; sourceTree = "<group>"; };
 		7E3DFA1F1FDC56F9007E7BFC /* MessagesFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessagesFlow.storyboard; sourceTree = "<group>"; };
 		7E8C1B6D1FD5E8A000EAA156 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		7E8C1B6F1FD5F01500EAA156 /* CreateNewUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewUserVC.swift; sourceTree = "<group>"; };
@@ -593,6 +595,7 @@
 			children = (
 				7EE6C5471FCB3AA600ABBAE8 /* String+Common.swift */,
 				7EE6C5491FCB3AFE00ABBAE8 /* UIColor+Common.swift */,
+				7E0718A81FDC78F800C1E669 /* PHAsset+Common.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -679,7 +682,7 @@
 				TargetAttributes = {
 					338B202B1F2E9788005B6D2C = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = MKH9DA266V;
+						DevelopmentTeam = B3989CPB3T;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -853,6 +856,7 @@
 				33BB4DCB1F2EA8CD00DB49FD /* placeholder.swift in Sources */,
 				7E8C1B951FD5F47C00EAA156 /* QBAlbumsViewController.m in Sources */,
 				7EE6C54C1FCB3B7000ABBAE8 /* Post.swift in Sources */,
+				7E0718A91FDC78F800C1E669 /* PHAsset+Common.swift in Sources */,
 				33BB4DDD1F2EA90300DB49FD /* ViewPostVC.swift in Sources */,
 				33BB4ED31F2EB1ED00DB49FD /* IQUIView+Hierarchy.swift in Sources */,
 				7E8C1B921FD5F47C00EAA156 /* QBVideoIndicatorView.m in Sources */,
@@ -1062,7 +1066,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MKH9DA266V;
+				DEVELOPMENT_TEAM = B3989CPB3T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1070,7 +1074,7 @@
 				INFOPLIST_FILE = duminica/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.myrtka.nagubu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reuseit.cerc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "duminica/duminica-Bridging-Header.h";
@@ -1085,7 +1089,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MKH9DA266V;
+				DEVELOPMENT_TEAM = B3989CPB3T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1093,7 +1097,7 @@
 				INFOPLIST_FILE = duminica/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.myrtka.nagubu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reuseit.cerc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "duminica/duminica-Bridging-Header.h";

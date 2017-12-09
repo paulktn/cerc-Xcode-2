@@ -25,7 +25,7 @@ class User: NSObject {
             if error == nil {
                 
                 let values = ["name": withName, "email": email]
-                Database.database().reference().child("users").child((user?.uid)!).child("credentials").updateChildValues(values, withCompletionBlock: { (errr, _) in
+                Database.database().reference().child("ios_users").child((user?.uid)!).child("credentials").updateChildValues(values, withCompletionBlock: { (errr, _) in
                     if errr == nil {
                         let userInfo = ["email" : email, "password" : password]
                         UserDefaults.standard.set(userInfo, forKey: "userInformation")
@@ -64,7 +64,7 @@ class User: NSObject {
     }
     
     class func info(forUserID: String, completion: @escaping (User) -> Swift.Void) {
-        Database.database().reference().child("users").child(forUserID).child("credentials").observeSingleEvent(of: .value, with: { (snapshot) in
+        Database.database().reference().child("ios_users").child(forUserID).child("credentials").observeSingleEvent(of: .value, with: { (snapshot) in
             if let data = snapshot.value as? [String: String] {
                 let name = data["name"]!
                 let email = data["email"]!
@@ -80,7 +80,7 @@ class User: NSObject {
         
         let currentUser = Auth.auth().currentUser!
         
-        let currentUserRef = Database.database().reference().child("users").child(forUserID).child(currentUser.uid).child("credentials")
+        let currentUserRef = Database.database().reference().child("ios_users").child(forUserID).child(currentUser.uid).child("credentials")
         
         currentUserRef.observeSingleEvent(of: .value, with: { (currentUser) in
             
@@ -97,19 +97,10 @@ class User: NSObject {
             print(error.localizedDescription)
             
         }
-        
-        
-        
     }
     
-    
-    
-    
-    
-    
-    
     class func downloadAllUsers(exceptID: String, completion: @escaping (User) -> Swift.Void) {
-        Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
+        Database.database().reference().child("ios_users").observe(.childAdded, with: { (snapshot) in
             let id = snapshot.key
             let data = snapshot.value as! [String: Any]
             let credentials = data["credentials"] as! [String: String]

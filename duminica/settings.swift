@@ -87,12 +87,12 @@ class settingsPage: UIViewController,  UIImagePickerControllerDelegate,  UIColle
         if let currentUser = Auth.auth().currentUser?.uid {
             switch self.switchEmailReminders.isOn {
             case false :
-                databaseRef.child("users").child(currentUser).child("options").child("emailReminders").setValue("no"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("emailReminders").setValue("no"){ (error, ref) in
                 if let error = error {
                     print(error.localizedDescription)
                     }}
             default:
-                databaseRef.child("users").child(currentUser).child("options").child("emailReminders").setValue("yes"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("emailReminders").setValue("yes"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }}
@@ -103,12 +103,12 @@ class settingsPage: UIViewController,  UIImagePickerControllerDelegate,  UIColle
         if let currentUser = Auth.auth().currentUser?.uid {
             switch self.switchEmailMessages.isOn {
             case false :
-                databaseRef.child("users").child(currentUser).child("options").child("emailMessages").setValue("no"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("emailMessages").setValue("no"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }}
             default:
-                databaseRef.child("users").child(currentUser).child("options").child("emailMessages").setValue("yes"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("emailMessages").setValue("yes"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }}
@@ -120,12 +120,12 @@ class settingsPage: UIViewController,  UIImagePickerControllerDelegate,  UIColle
         if let currentUser = Auth.auth().currentUser?.uid {
             switch self.switchPushMessages.isOn {
             case false :
-                databaseRef.child("users").child(currentUser).child("options").child("pushMessages").setValue("no"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("pushMessages").setValue("no"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }}
             default:
-                databaseRef.child("users").child(currentUser).child("options").child("pushMessages").setValue("yes"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("pushMessages").setValue("yes"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }}
@@ -137,12 +137,12 @@ class settingsPage: UIViewController,  UIImagePickerControllerDelegate,  UIColle
         if let currentUser = Auth.auth().currentUser?.uid {
             switch self.switchPushItems.isOn {
             case false :
-                databaseRef.child("users").child(currentUser).child("options").child("pushNewItems").setValue("no"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("pushNewItems").setValue("no"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }}
             default:
-                databaseRef.child("users").child(currentUser).child("options").child("pushNewItems").setValue("yes"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("pushNewItems").setValue("yes"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }}
@@ -154,12 +154,12 @@ class settingsPage: UIViewController,  UIImagePickerControllerDelegate,  UIColle
         if let currentUser = Auth.auth().currentUser?.uid {
             switch self.switchSMS.isOn {
             case false :
-                databaseRef.child("users").child(currentUser).child("options").child("SMS").setValue("no"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("SMS").setValue("no"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }}
             default:
-                databaseRef.child("users").child(currentUser).child("options").child("SMS").setValue("yes"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("SMS").setValue("yes"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }}
@@ -170,7 +170,7 @@ class settingsPage: UIViewController,  UIImagePickerControllerDelegate,  UIColle
     
     func getURL() {
         let currentUser = Auth.auth().currentUser!.uid
-        databaseRef.child("users").child(currentUser).child("credentials").child("id").observe(.value, with: { (snapshot) in
+        databaseRef.child("ios_users").child(currentUser).child("credentials").child("id").observe(.value, with: { (snapshot) in
             if snapshot.exists() {
                 self.profilePic.sd_setImage(with: URL(string: "https://graph.facebook.com/\(snapshot.value! as! String)/picture?type=small"))
                 print(snapshot.value!)  }   else
@@ -186,14 +186,14 @@ class settingsPage: UIViewController,  UIImagePickerControllerDelegate,  UIColle
                     let filtered = String(filteredCharacters)
                     
                     weakSelf?.link = ("\(user.email)")
-                    self.databaseRef.child("users").child("emailProfilePictures").child("\(filtered)").observe(.value, with: { (snapshot) in
+                    self.databaseRef.child("ios_users").child("emailProfilePictures").child("\(filtered)").observe(.value, with: { (snapshot) in
                         if snapshot.exists(){
                             self.profilePic.sd_setImage(with: URL(string: "\(snapshot.value! as! String)"))
                         }})})}}})}
     
     func customization() {
         if let currentUser = Auth.auth().currentUser?.uid {
-            databaseRef.child("users").child(currentUser).child("credentials").child("name").observe(.value, with: { (snapshot) in
+            databaseRef.child("ios_users").child(currentUser).child("credentials").child("name").observe(.value, with: { (snapshot) in
                 if snapshot.exists() {
                     self.nameButton.setTitle("\(snapshot.value!)", for: .normal)
                    // print(snapshot.value!)
@@ -315,7 +315,7 @@ class settingsPage: UIViewController,  UIImagePickerControllerDelegate,  UIColle
                     let unfilteredCharacters = String(describing: self.emailAdresButton.titleLabel?.text!).characters
                     let filteredCharacters = unfilteredCharacters.filter { !removal.contains($0) }
                     let filtered = String(filteredCharacters)
-                    self.databaseRef.child("users").child("emailProfilePictures").child("\(filtered)").setValue(self.poza)
+                    self.databaseRef.child("ios_users").child("emailProfilePictures").child("\(filtered)").setValue(self.poza)
                     print(self.poza)
                     self.button1.setTitle("", for: .normal)
                     completion(postImageURL1)
@@ -337,7 +337,7 @@ class settingsPage: UIViewController,  UIImagePickerControllerDelegate,  UIColle
     
     func getEmail() {
         if let currentUser = Auth.auth().currentUser?.uid {
-            databaseRef.child("users").child(currentUser).child("credentials").child("email").observe(.value, with: { (snapshot) in
+            databaseRef.child("ios_users").child(currentUser).child("credentials").child("email").observe(.value, with: { (snapshot) in
                 if snapshot.exists() {
                     self.emailAdresButton.setTitle("\(snapshot.value!)", for: .normal)
                     // print(snapshot.value!)
@@ -353,7 +353,7 @@ class settingsPage: UIViewController,  UIImagePickerControllerDelegate,  UIColle
     }
            func changeNameAction(){
           if let currentUser = Auth.auth().currentUser?.uid {
-            databaseRef.child("users").child(currentUser).child("credentials").child("name").setValue("\(nameField.text!)"){ (error, ref) in
+            databaseRef.child("ios_users").child(currentUser).child("credentials").child("name").setValue("\(nameField.text!)"){ (error, ref) in
                 if let error = error {
                     print(error.localizedDescription)
                 }}}

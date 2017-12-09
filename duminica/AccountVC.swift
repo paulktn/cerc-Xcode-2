@@ -22,7 +22,6 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     @IBOutlet weak var emailAdresButton: UIButton!
     @IBOutlet weak var nameButton: UIButton!
     @IBOutlet weak var collectionPicturesProfile: UICollectionView!
-    
     @IBOutlet weak var nameField: IQTextView!
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var picSwitch: UISwitch!
@@ -44,16 +43,12 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     }
     
     private var currentOption: OpenedOption = .none
-    
     var adresaDeSchimbat: String!
-    
     var databaseRef: DatabaseReference! {
-        
         return Database.database().reference()
     }
     
     var storageRef: StorageReference! {
-        
         return Storage.storage().reference()
     }
     
@@ -61,7 +56,6 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var wishCollectionView: UICollectionView!
     @IBOutlet weak var receivedCollectionView: UICollectionView!
-    
     
     //  MARK: - Collection View Height
     
@@ -122,12 +116,12 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         if let currentUser = Auth.auth().currentUser?.uid {
             switch self.switchEmailReminders.isOn {
             case false :
-                databaseRef.child("users").child(currentUser).child("options").child("emailReminders").setValue("no"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("emailReminders").setValue("no"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }}
             default:
-                databaseRef.child("users").child(currentUser).child("options").child("emailReminders").setValue("yes"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("emailReminders").setValue("yes"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }
@@ -140,12 +134,12 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         if let currentUser = Auth.auth().currentUser?.uid {
             switch self.switchEmailMessages.isOn {
             case false :
-                databaseRef.child("users").child(currentUser).child("options").child("emailMessages").setValue("no"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("emailMessages").setValue("no"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }}
             default:
-                databaseRef.child("users").child(currentUser).child("options").child("emailMessages").setValue("yes"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("emailMessages").setValue("yes"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }
@@ -158,12 +152,12 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         if let currentUser = Auth.auth().currentUser?.uid {
             switch self.switchPushMessages.isOn {
             case false :
-                databaseRef.child("users").child(currentUser).child("options").child("pushMessages").setValue("no"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("pushMessages").setValue("no"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }}
             default:
-                databaseRef.child("users").child(currentUser).child("options").child("pushMessages").setValue("yes"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("pushMessages").setValue("yes"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }
@@ -176,12 +170,12 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         if let currentUser = Auth.auth().currentUser?.uid {
             switch self.switchPushItems.isOn {
             case false :
-                databaseRef.child("users").child(currentUser).child("options").child("pushNewItems").setValue("no"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("pushNewItems").setValue("no"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }}
             default:
-                databaseRef.child("users").child(currentUser).child("options").child("pushNewItems").setValue("yes"){ (error, ref) in
+                databaseRef.child("ios_users").child(currentUser).child("options").child("pushNewItems").setValue("yes"){ (error, ref) in
                     if let error = error {
                         print(error.localizedDescription)
                     }
@@ -322,7 +316,7 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     
     func customization() {
         if let currentUser = Auth.auth().currentUser?.uid {
-            databaseRef.child("users").child(currentUser).child("credentials").child("name").observe(.value, with: { (snapshot) in
+            databaseRef.child("ios_users").child(currentUser).child("credentials").child("name").observe(.value, with: { (snapshot) in
                 if snapshot.exists() {
                     self.nameButton.setTitle("\(snapshot.value!)", for: .normal)
                     self.nnameLabel.text! = snapshot.value! as! String
@@ -338,7 +332,7 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     
     func getEmail() {
         if let currentUser = Auth.auth().currentUser?.uid {
-            databaseRef.child("users").child(currentUser).child("credentials").child("email").observe(.value, with: { (snapshot) in
+            databaseRef.child("ios_users").child(currentUser).child("credentials").child("email").observe(.value, with: { (snapshot) in
                 if snapshot.exists() {
                     self.emailAdresButton.setTitle("\(snapshot.value!)", for: .normal)
                     self.adresaDeSchimbat = snapshot.value! as! String
@@ -350,7 +344,7 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     
     func changeNameAction(){
         if let currentUser = Auth.auth().currentUser?.uid {
-            databaseRef.child("users").child(currentUser).child("credentials").child("name").setValue("\(nameField.text!)"){ (error, ref) in
+            databaseRef.child("ios_users").child(currentUser).child("credentials").child("name").setValue("\(nameField.text!)"){ (error, ref) in
                 if let error = error {
                     print(error.localizedDescription)
                 }}}
@@ -394,7 +388,7 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
                     let unfilteredCharacters = self.adresaDeSchimbat
                     let filteredCharacters = unfilteredCharacters?.filter { !removal.contains($0) }
                     let filtered = String(describing: filteredCharacters)
-                    self.databaseRef.child("users").child("emailProfilePictures").child("\(filtered)").setValue(self.poza)
+                    self.databaseRef.child("ios_users").child("emailProfilePictures").child("\(filtered)").setValue(self.poza)
                     print(self.poza)
                     self.button1.setTitle("", for: .normal)
                     completion(postImageURL1)
@@ -404,8 +398,9 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     }
     
     func getURL() {
-        let currentUser = Auth.auth().currentUser!.uid
-        databaseRef.child("users").child(currentUser).child("credentials").child("id").observe(.value, with: { (snapshot) in
+        //  TODO: - Implement alert with warning about logination
+        guard let currentUser = Auth.auth().currentUser?.uid else {return}
+        databaseRef.child("ios_users").child(currentUser).child("credentials").child("id").observe(.value, with: { (snapshot) in
             if snapshot.exists() {
                 self.profilePic.sd_setImage(with: URL(string: "https://graph.facebook.com/\(snapshot.value! as! String)/picture?type=small"))
                 self.editProfilePic.sd_setImage(with: URL(string: "https://graph.facebook.com/\(snapshot.value! as! String)/picture?type=small"))
@@ -424,7 +419,7 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
                         
                         let filtered = String(filteredCharacters)
                         weakSelf?.link = ("\(user.email)")
-                        self.databaseRef.child("users").child("emailProfilePictures").child("\(filtered)").observe(.value, with: { (snapshot) in
+                        self.databaseRef.child("ios_users").child("emailProfilePictures").child("\(filtered)").observe(.value, with: { (snapshot) in
                             if snapshot.exists(){
                                 self.profilePic.sd_setImage(with: URL(string: "\(snapshot.value! as! String)"))
                                 self.editProfilePic.sd_setImage(with: URL(string: "\(snapshot.value! as! String)"))
@@ -664,8 +659,6 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
-        
-        
         postDelegate?.selectedPost(post: self.sweets[indexPath.item])
         self.selectedPost1 = self.sweets[indexPath.item]
         } else if collectionView == self.wishCollectionView {
@@ -748,13 +741,13 @@ extension AccountVC : UICollectionViewDelegateFlowLayout {
         let widthPerItem = availableWidth / itemsPerRow
         
         return CGSize(width: widthPerItem, height: widthPerItem)
-        }
+        
+    }
     
-        func collectionView(_ collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-let sectionInsets = UIEdgeInsets(top: 0, left: 1.0, bottom: 0, right: 1)
-            
+        let sectionInsets = UIEdgeInsets(top: 0, left: 1.0, bottom: 0, right: 1)
         return sectionInsets
     }
     
@@ -763,5 +756,6 @@ let sectionInsets = UIEdgeInsets(top: 0, left: 1.0, bottom: 0, right: 1)
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         let sectionInsets = UIEdgeInsets(top: 0, left: 1.0, bottom: 0, right: 1)
         return sectionInsets.left
-    }}
+    }
+}
     

@@ -28,7 +28,9 @@ extension CLPlacemark {
         return nil
     }}
 
-class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollectionViewDataSource, UINavigationControllerDelegate, CLLocationManagerDelegate, UICollectionViewDelegate {
+class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManagerDelegate, UICollectionViewDelegate {
+    
+    //  MARK: IBOutlets
     
     @IBOutlet weak var savingBackground: UIView!
     @IBOutlet weak var locationViewBand: UIView!
@@ -60,6 +62,13 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollection
     @IBOutlet weak var detailsIcon: UIImageView!
     @IBOutlet weak var categoriesIcon: UIImageView!
     @IBOutlet weak var hashtagIcon: UIImageView!
+    @IBOutlet weak var errorLabelCategory: CustomLabel!
+    @IBOutlet weak var errorLabelLocation: CustomLabel!
+    
+    fileprivate var postImage1: UIImage?
+    fileprivate var postImage2: UIImage?
+    fileprivate var postImage3: UIImage?
+    
     var coordinatesGhost: String!
     var thumbImage: UIImage!
     var thumbLink: String!
@@ -72,7 +81,6 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollection
             }
         }
     }
-    
     
     var poza2: String! = ""{
         didSet{
@@ -95,11 +103,8 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollection
     }
     
     var geoFire: GeoFire!
-    
     var geoFireRef: DatabaseReference!
-    
-    
-    
+
     var clothingWords = ["blouse", "boots", "coat", "dress", "handbag", "jacket", "jeans", "pijamas","pants", "raincoat", "shirt", "suit", "shoes", "skirt", "slacks", "shorts", "snowsuit", "sweater", "tuxedo", "women's accesories", "other"]
     
     var furnitureWords = ["bed(single)", "bed(f/q/k)", "folding bed", "bedroom set", "chair", "chest", "china cabinet", "clothes closet", "coffee table", "crib", "desk", "dining room set", "dresser", "end table", "hi riser", "kitchen cabinet", "mattress", "rugs", "secretary", "sofa", "sleeper sofa", "trunk", "wardrobe", "other"]
@@ -115,13 +120,9 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollection
     var toysWords = ["action figures", "cars and remote controlled", "construction toys", "doll", "educational toys", "electronics toys", "plush toys", "puzzle", "wooden toys"]
     
     var homeimprovementWords = ["measuring tool", "hammer", "electrical drill", "cutting tool", "hand saw", "electrical saw", "construction materials", "screwdriver", "others"]
-    
     var miscellaneousWords = ["miscellaneous"]
-    
-    
-    
-    
     let cellIdentifiers = ["appliances", "clothing & accesories", "electronics", "furniture", "home improvement", "household items", "sporting goods", "toys & games", "miscellaneous"]
+    
     
     var databaseRef: DatabaseReference! {
         return Database.database().reference()
@@ -139,9 +140,6 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollection
     var canSendLocation = true
     var postIdLocation: String! = ""
     var pozaurl: String! = ""
-    
-    @IBOutlet weak var errorLabelCategory: CustomLabel!
-    @IBOutlet weak var errorLabelLocation: CustomLabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -389,12 +387,9 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollection
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
         {
             print("Error \(error)")
-        }}
-    
-    
-    
-    
-    
+        }
+    }
+
     //// PicturesView
     
     var imageArray = [UIImage]()
@@ -414,9 +409,6 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollection
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         fetchOptions.fetchLimit = 65
-        
-        
-        
         let fetchResult : PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         
         if fetchResult.count > 0 {
@@ -429,10 +421,8 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollection
                     self.imageArray.append(image!)
                 })}} else {
             self.collectionView?.reloadData()
-        }}
-    
-    
-    
+        }
+    }
     
     private func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -734,13 +724,38 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollection
         self.dismiss(animated: true, completion: nil)
     }
     
-    
-    
-    
-    
-    
-    
     @IBAction func photosIn(_ sender: UIButton) {
+        
+        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Camera",
+                                            style: .default,
+                                            handler: { (action:UIAlertAction) in
+                                                
+                                                if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                                                    let imagePickerController = UIImagePickerController()
+                                                    imagePickerController.delegate = self
+                                                    imagePickerController.sourceType = .camera
+                                                    self.present(imagePickerController, animated: true, completion: nil)
+                                                    
+                                                }
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
+            
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+                let imagePickerController = QBImagePickerController()
+                imagePickerController.delegate = self
+                imagePickerController.allowsMultipleSelection = true
+                imagePickerController.mediaType = .image
+                imagePickerController.maximumNumberOfSelection = 1
+                self.present(imagePickerController, animated: true, completion: nil)
+            }
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
         
         switch sender {
         case button1:
@@ -748,25 +763,25 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollection
             PicturesView.alpha = 1
             errorPhotoLabel.alpha = 0
             errorPhotoLabel.isHidden = true
-            switch1.isOn = true;
+            switch1.isOn = true
             
         case button2:
             PicturesView.alpha = 1
             errorPhotoLabel.alpha = 0
-            switch2.isOn = true;
+            switch2.isOn = true
             
             
         case button3:
-            
             PicturesView.alpha = 1
             errorPhotoLabel.alpha = 0
+            switch3.isOn = true
             
-            
-            switch3.isOn = true;
-            
-        default: break;
-            
-        }}
+        default:
+            break
+        }
+        
+        
+    }
     
     
     func picturesOut() {
@@ -781,24 +796,14 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollection
         let imageData2 = UIImageJPEGRepresentation(image2!, CGFloat(1))
         let imageData3 = UIImageJPEGRepresentation(image3!, CGFloat(1))
         let postThumbData = postThumb?.jpeg(.lowest)
-        
-        
-        
-        
-        
         uploadImageToFirebase(postId: postId, imageData1: imageData1!, imageData2:imageData2!, imageData3: imageData3!, postThumb: postThumbData!, completion: { (url) in
-            
-            
-            
         })
-        
         
         if postImageView.image != UIImage(named: "photoPlaceholder") {
             self.postImageView2.alpha = 1
             button1.alpha = 0
             button2.alpha = 1
             button3.alpha = 0
-            
         }
         
         if postImageView2.image != UIImage(named: "photoPlaceholder") {
@@ -808,26 +813,21 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollection
             button3.alpha = 1
             
             
-        };   if postImageView3.image != UIImage(named: "photoPlaceholder") {
+        }
+        
+        if postImageView3.image != UIImage(named: "photoPlaceholder") {
             
             button1.alpha = 0
             button2.alpha = 0
             button3.alpha = 0
         }
-        
-        
-        // PicturesView.alpha = 0
+    
         switch1.isOn = false
         switch2.isOn = false
         switch3.isOn = false
-        
-        
     }
     
     func uploadImageToFirebase(postId: String, imageData1: Data, imageData2: Data, imageData3:Data, postThumb:Data, completion: @escaping (URL)->()){
-        
-        
-        
         
         let postThumbPath = "postImages/\(postId)postThumb.jpg"
         let postThumbRef = storageRef.child(postThumbPath)
@@ -942,9 +942,8 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollection
             if postImageView.image == UIImage(named: "photoPlaceholder") {
                 errorPhotoLabel.text = "Add a photo."
                 errorPhotoLabel.isHidden = false
-            }}
-        
-        
+            }
+        }
         
         func postIt() {
             if postImageView.image == UIImage(named: "photoPlaceholder") || self.locationButton.titleLabel!.text! == "Location" || keyword.titleLabel!.text! == "   choose a keyword" || self.chooseCategoryButton.titleLabel!.text! == "   choose category" {
@@ -1001,8 +1000,6 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollection
                         print(error.localizedDescription)
                     } else {
                         geoset()
-                        
-                        print(postId)
                     }
                 }
                 
@@ -1031,6 +1028,19 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UICollection
     func editAlertGone() {
         errorLabel.isHidden = true
         view.endEditing(true)
+    }
+    
+    fileprivate func addImage(_ image: UIImage) {
+        if self.postImage1 == nil {
+            self.postImage1 = image
+            self.postImageView.image = image
+        } else if self.postImage2 == nil {
+            self.postImage2 = image
+            self.postImageView2.image = image
+        } else if self.postImage3 == nil {
+            self.postImage3 = image
+            self.postImageView3.image = image
+        }
     }
 }
 
@@ -1063,7 +1073,6 @@ extension AddPostVC:  UICollectionViewDelegateFlowLayout {
             let sectionInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
             return sectionInsets
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -1080,7 +1089,46 @@ extension AddPostVC:  UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension UIImage {
+extension AddPostVC: QBImagePickerControllerDelegate {
+    func qb_imagePickerController(_ imagePickerController: QBImagePickerController!, didFinishPickingAssets assets: [Any]!) {
+        guard let images = assets as? [PHAsset] else {
+            return
+        }
+        
+        if let img = images.flatMap({$0.uiImage}).first {
+            self.addImage(img)
+        }
+        
+        imagePickerController.dismiss(animated: true, completion: nil)
+    }
+    
+    func qb_imagePickerControllerDidCancel(_ imagePickerController: QBImagePickerController!) {
+        
+        imagePickerController.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension AddPostVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        DispatchQueue.global().async {
+            guard let image = ((info[UIImagePickerControllerEditedImage] ?? info[UIImagePickerControllerOriginalImage]) as? UIImage) else {return}
+            
+            DispatchQueue.main.async {
+                
+                self.addImage(image)
+                
+                picker.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+fileprivate extension UIImage {
     enum JPEGQuality: CGFloat {
         case lowest  = 0
         case low     = 0.25
@@ -1100,4 +1148,5 @@ extension UIImage {
     
     func jpeg(_ quality: JPEGQuality) -> Data? {
         return UIImageJPEGRepresentation(self, quality.rawValue)
-    }}
+    }
+}

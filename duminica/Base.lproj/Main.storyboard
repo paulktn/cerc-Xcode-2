@@ -954,7 +954,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="-319" y="1250"/>
+            <point key="canvasLocation" x="-2438" y="1218"/>
         </scene>
         <!--Homes-->
         <scene sceneID="tne-QT-ifu">
@@ -1723,7 +1723,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                     <action selector="presentCategories:" destination="nZH-u1-jLd" eventType="touchUpInside" id="aJp-cI-dfh"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location2" translatesAutoresizingMaskIntoConstraints="NO" id="ed2-me-5zZ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location2" translatesAutoresizingMaskIntoConstraints="NO" id="ed2-me-5zZ">
                                 <rect key="frame" x="333.5" y="73" width="31.5" height="23.5"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1qT-J9-rwq" customClass="IQTextView" customModule="duminica" customModuleProvider="target">
@@ -2821,7 +2821,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ybp-kW-cUq">
+                                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ybp-kW-cUq">
                                                 <rect key="frame" x="169" y="375" width="39" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </pageControl>
@@ -3307,7 +3307,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="-4144" y="267"/>
+            <point key="canvasLocation" x="-4172" y="112"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="Ma6-hD-Dhz">

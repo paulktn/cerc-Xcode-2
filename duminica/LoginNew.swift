@@ -329,7 +329,7 @@ class LoginActually: UIViewController, UICollectionViewDelegate, UICollectionVie
             let facebuser = "\(fbUser)"
         
             let values = result ?? ""
-            Database.database().reference().child("users").child(facebuser).child("credentials").updateChildValues(values as! [AnyHashable : Any], withCompletionBlock: { (errr, _) in
+            Database.database().reference().child("ios_users").child(facebuser).child("credentials").updateChildValues(values as! [AnyHashable : Any], withCompletionBlock: { (errr, _) in
                 if errr == nil {
                     let userInfo = ["email" : result ?? "email"]
                     UserDefaults.standard.set(userInfo, forKey: "userInformation")
@@ -367,7 +367,7 @@ class LoginActually: UIViewController, UICollectionViewDelegate, UICollectionVie
                 if error == nil {
                     
                     let values = ["name": withName, "email": email, "password": password]
-                    Database.database().reference().child("users").child((user?.uid)!).child("credentials").updateChildValues(values, withCompletionBlock: { (errr, _) in
+                    Database.database().reference().child("ios_users").child((user?.uid)!).child("credentials").updateChildValues(values, withCompletionBlock: { (errr, _) in
                         if errr == nil {
                             let userInfo = ["email" : email, "password" : password]
                             UserDefaults.standard.set(userInfo, forKey: "userInformation")
@@ -409,7 +409,7 @@ func login(){
     
     func check() {
         if (emailAdres.text?.isEmpty == false){
-            databaseRef.child("users").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+            databaseRef.child("ios_users").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
                 
                 if snapshot.hasChild(self.emailAdres.text!){
                     

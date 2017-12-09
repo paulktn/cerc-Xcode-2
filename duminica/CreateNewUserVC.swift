@@ -60,7 +60,7 @@ class CreateNewUserVC: UIViewController {
             if error == nil {
                 
                 let values = ["name": self.nameField.text!, "email": self.emailField.text!, "password": self.passwordField.text!]
-                Database.database().reference().child("users").child((user?.uid)!).child("credentials").updateChildValues(values, withCompletionBlock: { (errr, _) in
+                Database.database().reference().child("ios_users").child((user?.uid)!).child("credentials").updateChildValues(values, withCompletionBlock: { (errr, _) in
                     if errr == nil {
                         let userInfo = ["email" : self.emailField.text!, "password" : self.passwordField.text!]
                         UserDefaults.standard.set(userInfo, forKey: "userInformation")
@@ -79,7 +79,7 @@ extension CreateNewUserVC: QBImagePickerControllerDelegate {
             return
         }
         
-        let imgs = images.map({$0.uiImage})
+        let imgs = images.flatMap({$0.uiImage})
         self.addPhotoImage.image = imgs.first
         self.addPhotoOutlet.setTitle(nil, for: .normal)
         
@@ -110,19 +110,5 @@ extension CreateNewUserVC: UINavigationControllerDelegate, UIImagePickerControll
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
-    }
-}
-
-private extension PHAsset {
-    var uiImage: UIImage {
-        let manager = PHImageManager.default()
-        let option = PHImageRequestOptions()
-        var image = UIImage()
-        option.isSynchronous = true
-        manager.requestImage(for: self, targetSize: CGSize(width: 1000, height: 1000), contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
-            image = result!
-        })
-        
-        return image
     }
 }

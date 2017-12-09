@@ -34,7 +34,7 @@ class Conversation {
     class func showConversations(completion: @escaping ([Conversation]) -> Swift.Void) {
         if let currentUserID = Auth.auth().currentUser?.uid {
             var conversations = [Conversation]()
-            Database.database().reference().child("users").child(currentUserID).child("conversations").observe(.childAdded, with: { (snapshot) in
+            Database.database().reference().child("ios_users").child(currentUserID).child("conversations").observe(.childAdded, with: { (snapshot) in
                 if snapshot.exists() {
                     let fromID = snapshot.key
                     let values = snapshot.value as! [String: String]
@@ -56,9 +56,9 @@ class Conversation {
     class func eraseConversations() {
         if let currentUserID = Auth.auth().currentUser?.uid {
           
-            Database.database().reference().child("users").child(currentUserID).child("conversations").observe(.childAdded, with: { (snapshot) in
+            Database.database().reference().child("ios_users").child(currentUserID).child("conversations").observe(.childAdded, with: { (snapshot) in
                 if snapshot.exists() {
-         Database.database().reference().child("users").child(currentUserID).child("conversations").removeValue()
+         Database.database().reference().child("ios_users").child(currentUserID).child("conversations").removeValue()
                 }
             })
         }

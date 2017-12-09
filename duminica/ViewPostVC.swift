@@ -80,53 +80,45 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         
         self.facebookButton.alpha = 0
         self.tweeterButton.alpha = 0
+        
         postDetaliiView.alpha = 0
         keywordLabel.text! = "\((passPost?.postTitle)!)"
         self.useridFromDatabase = "\((passPost?.userId)!)"
         viewPostTitle.text! = "\((passPost?.category.rawValue) ?? "")"
-        self.databaseRef.child("users").child(self.useridFromDatabase).child("credentials").child("email").observe(.value, with: { (snapshot) in
+        self.databaseRef.child("ios_users").child(self.useridFromDatabase).child("credentials").child("email").observe(.value, with: { (snapshot) in
             if snapshot.exists(){
                 let removal: [Character] = [".", "#", "$", "@"]
                 let unfilteredCharacters = ("\(snapshot.value! as! String)").characters
                 let filteredCharacters = unfilteredCharacters.filter { !removal.contains($0) }
                 let filtered = String(filteredCharacters)
-                self.databaseRef.child("users").child("emailProfilePictures").child("\(filtered)").observe(.value, with: { (snapshot) in
+                self.databaseRef.child("ios_users").child("emailProfilePictures").child("\(filtered)").observe(.value, with: { (snapshot) in
                     if snapshot.exists(){
                         self.profilePic.sd_setImage(with: URL(string: "\(snapshot.value! as! String)"))
                     } else {
                         
                         
-                        self.databaseRef.child("users").child(self.useridFromDatabase).child("credentials").child("id").observe(.value, with: { (snapshot) in
+                        self.databaseRef.child("ios_users").child(self.useridFromDatabase).child("credentials").child("id").observe(.value, with: { (snapshot) in
                             if snapshot.exists() {
                                 self.profilePic.sd_setImage(with: URL(string: "https://graph.facebook.com/\(snapshot.value! as! String)/picture?type=small"))
                                 
-                                print(snapshot.value!)}}
-                        )}})}})
+                                print(snapshot.value!)
+                            }
+                        })
+                    }
+                })
+            }
+        })
         
-        self.databaseRef.child("users").child(self.useridFromDatabase).child("credentials").child("name").observe(.value, with: { (snapshot) in
+        self.databaseRef.child("ios_users").child(self.useridFromDatabase).child("credentials").child("name").observe(.value, with: { (snapshot) in
             if snapshot.exists(){
                 self.contact.setTitle("          contact \(snapshot.value! as! String)", for: .normal)
             } else {}})
         
-        
-        
-        
-        
         inputTextField.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.sendMessageFromKeyboard))
         
         //IQKeyboardManager.sharedManager().toolbarDoneBarButtonItemText = "Send"
-        
-        
-        //   locateIt()
+
         inputTextField.alpha = 1
-        
-        //   donButton.contentHorizontalAlignment = .left
-        
-        
-        //    inputTextField.delegate = self
-        
-        
-        //  contact.contentHorizontalAlignment = .left
         
         mapView.delegate = self
         aDouaHarta.delegate = self
@@ -622,8 +614,8 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
             
             Database.database().reference().child("conversations").childByAutoId().childByAutoId().setValue(withValues, withCompletionBlock: { (error, reference) in
                 let data = ["location": reference.parent!.key]
-                Database.database().reference().child("users").child(currentUserID).child("conversations").child(toID).updateChildValues(data)
-                Database.database().reference().child("users").child(toID).child("conversations").child(currentUserID).updateChildValues(data)
+                Database.database().reference().child("ios_users").child(currentUserID).child("conversations").child(toID).updateChildValues(data)
+                Database.database().reference().child("ios_users").child(toID).child("conversations").child(currentUserID).updateChildValues(data)
                 self.saveToWishList()
                 completion(true)
             })
@@ -676,12 +668,7 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
             
         }
     }
-    
-    
-    
-    
-    
-    
+
     func GGGGG() {
         
         blurEffect.alpha = 0.8
