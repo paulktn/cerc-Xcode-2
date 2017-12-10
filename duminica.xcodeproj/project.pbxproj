@@ -120,7 +120,8 @@
 		7EE6C54A1FCB3AFE00ABBAE8 /* UIColor+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C5491FCB3AFE00ABBAE8 /* UIColor+Common.swift */; };
 		7EE6C54C1FCB3B7000ABBAE8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C54B1FCB3B7000ABBAE8 /* Post.swift */; };
 		C3FA740205A5A4147CD84FA5 /* Pods_duminica.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84BF03B2F933165F33F97ED /* Pods_duminica.framework */; };
-		E1BA494B1FDC707C0040EB25 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BA494A1FDC707C0040EB25 /* ChatVC.swift */; };
+		E13EC22A1FDCB93A008F23FD /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13EC2291FDCB93A008F23FD /* ChatVC.swift */; };
+		E1BA494B1FDC707C0040EB25 /* (null) in Sources */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -272,6 +273,7 @@
 		7EE6C54B1FCB3B7000ABBAE8 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		8D3A35B2E351B884C2CAB506 /* Pods-duminica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-duminica.debug.xcconfig"; path = "Pods/Target Support Files/Pods-duminica/Pods-duminica.debug.xcconfig"; sourceTree = "<group>"; };
 		D84BF03B2F933165F33F97ED /* Pods_duminica.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_duminica.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E13EC2291FDCB93A008F23FD /* ChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -503,7 +505,7 @@
 			isa = PBXGroup;
 			children = (
 				7E3DFA1F1FDC56F9007E7BFC /* MessagesFlow.storyboard */,
-				E1BA494A1FDC707C0040EB25 /* ChatVC.swift */,
+				E13EC2291FDCB93A008F23FD /* ChatVC.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -920,12 +922,13 @@
 				33BB4E8C1F2EA95600DB49FD /* Appliances.swift in Sources */,
 				33BB4DDB1F2EA8FC00DB49FD /* locationBar.swift in Sources */,
 				338B20691F2E9F4C005B6D2C /* UIButtonX.swift in Sources */,
-				E1BA494B1FDC707C0040EB25 /* ChatVC.swift in Sources */,
+				E1BA494B1FDC707C0040EB25 /* (null) in Sources */,
 				338B20641F2E9F4C005B6D2C /* CustomizableImageView.swift in Sources */,
 				338B20301F2E9788005B6D2C /* AppDelegate.swift in Sources */,
 				33BB4ED11F2EB1ED00DB49FD /* IQUIScrollView+Additions.swift in Sources */,
 				33BB4E9D1F2EA97800DB49FD /* accountCust.swift in Sources */,
 				33BB4DD91F2EA8F000DB49FD /* UserHeaderTableViewCell.swift in Sources */,
+				E13EC22A1FDCB93A008F23FD /* ChatVC.swift in Sources */,
 				33BB4EA41F2EA99C00DB49FD /* PMAlertController.swift in Sources */,
 				33BB4E961F2EA95600DB49FD /* Tools.swift in Sources */,
 				338B20661F2E9F4C005B6D2C /* CustomizableButton.swift in Sources */,

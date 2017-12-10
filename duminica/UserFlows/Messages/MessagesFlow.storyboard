@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qUR-Uf-tDP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fHe-0U-Ael">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -475,10 +475,10 @@
             </objects>
             <point key="canvasLocation" x="-14" y="316"/>
         </scene>
-        <!--ChatVC-->
+        <!--ChatVC New-->
         <scene sceneID="Xck-rz-u6h">
             <objects>
-                <viewController id="fHe-0U-Ael" customClass="ChatVC" customModule="duminica" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatVCNew" id="fHe-0U-Ael" customClass="ChatVCNew" customModule="duminica" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r2F-DB-tmY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -488,7 +488,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPm-1W-a3h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="694" y="315"/>
+            <point key="canvasLocation" x="999" y="316"/>
         </scene>
     </scenes>
     <resources>
