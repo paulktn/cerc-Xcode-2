@@ -15,6 +15,7 @@ class ChatVCNew: JSQMessagesViewController {
 
     var post: Post!
     var roomId: String!
+    var currentUser: User?
     var messages = [JSQMessage]()
     var incomingBubble: JSQMessagesBubbleImage!
     var outgoingBubble: JSQMessagesBubbleImage!
@@ -23,6 +24,7 @@ class ChatVCNew: JSQMessagesViewController {
     private var newMessageRefHandle: DatabaseHandle?
     private var userIsTypingRef: DatabaseReference?
     private var usersTypingQuery: DatabaseQuery?
+    
     
     private var localTyping = false
     var isTyping: Bool {
@@ -41,12 +43,12 @@ class ChatVCNew: JSQMessagesViewController {
         super.viewDidLoad()
         getCurrentUser()
         messageRef = Database.database().reference().child("ios-conversations").child(roomId)
-        self.userIsTypingRef = self.messageRef?.child("typingIndicator").child(self.senderId)
-        self.usersTypingQuery = self.messageRef?.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
+        //self.userIsTypingRef = self.messageRef?.child("typingIndicator").child(self.senderId)
+        //self.usersTypingQuery = self.messageRef?.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
         self.inputToolbar.contentView?.leftBarButtonItem?.imageView?.contentMode = .scaleAspectFill
         self.inputToolbar.contentView?.leftBarButtonItemWidth = 40
-        self.observeMessages()
-        self.observeTyping()
+        
+        //self.observeTyping()
         self.title = post.postTitle
 //        incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.)
 //        outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: Color.FromRGB(rgbValue: 0x64D0BD))
@@ -56,13 +58,9 @@ class ChatVCNew: JSQMessagesViewController {
     
     private func getCurrentUser() {
         if let id = Auth.auth().currentUser?.uid {
-            Database.database().reference().child("ios_users").child("credentials").observe(.value, with: { (snapshot) in
-                let user = snapshot.value as! Dictionary<String, Any>
-                if let name = user["name"] as? String {
-                    self.senderDisplayName = name
-                    self.senderId = id
-                }
-            })
+            self.senderId = id
+            self.senderDisplayName = currentUser?.name ?? ""
+            self.observeMessages()
         }
     }
     

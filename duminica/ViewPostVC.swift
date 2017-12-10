@@ -282,15 +282,6 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         return filteredSweets.count
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "custCell", for: indexPath) as! custCell
         
@@ -340,34 +331,25 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
             let postDetailPage = segue.destination as? report
             postDetailPage?.passPostEdit = passPost
             
-        }
-            
-        else if segue.identifier == "fromSimilar" {
+        } else if segue.identifier == "fromSimilar" {
             
             let toSimilarObjects = segue.destination as? ViewPostVC
             if let indexPath = self.collectionViewCategory?.indexPath(for: sender as! UICollectionViewCell) {
                 toSimilarObjects?.passPost = filteredSweets[indexPath.row]
             }
+        } else if segue.identifier == "ShowChatVC",
+            let vc = segue.destination as? ChatVCNew,
+            let chatId = sender as? String,
+            let post = self.passPost {
+            vc.post = post
+            vc.roomId = chatId
+            vc.currentUser = currentUser
         }
-        
-        
     }
-    
-    
-    
-    
-    
-    
     
     @IBAction func saveToList(_ sender: Any) {
         self.saveToWishList()
     }
-    
-    
-    
-    
-    
-    
     
     @IBAction func shareOnFacebook(_ sender: Any) {
         let vc = SLComposeViewController(forServiceType:SLServiceTypeFacebook)
@@ -628,18 +610,9 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     @IBAction func contactUser(_ sender: AnyObject) {
         
         if let post = passPost {
-            ChatManager.shared.initiateChat(with: post)
+            let chatId = ChatManager.shared.initiateChat(with: post)
+            self.performSegue(withIdentifier: "ShowChatVC", sender: chatId)
         }
-        
-//        Auth.auth().addStateDidChangeListener { auth, user in
-//            if user != nil {
-//                self.GGGGG()
-//
-//            } else {
-//                self.takeToAccount()
-//
-//            }
-//        }
     }
     
     

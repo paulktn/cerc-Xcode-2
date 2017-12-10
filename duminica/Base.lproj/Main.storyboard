@@ -2627,6 +2627,14 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
             </objects>
             <point key="canvasLocation" x="-3474" y="1925"/>
         </scene>
+        <!--ChatVCNew-->
+        <scene sceneID="BT1-zP-3K0">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MessagesFlow" referencedIdentifier="ChatVCNew" id="6ky-gj-hPL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WhH-qs-Hq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4760" y="-114"/>
+        </scene>
         <!--View PostVC-->
         <scene sceneID="Krw-ej-EZl">
             <objects>
@@ -3245,6 +3253,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <outlet property="tweeterButton" destination="KCM-8j-bMj" id="qxQ-Bh-0ZI"/>
                         <outlet property="viewMap" destination="kFV-NQ-vW3" id="z8X-lG-XvK"/>
                         <outlet property="viewPostTitle" destination="NXf-Qg-4ah" id="K7m-CJ-SRM"/>
+                        <segue destination="6ky-gj-hPL" kind="show" identifier="ShowChatVC" id="VWI-ns-UHa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lhv-Hc-OBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
