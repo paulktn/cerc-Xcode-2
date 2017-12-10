@@ -96,6 +96,7 @@
 		33CC20C01FB10F9600CD8A79 /* ModernSearchBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC20BB1FB10F9500CD8A79 /* ModernSearchBarIcon.swift */; };
 		33CC20C11FB10F9600CD8A79 /* ModernSearchBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC20BC1FB10F9500CD8A79 /* ModernSearchBarModel.swift */; };
 		7E0718A91FDC78F800C1E669 /* PHAsset+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0718A81FDC78F800C1E669 /* PHAsset+Common.swift */; };
+		7E0718AB1FDCA50900C1E669 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0718AA1FDCA50900C1E669 /* ChatManager.swift */; };
 		7E3DFA201FDC56F9007E7BFC /* MessagesFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E3DFA1F1FDC56F9007E7BFC /* MessagesFlow.storyboard */; };
 		7E8C1B6E1FD5E8A100EAA156 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C1B6D1FD5E8A000EAA156 /* LoginVC.swift */; };
 		7E8C1B701FD5F01500EAA156 /* CreateNewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C1B6F1FD5F01500EAA156 /* CreateNewUserVC.swift */; };
@@ -120,7 +121,7 @@
 		7EE6C54A1FCB3AFE00ABBAE8 /* UIColor+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C5491FCB3AFE00ABBAE8 /* UIColor+Common.swift */; };
 		7EE6C54C1FCB3B7000ABBAE8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C54B1FCB3B7000ABBAE8 /* Post.swift */; };
 		C3FA740205A5A4147CD84FA5 /* Pods_duminica.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84BF03B2F933165F33F97ED /* Pods_duminica.framework */; };
-		E1BA494B1FDC707C0040EB25 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BA494A1FDC707C0040EB25 /* ChatVC.swift */; };
+		E1BA494B1FDC707C0040EB25 /* (null) in Sources */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -232,6 +233,7 @@
 		33CC20BC1FB10F9500CD8A79 /* ModernSearchBarModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModernSearchBarModel.swift; sourceTree = "<group>"; };
 		3E40A920BD7556CA9B302E01 /* Pods-duminica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-duminica.release.xcconfig"; path = "Pods/Target Support Files/Pods-duminica/Pods-duminica.release.xcconfig"; sourceTree = "<group>"; };
 		7E0718A81FDC78F800C1E669 /* PHAsset+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAsset+Common.swift"; sourceTree = "<group>"; };
+		7E0718AA1FDCA50900C1E669 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		7E3DFA1F1FDC56F9007E7BFC /* MessagesFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessagesFlow.storyboard; sourceTree = "<group>"; };
 		7E8C1B6D1FD5E8A000EAA156 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		7E8C1B6F1FD5F01500EAA156 /* CreateNewUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewUserVC.swift; sourceTree = "<group>"; };
@@ -503,7 +505,6 @@
 			isa = PBXGroup;
 			children = (
 				7E3DFA1F1FDC56F9007E7BFC /* MessagesFlow.storyboard */,
-				E1BA494A1FDC707C0040EB25 /* ChatVC.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -569,6 +570,7 @@
 			children = (
 				7EE6C53F1FCB381500ABBAE8 /* MessageComposer.swift */,
 				33A37D3C1F5AAFC30021365C /* SocialMedia.swift */,
+				7E0718AA1FDCA50900C1E669 /* ChatManager.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -887,6 +889,7 @@
 				33CC20C11FB10F9600CD8A79 /* ModernSearchBarModel.swift in Sources */,
 				7E8C1B971FD5F47C00EAA156 /* QBImagePickerController.m in Sources */,
 				33BB4EB01F2EAFA600DB49FD /* Conversation.swift in Sources */,
+				7E0718AB1FDCA50900C1E669 /* ChatManager.swift in Sources */,
 				33BB4EA71F2EAF8700DB49FD /* User.swift in Sources */,
 				33BB4E8F1F2EA95600DB49FD /* Furniture.swift in Sources */,
 				7ECD0EC71FD328D70035F77C /* CollectionTableViewCell.swift in Sources */,
@@ -920,7 +923,7 @@
 				33BB4E8C1F2EA95600DB49FD /* Appliances.swift in Sources */,
 				33BB4DDB1F2EA8FC00DB49FD /* locationBar.swift in Sources */,
 				338B20691F2E9F4C005B6D2C /* UIButtonX.swift in Sources */,
-				E1BA494B1FDC707C0040EB25 /* ChatVC.swift in Sources */,
+				E1BA494B1FDC707C0040EB25 /* (null) in Sources */,
 				338B20641F2E9F4C005B6D2C /* CustomizableImageView.swift in Sources */,
 				338B20301F2E9788005B6D2C /* AppDelegate.swift in Sources */,
 				33BB4ED11F2EB1ED00DB49FD /* IQUIScrollView+Additions.swift in Sources */,

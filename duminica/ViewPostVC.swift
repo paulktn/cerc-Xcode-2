@@ -183,10 +183,6 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         imgTwo.sd_setImage(with: URL(string: (passPost?.postImageURL2)!))
         imgThree.sd_setImage(with: URL(string: (passPost?.postImageURL3)!))
         
-        
-        
-        
-        
         self.scrollView.addSubview(imgOne)
         if (passPost?.postImageURL2)! != "no image" {
             self.scrollView.addSubview(imgTwo)
@@ -198,11 +194,7 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
             scrollView.contentSize = CGSize(width: scrollViewWidth * 3, height: scrollViewHeight)
             pageControl.numberOfPages = 3
             self.scrollView.addSubview(imgThree)}
-        
-        
-        
-        
-        
+
         scrollView.delegate = self
         
         scrollView.showsHorizontalScrollIndicator = false
@@ -635,15 +627,20 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     
     @IBAction func contactUser(_ sender: AnyObject) {
         
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if user != nil {
-                self.GGGGG()
-                
-            } else {
-                self.takeToAccount()
-                
-            }
-        }}
+        if let post = passPost {
+            ChatManager.shared.initiateChat(with: post)
+        }
+        
+//        Auth.auth().addStateDidChangeListener { auth, user in
+//            if user != nil {
+//                self.GGGGG()
+//
+//            } else {
+//                self.takeToAccount()
+//
+//            }
+//        }
+    }
     
     
     

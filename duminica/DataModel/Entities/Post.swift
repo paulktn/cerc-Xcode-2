@@ -67,7 +67,6 @@ class Post {
         self.postId = postId
         self.userId = userId
         self.postThumbURL = postThumbURL
-        self.ref = Database.database().reference()
         self.location = location
         self.postTitle = postTitle
         self.postDetails = postDetails

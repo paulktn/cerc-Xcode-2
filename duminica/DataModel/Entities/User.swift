@@ -109,7 +109,9 @@ class User: NSObject {
                 let email = credentials["email"]!
                 let user = User.init(name: name, email: email, id: id)
                 completion(user)
-            }})}
+            }
+        })
+    }
     
     
     

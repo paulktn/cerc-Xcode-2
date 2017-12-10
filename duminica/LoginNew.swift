@@ -141,26 +141,11 @@ class LoginActually: UIViewController, UICollectionViewDelegate, UICollectionVie
         } else {
             
             self.collectionView?.reloadData()}}
-    
-    
-    
-    
-    
-    
+
     @IBAction func photosIn(_ sender: UIButton) {
-        
-       
-            self.view.addSubview(self.profilePicView)
-            self.profilePicView.center = view.center
-        
-           }
-    
-    
-    
-    
-    
-    
-    
+        self.view.addSubview(self.profilePicView)
+        self.profilePicView.center = view.center
+    }
     
     private func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -214,9 +199,6 @@ class LoginActually: UIViewController, UICollectionViewDelegate, UICollectionVie
         
     }
     
-    
-    
-    
     @IBAction func outPictures(_ sender: AnyObject) {
         let image1 = profilePic.image
         let imageData1 = UIImageJPEGRepresentation(image1!, CGFloat(0.35))
@@ -250,7 +232,10 @@ class LoginActually: UIViewController, UICollectionViewDelegate, UICollectionVie
                     print(self.poza)
                     self.button1.setTitle("", for: .normal)
                     completion(postImageURL1)
-                }}}}
+                }
+            }
+        }
+    }
     
     
     func handleCustomFBLogin() {
