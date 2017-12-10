@@ -11,7 +11,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class ChatVCNew: JSQMessagesViewController {
+class ChatVC: JSQMessagesViewController {
 
     var post: Post!
     var roomId: String!
@@ -42,16 +42,16 @@ class ChatVCNew: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getCurrentUser()
-        messageRef = Database.database().reference().child("ios-conversations").child(roomId)
-        //self.userIsTypingRef = self.messageRef?.child("typingIndicator").child(self.senderId)
-        //self.usersTypingQuery = self.messageRef?.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
+        messageRef = Database.database().reference().child("ios_conversations").child(roomId)
+        observeMessages()
+        self.userIsTypingRef = self.messageRef?.child("typingIndicator").child(self.senderId)
+        self.usersTypingQuery = self.messageRef?.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
         self.inputToolbar.contentView?.leftBarButtonItem?.imageView?.contentMode = .scaleAspectFill
         self.inputToolbar.contentView?.leftBarButtonItemWidth = 40
-        
-        //self.observeTyping()
+        self.observeTyping()
         self.title = post.postTitle
-//        incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.)
-//        outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: Color.FromRGB(rgbValue: 0x64D0BD))
+        incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.black)
+        outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.black)
         collectionView?.collectionViewLayout.incomingAvatarViewSize = .zero
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
     }
@@ -59,8 +59,7 @@ class ChatVCNew: JSQMessagesViewController {
     private func getCurrentUser() {
         if let id = Auth.auth().currentUser?.uid {
             self.senderId = id
-            self.senderDisplayName = currentUser?.name ?? ""
-            self.observeMessages()
+            self.senderDisplayName = currentUser?.name ?? "no name"
         }
     }
     
@@ -71,9 +70,9 @@ class ChatVCNew: JSQMessagesViewController {
     }
     
     private func observeMessages() {
-        newMessageRefHandle = messageRef?.child("messages").observe(.childAdded, with: { (snapshot) in
+        messageRef?.child("messages").observe(.childAdded, with: { (snapshot) in
             let messageData = snapshot.value as! Dictionary<String, Any>
-            if let id = messageData["senderId"] as? String, let name = messageData["senderName"] as? String, let dateTimestamp = messageData["date"] as? TimeInterval, let text = messageData["text"] as? String, text.count > 0 {
+            if let id = messageData["senderId"] as? String, let name = messageData["senderName"] as? String, let dateTimestamp = messageData["date_timestamp"] as? TimeInterval, let text = messageData["text"] as? String, text.count > 0 {
                 let date = Date.init(timeIntervalSince1970: dateTimestamp)
                 self.addMessage(withId: id, date: date, name: name, text: text)
                 self.finishReceivingMessage()
@@ -144,7 +143,6 @@ class ChatVCNew: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, messageBubbleImageDataForItemAt indexPath: IndexPath) -> JSQMessageBubbleImageDataSource {
-        
         return messages[indexPath.item].senderId == self.senderId ? outgoingBubble : incomingBubble
     }
     
