@@ -338,7 +338,7 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
                 toSimilarObjects?.passPost = filteredSweets[indexPath.row]
             }
         } else if segue.identifier == "ShowChatVC",
-            let vc = segue.destination as? ChatVCNew,
+            let vc = segue.destination as? ChatVC,
             let chatId = sender as? String,
             let post = self.passPost {
             vc.post = post

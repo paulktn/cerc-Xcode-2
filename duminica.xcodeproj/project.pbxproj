@@ -97,6 +97,7 @@
 		33CC20C11FB10F9600CD8A79 /* ModernSearchBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC20BC1FB10F9500CD8A79 /* ModernSearchBarModel.swift */; };
 		7E0718A91FDC78F800C1E669 /* PHAsset+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0718A81FDC78F800C1E669 /* PHAsset+Common.swift */; };
 		7E0718AB1FDCA50900C1E669 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0718AA1FDCA50900C1E669 /* ChatManager.swift */; };
+		7E0718AD1FDCDC8200C1E669 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0718AC1FDCDC8200C1E669 /* Session.swift */; };
 		7E3DFA201FDC56F9007E7BFC /* MessagesFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E3DFA1F1FDC56F9007E7BFC /* MessagesFlow.storyboard */; };
 		7E8C1B6E1FD5E8A100EAA156 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C1B6D1FD5E8A000EAA156 /* LoginVC.swift */; };
 		7E8C1B701FD5F01500EAA156 /* CreateNewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C1B6F1FD5F01500EAA156 /* CreateNewUserVC.swift */; };
@@ -235,6 +236,7 @@
 		3E40A920BD7556CA9B302E01 /* Pods-duminica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-duminica.release.xcconfig"; path = "Pods/Target Support Files/Pods-duminica/Pods-duminica.release.xcconfig"; sourceTree = "<group>"; };
 		7E0718A81FDC78F800C1E669 /* PHAsset+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAsset+Common.swift"; sourceTree = "<group>"; };
 		7E0718AA1FDCA50900C1E669 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		7E0718AC1FDCDC8200C1E669 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		7E3DFA1F1FDC56F9007E7BFC /* MessagesFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessagesFlow.storyboard; sourceTree = "<group>"; };
 		7E8C1B6D1FD5E8A000EAA156 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		7E8C1B6F1FD5F01500EAA156 /* CreateNewUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewUserVC.swift; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 				7EE6C54D1FCB3BE000ABBAE8 /* Vendor */,
 				7EE6C5461FCB3A9000ABBAE8 /* Extensions */,
 				7EE6C5431FCB390700ABBAE8 /* Workers */,
+				7E0718AC1FDCDC8200C1E669 /* Session.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -934,6 +937,7 @@
 				33BB4DD91F2EA8F000DB49FD /* UserHeaderTableViewCell.swift in Sources */,
 				E13EC22A1FDCB93A008F23FD /* ChatVC.swift in Sources */,
 				33BB4EA41F2EA99C00DB49FD /* PMAlertController.swift in Sources */,
+				7E0718AD1FDCDC8200C1E669 /* Session.swift in Sources */,
 				33BB4E961F2EA95600DB49FD /* Tools.swift in Sources */,
 				338B20661F2E9F4C005B6D2C /* CustomizableButton.swift in Sources */,
 				33BB4EEB1F2EB91D00DB49FD /* NetworkingService.swift in Sources */,

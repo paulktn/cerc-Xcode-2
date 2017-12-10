@@ -86,6 +86,8 @@ class Appliances : UITableViewCell,  UICollectionViewDataSource, UICollectionVie
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
         
+        AppDelegate.session.lastLocation = userLocation.coordinate
+        
         let circleQuery = geoFire!.query(at: userLocation, withRadius:200)
         self.stopUpdatingLocation()
         
@@ -94,6 +96,7 @@ class Appliances : UITableViewCell,  UICollectionViewDataSource, UICollectionVie
                 self.nearbyUsers.append(key!)}
             
         })
+        
         circleQuery?.observeReady({
             self.fetchAllPost {(posts) in
                 self.sweets = posts
@@ -102,7 +105,9 @@ class Appliances : UITableViewCell,  UICollectionViewDataSource, UICollectionVie
                     $0.category == .appliances
                 }
                 self.collectionView.reloadData()
-            }})}
+            }
+        })
+    }
     
     
     

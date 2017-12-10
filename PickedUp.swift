@@ -48,8 +48,4 @@ struct PickedUp {
     func toAnyObject()->[String: AnyObject] {
         return [ "postId":self.postId as AnyObject, "byUser": self.byUser as AnyObject, "fromUser": self.fromUser as AnyObject, "itemValue": self.itemValue as AnyObject, "itemName":self.itemName as AnyObject, "postImageURL1":self.postImageURL1 as AnyObject, "pickedDate": self.pickedDate as AnyObject]
     }
-    
-    
 }
-
-

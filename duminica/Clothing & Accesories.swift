@@ -87,6 +87,8 @@ class Clothing : UITableViewCell,  UICollectionViewDataSource, UICollectionViewD
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
         
+        AppDelegate.session.lastLocation = userLocation.coordinate
+        
         let circleQuery = geoFire!.query(at: userLocation, withRadius:200)
         self.stopUpdatingLocation()
         

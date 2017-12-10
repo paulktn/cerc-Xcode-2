@@ -104,7 +104,7 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
         searchBar.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.searchKey))
         
         useCurentLocation()
-        getAllPosts()
+        //getAllPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,13 +137,53 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
     
     private func getAllPosts() {
         let ref = self.databaseRef.child("posts")
-        ref.observe(.value, with: { (snapshot) in
-            
+        
+        var postsWithCorrectLatitude = [Post]()
+        var postsWithCorrectLongitude = [Post]()
+        
+        var requestsCounter = 2 {
+            didSet {
+                guard requestsCounter == 0 else {return}
+                for post in postsWithCorrectLongitude {
+                    if let correctPost = postsWithCorrectLatitude.filter({$0.postId == post.postId}).first {
+                        allPosts.append(correctPost)
+                    }
+                }
+            }
+        }
+        
+        var latitudeQuery = ref.queryOrdered(byChild: "latit")
+        if let location = AppDelegate.session.lastLocation {
+           latitudeQuery = latitudeQuery
+            .queryStarting(atValue: location.latitude - 1, childKey: "latit")
+            .queryEnding(atValue: location.latitude + 1, childKey: "latit")
+        }
+        
+        latitudeQuery.observe(.value, with: { (snapshot) in
             if let data = snapshot.children.allObjects as? [DataSnapshot] {
                 for postData in data {
                     let post = Post(snapshot: postData)
-                    self.allPosts.append(post)
+                    postsWithCorrectLatitude.append(post)
                 }
+                requestsCounter += -1
+            }
+        })
+        
+        var longitudeQuery = ref.queryOrdered(byChild: "longit")
+        if let location = AppDelegate.session.lastLocation {
+            longitudeQuery = longitudeQuery
+                .queryStarting(atValue: location.latitude - 1, childKey: "longit")
+                .queryEnding(atValue: location.latitude + 1, childKey: "longit")
+        }
+        
+        longitudeQuery.observe(.value, with: { (snapshot) in
+            if let data = snapshot.children.allObjects as? [DataSnapshot] {
+                for postData in data {
+                    let post = Post(snapshot: postData)
+                    postsWithCorrectLongitude.append(post)
+                }
+                
+                requestsCounter += -1
             }
         })
     }
@@ -316,13 +356,16 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
         
+        AppDelegate.session.lastLocation = userLocation.coordinate
+        
         lati = userLocation.coordinate.latitude
         longi = userLocation.coordinate.longitude
         
         print("user latitude = \(userLocation.coordinate.latitude)")
         print("user longitude = \(userLocation.coordinate.longitude)")
         
-        self.getCollections()
+        //self.getCollections()
+        getAllPosts()
         
         self.stopUpdatingLocation()
     }
@@ -330,6 +373,7 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
     {
+        getAllPosts()
         print("Error \(error)")
     }
     
@@ -440,9 +484,15 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
     }
     
     func takeToMessages() {
-        let myMessagesVC = UIStoryboard(name: "MessagesFlow", bundle: nil)
-            .instantiateInitialViewController() as! myMessagePage
-        self.show(myMessagesVC, sender: nil)
+        let roomVC = UIStoryboard(name: "MessagesFlow", bundle: nil)
+            .instantiateInitialViewController() as! RoomVC
+        let navVC = UINavigationController(rootViewController: roomVC)
+        navVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navVC.navigationBar.tintColor = UIColor.white
+        navVC.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        navVC.navigationBar.shadowImage = UIImage()
+        navVC.navigationBar.isTranslucent = true
+        self.present(navVC, animated: true)
     }
     
     func takeToAccount(){

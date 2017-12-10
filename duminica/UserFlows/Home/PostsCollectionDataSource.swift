@@ -36,6 +36,19 @@ extension PostsCollectionCollectionManager: UICollectionViewDataSource {
             
             cell.itemImageView.sd_setImage(with: URL(string: post.postImageURL1))
             cell.itemTitleLabel.text = post.postTitle
+            if let userPosition = AppDelegate.session.lastLocation {
+                let postLocation = CLLocation(latitude: post.latit,
+                                                               longitude: post.longit)
+                let userLocation = CLLocation(latitude: userPosition.latitude, longitude: userPosition.longitude)
+                
+                let distance = Int(userLocation.distance(from: postLocation))
+                if distance > 1000 {
+                    cell.itemTitleLabel.text = "\(distance/1000) km"
+                } else {
+                    cell.itemTitleLabel.text = "\(distance) m"
+                }
+                
+            }
             
             return cell
         }

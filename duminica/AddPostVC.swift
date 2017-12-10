@@ -65,6 +65,12 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
     @IBOutlet weak var errorLabelCategory: CustomLabel!
     @IBOutlet weak var errorLabelLocation: CustomLabel!
     
+    //  MARK: - Collections Height
+    
+    @IBOutlet weak var categoryCollectionHeight: NSLayoutConstraint!
+    @IBOutlet weak var keywordCollectionHeight: NSLayoutConstraint!
+    @IBOutlet weak var detailsViewHeight: NSLayoutConstraint!
+    
     fileprivate var postImage1: UIImage?
     fileprivate var postImage2: UIImage?
     fileprivate var postImage3: UIImage?
@@ -141,6 +147,63 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
     var postIdLocation: String! = ""
     var pozaurl: String! = ""
     
+    private enum OpenedOption {
+        case location
+        case category
+        case keywords
+        case details
+        case none
+    }
+    
+    private var currentOption: OpenedOption = .none
+    
+    private func selectOption(_ newOption: OpenedOption) {
+        
+        defer {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+        
+        closeAllCollections()
+        
+        guard currentOption != newOption else {
+            currentOption = .none
+            return
+        }
+        
+        switch newOption {
+        case .location:
+            break
+        case .category:
+            categoryCollectionHeight.constant = 40
+            collectionCategories.alpha = 1
+        case .keywords:
+            keywordCollectionHeight.constant = 40
+            keywordCollection.alpha = 1
+        case .details:
+            detailsViewHeight.constant = 80
+            details.alpha = 1
+        case .none:
+            break
+        }
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+        })
+        
+        currentOption = newOption
+    }
+    
+    func closeAllCollections() {
+        categoryCollectionHeight.constant = 0
+        keywordCollectionHeight.constant = 0
+        detailsViewHeight.constant = 0
+        collectionCategories.alpha = 0
+        keywordCollection.alpha = 0
+        details.alpha = 0
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -170,27 +233,19 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
         details.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.detailsAlpha))
         enterZipcode.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.per))
         
+        IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
+        
         grabPhotos()
         switch1.isOn = false
         switch2.isOn = false
         switch3.isOn = false
         
-        details.alpha = 0
+        closeAllCollections()
         
         self.locationManager.delegate = self
     }
     
     func detailsAlpha() {
-        details.alpha = 0
-        chooseCategoryButton.alpha = 1
-        keyword.alpha = 1
-        
-        chooseCategoryButton.alpha = 1
-        details.alpha = 0
-        hashtagIcon.alpha = 1
-        categoriesIcon.alpha = 1
-        presentDetailView.alpha = 1
-        detailsIcon.alpha = 1
         presentDetailView.setTitle("\(details.text!)", for: .normal)
         view.endEditing(true)
     }
@@ -205,34 +260,19 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
     }
     
     
-    ///// CATEGORIES PICKER
+    // MARK: - CATEGORIES PICKER
     
     @IBAction func enterDetails(_ sender: Any) {
-        keyword.alpha = 0
-        chooseCategoryButton.alpha = 0
-        details.alpha = 1
-        hashtagIcon.alpha = 0
-        categoriesIcon.alpha = 0
-        presentDetailView.alpha = 0
-        detailsIcon.alpha = 0
-        
+        selectOption(.details)
     }
     
     @IBAction func presentKeywordCollection(_ sender: AnyObject) {
         
-        keywordCollection.alpha = 1
         keywordCollection.reloadData()
-        presentDetailView.alpha = 0
-        detailsIcon.alpha = 0
+        selectOption(.keywords)
     }
     @IBAction func presentCategories(_ sender: Any) {
-        self.collectionCategories.alpha = 1
-        self.presentDetailView.alpha = 0
-        self.keywordCollection.alpha = 0
-        self.keyword.alpha = 0
-        hashtagIcon.alpha = 0
-        self.details.alpha = 0
-        detailsIcon.alpha = 0
+        selectOption(.category)
     }
     @IBAction func presentLocationView(_ sender: AnyObject) {
         
@@ -242,7 +282,7 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
         
     }
     
-    ////// location
+    // MARK: - location
     
     func per() {
         guard let city = enterZipcode.text else { return }
@@ -578,9 +618,9 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
                     self.savingPost.text! = "one moment please"
                     self.checkMark.image = #imageLiteral(resourceName: "loading")
                     self.postButton.alpha = 0
-                }}}
-            
-            
+                }
+            }
+        }
             
         else if collectionView == self.keywordCollection {
             
@@ -652,6 +692,8 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
                 errorLabelCategory.text = ""
                 
             }
+            
+            selectOption(.keywords)
         }
     
         else if collectionView == self.collectionCategories {
@@ -663,6 +705,7 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
             hashtagIcon.alpha = 1
             errorLabel.text = ""
             self.keywordCollection.reloadData()
+            selectOption(.category)
         }
     }
     

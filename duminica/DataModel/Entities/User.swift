@@ -25,10 +25,9 @@ class User: NSObject {
             if error == nil {
                 
                 let values = ["name": withName, "email": email]
-                Database.database().reference().child("ios_users").child((user?.uid)!).child("credentials").updateChildValues(values, withCompletionBlock: { (errr, _) in
-                    if errr == nil {
-                        let userInfo = ["email" : email, "password" : password]
-                        UserDefaults.standard.set(userInfo, forKey: "userInformation")
+                Database.database().reference().child("ios_users").child((user?.uid)!).child("credentials").updateChildValues(values, withCompletionBlock: { (error, _) in
+                    if error == nil {
+                        AppDelegate.session.loginWith(id: user!.uid)
                         completion(true)
                     }
                 })
@@ -44,8 +43,7 @@ class User: NSObject {
     class func loginUser(withEmail: String, password: String, completion: @escaping (Bool) -> Swift.Void) {
         Auth.auth().signIn(withEmail: withEmail, password: password, completion: { (user, error) in
             if error == nil {
-                let userInfo = ["email": withEmail, "password": password]
-                UserDefaults.standard.set(userInfo, forKey: "userInformation")
+                AppDelegate.session.loginWith(id: user!.uid)
                 completion(true)
             } else {
                 completion(false)
@@ -64,7 +62,7 @@ class User: NSObject {
     }
     
     class func info(forUserID: String, completion: @escaping (User) -> Swift.Void) {
-        Database.database().reference().child("ios_users").child(forUserID).child("credentials").observeSingleEvent(of: .value, with: { (snapshot) in
+        Database.database().reference().child(Session.FirebasePath.USERS_KEY).child(forUserID).child(Session.FirebasePath.USER_CREDENTIALS).observeSingleEvent(of: .value, with: { (snapshot) in
             if let data = snapshot.value as? [String: String] {
                 let name = data["name"]!
                 let email = data["email"]!
@@ -72,31 +70,6 @@ class User: NSObject {
                 completion(user)
             }
         })
-    }
-    
-    
-    
-    func fetchCurrentUser(forUserID: String, completion: @escaping (User) -> Swift.Void) {
-        
-        let currentUser = Auth.auth().currentUser!
-        
-        let currentUserRef = Database.database().reference().child("ios_users").child(forUserID).child(currentUser.uid).child("credentials")
-        
-        currentUserRef.observeSingleEvent(of: .value, with: { (currentUser) in
-            
-            let id = currentUser.key
-            let data = currentUser.value as! [String: Any]
-            let credentials = data["credentials"] as! [String: String]
-            if id != forUserID {
-                let name = credentials["name"]!
-                let email = credentials["email"]!
-                let user = User.init(name: name, email: email, id: id)
-                completion(user)
-            }
-        }) { (error) in
-            print(error.localizedDescription)
-            
-        }
     }
     
     class func downloadAllUsers(exceptID: String, completion: @escaping (User) -> Swift.Void) {
