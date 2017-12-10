@@ -12,19 +12,14 @@ import Firebase
 import FirebaseDatabase
 
 class ChatVCNew: JSQMessagesViewController {
-    
-    
-    var items = [Message]()
-    var currentUser: User?
-    
-    var myUser: UserInfo!
-    var otherUser: UserInfo!
+
+    var post: Post!
+    var roomId: String!
     var messages = [JSQMessage]()
     var incomingBubble: JSQMessagesBubbleImage!
     var outgoingBubble: JSQMessagesBubbleImage!
     
     private var messageRef: DatabaseReference?
-    private var userRef: DatabaseReference?
     private var newMessageRefHandle: DatabaseHandle?
     private var userIsTypingRef: DatabaseReference?
     private var usersTypingQuery: DatabaseQuery?
@@ -44,23 +39,31 @@ class ChatVCNew: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        messageRef = Database.database().reference().child("conversations")
-        userRef = Database.database().reference().child("users")
-//        self.userIsTypingRef = self.messageRef?.child("typingIndicator").child(self.senderId)
-//        self.usersTypingQuery = self.messageRef?.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
+        getCurrentUser()
+        messageRef = Database.database().reference().child("ios-conversations").child(roomId)
+        self.userIsTypingRef = self.messageRef?.child("typingIndicator").child(self.senderId)
+        self.usersTypingQuery = self.messageRef?.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
         self.inputToolbar.contentView?.leftBarButtonItem?.imageView?.contentMode = .scaleAspectFill
         self.inputToolbar.contentView?.leftBarButtonItemWidth = 40
-//        self.observeMessages()
-//        self.observeTyping()
+        self.observeMessages()
+        self.observeTyping()
+        self.title = post.postTitle
 //        incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.)
 //        outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: Color.FromRGB(rgbValue: 0x64D0BD))
         collectionView?.collectionViewLayout.incomingAvatarViewSize = .zero
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        Message.markMessagesRead(forUserID: self.currentUser!.id)
+    private func getCurrentUser() {
+        if let id = Auth.auth().currentUser?.uid {
+            Database.database().reference().child("ios_users").child("credentials").observe(.value, with: { (snapshot) in
+                let user = snapshot.value as! Dictionary<String, Any>
+                if let name = user["name"] as? String {
+                    self.senderDisplayName = name
+                    self.senderId = id
+                }
+            })
+        }
     }
     
     private func addMessage(withId id: String, date: Date, name: String, text: String) {
@@ -69,59 +72,17 @@ class ChatVCNew: JSQMessagesViewController {
         }
     }
     
-    //Downloads messages
-    func fetchData() {
-        Message.downloadAllMessages(forUserID: self.currentUser!.id, completion: {[weak weakSelf = self] (message) in
-            weakSelf?.items.append(message)
-            weakSelf?.items.sort{ $0.timestamp < $1.timestamp }
-        })
-        Message.markMessagesRead(forUserID: self.currentUser!.id)
-    }
-    
-    func composeMessage(content: Any)  {
-        let message = Message.init(content: content, owner: .sender, timestamp: Int(Date().timeIntervalSince1970), isRead: false)
-        Message.send(message: message, toID: self.currentUser!.id, completion: {(_) in
-        })
-    }
-    
-    
-//    private func getUser() {
-//        if let currentUser = Auth.auth().currentUser?.uid {
-//            userRef?.child("credentials").observe(.value, with: { (snapshot) in
-//                let userData = snapshot.value as! Dictionary<String, Any>
-//
-//                if let email = userData["email"] as? String,
-//                    let name = userData["name"] as? String {
-//                    self.myUser.email = email
-//                    self.myUser.name = name
-//                    self.myUser.id = currentUser
-//                    self.senderDisplayName = name
-//                    self.senderId = currentUser
-//                }
-//            })
-//        }
-//    }
-    
     private func observeMessages() {
-//        newMessageRefHandle = messageRef?.observe(.childAdded, with: { (snapshot) -> Void in
-//            let messageData = snapshot.value as! Dictionary<String, Any>
-//
-//            if let id = messageData["senderId"] as? Int, let name = messageData["author"] as? String, let dateString = messageData["date"] as? String, let text = messageData["message"] as? String, text.characters.count > 0 {
-//                let formatter = DateFormatter()
-//                TimeZone.ReferenceType.default = TimeZone(abbreviation: "UTC")!
-//                formatter.timeZone = TimeZone.ReferenceType.default
-//                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-//                let dateDefault = formatter.date(from: dateString)
-//                formatter.timeZone = TimeZone.current
-//                let dateStringLocal = formatter.string(from: dateDefault ?? Date())
-//                formatter.timeZone = TimeZone(abbreviation: "UTC")
-//                let date = formatter.date(from: dateStringLocal)
-//                self.addMessage(withId: "\(id)", date: date!, name: name, text: text)
-//                self.finishReceivingMessage()
-//            } else {
-//                //print("Error! Could not decode message data")
-//            }
-//        })
+        newMessageRefHandle = messageRef?.child("messages").observe(.childAdded, with: { (snapshot) in
+            let messageData = snapshot.value as! Dictionary<String, Any>
+            if let id = messageData["senderId"] as? String, let name = messageData["senderName"] as? String, let dateTimestamp = messageData["date"] as? TimeInterval, let text = messageData["text"] as? String, text.count > 0 {
+                let date = Date.init(timeIntervalSince1970: dateTimestamp)
+                self.addMessage(withId: id, date: date, name: name, text: text)
+                self.finishReceivingMessage()
+            } else {
+                //print("Error! Could not decode message data")
+            }
+        })
     }
     
     private func observeTyping() {
@@ -157,25 +118,18 @@ class ChatVCNew: JSQMessagesViewController {
                                senderId: String,
                                senderDisplayName: String,
                                date: Date) {
-//        let itemRef = messageRef?.childByAutoId()
-//        let a = messageRef.child("conversations")
-//        TimeZone.ReferenceType.default = TimeZone(abbreviation: "UTC")!
-//        let formatter = DateFormatter()
-//        formatter.timeZone = TimeZone.ReferenceType.default
-//        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-//        let stringDate = formatter.string(from: date)
-//        let messageItem = [
-//            "author": self.room?.senderFirstName ?? "",
-//            "date": stringDate,
-//            "message": text,
-//            "receiverId": self.room?.receiverId ?? 0,
-//            "senderId": self.room?.senderId ?? 0,
-//            ] as [String : Any]
-//        ServerManager.sendLastMsg(lastMsg: text, lastMsgDate: stringDate, lastUserId: self.room?.senderId ?? 0, id: self.room?.id ?? 0)
-//        itemRef?.setValue(messageItem)
-//        JSQSystemSoundPlayer.jsq_playMessageSentSound()
-//        isTyping = false
-//        finishSendingMessage()
+        let itemRef = messageRef?.child("messages").childByAutoId()
+        let messageItem = [
+            "date_timestamp": date.timeIntervalSince1970,
+            "text": text,
+            "senderName": senderDisplayName,
+            "senderId": senderId,
+            "is_read": false] as [String : Any]
+        messageRef?.child("last_message_id").setValue(itemRef?.key)
+        itemRef?.setValue(messageItem)
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        isTyping = false
+        finishSendingMessage()
     }
     
     
