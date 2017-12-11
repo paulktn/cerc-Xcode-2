@@ -2,7 +2,7 @@
 //  CollectionItemCell.swift
 //  duminica
 //
-//  Created by Olexa Boyko on 02.12.17.
+//  Created by Oleg Chuchman on 02.12.17.
 //  Copyright © 2017 paul catana. All rights reserved.
 //
 

@@ -64,7 +64,7 @@ class report: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
         
         reason = (cell.textLabel?.text)!
         print(reason)
-        print(passPostEdit!.city)
+        print(passPostEdit!.locationTitle)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -94,12 +94,9 @@ class report: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     
     func flagIt(post: Post, completed: @escaping ()->Void){
         
-        let postRef = databaseRef.child("removals").child(reason).childByAutoId()
-        postRef.setValue(post.serialized) { (error, ref) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-        }
+        let postRef = databaseRef.child("ios_removals").childByAutoId()
+        postRef.child("post_id").setValue(post.id)
+        postRef.child("reason").setValue(reason)
     }
     
     @IBAction func back(_ sender: AnyObject) {

@@ -224,7 +224,7 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     }
     
     @IBAction func back(_ sender: AnyObject) {
-        pushTomainView()
+        dismiss(animated: true, completion: nil)
     }
     
     //  MARK: - Private
@@ -441,8 +441,9 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
             var postArray = [Post]()
             for podddst in snapshot.children {
                 
-                let postObject = Post(snapshot: podddst as! DataSnapshot)
-                postArray.append(postObject)
+                if let postObject = Post(snapshot: podddst as! DataSnapshot) {
+                    postArray.append(postObject)
+                }
                 
             }
             self.sweets = postArray
@@ -469,7 +470,7 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         self.fetchAllPost {(posts) in
             self.sweets = posts
             self.sweets.sort(by: { (post1, post2) -> Bool in
-                Int(post1.postDate) > Int(post2.postDate)
+                Int(post1.date) > Int(post2.date)
             })
             
             self.collectionView.reloadData()
@@ -487,8 +488,9 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
             var WishpostArray = [Post]()
             for podst in snapshot.children {
                 
-                let WishpostObject = Post(snapshot: podst as! DataSnapshot)
-                WishpostArray.append(WishpostObject)
+                if let WishpostObject = Post(snapshot: podst as! DataSnapshot) {
+                    WishpostArray.append(WishpostObject)
+                }
                 
             }
             self.Wishsweets = WishpostArray
@@ -515,7 +517,7 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
                 self.fetchAllWishPost {(Wishposts) in
                     self.Wishsweets = Wishposts
                     self.Wishsweets.sort(by: { (post1, post2) -> Bool in
-                        Int(post1.postDate) > Int(post2.postDate)
+                        Int(post1.date) > Int(post2.date)
                     })
                     
                     self.wishCollectionView.reloadData()
@@ -583,9 +585,9 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         
         let sweet = sweets[indexPath.row]
         
-      cell.imageCell.sd_setImage(with: URL(string: sweet.postImageURL1))
+      cell.imageCell.sd_setImage(with: sweet.logoUrl)
         
-        let fromDate = NSDate(timeIntervalSince1970: TimeInterval(sweet.postDate))
+        let fromDate = NSDate(timeIntervalSince1970: TimeInterval(sweet.date))
         let toDate = NSDate()
         
         let differenceOfDate = Calendar.current.dateComponents([.second,.minute,.hour,.day,.weekOfMonth], from: fromDate as Date, to: toDate as Date)
@@ -628,11 +630,11 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         else {
              let Wishcell = collectionView.dequeueReusableCell(withReuseIdentifier: "accountCust", for: indexPath) as! accountCust
         
-        let Wishsweet = Wishsweets[indexPath.row]
+        let wishsweet = Wishsweets[indexPath.row]
         
-        Wishcell.imageCell.sd_setImage(with: URL(string: Wishsweet.postImageURL1))
+        Wishcell.imageCell.sd_setImage(with: wishsweet.logoUrl)
         
-        let fromDate = NSDate(timeIntervalSince1970: TimeInterval(Wishsweet.postDate))
+        let fromDate = NSDate(timeIntervalSince1970: TimeInterval(wishsweet.date))
         let toDate = NSDate()
         
         let differenceOfDate = Calendar.current.dateComponents([.second,.minute,.hour,.day,.weekOfMonth], from: fromDate as Date, to: toDate as Date)
@@ -665,17 +667,17 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
            let Wishsweet = Wishsweets[indexPath.row]
             
             let currentUser = Auth.auth().currentUser!.uid
-            let fromUser = Wishsweet.userId
+            let fromUser = Wishsweet.id
             let itemValue =  "70"
             let pickedDate =  NSDate().timeIntervalSince1970 as NSNumber
-            let itemName = Wishsweet.postTitle
-            let picture = Wishsweet.postImageURL1
-            let postId = Wishsweet.postId
+            let itemName = Wishsweet.title
+            let picture = Wishsweet.logoUrl?.absoluteString ?? ""
+            let postId = Wishsweet.id
             
             let pickedUpItem = PickedUp(byUser: currentUser, fromUser: fromUser, itemValue: itemValue, pickedDate: pickedDate, itemName: itemName,  postImageURL1: picture, postId: postId)
             
             
-            let postRef = databaseRef.child("pickedup").child(currentUser).child(Wishsweet.postId)
+            let postRef = databaseRef.child("pickedup").child(currentUser).child(Wishsweet.id)
             postRef.setValue(pickedUpItem.toAnyObject()) { (error, ref) in
                 if let error = error {
                     print(error.localizedDescription)

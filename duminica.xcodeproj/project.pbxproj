@@ -96,6 +96,7 @@
 		7E0718AB1FDCA50900C1E669 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0718AA1FDCA50900C1E669 /* ChatManager.swift */; };
 		7E0718AD1FDCDC8200C1E669 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0718AC1FDCDC8200C1E669 /* Session.swift */; };
 		7E3DFA201FDC56F9007E7BFC /* MessagesFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E3DFA1F1FDC56F9007E7BFC /* MessagesFlow.storyboard */; };
+		7E7B4F191FDDC964006C4617 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B4F181FDDC964006C4617 /* ImageCollectionViewCell.swift */; };
 		7E8C1B6E1FD5E8A100EAA156 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C1B6D1FD5E8A000EAA156 /* LoginVC.swift */; };
 		7E8C1B701FD5F01500EAA156 /* CreateNewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C1B6F1FD5F01500EAA156 /* CreateNewUserVC.swift */; };
 		7E8C1B721FD5F04900EAA156 /* NewSessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C1B711FD5F04900EAA156 /* NewSessionVC.swift */; };
@@ -235,6 +236,7 @@
 		7E0718AA1FDCA50900C1E669 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		7E0718AC1FDCDC8200C1E669 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		7E3DFA1F1FDC56F9007E7BFC /* MessagesFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessagesFlow.storyboard; sourceTree = "<group>"; };
+		7E7B4F181FDDC964006C4617 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		7E8C1B6D1FD5E8A000EAA156 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		7E8C1B6F1FD5F01500EAA156 /* CreateNewUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewUserVC.swift; sourceTree = "<group>"; };
 		7E8C1B711FD5F04900EAA156 /* NewSessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSessionVC.swift; sourceTree = "<group>"; };
@@ -346,7 +348,6 @@
 				33BB4DD01F2EA8E200DB49FD /* AccountVC.swift */,
 				33BB4DC41F2EA8CD00DB49FD /* report.swift */,
 				33BB4DC61F2EA8CD00DB49FD /* placeholder.swift */,
-				33BB4DC71F2EA8CD00DB49FD /* AddPostVC.swift */,
 				33BB4DC81F2EA8CD00DB49FD /* EditPost.swift */,
 				33BB4DD81F2EA8F000DB49FD /* UserHeaderTableViewCell.swift */,
 				33BB4DDA1F2EA8FC00DB49FD /* locationBar.swift */,
@@ -513,6 +514,23 @@
 			path = Messages;
 			sourceTree = "<group>";
 		};
+		7E7B4F141FDDC771006C4617 /* AddPost */ = {
+			isa = PBXGroup;
+			children = (
+				7E7B4F171FDDC951006C4617 /* Cells */,
+				33BB4DC71F2EA8CD00DB49FD /* AddPostVC.swift */,
+			);
+			path = AddPost;
+			sourceTree = "<group>";
+		};
+		7E7B4F171FDDC951006C4617 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7E7B4F181FDDC964006C4617 /* ImageCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		7E8C1B731FD5F47C00EAA156 /* QBImagePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -622,6 +640,7 @@
 		7EF8E7841FD31B63003E42FE /* UserFlows */ = {
 			isa = PBXGroup;
 			children = (
+				7E7B4F141FDDC771006C4617 /* AddPost */,
 				7E3DFA1E1FDC56DB007E7BFC /* Messages */,
 				7EF8E7851FD31B80003E42FE /* Home */,
 			);
@@ -916,6 +935,7 @@
 				33BB4EB41F2EAFB100DB49FD /* VCCells.swift in Sources */,
 				7ECD0EC91FD32A030035F77C /* CollectionItemCell.swift in Sources */,
 				33BB4EDF1F2EB1ED00DB49FD /* IQUIView+IQKeyboardToolbar.swift in Sources */,
+				7E7B4F191FDDC964006C4617 /* ImageCollectionViewCell.swift in Sources */,
 				338B20701F2E9F4C005B6D2C /* UIViewX.swift in Sources */,
 				E13EC2301FDCEA2B008F23FD /* RoomCell.swift in Sources */,
 				33BB4EAE1F2EAFA600DB49FD /* UserLocationPin.swift in Sources */,

@@ -22,9 +22,9 @@ class ChatManager {
         
         let chat = databaseReference.child(Session.FirebasePath.CONVERSATIONS_KEY).childByAutoId()
         let chatId = chat.key
-        chat.child(Session.FirebasePath.CONVERSATION_POST_ID_KEY).setValue(post.postId)
-        initChatFromUser(myId, to: post.userId, withChatId: chatId)
-        initChatFromUser(post.userId, to: myId, withChatId: chatId)
+        chat.child(Session.FirebasePath.CONVERSATION_POST_ID_KEY).setValue(post.id)
+        initChatFromUser(myId, to: post.ownerId, withChatId: chatId)
+        initChatFromUser(post.ownerId, to: myId, withChatId: chatId)
         
         return chatId
     }

@@ -2,7 +2,7 @@
 //  String+Common.swift
 //  duminica
 //
-//  Created by Olexa Boyko on 26.11.17.
+//  Created by Oleg Chuchman on 26.11.17.
 //  Copyright © 2017 paul catana. All rights reserved.
 //
 

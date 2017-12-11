@@ -44,8 +44,9 @@ class NetworkingService {
             var resultArray = [Post]()
             for post in posts.children {
                 
-                let post = Post(snapshot: post as! DataSnapshot)
-                resultArray.append(post)
+                if let post = Post(snapshot: post as! DataSnapshot) {
+                    resultArray.append(post)
+                }
             }
             completion(resultArray)
             
@@ -69,20 +70,6 @@ class NetworkingService {
                 }
             }
         }
-    }
-    
-    func XXXXsavePostToDB(post: Post, completed: @escaping ()->Void){
-        
-        let postRef = databaseRef.child("posts").child((Auth.auth().currentUser!.uid))
-        postRef.setValue(post.serialized) { (error, ref) in
-            if let error = error {
-                print(error.localizedDescription)
-            }else {
-                "insert thank you page"
-                completed()
-            }
-        }
-        
     }
     
     func uploadImageToFirebasexxx(postId: String, imageData1:Data, imageData2:Data, imageData3:Data, completion: @escaping (URL)->()){

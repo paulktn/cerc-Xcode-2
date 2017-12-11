@@ -2,7 +2,7 @@
 //  PostsCollectionCollectionManager.swift
 //  duminica
 //
-//  Created by Olexa Boyko on 03.12.17.
+//  Created by Oleg Chuchman on 03.12.17.
 //  Copyright © 2017 paul catana. All rights reserved.
 //
 
@@ -34,11 +34,11 @@ extension PostsCollectionCollectionManager: UICollectionViewDataSource {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionItemCell", for: indexPath) as? CollectionItemCell {
             
-            cell.itemImageView.sd_setImage(with: URL(string: post.postImageURL1))
-            cell.itemTitleLabel.text = post.postTitle
+            cell.itemImageView.sd_setImage(with: post.logoUrl)
+            cell.itemTitleLabel.text = post.title
             if let userPosition = AppDelegate.session.lastLocation {
-                let postLocation = CLLocation(latitude: post.latit,
-                                                               longitude: post.longit)
+                let postLocation = CLLocation(latitude: post.latitude,
+                                                               longitude: post.longitude)
                 let userLocation = CLLocation(latitude: userPosition.latitude, longitude: userPosition.longitude)
                 
                 let distance = Int(userLocation.distance(from: postLocation))

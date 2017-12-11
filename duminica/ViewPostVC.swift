@@ -33,7 +33,7 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var shareOptions: UIButton!
     
-    var passPost: Post?
+    var passPost: Post!
     
     var sweets: [Post] = [Post]()
     var filteredSweets = [Post] ()
@@ -82,8 +82,8 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         self.tweeterButton.alpha = 0
         
         postDetaliiView.alpha = 0
-        keywordLabel.text! = "\((passPost?.postTitle)!)"
-        self.useridFromDatabase = "\((passPost?.userId)!)"
+        keywordLabel.text! = "\((passPost?.title)!)"
+        self.useridFromDatabase = "\((passPost?.ownerId)!)"
         viewPostTitle.text! = "\((passPost?.category.rawValue) ?? "")"
         self.databaseRef.child("ios_users").child(self.useridFromDatabase).child("credentials").child("email").observe(.value, with: { (snapshot) in
             if snapshot.exists(){
@@ -122,7 +122,7 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         
         mapView.delegate = self
         aDouaHarta.delegate = self
-        let fromDate = NSDate(timeIntervalSince1970: TimeInterval((passPost?.postDate)!))
+        let fromDate = NSDate(timeIntervalSince1970: TimeInterval((passPost?.date)!))
         let toDate = NSDate()
         
         let differenceOfDate = Calendar.current.dateComponents([.second,.minute,.hour,.day,.weekOfMonth], from: fromDate as Date, to: toDate as Date)
@@ -145,9 +145,9 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
             
         }
         
-        locationLabel.text! = "          \((passPost?.city)!)"
+        locationLabel.text! = "          \((passPost?.locationTitle)!)"
         //       postUserId.text! = (passPost?.userId)!
-        postdetalii.text! = (passPost?.postDetails)!
+        postdetalii.text! = (passPost?.details)!
         
         // self.postdetalii.isHidden = false
         self.postdetalii.clipsToBounds = true
@@ -179,21 +179,25 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         let imgTwo = UIImageView(frame: CGRect(x: scrollViewWidth, y: 0, width: scrollViewWidth, height: scrollViewHeight))
         let imgThree = UIImageView(frame: CGRect(x: scrollViewWidth*2, y: 0, width: scrollViewWidth, height:scrollViewHeight))
         
-        imgOne.sd_setImage(with: URL(string: (passPost?.postImageURL1)!))
-        imgTwo.sd_setImage(with: URL(string: (passPost?.postImageURL2)!))
-        imgThree.sd_setImage(with: URL(string: (passPost?.postImageURL3)!))
         
-        self.scrollView.addSubview(imgOne)
-        if (passPost?.postImageURL2)! != "no image" {
-            self.scrollView.addSubview(imgTwo)
-            pageControl.numberOfPages = 2
-            scrollView.contentSize = CGSize(width: scrollViewWidth * 2, height: scrollViewHeight)
-            
-        }
-        if (passPost?.postImageURL3)! != "no image"   {
-            scrollView.contentSize = CGSize(width: scrollViewWidth * 3, height: scrollViewHeight)
-            pageControl.numberOfPages = 3
-            self.scrollView.addSubview(imgThree)}
+        // FIXME: - Implement correct image uploading
+        
+//
+//        imgOne.sd_setImage(with: URL(string: (passPost?.imageURLs.)!))
+//        imgTwo.sd_setImage(with: URL(string: (passPost?.postImageURL2)!))
+//        imgThree.sd_setImage(with: URL(string: (passPost?.postImageURL3)!))
+        
+//        self.scrollView.addSubview(imgOne)
+//        if (passPost?.postImageURL2)! != "no image" {
+//            self.scrollView.addSubview(imgTwo)
+//            pageControl.numberOfPages = 2
+//            scrollView.contentSize = CGSize(width: scrollViewWidth * 2, height: scrollViewHeight)
+//
+//        }
+//        if (passPost?.postImageURL3)! != "no image"   {
+//            scrollView.contentSize = CGSize(width: scrollViewWidth * 3, height: scrollViewHeight)
+//            pageControl.numberOfPages = 3
+//            self.scrollView.addSubview(imgThree)}
 
         scrollView.delegate = self
         
@@ -242,14 +246,15 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     
     func fetchAllPost(completion: @escaping ([Post])->()) {
         
-        let postsRef = databaseRef.child("posts").queryOrdered(byChild: "latit").queryStarting(atValue: ((self.passPost?.latit)! - 1)).queryEnding(atValue: ((self.passPost?.latit)! + 1))
+        let postsRef = databaseRef.child("posts").queryOrdered(byChild: "latit").queryStarting(atValue: ((self.passPost?.latitude)! - 1)).queryEnding(atValue: ((self.passPost?.latitude)! + 1))
         postsRef.observe(.value, with: { (snapshot) in
             
             var postArray = [Post]()
             for podddst in snapshot.children {
                 
-                let postObject = Post(snapshot: podddst as! DataSnapshot)
-                postArray.append(postObject)
+                if let postObject = Post(snapshot: podddst as! DataSnapshot) {
+                    postArray.append(postObject)
+                }
             }
             completion(postArray)
             self.collectionViewCategory.reloadData()
@@ -266,12 +271,12 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         fetchAllPost {(posts) in
             self.sweets = posts
             self.filteredSweets = self.sweets.filter {
-                $0.category == self.passPost?.category && $0.longit.isLessThanOrEqualTo( ((self.passPost?.longit)! + 1))
+                $0.category == self.passPost?.category && $0.longitude.isLessThanOrEqualTo( ((self.passPost?.longitude)! + 1))
                 
             }
             
             self.filteredSweets.sort(by: { (post1, post2) -> Bool in
-                Int(post1.postDate) > Int(post2.postDate)
+                Int(post1.date) > Int(post2.date)
             })
             
             self.collectionViewCategory.reloadData()
@@ -291,13 +296,7 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         cell.titleCell.text = sweet.category.rawValue.capitalized
         
         
-        cell.imageCell.sd_setImage(with: URL(string: sweet.postImageURL1))
-        
-        
-        
-        
-        
-        
+        cell.imageCell.sd_setImage(with: sweet.logoUrl)
         cell.configureCell(post: self.filteredSweets[indexPath.item])
         
         
@@ -402,7 +401,7 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         blurEffect.alpha = 0.8
         self.view.addSubview(largerMap)
         self.largerMap.frame.size.height = (self.antet.frame.height + self.profilePic.frame.height + self.scrollView.frame.height + self.viewMap.frame.height + 10)
-        let locationId = (passPost?.postId)!
+        let locationId = (passPost?.id)!
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         
         
@@ -468,22 +467,11 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         
     }
     
-    
-    
-    
-    
     func viewMaps() {
         
-        let locationId = (passPost?.postId)!
-        
-        
-        //    viewMap.layer.cornerRadius = 10
+        let locationId = (passPost.id)
         
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        
-        
-        
-        //  let coordinates = (passPost?.location)!.components(separatedBy: ":")
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.04, 0.04)
         
         let georef1 = self.databaseRef.child("postLocations").child(locationId).child("l").child("0")
@@ -545,7 +533,7 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     
     func postcomposeMessage(content: Any)  {
         let message = Message.init(content: content, owner: .sender, timestamp: Int(Date().timeIntervalSince1970), isRead: false)
-        postsend(message: message, toID: (passPost?.userId)!, completion: {(_) in
+        postsend(message: message, toID: passPost.id, completion: {(_) in
         })
         
         
@@ -563,24 +551,14 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
             })
             
             
-        }}
-    
-    
+        }
+    }
     
     func saveToWishList() {
-        
-        
-        if  let currentUserID = Auth.auth().currentUser?.uid {
-            let post = Post(allPosts: "\((self.passPost?.allPosts)!)", postId: "\((self.passPost?.postId)!)", userId: "\((self.passPost?.userId)!)", postImageURL1: "\((self.passPost?.postImageURL1)!)", postImageURL2: "\((self.passPost?.postImageURL2)!)", postImageURL3: "\((self.passPost?.postImageURL3)!)", postThumbURL: "\((self.passPost?.postThumbURL)!)",  postDate: ((self.passPost?.postDate)!), key: "\((self.passPost?.postId)!)", location: "\((self.passPost?.postId)!)", postTitle: "\((self.passPost?.postTitle)!)", postDetails: "\((self.passPost?.postDetails)!)", postCategory: self.passPost!.category.rawValue, city: "\((self.passPost?.city)!)", latit: (self.passPost?.latit)!, longit: (self.passPost?.longit)!)
-            
-            
-            let postRef = databaseRef.child("wishlist").child(currentUserID).child("\((self.passPost?.postId)!)")
-            
-            postRef.setValue(post.serialized) { (error, ref) in
-                if let error = error {
-                    print(error.localizedDescription)
-                }else { }
-            }}
+        if  let currentUserID = Auth.auth().currentUser?.uid,
+            let postId = self.passPost?.id {
+            databaseRef.child("ios_wishlist").child(currentUserID).childByAutoId().setValue(postId)
+        }
     }
     
     func postuploadMessage(withValues: [String: Any], toID: String, completion: @escaping (Bool) -> Swift.Void) {

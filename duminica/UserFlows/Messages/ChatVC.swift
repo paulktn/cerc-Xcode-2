@@ -49,7 +49,7 @@ class ChatVC: JSQMessagesViewController {
         self.inputToolbar.contentView?.leftBarButtonItem?.imageView?.contentMode = .scaleAspectFill
         self.inputToolbar.contentView?.leftBarButtonItemWidth = 40
         self.observeTyping()
-        self.title = post.postTitle
+        self.title = post.title
         incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.black)
         outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.black)
         collectionView?.collectionViewLayout.incomingAvatarViewSize = .zero

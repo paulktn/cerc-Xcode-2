@@ -52,5 +52,6 @@ extension Session {
         static let USER_CREDENTIALS = "credentials"
         static let USER_CONVERSATIONS_KEY = "user_conversations"
         static let CONVERSATION_POST_ID_KEY = "post_id"
+        static let ALL_POSTS_KEY = "ios_posts"
     }
 }

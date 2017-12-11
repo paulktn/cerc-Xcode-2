@@ -134,8 +134,9 @@ class Toys : UITableViewCell,  UICollectionViewDataSource, UICollectionViewDeleg
                 
                 for podddst in snapshot.children {
                     
-                    let postObject = Post(snapshot: podddst as! DataSnapshot)
-                    postArray.append(postObject)
+                    if let postObject = Post(snapshot: podddst as! DataSnapshot) {
+                        postArray.append(postObject)
+                    }
                 }
                 completion(postArray)
                 self.collectionView.reloadData()
@@ -152,7 +153,7 @@ class Toys : UITableViewCell,  UICollectionViewDataSource, UICollectionViewDeleg
         fetchAllPost {(posts) in
             self.sweets = posts
             self.sweetToDisplay.sort(by: { (post1, post2) -> Bool in
-                Int(post1.postDate) > Int(post2.postDate)
+                Int(post1.date) > Int(post2.date)
             })
             
             self.collectionView.reloadData()
@@ -184,13 +185,13 @@ class Toys : UITableViewCell,  UICollectionViewDataSource, UICollectionViewDeleg
         
         // cell.titleCell.text = sweet.city
         
-        cell.imageCell.sd_setImage(with: URL(string: sweet.postImageURL1))
+        cell.imageCell.sd_setImage(with: sweet.logoUrl)
         
         
         
         
         
-        let fromDate = NSDate(timeIntervalSince1970: TimeInterval(sweet.postDate))
+        let fromDate = NSDate(timeIntervalSince1970: TimeInterval(sweet.date))
         let toDate = NSDate()
         
         let differenceOfDate = Calendar.current.dateComponents([.second,.minute,.hour,.day,.weekOfMonth], from: fromDate as Date, to: toDate as Date)

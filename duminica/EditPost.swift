@@ -87,29 +87,27 @@ class EditPost: UIViewController, UIImagePickerControllerDelegate,  UICollection
         
          newDetails.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.detailsAlpha))
         
-        titleFromCustCell.text! = (passPostEdit?.postTitle)!
+        titleFromCustCell.text! = (passPostEdit?.title)!
         editCategory.titleLabel!.text! = passPostEdit!.category.rawValue
        
-        newDetails.text! = (passPostEdit?.postDetails)!
-        kakaa.text! = (passPostEdit?.postImageURL1)!
-        kakaa2.text! = (passPostEdit?.postImageURL2)!
-        kakaa3.text! = (passPostEdit?.postImageURL3)!
-     //   self.imageFromCustCell2.alpha = 1
-     //   self.imageFromCustCell3.alpha = 1
-        
-        
-        self.imageFromCustCell.sd_setImage(with: URL(string: (passPostEdit?.postImageURL1)!))
-
-        if (passPostEdit?.postImageURL2)! != "no image" {
-       self.imageFromCustCell2.alpha = 1
-            self.imageFromCustCell2.sd_setImage(with: URL(string: (passPostEdit?.postImageURL2)!))
-        }
-        
-        
-        if (passPostEdit?.postImageURL3)! != "no image" {
-            self.imageFromCustCell3.alpha = 1
-            self.imageFromCustCell3.sd_setImage(with: URL(string: (passPostEdit?.postImageURL3)!))
-        }
+        newDetails.text! = (passPostEdit?.details)!
+//        kakaa.text! = (passPostEdit?.imageURLs.first ?? "")
+//        kakaa2.text! = (passPostEdit!.imageURLs.count > 1 ? passPostEdit?.imageURLs[1].absoluteString ?? "" : "")
+//        kakaa3.text! = (passPostEdit!.imageURLs.count > 2 ? passPostEdit?.imageURLs[2].absoluteString ?? "" : "")
+//
+//
+//        self.imageFromCustCell.sd_setImage(with: URL(string: (passPostEdit?.postImageURL1)!))
+//
+//        if (passPostEdit?.postImageURL2)! != "no image" {
+//       self.imageFromCustCell2.alpha = 1
+//            self.imageFromCustCell2.sd_setImage(with: URL(string: (passPostEdit?.postImageURL2)!))
+//        }
+//
+//
+//        if (passPostEdit?.postImageURL3)! != "no image" {
+//            self.imageFromCustCell3.alpha = 1
+//            self.imageFromCustCell3.sd_setImage(with: URL(string: (passPostEdit?.postImageURL3)!))
+//        }
         
         switch1.isOn = false
         switch2.isOn = false
@@ -162,7 +160,7 @@ class EditPost: UIViewController, UIImagePickerControllerDelegate,  UICollection
     func deletePost() {
         
       //  let childCategory = (passPostEdit?.postCategory)!
-        let key = (passPostEdit?.key)!
+        let key = (passPostEdit?.id)!
         
        databaseRef.child("posts").child(key).removeValue { (error, ref) in
             if error != nil {
@@ -323,7 +321,7 @@ class EditPost: UIViewController, UIImagePickerControllerDelegate,  UICollection
     
     func picturesOut() {
         
-        let postId = (passPostEdit?.postId)!
+        let postId = (passPostEdit?.id)!
         let image1 = imageFromCustCell.image
         let image2 = imageFromCustCell2.image
         let image3 = imageFromCustCell3.image
@@ -385,7 +383,7 @@ class EditPost: UIViewController, UIImagePickerControllerDelegate,  UICollection
     @IBAction func outPictures(_ sender: AnyObject) {
         
         
-        let postId = (passPostEdit?.postId)!
+        let postId = (passPostEdit?.id)!
         let image1 = imageFromCustCell.image
         let image2 = imageFromCustCell2.image
         let image3 = imageFromCustCell3.image
@@ -473,7 +471,7 @@ class EditPost: UIViewController, UIImagePickerControllerDelegate,  UICollection
         let newDetailss = self.newDetails.text!
         let newTitle = titleFromCustCell.text!
       //  let childCategory = (passPostEdit?.postCategory)!
-        let key = (passPostEdit?.key)!
+        let key = (passPostEdit?.id)!
         let newURL1 = kakaa.text!
         let newURL2 = kakaa2.text!
         let newURL3 = kakaa3.text!

@@ -100,11 +100,9 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
         customizeHome()
         
         self.searchBarHeight.constant = 0
-        //fetchData()
         searchBar.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.searchKey))
         
         useCurentLocation()
-        //getAllPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -136,7 +134,7 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
     }
     
     private func getAllPosts() {
-        let ref = self.databaseRef.child("posts")
+        let ref = self.databaseRef.child("ios_posts")
         
         var postsWithCorrectLatitude = [Post]()
         var postsWithCorrectLongitude = [Post]()
@@ -145,42 +143,46 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
             didSet {
                 guard requestsCounter == 0 else {return}
                 for post in postsWithCorrectLongitude {
-                    if let correctPost = postsWithCorrectLatitude.filter({$0.postId == post.postId}).first {
+                    if let correctPost = postsWithCorrectLatitude.filter({$0.id == post.id}).first {
                         allPosts.append(correctPost)
                     }
                 }
+                
+                tableView.reloadData()
             }
         }
         
-        var latitudeQuery = ref.queryOrdered(byChild: "latit")
+        var latitudeQuery = ref.queryOrdered(byChild: "latitude")
         if let location = AppDelegate.session.lastLocation {
            latitudeQuery = latitudeQuery
-            .queryStarting(atValue: location.latitude - 1, childKey: "latit")
-            .queryEnding(atValue: location.latitude + 1, childKey: "latit")
+            .queryStarting(atValue: location.latitude - 1, childKey: "latitude")
+            .queryEnding(atValue: location.latitude + 1, childKey: "latitude")
         }
         
         latitudeQuery.observe(.value, with: { (snapshot) in
             if let data = snapshot.children.allObjects as? [DataSnapshot] {
                 for postData in data {
-                    let post = Post(snapshot: postData)
-                    postsWithCorrectLatitude.append(post)
+                    if let post = Post(snapshot: postData) {
+                        postsWithCorrectLatitude.append(post)
+                    }
                 }
                 requestsCounter += -1
             }
         })
         
-        var longitudeQuery = ref.queryOrdered(byChild: "longit")
+        var longitudeQuery = ref.queryOrdered(byChild: "longitude")
         if let location = AppDelegate.session.lastLocation {
             longitudeQuery = longitudeQuery
-                .queryStarting(atValue: location.latitude - 1, childKey: "longit")
-                .queryEnding(atValue: location.latitude + 1, childKey: "longit")
+                .queryStarting(atValue: location.latitude - 1, childKey: "longitude")
+                .queryEnding(atValue: location.latitude + 1, childKey: "longitude")
         }
         
         longitudeQuery.observe(.value, with: { (snapshot) in
             if let data = snapshot.children.allObjects as? [DataSnapshot] {
                 for postData in data {
-                    let post = Post(snapshot: postData)
-                    postsWithCorrectLongitude.append(post)
+                    if let post = Post(snapshot: postData) {
+                        postsWithCorrectLongitude.append(post)
+                    }
                 }
                 
                 requestsCounter += -1
@@ -188,22 +190,22 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
         })
     }
     
-    private func fetchAllPosts(completion: @escaping ([Post])->()) {
+    private func fetchAllPosts(completion: (() -> Void)? = nil) {
         var allArray = [Post]()
         
         print("\(lati)")
-        let finalRef = self.databaseRef.child("posts").queryOrdered(byChild: "latit")
-            //.queryStarting(atValue: lati - 1).queryEnding(atValue: (lati + 1))
+        let finalRef = self.databaseRef.child("ios_posts").queryOrdered(byChild: "latitude")
         print(lati)
         finalRef.observe(.value, with: { (snapshot) in
             if snapshot.exists(){
                 for posts in snapshot.children.allObjects as! [DataSnapshot]   {
-                    let householdObject = Post(snapshot: posts )
-                    allArray.append(householdObject)
-                    
-                    completion(allArray)
-                    self.allPosts = allArray
+                    if let householdObject = Post(snapshot: posts ) {
+                        allArray.append(householdObject)
+                    }
                 }
+                self.allPosts = allArray
+                self.tableView.reloadData()
+                completion?()
             }
         })
     }
@@ -220,8 +222,9 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
                 
                 
                 for posts in snapshot.children.allObjects as! [DataSnapshot]   {
-                    let householdObject = Post(snapshot: posts )
-                    allArray.append(householdObject)
+                    if let householdObject = Post(snapshot: posts ) {
+                        allArray.append(householdObject)
+                    }
                     
                     completion(allArray)
                     self.allPosts = allArray
@@ -277,21 +280,7 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.searchKey()
     }
-    
-    func getCollections() {
-        fetchAllPosts { (posts) in
-            
-            self.allPosts = posts.filter{
-                $0.allPosts.contains("allPosts") && $0.longit.isLessThanOrEqualTo((self.longi + 1))
-            }
-            self.allPosts.sort(by: { (post1, post2) -> Bool in
-                Int(post1.postDate) > Int(post2.postDate)
-            })
-            
-            self.tableView.reloadData()
-        }
-    }
-    
+
     func fetchData() {
         Conversation.showConversations { (conversations) in
             self.items = conversations
@@ -364,8 +353,8 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
         print("user latitude = \(userLocation.coordinate.latitude)")
         print("user longitude = \(userLocation.coordinate.longitude)")
         
-        //self.getCollections()
-        getAllPosts()
+        fetchAllPosts()
+        //getAllPosts()
         
         self.stopUpdatingLocation()
     }
@@ -523,20 +512,19 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
                 self.takeToMessages()
             } else {
                 self.takeToLogin()
-            }}}
-    
+            }
+        }
+    }
     
     @IBAction func infoClicked(_ sender: Any) {
         self.takeToInfo()
     }
     
     @IBAction func addClicked(_ sender: UIButton) {
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if user != nil {
-                self.takeToPostAdd()
-            } else {
-                self.takeToLogin()
-            }
+        if AppDelegate.session.user != nil {
+            takeToPostAdd()
+        } else {
+            takeToLogin()
         }
     }
     
@@ -554,11 +542,11 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
         self.view.addSubview(searchView)
         self.searchView.frame.origin.y =  100
         
-        fetchAllPosts {(posts) in
-            self.filteredPosts = posts.filter{
-                $0.postTitle.contains(String(describing: self.searchBar.text!)) && $0.longit.isLessThanOrEqualTo((self.longi + 1))
+        fetchAllPosts {
+            self.filteredPosts = self.allPosts.filter{
+                $0.title.contains(String(describing: self.searchBar.text!)) && $0.longitude.isLessThanOrEqualTo((self.longi + 1))
                 }.sorted{ (post1, post2) -> Bool in
-                Int(post1.postDate) > Int(post2.postDate)
+                Int(post1.date) > Int(post2.date)
             }
             
             self.collectionView.reloadData()
@@ -640,7 +628,7 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionItemCell", for: indexPath) as! CollectionItemCell
         let sweet = filteredPosts[indexPath.item]
-        cell.itemImageView.sd_setImage(with: URL(string: sweet.postThumbURL))
+        cell.itemImageView.sd_setImage(with: sweet.logoUrl)
 //        let fromDate = Date(timeIntervalSince1970: TimeInterval(sweet.postDate))
 //        let toDate = Date()
 //

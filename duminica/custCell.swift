@@ -21,7 +21,7 @@ class custCell : UICollectionViewCell {
     @IBOutlet weak var dateCell: UILabelX!
     
     func configureCell(post: Post) {
-        self.titleCell.text = ("\(post.city)")
+        self.titleCell.text = ("\(post.locationTitle)")
         self.imageCell.layer.cornerRadius = 8
         self.titleCell.alpha = 1
         self.dateCell.alpha = 1
