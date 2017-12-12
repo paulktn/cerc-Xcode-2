@@ -380,21 +380,13 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         
     }
     
-    
-    
-    
     @IBAction func presentDetalii(_ sender: Any) {
         if postDetaliiView.alpha == 0 {
             postDetaliiView.alpha = 1
         } else {
             postDetaliiView.alpha = 0
         }
-        
-        
     }
-    
-    
-    
     
     @IBAction func toLargerMapAction(_ sender: Any) {
         
@@ -403,51 +395,20 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         self.largerMap.frame.size.height = (self.antet.frame.height + self.profilePic.frame.height + self.scrollView.frame.height + self.viewMap.frame.height + 10)
         let locationId = (passPost?.id)!
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        
-        
-        
-        
-        
-        
-        
+
         //  let coordinates = (passPost?.location)!.components(separatedBy: ":")
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.04, 0.04)
         
-        let georef1 = self.databaseRef.child("postLocations").child(locationId).child("l").child("0")
-        georef1.observe(.value, with: { (snapshot) in
-            
-            self.geoLatitudine = snapshot.value as! Double
-            print(self.geoLatitudine)
-        })
-        let georef2 = self.databaseRef.child("postLocations").child(locationId).child("l").child("1")
-        georef2.observe(.value, with: { (snapshot) in
-            
-            self.geoLongitudine = snapshot.value as! Double
-            print(self.geoLongitudine)
-            
-            
-            let location = CLLocationCoordinate2D.init(latitude: CLLocationDegrees(self.geoLatitudine), longitude: CLLocationDegrees(self.geoLongitudine))
-            
-            print(location.latitude)
-            print(location.longitude)
-            let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
-            
-            
-            self.aDouaHarta.setRegion(region, animated: true)
-            
-            
-            
-            // self.mapView.layer.cornerRadius = 10.0
-            
-            let diskOverlay: MKCircle = MKCircle.init(center: location, radius: 700)
-            self.aDouaHarta.add(diskOverlay)
-            self.aDouaHarta.showsUserLocation = true
-            
-        } )
+        let location = passPost.location
+        
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         
         
+        self.aDouaHarta.setRegion(region, animated: true)
         
-        
+        let diskOverlay: MKCircle = MKCircle.init(center: location, radius: 700)
+        self.aDouaHarta.add(diskOverlay)
+        self.aDouaHarta.showsUserLocation = true
     }
     
     @IBAction func removeLargerMap(_ sender: Any) {
@@ -468,44 +429,19 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     }
     
     func viewMaps() {
-        
-        let locationId = (passPost.id)
-        
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.04, 0.04)
         
-        let georef1 = self.databaseRef.child("postLocations").child(locationId).child("l").child("0")
-        georef1.observe(.value, with: { (snapshot) in
-            
-            self.geoLatitudine = snapshot.value as! Double
-            print(self.geoLatitudine)
-        })
-        let georef2 = self.databaseRef.child("postLocations").child(locationId).child("l").child("1")
-        georef2.observe(.value, with: { (snapshot) in
-            
-            self.geoLongitudine = snapshot.value as! Double
-            print(self.geoLongitudine)
-            
-            
-            let location = CLLocationCoordinate2D.init(latitude: CLLocationDegrees(self.geoLatitudine), longitude: CLLocationDegrees(self.geoLongitudine))
-            
-            print(location.latitude)
-            print(location.longitude)
-            let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
-            
-            
-            self.mapView.setRegion(region, animated: true)
-            
-            
-            
-            // self.mapView.layer.cornerRadius = 10.0
-            
-            let diskOverlay: MKCircle = MKCircle.init(center: location, radius: 700)
-            self.mapView.add(diskOverlay)
-            
-            
-            
-        } )
+        let location = passPost.location
+        
+        print(location.latitude)
+        print(location.longitude)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+
+        self.mapView.setRegion(region, animated: true)
+        
+        let diskOverlay: MKCircle = MKCircle.init(center: location, radius: 700)
+        self.mapView.add(diskOverlay)
     }
     
     

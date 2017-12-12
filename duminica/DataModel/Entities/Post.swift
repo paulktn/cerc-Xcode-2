@@ -41,6 +41,10 @@ class Post {
     var ownerId: String
     var date: NSNumber
     
+    var location: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
     init?(snapshot:DataSnapshot) {
         guard let data = snapshot.value as? NSDictionary else {return nil}
         self.id = snapshot.key
