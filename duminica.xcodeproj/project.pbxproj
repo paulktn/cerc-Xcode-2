@@ -121,6 +121,7 @@
 		7EE6C5481FCB3AA600ABBAE8 /* String+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C5471FCB3AA600ABBAE8 /* String+Common.swift */; };
 		7EE6C54A1FCB3AFE00ABBAE8 /* UIColor+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C5491FCB3AFE00ABBAE8 /* UIColor+Common.swift */; };
 		7EE6C54C1FCB3B7000ABBAE8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C54B1FCB3B7000ABBAE8 /* Post.swift */; };
+		84BBB5D21FE0537000672C4D /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBB5D11FE0537000672C4D /* ChatRoom.swift */; };
 		C3FA740205A5A4147CD84FA5 /* Pods_duminica.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84BF03B2F933165F33F97ED /* Pods_duminica.framework */; };
 		E13EC22A1FDCB93A008F23FD /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13EC2291FDCB93A008F23FD /* ChatVC.swift */; };
 		E13EC22C1FDCDBCA008F23FD /* RoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13EC22B1FDCDBCA008F23FD /* RoomVC.swift */; };
@@ -278,6 +279,7 @@
 		7EE6C5471FCB3AA600ABBAE8 /* String+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Common.swift"; sourceTree = "<group>"; };
 		7EE6C5491FCB3AFE00ABBAE8 /* UIColor+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Common.swift"; sourceTree = "<group>"; };
 		7EE6C54B1FCB3B7000ABBAE8 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		84BBB5D11FE0537000672C4D /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		8D3A35B2E351B884C2CAB506 /* Pods-duminica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-duminica.debug.xcconfig"; path = "Pods/Target Support Files/Pods-duminica/Pods-duminica.debug.xcconfig"; sourceTree = "<group>"; };
 		D84BF03B2F933165F33F97ED /* Pods_duminica.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_duminica.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E13EC2291FDCB93A008F23FD /* ChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
@@ -626,6 +628,7 @@
 				7EE6C54B1FCB3B7000ABBAE8 /* Post.swift */,
 				33BB4EAB1F2EAFA600DB49FD /* Conversation.swift */,
 				33BB4EAC1F2EAFA600DB49FD /* Message.swift */,
+				84BBB5D11FE0537000672C4D /* ChatRoom.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -968,6 +971,7 @@
 				7E8C1B981FD5F47C00EAA156 /* QBCheckmarkView.m in Sources */,
 				7E8C1B911FD5F47C00EAA156 /* QBVideoIconView.m in Sources */,
 				330654DA1F540B8D00EC922F /* recepts.swift in Sources */,
+				84BBB5D21FE0537000672C4D /* ChatRoom.swift in Sources */,
 				33BB4E911F2EA95600DB49FD /* Sporting.swift in Sources */,
 				33BB4E8C1F2EA95600DB49FD /* Appliances.swift in Sources */,
 				33BB4DDB1F2EA8FC00DB49FD /* locationBar.swift in Sources */,
