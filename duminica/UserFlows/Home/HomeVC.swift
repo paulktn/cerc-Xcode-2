@@ -107,7 +107,6 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         cercleIn()
         customizeHome()
     }
