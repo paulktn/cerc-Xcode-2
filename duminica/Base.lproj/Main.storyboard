@@ -2590,20 +2590,11 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <rect key="frame" x="0.0" y="0.0" width="375" height="950"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ea-oN-4Ea">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ea-oN-4Ea">
                                 <rect key="frame" x="0.0" y="58" width="375" height="892"/>
                                 <subviews>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A6L-ut-k7H">
-                                        <rect key="frame" x="161" y="397" width="146" height="67"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="VUF-6x-x7R">
-                                            <rect key="frame" x="0.0" y="0.0" width="146" height="67"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                        <blurEffect style="dark"/>
-                                    </visualEffectView>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qIO-QQ-Hw3">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="950"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qIO-QQ-Hw3">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="836"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nWA-9t-GS6">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
@@ -2617,46 +2608,54 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
-                                                <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="05y-Qz-TTV">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                        </view>
-                                                        <size key="customSize" width="375" height="375"/>
-                                                    </collectionViewCell>
-                                                </cells>
-                                            </collectionView>
-                                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnm-Fe-T87" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="618" width="180" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
-                                                <state key="normal" title="share on Facebook">
-                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
+                                                <cells/>
                                                 <connections>
-                                                    <action selector="shareOnFacebook:" destination="fcN-48-kFa" eventType="touchUpInside" id="pww-Xl-BDy"/>
+                                                    <outlet property="dataSource" destination="fcN-48-kFa" id="cME-BI-rdE"/>
+                                                    <outlet property="delegate" destination="fcN-48-kFa" id="9fr-Lf-R6O"/>
                                                 </connections>
-                                            </button>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kFV-NQ-vW3" customClass="UIViewX" customModule="duminica" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="493" width="375" height="45"/>
+                                            </collectionView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="L9Z-D3-1xe" userLabel="ShareButtons">
+                                                <rect key="frame" x="0.0" y="565" width="375" height="10"/>
                                                 <subviews>
-                                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R7K-xC-tDJ">
+                                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnm-Fe-T87" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="10"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                                        <state key="normal" title="share on Facebook">
+                                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="shareOnFacebook:" destination="fcN-48-kFa" eventType="touchUpInside" id="pww-Xl-BDy"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCM-8j-bMj" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
+                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="10"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                                        <state key="normal" title="share on Twitter">
+                                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="shareOnTwitter:" destination="fcN-48-kFa" eventType="touchUpInside" id="lQE-wJ-cM1"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="10" id="wK6-dq-OdK"/>
+                                                </constraints>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kFV-NQ-vW3" customClass="UIViewX" customModule="duminica" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="420" width="375" height="45"/>
+                                                <subviews>
+                                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.59999999999999998" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R7K-xC-tDJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     </mapView>
-                                                    <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1w1-vH-H1V">
+                                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1w1-vH-H1V">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MD0-f3-7fc" customClass="UILabelX" customModule="duminica" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MD0-f3-7fc" customClass="UILabelX" customModule="duminica" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -2678,10 +2677,12 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ed1-eL-JJW">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ed1-eL-JJW">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="45" id="tV4-Ef-fPZ"/>
+                                                        </constraints>
                                                         <connections>
                                                             <action selector="toLargerMapAction:" destination="fcN-48-kFa" eventType="touchUpInside" id="8l6-mg-yRn"/>
                                                         </connections>
@@ -2693,6 +2694,24 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="R7K-xC-tDJ" secondAttribute="trailing" id="6P3-ro-5vC"/>
+                                                    <constraint firstItem="ed1-eL-JJW" firstAttribute="leading" secondItem="kFV-NQ-vW3" secondAttribute="leading" id="HCC-0U-FRg"/>
+                                                    <constraint firstItem="1w1-vH-H1V" firstAttribute="leading" secondItem="kFV-NQ-vW3" secondAttribute="leading" id="I01-CL-CiH"/>
+                                                    <constraint firstItem="R7K-xC-tDJ" firstAttribute="leading" secondItem="kFV-NQ-vW3" secondAttribute="leading" id="JW5-gg-VKy"/>
+                                                    <constraint firstItem="MD0-f3-7fc" firstAttribute="leading" secondItem="kFV-NQ-vW3" secondAttribute="leading" id="LST-vH-D8E"/>
+                                                    <constraint firstItem="R7K-xC-tDJ" firstAttribute="top" secondItem="kFV-NQ-vW3" secondAttribute="top" id="Lg0-vw-M1k"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ed1-eL-JJW" secondAttribute="bottom" id="Wf2-UD-B6J"/>
+                                                    <constraint firstItem="MD0-f3-7fc" firstAttribute="width" secondItem="kFV-NQ-vW3" secondAttribute="width" id="bXW-wP-NVX"/>
+                                                    <constraint firstAttribute="bottom" secondItem="R7K-xC-tDJ" secondAttribute="bottom" id="csT-z1-8Ts"/>
+                                                    <constraint firstAttribute="height" constant="45" id="huU-Ex-Ox3"/>
+                                                    <constraint firstItem="1w1-vH-H1V" firstAttribute="top" secondItem="kFV-NQ-vW3" secondAttribute="top" id="neA-k5-FPI"/>
+                                                    <constraint firstItem="MD0-f3-7fc" firstAttribute="top" secondItem="kFV-NQ-vW3" secondAttribute="top" id="ssu-WR-Ucy"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ed1-eL-JJW" secondAttribute="trailing" id="uxD-KY-fnb"/>
+                                                    <constraint firstAttribute="bottom" secondItem="1w1-vH-H1V" secondAttribute="bottom" id="wjk-Mn-GLA"/>
+                                                    <constraint firstAttribute="bottom" secondItem="MD0-f3-7fc" secondAttribute="bottom" id="wso-jn-TvX"/>
+                                                    <constraint firstAttribute="trailing" secondItem="1w1-vH-H1V" secondAttribute="trailing" id="y1q-Gl-x0t"/>
+                                                </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
                                                         <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2702,23 +2721,6 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgh-vo-Uet" customClass="CustomLabel" customModule="duminica" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="69" width="359" height="207"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EcR-Xe-dPj" customClass="UIButtonX" customModule="duminica" customModuleProvider="target">
                                                 <rect key="frame" x="-14" y="305" width="111" height="30"/>
                                                 <color key="backgroundColor" red="0.99598902460000005" green="0.79129985945819148" blue="0.092642670820334977" alpha="0.58510809075342463" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2762,41 +2764,39 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haI-iB-1C0">
-                                                <rect key="frame" x="9" y="63" width="171" height="25"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZ0-K6-BaO">
-                                                <rect key="frame" x="193" y="63" width="174" height="25"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="070-Yk-HNn">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haI-iB-1C0">
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="30"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZ0-K6-BaO">
+                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="30"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="8J9-GT-GB4"/>
+                                                </constraints>
+                                            </stackView>
                                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ybp-kW-cUq">
                                                 <rect key="frame" x="169" y="375" width="39" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </pageControl>
-                                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCM-8j-bMj" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                                <rect key="frame" x="195" y="618" width="180" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
-                                                <state key="normal" title="share on Twitter">
-                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="shareOnTwitter:" destination="fcN-48-kFa" eventType="touchUpInside" id="lQE-wJ-cM1"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WT4-lL-vCj" customClass="UIButtonX" customModule="duminica" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="383" width="375" height="60"/>
+                                                <rect key="frame" x="0.0" y="375" width="375" height="45"/>
                                                 <color key="backgroundColor" red="0.45176254240000002" green="0.72824793779999997" blue="0.34026661879999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="qVE-XB-MYj"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2817,122 +2817,168 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mjt-CP-PGw" customClass="RoundedImageView" customModule="duminica" customModuleProvider="target">
-                                                <rect key="frame" x="316" y="388" width="50" height="50"/>
+                                                <rect key="frame" x="321" y="375" width="45" height="45"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="4cy-Xm-f74"/>
+                                                    <constraint firstAttribute="width" constant="45" id="4cy-Xm-f74"/>
                                                     <constraint firstAttribute="width" secondItem="Mjt-CP-PGw" secondAttribute="height" multiplier="1:1" id="pfc-LO-0jt"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbz-we-jxi" customClass="UIButtonX" customModule="duminica" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="540" width="375" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.4028857946395874" green="0.64421039819717407" blue="0.29852771759033203" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
-                                                <state key="normal" title="          view details">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="2"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="presentDetalii:" destination="fcN-48-kFa" eventType="touchUpInside" id="pOG-Cm-DMD"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thl-Bz-oZp">
-                                                <rect key="frame" x="0.0" y="587" width="375" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.34180786688100073" green="0.55099936548223349" blue="0.25744898308765191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
-                                                <state key="normal" title="          share">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="shareOptionsAction:" destination="fcN-48-kFa" eventType="touchUpInside" id="J38-Ew-edj"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zO5-bt-6lv" customClass="UIButtonX" customModule="duminica" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="634" width="375" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.26704763607653831" green="0.43470415609137059" blue="0.20626979365042727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
-                                                <state key="normal" title="          flag">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="2"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <segue destination="gw2-S1-rKk" kind="show" identifier="toReportPage" id="858-ug-blU"/>
-                                                </connections>
-                                            </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Flag" translatesAutoresizingMaskIntoConstraints="NO" id="05K-DC-Ve5" customClass="CustomizableImageView" customModule="duminica" customModuleProvider="target">
-                                                <rect key="frame" x="329" y="644" width="25" height="25"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="share" translatesAutoresizingMaskIntoConstraints="NO" id="dx8-td-gGH" customClass="CustomizableImageView" customModule="duminica" customModuleProvider="target">
-                                                <rect key="frame" x="332" y="600" width="19" height="19"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="down" translatesAutoresizingMaskIntoConstraints="NO" id="gYo-JV-AtU" customClass="CustomizableImageView" customModule="duminica" customModuleProvider="target">
-                                                <rect key="frame" x="329" y="549" width="25" height="25"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </imageView>
-                                            <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbA-Ph-iLq">
-                                                <rect key="frame" x="0.0" y="576" width="375" height="84"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Nt-dI-sBe" userLabel="ViewDetailsView">
+                                                <rect key="frame" x="0.0" y="465" width="375" height="45"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="detali" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHn-TV-ww4">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbz-we-jxi" customClass="UIButtonX" customModule="duminica" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                                                        <color key="backgroundColor" red="0.4028857946395874" green="0.64421039819717407" blue="0.29852771759033203" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                                        <state key="normal" title="          view details">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="presentDetalii:" destination="fcN-48-kFa" eventType="touchUpInside" id="pOG-Cm-DMD"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down" translatesAutoresizingMaskIntoConstraints="NO" id="gYo-JV-AtU" customClass="CustomizableImageView" customModule="duminica" customModuleProvider="target">
+                                                        <rect key="frame" x="340.5" y="11.5" width="22.5" height="22.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="gYo-JV-AtU" secondAttribute="height" id="lHT-Wk-gfF"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="20"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="gYo-JV-AtU" firstAttribute="height" secondItem="sbz-we-jxi" secondAttribute="height" multiplier="0.5" id="3Wk-EC-JPs"/>
+                                                    <constraint firstItem="gYo-JV-AtU" firstAttribute="centerY" secondItem="sbz-we-jxi" secondAttribute="centerY" id="5hA-D4-qRG"/>
+                                                    <constraint firstItem="sbz-we-jxi" firstAttribute="leading" secondItem="6Nt-dI-sBe" secondAttribute="leading" id="7kW-98-BMV"/>
+                                                    <constraint firstItem="sbz-we-jxi" firstAttribute="top" secondItem="6Nt-dI-sBe" secondAttribute="top" id="Egc-Hj-DB9"/>
+                                                    <constraint firstAttribute="trailing" secondItem="sbz-we-jxi" secondAttribute="trailing" id="NYK-bC-rAx"/>
+                                                    <constraint firstItem="gYo-JV-AtU" firstAttribute="trailing" secondItem="sbz-we-jxi" secondAttribute="trailing" constant="-12" id="Swf-y2-92H"/>
+                                                    <constraint firstAttribute="bottom" secondItem="sbz-we-jxi" secondAttribute="bottom" id="luf-zT-1zI"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ad1-h2-uH4" userLabel="ShareView">
+                                                <rect key="frame" x="0.0" y="520" width="375" height="45"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thl-Bz-oZp">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                                                        <color key="backgroundColor" red="0.34180786688100073" green="0.55099936548223349" blue="0.25744898308765191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                                        <state key="normal" title="          share">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="shareOptionsAction:" destination="fcN-48-kFa" eventType="touchUpInside" id="J38-Ew-edj"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="share" translatesAutoresizingMaskIntoConstraints="NO" id="dx8-td-gGH" customClass="CustomizableImageView" customModule="duminica" customModuleProvider="target">
+                                                        <rect key="frame" x="338.5" y="11.5" width="22.5" height="22.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="dx8-td-gGH" secondAttribute="height" multiplier="1:1" id="KKd-lr-duJ"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="20"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="dx8-td-gGH" firstAttribute="height" secondItem="Ad1-h2-uH4" secondAttribute="height" multiplier="0.5" id="1zH-LK-dd0"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Thl-Bz-oZp" secondAttribute="bottom" id="H7C-l4-QFG"/>
+                                                    <constraint firstItem="Thl-Bz-oZp" firstAttribute="leading" secondItem="Ad1-h2-uH4" secondAttribute="leading" id="dzS-Un-Yj7"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dx8-td-gGH" secondAttribute="trailing" constant="14" id="pwI-Bc-52C"/>
+                                                    <constraint firstItem="Thl-Bz-oZp" firstAttribute="top" secondItem="Ad1-h2-uH4" secondAttribute="top" id="t3P-Rz-hxr"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Thl-Bz-oZp" secondAttribute="trailing" id="wnc-iV-qW5"/>
+                                                    <constraint firstItem="dx8-td-gGH" firstAttribute="centerY" secondItem="Ad1-h2-uH4" secondAttribute="centerY" id="yZ4-45-X7r"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xk3-EL-fuY" userLabel="FlagView">
+                                                <rect key="frame" x="0.0" y="575" width="375" height="45"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zO5-bt-6lv" customClass="UIButtonX" customModule="duminica" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                                                        <color key="backgroundColor" red="0.26704763607653831" green="0.43470415609137059" blue="0.20626979365042727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                                        <state key="normal" title="          flag">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <segue destination="gw2-S1-rKk" kind="show" identifier="toReportPage" id="858-ug-blU"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flag" translatesAutoresizingMaskIntoConstraints="NO" id="05K-DC-Ve5" customClass="CustomizableImageView" customModule="duminica" customModuleProvider="target">
+                                                        <rect key="frame" x="338.5" y="11.5" width="22.5" height="22.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="05K-DC-Ve5" secondAttribute="height" id="Tbe-3k-Wc5"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="20"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="05K-DC-Ve5" firstAttribute="centerY" secondItem="xk3-EL-fuY" secondAttribute="centerY" id="4fD-It-jFE"/>
+                                                    <constraint firstAttribute="trailing" secondItem="zO5-bt-6lv" secondAttribute="trailing" id="Fnk-tg-Byf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="05K-DC-Ve5" secondAttribute="trailing" constant="14" id="Hwf-mc-82K"/>
+                                                    <constraint firstItem="zO5-bt-6lv" firstAttribute="leading" secondItem="xk3-EL-fuY" secondAttribute="leading" id="eCb-3p-NKN"/>
+                                                    <constraint firstAttribute="bottom" secondItem="zO5-bt-6lv" secondAttribute="bottom" id="hju-Lz-YJW"/>
+                                                    <constraint firstItem="zO5-bt-6lv" firstAttribute="top" secondItem="xk3-EL-fuY" secondAttribute="top" id="rKQ-Pl-8pi"/>
+                                                    <constraint firstItem="05K-DC-Ve5" firstAttribute="height" secondItem="xk3-EL-fuY" secondAttribute="height" multiplier="0.5" id="u8K-gi-8eR"/>
+                                                </constraints>
+                                            </view>
+                                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbA-Ph-iLq">
+                                                <rect key="frame" x="0.0" y="510" width="375" height="10"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detali" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHn-TV-ww4">
+                                                        <rect key="frame" x="10" y="0.0" width="355" height="10"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="15"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2951,6 +2997,13 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="PHn-TV-ww4" firstAttribute="leading" secondItem="kbA-Ph-iLq" secondAttribute="leading" constant="10" id="9ML-py-l2R"/>
+                                                    <constraint firstItem="PHn-TV-ww4" firstAttribute="top" secondItem="kbA-Ph-iLq" secondAttribute="top" id="QO6-iX-eRX"/>
+                                                    <constraint firstAttribute="height" constant="10" id="haU-S4-aXJ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="PHn-TV-ww4" secondAttribute="trailing" constant="10" id="i3k-8m-ki1"/>
+                                                    <constraint firstAttribute="bottom" secondItem="PHn-TV-ww4" secondAttribute="bottom" id="xfn-iO-EJU"/>
+                                                </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
                                                         <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2960,36 +3013,30 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="         similar items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qi4-kJ-io0">
-                                                <rect key="frame" x="0.0" y="681" width="375" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.22016434895133302" green="0.36205187182741116" blue="0.17432914305487934" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="down" translatesAutoresizingMaskIntoConstraints="NO" id="DQx-8f-eii" customClass="CustomizableImageView" customModule="duminica" customModuleProvider="target">
-                                                <rect key="frame" x="330" y="687" width="25" height="25"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </imageView>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rvZ-Jd-5yP">
-                                                <rect key="frame" x="0.0" y="728" width="375" height="171"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cws-TM-W2b" userLabel="SimilarItemsView">
+                                                <rect key="frame" x="0.0" y="620" width="375" height="45"/>
                                                 <subviews>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dt6-x1-Qkw">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="172"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="         similar items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qi4-kJ-io0">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                                                        <color key="backgroundColor" red="0.22016434895133302" green="0.36205187182741116" blue="0.17432914305487934" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="Qi4-kJ-io0" secondAttribute="trailing" id="82e-Xc-oqi"/>
+                                                    <constraint firstItem="Qi4-kJ-io0" firstAttribute="leading" secondItem="cws-TM-W2b" secondAttribute="leading" id="9dN-fV-ngs"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Qi4-kJ-io0" secondAttribute="bottom" id="Fs4-WZ-bJt"/>
+                                                    <constraint firstItem="Qi4-kJ-io0" firstAttribute="top" secondItem="cws-TM-W2b" secondAttribute="top" id="isj-yC-bGY"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rvZ-Jd-5yP">
+                                                <rect key="frame" x="0.0" y="665" width="375" height="171"/>
+                                                <subviews>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dt6-x1-Qkw">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="171"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pg5-YI-X4u">
                                                             <size key="itemSize" width="169" height="163"/>
@@ -2999,7 +3046,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="custCell" id="qHD-Pm-6BF" customClass="custCell" customModule="duminica" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="4.5" width="169" height="163"/>
+                                                                <rect key="frame" x="0.0" y="4" width="169" height="163"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                     <rect key="frame" x="0.0" y="0.0" width="169" height="163"/>
@@ -3076,29 +3123,69 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                     </collectionView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.21868982911109924" green="0.35861706733703613" blue="0.17225015163421631" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="171" id="FfN-Qb-jHZ"/>
+                                                    <constraint firstItem="dt6-x1-Qkw" firstAttribute="top" secondItem="rvZ-Jd-5yP" secondAttribute="top" id="LDo-QI-VEZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dt6-x1-Qkw" secondAttribute="trailing" id="abG-0O-TfS"/>
+                                                    <constraint firstAttribute="bottom" secondItem="dt6-x1-Qkw" secondAttribute="bottom" id="fJs-UL-8N0"/>
+                                                    <constraint firstItem="dt6-x1-Qkw" firstAttribute="leading" secondItem="rvZ-Jd-5yP" secondAttribute="leading" id="o5F-5I-OMg"/>
+                                                </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucz-M6-zFi">
+                                                <rect key="frame" x="41" y="387.5" width="42" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="L9Z-D3-1xe" firstAttribute="centerX" secondItem="Thl-Bz-oZp" secondAttribute="centerX" id="2Rg-W1-9f2"/>
+                                            <constraint firstItem="cws-TM-W2b" firstAttribute="top" secondItem="zO5-bt-6lv" secondAttribute="bottom" id="3Wb-nf-B9H"/>
                                             <constraint firstItem="kFV-NQ-vW3" firstAttribute="width" secondItem="WT4-lL-vCj" secondAttribute="width" id="4sZ-Z4-xJR"/>
+                                            <constraint firstItem="cws-TM-W2b" firstAttribute="centerX" secondItem="zO5-bt-6lv" secondAttribute="centerX" id="5Wl-zB-9qz"/>
+                                            <constraint firstItem="rvZ-Jd-5yP" firstAttribute="top" secondItem="Qi4-kJ-io0" secondAttribute="bottom" id="5l2-i1-IkG"/>
+                                            <constraint firstItem="xk3-EL-fuY" firstAttribute="height" secondItem="Thl-Bz-oZp" secondAttribute="height" id="67g-jn-fRf"/>
+                                            <constraint firstItem="Ad1-h2-uH4" firstAttribute="width" secondItem="sbz-we-jxi" secondAttribute="width" id="7ao-jR-mtE"/>
+                                            <constraint firstItem="kbA-Ph-iLq" firstAttribute="top" secondItem="sbz-we-jxi" secondAttribute="bottom" id="8Ca-Fd-P4m"/>
                                             <constraint firstItem="EcR-Xe-dPj" firstAttribute="leading" secondItem="nWA-9t-GS6" secondAttribute="leading" constant="-14" id="8kn-Pa-FwZ"/>
-                                            <constraint firstItem="WT4-lL-vCj" firstAttribute="height" secondItem="Mjt-CP-PGw" secondAttribute="height" constant="10" id="9sO-S8-IVh"/>
+                                            <constraint firstItem="xk3-EL-fuY" firstAttribute="top" secondItem="L9Z-D3-1xe" secondAttribute="bottom" id="A1g-e9-Bbe"/>
                                             <constraint firstItem="nWA-9t-GS6" firstAttribute="top" secondItem="qIO-QQ-Hw3" secondAttribute="top" id="A83-Kw-BCG"/>
                                             <constraint firstItem="kFV-NQ-vW3" firstAttribute="centerX" secondItem="WT4-lL-vCj" secondAttribute="centerX" id="BbR-dc-Dw5"/>
-                                            <constraint firstItem="kFV-NQ-vW3" firstAttribute="top" secondItem="WT4-lL-vCj" secondAttribute="bottom" constant="50" id="Dqj-B0-LTk"/>
+                                            <constraint firstItem="rvZ-Jd-5yP" firstAttribute="width" secondItem="Qi4-kJ-io0" secondAttribute="width" id="Dmv-of-rah"/>
+                                            <constraint firstItem="kFV-NQ-vW3" firstAttribute="top" secondItem="WT4-lL-vCj" secondAttribute="bottom" id="Dqj-B0-LTk"/>
+                                            <constraint firstItem="cws-TM-W2b" firstAttribute="height" secondItem="zO5-bt-6lv" secondAttribute="height" id="F07-U7-dnS"/>
                                             <constraint firstItem="WT4-lL-vCj" firstAttribute="width" secondItem="qIO-QQ-Hw3" secondAttribute="width" id="HEd-Ku-eEi"/>
                                             <constraint firstItem="EcR-Xe-dPj" firstAttribute="bottom" secondItem="nWA-9t-GS6" secondAttribute="bottom" constant="-40" id="IEv-n4-H7d"/>
+                                            <constraint firstItem="6Nt-dI-sBe" firstAttribute="centerX" secondItem="WT4-lL-vCj" secondAttribute="centerX" id="L9I-ry-hl4"/>
                                             <constraint firstItem="hk8-Ha-IR0" firstAttribute="centerY" secondItem="EcR-Xe-dPj" secondAttribute="centerY" id="OHC-BA-dHI"/>
+                                            <constraint firstItem="Ad1-h2-uH4" firstAttribute="height" secondItem="sbz-we-jxi" secondAttribute="height" id="QBG-v3-rb4"/>
                                             <constraint firstItem="Mjt-CP-PGw" firstAttribute="centerY" secondItem="WT4-lL-vCj" secondAttribute="centerY" id="QCx-ES-Uri"/>
-                                            <constraint firstItem="WT4-lL-vCj" firstAttribute="top" secondItem="nWA-9t-GS6" secondAttribute="bottom" constant="8" id="SEe-eN-u1Y"/>
+                                            <constraint firstItem="6Nt-dI-sBe" firstAttribute="top" secondItem="kFV-NQ-vW3" secondAttribute="bottom" id="QGE-2r-WfG"/>
+                                            <constraint firstItem="ucz-M6-zFi" firstAttribute="centerY" secondItem="WT4-lL-vCj" secondAttribute="centerY" id="Qjp-iR-Da4"/>
+                                            <constraint firstItem="WT4-lL-vCj" firstAttribute="top" secondItem="nWA-9t-GS6" secondAttribute="bottom" id="SEe-eN-u1Y"/>
                                             <constraint firstItem="WT4-lL-vCj" firstAttribute="centerX" secondItem="qIO-QQ-Hw3" secondAttribute="centerX" id="VLS-jQ-Ekl"/>
+                                            <constraint firstItem="WT4-lL-vCj" firstAttribute="leading" secondItem="ucz-M6-zFi" secondAttribute="trailing" constant="-83" id="ViB-Ya-YVy"/>
                                             <constraint firstAttribute="trailing" secondItem="Mjt-CP-PGw" secondAttribute="trailing" constant="9" id="Vni-uL-vPT"/>
-                                            <constraint firstItem="kFV-NQ-vW3" firstAttribute="height" secondItem="WT4-lL-vCj" secondAttribute="height" id="WZm-zI-2tI"/>
+                                            <constraint firstItem="kbA-Ph-iLq" firstAttribute="width" secondItem="sbz-we-jxi" secondAttribute="width" id="WP6-O1-6zl"/>
+                                            <constraint firstItem="xk3-EL-fuY" firstAttribute="width" secondItem="Thl-Bz-oZp" secondAttribute="width" id="Xka-Bd-Mib"/>
+                                            <constraint firstItem="Ad1-h2-uH4" firstAttribute="top" secondItem="PHn-TV-ww4" secondAttribute="bottom" id="Z65-Xb-njK"/>
+                                            <constraint firstItem="070-Yk-HNn" firstAttribute="top" secondItem="qIO-QQ-Hw3" secondAttribute="top" id="av5-0X-r96"/>
+                                            <constraint firstAttribute="bottom" secondItem="rvZ-Jd-5yP" secondAttribute="bottom" id="bGl-qb-Xiu"/>
+                                            <constraint firstItem="L9Z-D3-1xe" firstAttribute="top" secondItem="Thl-Bz-oZp" secondAttribute="bottom" id="cDG-cd-tn9"/>
+                                            <constraint firstItem="xk3-EL-fuY" firstAttribute="centerX" secondItem="Thl-Bz-oZp" secondAttribute="centerX" id="cDa-Wm-aJW"/>
+                                            <constraint firstItem="kbA-Ph-iLq" firstAttribute="centerX" secondItem="sbz-we-jxi" secondAttribute="centerX" id="dxC-KD-cYW"/>
+                                            <constraint firstItem="L9Z-D3-1xe" firstAttribute="width" secondItem="Thl-Bz-oZp" secondAttribute="width" id="eOf-PI-oO5"/>
+                                            <constraint firstItem="cws-TM-W2b" firstAttribute="width" secondItem="zO5-bt-6lv" secondAttribute="width" id="eUJ-a3-F46"/>
+                                            <constraint firstItem="6Nt-dI-sBe" firstAttribute="height" secondItem="WT4-lL-vCj" secondAttribute="height" id="gum-iS-Xfa"/>
                                             <constraint firstItem="nWA-9t-GS6" firstAttribute="leading" secondItem="qIO-QQ-Hw3" secondAttribute="leading" id="icI-VW-lct"/>
+                                            <constraint firstItem="6Nt-dI-sBe" firstAttribute="width" secondItem="WT4-lL-vCj" secondAttribute="width" id="ieg-Cd-1c6"/>
+                                            <constraint firstItem="Ad1-h2-uH4" firstAttribute="centerX" secondItem="sbz-we-jxi" secondAttribute="centerX" id="mP3-vU-dyi"/>
                                             <constraint firstItem="hk8-Ha-IR0" firstAttribute="height" secondItem="EcR-Xe-dPj" secondAttribute="height" multiplier="0.9" id="qDj-be-JGq"/>
                                             <constraint firstItem="hk8-Ha-IR0" firstAttribute="trailing" secondItem="EcR-Xe-dPj" secondAttribute="trailing" constant="-5" id="qe1-J3-CWF"/>
                                             <constraint firstAttribute="trailing" secondItem="nWA-9t-GS6" secondAttribute="trailing" id="vFa-Dd-IiR"/>
+                                            <constraint firstItem="rvZ-Jd-5yP" firstAttribute="centerX" secondItem="Qi4-kJ-io0" secondAttribute="centerX" id="wQb-Ng-JWH"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
@@ -3183,6 +3270,8 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="070-Yk-HNn" firstAttribute="width" secondItem="Yxw-cx-UeB" secondAttribute="width" id="EUh-3n-w6M"/>
+                            <constraint firstItem="070-Yk-HNn" firstAttribute="centerX" secondItem="Yxw-cx-UeB" secondAttribute="centerX" id="G6C-Xx-noB"/>
                             <constraint firstItem="5ea-oN-4Ea" firstAttribute="top" secondItem="Yxw-cx-UeB" secondAttribute="bottom" id="M7R-aN-nc0"/>
                             <constraint firstAttribute="trailing" secondItem="5ea-oN-4Ea" secondAttribute="trailing" id="N48-JO-rJU"/>
                             <constraint firstItem="5ea-oN-4Ea" firstAttribute="leading" secondItem="W2B-xg-64q" secondAttribute="leading" id="RA4-Pr-qZq"/>
@@ -3198,24 +3287,32 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                     <connections>
                         <outlet property="aDouaHarta" destination="sF3-36-eeh" id="dOC-7F-q2u"/>
                         <outlet property="antet" destination="Yxw-cx-UeB" id="fDU-4R-Glq"/>
-                        <outlet property="blurEffect" destination="A6L-ut-k7H" id="EGl-gO-z6S"/>
                         <outlet property="collectionViewCategory" destination="dt6-x1-Qkw" id="wt2-At-Saf"/>
                         <outlet property="contact" destination="WT4-lL-vCj" id="NuZ-Nd-q4d"/>
+                        <outlet property="contactLabel" destination="ucz-M6-zFi" id="83a-rZ-u89"/>
                         <outlet property="donButton" destination="3MM-Xs-092" id="HNa-7V-VsU"/>
                         <outlet property="doneButton" destination="YnP-6V-ghl" id="5BP-IF-E2b"/>
                         <outlet property="facebookButton" destination="Dnm-Fe-T87" id="fXO-vq-2aw"/>
                         <outlet property="flagButton" destination="zO5-bt-6lv" id="2A6-qO-dQ2"/>
+                        <outlet property="imagesCollecionView" destination="nWA-9t-GS6" id="I5H-fM-HBZ"/>
                         <outlet property="inputTextField" destination="wQ5-zV-xlT" id="NFb-8e-eMT"/>
                         <outlet property="keywordLabel" destination="haI-iB-1C0" id="89g-m2-XMR"/>
                         <outlet property="largerMap" destination="wD3-PK-hG8" id="nVg-UG-N8o"/>
+                        <outlet property="largerMapMapView" destination="sF3-36-eeh" id="tZr-if-mHB"/>
+                        <outlet property="largerMapVIew" destination="wD3-PK-hG8" id="8ip-ZO-4K2"/>
                         <outlet property="locationLabel" destination="MD0-f3-7fc" id="mmk-7e-F7R"/>
                         <outlet property="mapView" destination="R7K-xC-tDJ" id="xOr-ID-C3a"/>
+                        <outlet property="mapViewHeight" destination="huU-Ex-Ox3" id="ECJ-8Y-myX"/>
+                        <outlet property="mapViewHidingView" destination="1w1-vH-H1V" id="uht-9v-Npv"/>
                         <outlet property="messageView" destination="glW-6G-Nun" id="KGa-Iu-P3b"/>
                         <outlet property="pageControl" destination="Ybp-kW-cUq" id="CE7-oA-4dW"/>
+                        <outlet property="postDetailsHeight" destination="haU-S4-aXJ" id="Pf0-bv-S2s"/>
                         <outlet property="postDetaliiView" destination="kbA-Ph-iLq" id="tj6-1I-4PF"/>
                         <outlet property="postdetalii" destination="PHn-TV-ww4" id="Gie-MA-FhJ"/>
                         <outlet property="profilePic" destination="Mjt-CP-PGw" id="dJN-f1-MP3"/>
                         <outlet property="shareOptions" destination="Thl-Bz-oZp" id="7Ha-FW-87C"/>
+                        <outlet property="sharingHeight" destination="wK6-dq-OdK" id="zFj-Pt-hj7"/>
+                        <outlet property="similarItemsHeight" destination="FfN-Qb-jHZ" id="at9-Gx-tNW"/>
                         <outlet property="titleFromCustCell" destination="XZ0-K6-BaO" id="bfS-IF-v4n"/>
                         <outlet property="toLargerMap" destination="ed1-eL-JJW" id="iWc-5B-Zxf"/>
                         <outlet property="tweeterButton" destination="KCM-8j-bMj" id="qxQ-Bh-0ZI"/>
@@ -3284,7 +3381,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="-4172" y="112"/>
+            <point key="canvasLocation" x="-4172" y="111.54422788605699"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="Ma6-hD-Dhz">

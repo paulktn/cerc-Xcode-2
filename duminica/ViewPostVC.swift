@@ -15,23 +15,29 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     @IBOutlet weak var flagButton: UIButton!
     @IBOutlet weak var locationLabel: CustomLabel!
     @IBOutlet var pageControl: UIPageControl!
-    @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var viewPostTitle: UILabel!
     @IBOutlet weak var tweeterButton: CustomizableButton!
     @IBOutlet weak var facebookButton: CustomizableButton!
-    @IBOutlet var contact: CustomizableButton!
     @IBOutlet weak var doneButton: CustomizableButton!
     @IBOutlet weak var donButton: UIButtonX!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var keywordLabel: UILabel!
-    @IBOutlet var largerMap: UIView!
     @IBOutlet weak var aDouaHarta: MKMapView!
     @IBOutlet weak var toLargerMap: UIButton!
-    @IBOutlet var messageView: UIView!
     @IBOutlet weak var titleFromCustCell: UILabel!
-    @IBOutlet weak var blurEffect: UIVisualEffectView!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var shareOptions: UIButton!
+    @IBOutlet weak var mapViewHidingView: UIView!
+    @IBOutlet var largerMapVIew: UIView!
+    @IBOutlet weak var largerMapMapView: MKMapView!
+    @IBOutlet var contactLabel: UILabel!
+    
+    @IBOutlet weak var imagesCollecionView: UICollectionView!
+    
+    @IBOutlet weak var mapViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var postDetailsHeight: NSLayoutConstraint!
+    @IBOutlet weak var sharingHeight: NSLayoutConstraint!
+    @IBOutlet weak var similarItemsHeight: NSLayoutConstraint!
     
     var passPost: Post!
     
@@ -42,19 +48,11 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     let locationManager = CLLocationManager()
     lazy var geocoder = CLGeocoder()
     var isChecked = true
-    
-    
     var useridFromDatabase: String!
     var linkPic: String!
     var items = [Message]()
     var currentUser: User?
-    var geoLatitudine = Double()
-    var geoLongitudine = Double()
-    var databaseRef: DatabaseReference!
-    {
-        
-        return Database.database().reference()
-    }
+    var databaseRef: DatabaseReference! {return Database.database().reference()}
     
     var storageRef: StorageReference! {
         
@@ -62,12 +60,21 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     }
     
     @IBOutlet weak var postDetaliiView: UIViewX!
-    
     @IBOutlet var postdetalii: UILabel!
+
+    private enum OpenedOption {
+        case mapView
+        case postDetails
+        case sharing
+        case similarItems
+        case none
+    }
     
+    private var currentOption: OpenedOption = .none
     
     @IBAction func close(_ sender: AnyObject) {
-        pushTomainView()
+        dismiss(animated: true, completion: nil)
+        //pushTomainView()
         
     }
     
@@ -111,12 +118,9 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         
         self.databaseRef.child("ios_users").child(self.useridFromDatabase).child("credentials").child("name").observe(.value, with: { (snapshot) in
             if snapshot.exists(){
-                self.contact.setTitle("          contact \(snapshot.value! as! String)", for: .normal)
-            } else {}})
-        
-        inputTextField.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.sendMessageFromKeyboard))
-        
-        //IQKeyboardManager.sharedManager().toolbarDoneBarButtonItemText = "Send"
+                self.contactLabel.text = "contact \(snapshot.value as? String ?? "")"
+            }
+        })
 
         inputTextField.alpha = 1
         
@@ -155,81 +159,77 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         
         mapView.alpha = 1
         
-        blurEffect.alpha = 0
-        //  setupLayer()
-        
-        var scrollViewHeight = self.scrollView.frame.height
-        var scrollViewWidth = self.scrollView.frame.width
-        scrollView.isPagingEnabled = true
-        
-        scrollViewWidth = self.scrollView.frame.width
-        scrollViewHeight = self.scrollView.frame.height
-        
-        
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
             
             let page = scrollView.contentOffset.x / scrollView.frame.size.width
             pageControl.currentPage = Int(page)
             
         }
-        
-        
-        let imgOne = UIImageView(frame: CGRect(x: 0, y: 0, width: scrollViewWidth, height: scrollViewHeight))
-        
-        let imgTwo = UIImageView(frame: CGRect(x: scrollViewWidth, y: 0, width: scrollViewWidth, height: scrollViewHeight))
-        let imgThree = UIImageView(frame: CGRect(x: scrollViewWidth*2, y: 0, width: scrollViewWidth, height:scrollViewHeight))
-        
-        
-        // FIXME: - Implement correct image uploading
-        
-//
-//        imgOne.sd_setImage(with: URL(string: (passPost?.imageURLs.)!))
-//        imgTwo.sd_setImage(with: URL(string: (passPost?.postImageURL2)!))
-//        imgThree.sd_setImage(with: URL(string: (passPost?.postImageURL3)!))
-        
-//        self.scrollView.addSubview(imgOne)
-//        if (passPost?.postImageURL2)! != "no image" {
-//            self.scrollView.addSubview(imgTwo)
-//            pageControl.numberOfPages = 2
-//            scrollView.contentSize = CGSize(width: scrollViewWidth * 2, height: scrollViewHeight)
-//
-//        }
-//        if (passPost?.postImageURL3)! != "no image"   {
-//            scrollView.contentSize = CGSize(width: scrollViewWidth * 3, height: scrollViewHeight)
-//            pageControl.numberOfPages = 3
-//            self.scrollView.addSubview(imgThree)}
 
-        scrollView.delegate = self
-        
-        scrollView.showsHorizontalScrollIndicator = false
-        
-        scrollViewDidScroll(scrollView)
-        
-        
-        
         pageControl.currentPage = 0
         
         pageControl.defersCurrentPageDisplay = true
-        
-        
-        
         pageControl.addTarget(self, action: Selector(("changePage:")), for: UIControlEvents.valueChanged)
-        
     }
     
+    private func selectOption(_ newOption: OpenedOption) {
+        
+        defer {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+        
+        closeAllCollections()
+        
+        guard currentOption != newOption else {
+            currentOption = .none
+            return
+        }
+        
+        switch newOption {
+        case .mapView:
+            mapViewHeight.constant = UIScreen.main.bounds.width
+            mapViewHidingView.alpha = 0
+        case .postDetails:
+            postDetailsHeight.constant = UILabel.heightFor(text: passPost.details ?? "", font: postdetalii.font, width: postdetalii.frame.width)
+            postdetalii.alpha = 1
+        case .sharing:
+            sharingHeight.constant = 45
+        case .similarItems:
+            similarItemsHeight.constant = 139
+            collectionViewCategory.alpha = 1
+        case .none:
+            break
+        }
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+        })
+        
+        currentOption = newOption
+    }
+    
+    private func closeAllCollections() {
+        mapViewHeight.constant = imagesCollecionView.frame.height
+        mapViewHidingView.alpha = 0.5
+        postDetailsHeight.constant = 0
+        postdetalii.alpha = 0
+        sharingHeight.constant = 0
+        similarItemsHeight.constant = 0
+        collectionViewCategory.alpha = 0
+    }
     
     func changePage(sender: AnyObject) -> () {
-        let x = CGFloat(pageControl.currentPage) * scrollView.frame.size.width
-        scrollView.setContentOffset(CGPoint(x: x,y :0), animated: true)
+        //let x = CGFloat(pageControl.currentPage) * scrollView.frame.size.width
+        //scrollView.setContentOffset(CGPoint(x: x,y :0), animated: true)
     }
-    
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
         let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
         pageControl.currentPage = Int(pageNumber)
     }
-    
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let overlay = overlay as? MKCircle {
@@ -242,7 +242,6 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
             return MKOverlayRenderer(overlay: overlay)
         }
     }
-    
     
     func fetchAllPost(completion: @escaping ([Post])->()) {
         
@@ -322,7 +321,6 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toReportPage" {
             
@@ -366,128 +364,42 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     }
     
     @IBAction func shareOptionsAction(_ sender: Any) {
-        if self.facebookButton.alpha == 0 {
-            self.facebookButton.alpha = 1
-            self.tweeterButton.alpha = 1
-            self.flagButton.alpha = 0
-            
-            // self.shareOptions.alpha = 0
-        } else {
-            self.facebookButton.alpha = 0
-            self.tweeterButton.alpha = 0
-            self.flagButton.alpha = 1
-        }
-        
+        selectOption(.sharing)
     }
     
     @IBAction func presentDetalii(_ sender: Any) {
-        if postDetaliiView.alpha == 0 {
-            postDetaliiView.alpha = 1
-        } else {
-            postDetaliiView.alpha = 0
-        }
+        selectOption(.postDetails)
     }
     
     @IBAction func toLargerMapAction(_ sender: Any) {
         
-        blurEffect.alpha = 0.8
-        self.view.addSubview(largerMap)
-        self.largerMap.frame.size.height = (self.antet.frame.height + self.profilePic.frame.height + self.scrollView.frame.height + self.viewMap.frame.height + 10)
-        let locationId = (passPost?.id)!
+        selectOption(.mapView)
+        
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-
-        //  let coordinates = (passPost?.location)!.components(separatedBy: ":")
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.04, 0.04)
-        
         let location = passPost.location
-        
         let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         
-        
-        self.aDouaHarta.setRegion(region, animated: true)
-        
+        mapView.setRegion(region, animated: true)
         let diskOverlay: MKCircle = MKCircle.init(center: location, radius: 700)
-        self.aDouaHarta.add(diskOverlay)
-        self.aDouaHarta.showsUserLocation = true
-    }
-    
-    @IBAction func removeLargerMap(_ sender: Any) {
-        self.largerMap.removeFromSuperview()
-        // self.aDouaHarta.delegate = nil
-        //self.aDouaHarta.removeFromSuperview()
-        //self.aDouaHarta = nil
-        blurEffect.alpha = 0
-    }
-    
-    
-    
-    
-    @IBAction func dismissExtraViews(_ sender: AnyObject) {
-        self.viewMap.removeFromSuperview()
-        self.messageView.removeFromSuperview()
-        
+        mapView.add(diskOverlay)
+        mapView.showsUserLocation = true
     }
     
     func viewMaps() {
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.04, 0.04)
-        
         let location = passPost.location
-        
         print(location.latitude)
         print(location.longitude)
         let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
-
         self.mapView.setRegion(region, animated: true)
-        
         let diskOverlay: MKCircle = MKCircle.init(center: location, radius: 700)
         self.mapView.add(diskOverlay)
     }
     
-    
-    
-    
-    
     func doneClicked() {
         view.endEditing(true)
-        //    scrollView.alpha = 1
-        //     pageControl.alpha = 1
-        //    titleFromCustCell.alpha = 1
-        
-        //    facebookButton.alpha = 1
-        //     tweeterButton.alpha = 1
-        //     pinterestButton.alpha = 1
-        
-        //    postdetalii.alpha = 1
-        //     contact.alpha = 1
-        //     doneButton.alpha = 1
-        //     flagButton.alpha = 1
-        //     flagButton.alpha = 1
-        
-        
-    }
-    
-    func postcomposeMessage(content: Any)  {
-        let message = Message.init(content: content, owner: .sender, timestamp: Int(Date().timeIntervalSince1970), isRead: false)
-        postsend(message: message, toID: passPost.id, completion: {(_) in
-        })
-        
-        
-    }
-    
-    func postsend(message: Message, toID: String, completion: @escaping (Bool) -> Swift.Void)  {
-        if let currentUserID = Auth.auth().currentUser?.uid {
-            
-            
-            
-            
-            let values = ["content": message.content, "fromID": currentUserID, "toID": toID, "timestamp": message.timestamp, "isRead": false]
-            postuploadMessage(withValues: values, toID: toID, completion: { (status) in
-                completion(status)
-            })
-            
-            
-        }
     }
     
     func saveToWishList() {
@@ -510,161 +422,29 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         }
     }
     
-    func pushTomainView() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeVC
-        self.show(vc, sender: nil)
-    }
-    
     func takeToAccount(){
-        
         let accountVC = self.storyboard?.instantiateViewController(withIdentifier: "MyAccountVC") as! AccountVC
         self.show(accountVC, sender: nil)
     }
-    
-    @IBAction func contactUser(_ sender: AnyObject) {
-        
-        if let post = passPost {
-            let chatId = ChatManager.shared.initiateChat(with: post)
-            self.performSegue(withIdentifier: "ShowChatVC", sender: chatId)
-        }
-    }
-    
-    
-    
-    @IBAction func messageEdit(_ sender: AnyObject) {
-        if contact.titleLabel?.text == "     send message" {
-            if let text = self.inputTextField.text {
-                if text.count > 0 {
-                    self.postcomposeMessage(content: self.inputTextField.text!)
-                    self.inputTextField.text = ""
-                }}
-            sender.setTitle("contact", for: .normal)
-            self.inputTextField.alpha = 0
-            self.mapView.alpha = 1
-            //   textViewDidEndEditing(self.inputTextField)
-            
-            
-            
-        } else  {
-            self.inputTextField.alpha = 1
-            self.mapView.alpha = 0
-            sender.setTitle("     send message", for: .normal)
-            
-        }
-    }
 
-    func GGGGG() {
-        
-        blurEffect.alpha = 0.8
-        self.view.addSubview(messageView)
-        
-        messageView.frame.origin.y = (viewMap.frame.origin.y + viewMap.frame.height)
-        
-        // messageView.frame = CGRect(x:0, y: 200, width: view.frame.width, height: messageView.frame.height)
-        
-        //   messageView.frame = CGRect(x: 0 , y: mapView.frame.origin.y, width: view.frame.width, height: mapView.frame.height)
-        
-        
-        
-        //    inputTextField.frame = CGRect(x: 0, y: 0, width: messageView.frame.width, height: messageView.frame.height)
-        
-        
-        
-        
-        
-        //   inputTextField.placeholderOld = "  Type a message"
-        //   scrollView.alpha = 0
-        //   pageControl.alpha = 0
-        //    titleFromCustCell.alpha = 0
-        
-        //    facebookButton.alpha = 0
-        //     tweeterButton.alpha = 0
-        //    pinterestButton.alpha = 0
-        
-        //     postdetalii.alpha = 0
-        //    contact.alpha = 0
-        //     doneButton.alpha = 0
-        //     flagButton.alpha = 0
-        //     flagButton.alpha = 0
-        //    shareButton.alpha = 0
-        
-        
-        
-        
-    }
-    
-    
-    func sendMessageFromKeyboard() {
-        
-        if let text = self.inputTextField.text {
-            if text.characters.count > 0 {
-                self.postcomposeMessage(content: self.inputTextField.text!)
-                self.inputTextField.text = ""
-                
-                
-                
-                
-            }
-            
-            
-        }
-        self.messageView.removeFromSuperview()
-        //    scrollView.alpha = 1
-        //    pageControl.alpha = 1
-        //    titleFromCustCell.alpha = 1
-        
-        //     facebookButton.alpha = 1
-        //    tweeterButton.alpha = 1
-        //    pinterestButton.alpha = 1
-        
-        //   postdetalii.alpha = 1
-        //     contact.alpha = 1
-        //     doneButton.alpha = 1
-        //     flagButton.alpha = 1
-        //     flagButton.alpha = 1
-        //     shareButton.alpha = 1
-        
-        blurEffect.alpha = 0
-    }
-    
-    @IBAction func  sendMessage(_ sender: Any) {
-        if let text = self.inputTextField.text {
-            if text.characters.count > 0 {
-                self.postcomposeMessage(content: self.inputTextField.text!)
-                self.inputTextField.text = ""
-            }
-        }
-        
-        self.messageView.removeFromSuperview()
-        scrollView.alpha = 1
-        pageControl.alpha = 1
-        titleFromCustCell.alpha = 1
-        
-        // facebookButton.alpha = 1
-        // tweeterButton.alpha = 1
-        
-        
-        postdetalii.alpha = 1
-        contact.alpha = 1
-        doneButton.alpha = 1
-        flagButton.alpha = 1
-        flagButton.alpha = 1
-    }
-    
     override func viewDidDisappear(_ animated: Bool) {
         
         self.aDouaHarta.mapType = MKMapType.hybrid
-        //        self.mapView.mapType = MKMapType.hybrid
-        
         self.aDouaHarta.showsUserLocation = false
-        //        self.mapView.showsUserLocation = false
-        
         self.locationManager.delegate = nil
-        
-        
-        //        self.viewMap.removeFromSuperview()
-        //        self.largerMap.removeFromSuperview()
         self.viewMap = nil
-        self.largerMap = nil
+    }
+}
+
+fileprivate extension UILabel {
+    static func heightFor(text:String, font:UIFont, width: CGFloat) -> CGFloat{
+        let label:UILabel = UILabel(frame: CGRect(x: 0,y: 0,width: width, height: CGFloat.greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.font = font
+        label.text = text
+        
+        label.sizeToFit()
+        return label.frame.height
     }
 }

@@ -97,6 +97,8 @@
 		7E0718AD1FDCDC8200C1E669 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0718AC1FDCDC8200C1E669 /* Session.swift */; };
 		7E3DFA201FDC56F9007E7BFC /* MessagesFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E3DFA1F1FDC56F9007E7BFC /* MessagesFlow.storyboard */; };
 		7E7B4F191FDDC964006C4617 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B4F181FDDC964006C4617 /* ImageCollectionViewCell.swift */; };
+		7E7B4F1C1FE03B10006C4617 /* ViewPostImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B4F1B1FE03B10006C4617 /* ViewPostImageCell.swift */; };
+		7E7B4F1E1FE03B47006C4617 /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B4F1D1FE03B47006C4617 /* ReusableCell.swift */; };
 		7E8C1B6E1FD5E8A100EAA156 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C1B6D1FD5E8A000EAA156 /* LoginVC.swift */; };
 		7E8C1B701FD5F01500EAA156 /* CreateNewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C1B6F1FD5F01500EAA156 /* CreateNewUserVC.swift */; };
 		7E8C1B721FD5F04900EAA156 /* NewSessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C1B711FD5F04900EAA156 /* NewSessionVC.swift */; };
@@ -237,6 +239,8 @@
 		7E0718AC1FDCDC8200C1E669 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		7E3DFA1F1FDC56F9007E7BFC /* MessagesFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessagesFlow.storyboard; sourceTree = "<group>"; };
 		7E7B4F181FDDC964006C4617 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		7E7B4F1B1FE03B10006C4617 /* ViewPostImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostImageCell.swift; sourceTree = "<group>"; };
+		7E7B4F1D1FE03B47006C4617 /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
 		7E8C1B6D1FD5E8A000EAA156 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		7E8C1B6F1FD5F01500EAA156 /* CreateNewUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewUserVC.swift; sourceTree = "<group>"; };
 		7E8C1B711FD5F04900EAA156 /* NewSessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSessionVC.swift; sourceTree = "<group>"; };
@@ -400,6 +404,7 @@
 				33BB4E891F2EA95600DB49FD /* Construction.swift */,
 				33BB4E8A1F2EA95600DB49FD /* Mix.swift */,
 				33BB4E8B1F2EA95600DB49FD /* Tools.swift */,
+				7E7B4F1D1FE03B47006C4617 /* ReusableCell.swift */,
 			);
 			name = CellCategories;
 			sourceTree = "<group>";
@@ -531,6 +536,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7E7B4F1A1FE03AA4006C4617 /* ViewPost */ = {
+			isa = PBXGroup;
+			children = (
+				7E7B4F1B1FE03B10006C4617 /* ViewPostImageCell.swift */,
+			);
+			path = ViewPost;
+			sourceTree = "<group>";
+		};
 		7E8C1B731FD5F47C00EAA156 /* QBImagePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,6 +653,7 @@
 		7EF8E7841FD31B63003E42FE /* UserFlows */ = {
 			isa = PBXGroup;
 			children = (
+				7E7B4F1A1FE03AA4006C4617 /* ViewPost */,
 				7E7B4F141FDDC771006C4617 /* AddPost */,
 				7E3DFA1E1FDC56DB007E7BFC /* Messages */,
 				7EF8E7851FD31B80003E42FE /* Home */,
@@ -905,6 +919,7 @@
 				33CC20BD1FB10F9600CD8A79 /* ModernSearchBarCell.swift in Sources */,
 				338B20731F2E9F4C005B6D2C /* UIVisualEffectViewX.swift in Sources */,
 				33BB4EB11F2EAFA600DB49FD /* Message.swift in Sources */,
+				7E7B4F1C1FE03B10006C4617 /* ViewPostImageCell.swift in Sources */,
 				338B206D1F2E9F4C005B6D2C /* UITextFieldX.swift in Sources */,
 				33BB4DCC1F2EA8CD00DB49FD /* AddPostVC.swift in Sources */,
 				338B20721F2E9F4C005B6D2C /* UIViewXRadialGradient.swift in Sources */,
@@ -966,6 +981,7 @@
 				E13EC22A1FDCB93A008F23FD /* ChatVC.swift in Sources */,
 				33BB4EA41F2EA99C00DB49FD /* PMAlertController.swift in Sources */,
 				7E0718AD1FDCDC8200C1E669 /* Session.swift in Sources */,
+				7E7B4F1E1FE03B47006C4617 /* ReusableCell.swift in Sources */,
 				33BB4E961F2EA95600DB49FD /* Tools.swift in Sources */,
 				338B20661F2E9F4C005B6D2C /* CustomizableButton.swift in Sources */,
 				33BB4EEB1F2EB91D00DB49FD /* NetworkingService.swift in Sources */,
