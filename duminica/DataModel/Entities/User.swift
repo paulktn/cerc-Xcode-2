@@ -29,21 +29,20 @@ class User: NSObject {
                 let imageData = UIImageJPEGRepresentation(avatar, 0.6)
                 let avatarPath = "userAvatar/\(withName)/image.jpg"
                 let avatarRef = storageRef.child(avatarPath)
-                avatarRef.putData(imageData!, metadata: postImageMetadata) { (newPostImageMD, error) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }else {
-                        if let avatarURL = newPostImageMD?.downloadURL()
-                        {
-                            let iosPostRef = Database.database().reference().child("ios_users").child((user?.uid)!).child("credentials")
-                            iosPostRef.child("avatar").setValue(avatarURL.absoluteString)
-                        }
-                    }
-                }
-                
                 let values = ["name": withName, "email": email]
                 Database.database().reference().child("ios_users").child((user?.uid)!).child("credentials").updateChildValues(values, withCompletionBlock: { (error, _) in
                     if error == nil {
+                        avatarRef.putData(imageData!, metadata: postImageMetadata) { (newPostImageMD, error) in
+                            if let error = error {
+                                print(error.localizedDescription)
+                            }else {
+                                if let avatarURL = newPostImageMD?.downloadURL()
+                                {
+                                    let iosPostRef = Database.database().reference().child("ios_users").child((user?.uid)!).child("credentials")
+                                    iosPostRef.child("avatar").setValue(avatarURL.absoluteString)
+                                }
+                            }
+                        }
                         AppDelegate.session.loginWith(id: user!.uid)
                         completion(nil)
                     }
