@@ -19,34 +19,49 @@ class User: NSObject {
     let id: String
     
     //MARK: Methods
-    class func registerUser(withName: String, email: String, password: String, completion: @escaping (Bool) -> Void) {
+    class func registerUser(withName: String, email: String, password: String, avatar: UIImage, completion: @escaping (String?) -> Void) {
         
         Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             if error == nil {
+                let storageRef = Storage.storage().reference()
+                let postImageMetadata = StorageMetadata()
+                postImageMetadata.contentType = "image/jpeg"
+                let imageData = UIImageJPEGRepresentation(avatar, 0.6)
+                let avatarPath = "userAvatar/\(withName)/image.jpg"
+                let avatarRef = storageRef.child(avatarPath)
+                avatarRef.putData(imageData!, metadata: postImageMetadata) { (newPostImageMD, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }else {
+                        if let avatarURL = newPostImageMD?.downloadURL()
+                        {
+                            let iosPostRef = Database.database().reference().child("ios_users").child((user?.uid)!).child("credentials")
+                            iosPostRef.child("avatar").setValue(avatarURL.absoluteString)
+                        }
+                    }
+                }
                 
                 let values = ["name": withName, "email": email]
                 Database.database().reference().child("ios_users").child((user?.uid)!).child("credentials").updateChildValues(values, withCompletionBlock: { (error, _) in
                     if error == nil {
                         AppDelegate.session.loginWith(id: user!.uid)
-                        completion(true)
+                        completion(nil)
                     }
                 })
             }
-                
             else {
-                completion(false)
-                print("nope")
+                completion(error?.localizedDescription)
             }
         })
     }
     
-    class func loginUser(withEmail: String, password: String, completion: @escaping (Bool) -> Swift.Void) {
+    class func loginUser(withEmail: String, password: String, completion: @escaping (String?) -> Swift.Void) {
         Auth.auth().signIn(withEmail: withEmail, password: password, completion: { (user, error) in
             if error == nil {
                 AppDelegate.session.loginWith(id: user!.uid)
-                completion(true)
+                completion(nil)
             } else {
-                completion(false)
+                completion(error?.localizedDescription)
             }
         })
     }

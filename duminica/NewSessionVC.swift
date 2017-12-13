@@ -21,13 +21,26 @@ class NewSessionVC: UIViewController {
 
     
     @IBAction func login(_ sender: Any) {
-        Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!, completion: { (user, error) in
+        guard emailField.text != "" else {
+            showAlertWith(title: "Error", message: "Please enter email", handler: nil)
+            return
+        }
+        guard passwordField.text != "" else {
+            showAlertWith(title: "Error", message: "Please enter password", handler: nil)
+            return
+        }
+        
+        ActivityIndicator.shared.show(inView: view)
+        User.loginUser(withEmail: emailField.text!, password: passwordField.text!) { (error) in
             if error == nil {
-                let userInfo = ["email": self.emailField.text!, "password": self.passwordField.text!]
-                UserDefaults.standard.set(userInfo, forKey: "userInformation")
+                self.navigationController?.dismiss(animated: true, completion: nil)
+            } else {
+                self.showAlertWith(title: "Error", message: error!, handler: nil)
             }
-        })
-        navigationController?.dismiss(animated: true, completion: nil)
+            defer {
+                ActivityIndicator.shared.hideWithDelay()
+            }
+        }
     }
     
 }

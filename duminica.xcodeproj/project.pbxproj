@@ -68,7 +68,6 @@
 		33BB4EB01F2EAFA600DB49FD /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4EAB1F2EAFA600DB49FD /* Conversation.swift */; };
 		33BB4EB11F2EAFA600DB49FD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4EAC1F2EAFA600DB49FD /* Message.swift */; };
 		33BB4EB41F2EAFB100DB49FD /* VCCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4EB31F2EAFB100DB49FD /* VCCells.swift */; };
-		33BB4EB71F2EB0FE00DB49FD /* LoginNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4EB61F2EB0FE00DB49FD /* LoginNew.swift */; };
 		33BB4ED01F2EB1ED00DB49FD /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4EBA1F2EB1ED00DB49FD /* IQNSArray+Sort.swift */; };
 		33BB4ED11F2EB1ED00DB49FD /* IQUIScrollView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4EBB1F2EB1ED00DB49FD /* IQUIScrollView+Additions.swift */; };
 		33BB4ED21F2EB1ED00DB49FD /* IQUITextFieldView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4EBC1F2EB1ED00DB49FD /* IQUITextFieldView+Additions.swift */; };
@@ -120,6 +119,8 @@
 		7EE6C54A1FCB3AFE00ABBAE8 /* UIColor+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C5491FCB3AFE00ABBAE8 /* UIColor+Common.swift */; };
 		7EE6C54C1FCB3B7000ABBAE8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C54B1FCB3B7000ABBAE8 /* Post.swift */; };
 		84BBB5D21FE0537000672C4D /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBB5D11FE0537000672C4D /* ChatRoom.swift */; };
+		84BBB5D41FE1AAF000672C4D /* ViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBB5D31FE1AAF000672C4D /* ViewController+Common.swift */; };
+		84BBB5D61FE1B0AC00672C4D /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBB5D51FE1B0AC00672C4D /* ActivityIndicator.swift */; };
 		C3FA740205A5A4147CD84FA5 /* Pods_duminica.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84BF03B2F933165F33F97ED /* Pods_duminica.framework */; };
 		E13EC22A1FDCB93A008F23FD /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13EC2291FDCB93A008F23FD /* ChatVC.swift */; };
 		E13EC22C1FDCDBCA008F23FD /* RoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13EC22B1FDCDBCA008F23FD /* RoomVC.swift */; };
@@ -206,7 +207,6 @@
 		33BB4EAB1F2EAFA600DB49FD /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		33BB4EAC1F2EAFA600DB49FD /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		33BB4EB31F2EAFB100DB49FD /* VCCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCCells.swift; sourceTree = "<group>"; };
-		33BB4EB61F2EB0FE00DB49FD /* LoginNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNew.swift; sourceTree = "<group>"; };
 		33BB4EBA1F2EB1ED00DB49FD /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQNSArray+Sort.swift"; sourceTree = "<group>"; };
 		33BB4EBB1F2EB1ED00DB49FD /* IQUIScrollView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIScrollView+Additions.swift"; sourceTree = "<group>"; };
 		33BB4EBC1F2EB1ED00DB49FD /* IQUITextFieldView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUITextFieldView+Additions.swift"; sourceTree = "<group>"; };
@@ -276,6 +276,8 @@
 		7EE6C5491FCB3AFE00ABBAE8 /* UIColor+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Common.swift"; sourceTree = "<group>"; };
 		7EE6C54B1FCB3B7000ABBAE8 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		84BBB5D11FE0537000672C4D /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		84BBB5D31FE1AAF000672C4D /* ViewController+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Common.swift"; sourceTree = "<group>"; };
+		84BBB5D51FE1B0AC00672C4D /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		8D3A35B2E351B884C2CAB506 /* Pods-duminica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-duminica.debug.xcconfig"; path = "Pods/Target Support Files/Pods-duminica/Pods-duminica.debug.xcconfig"; sourceTree = "<group>"; };
 		D84BF03B2F933165F33F97ED /* Pods_duminica.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_duminica.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E13EC2291FDCB93A008F23FD /* ChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
@@ -342,7 +344,6 @@
 			isa = PBXGroup;
 			children = (
 				331593EE1F5FE2AA00B8316A /* InformationVC.swift */,
-				33BB4EB61F2EB0FE00DB49FD /* LoginNew.swift */,
 				7E8C1B6D1FD5E8A000EAA156 /* LoginVC.swift */,
 				7E8C1B6F1FD5F01500EAA156 /* CreateNewUserVC.swift */,
 				7E8C1B711FD5F04900EAA156 /* NewSessionVC.swift */,
@@ -431,6 +432,7 @@
 		33BB4EB51F2EAFFA00DB49FD /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				84BBB5D51FE1B0AC00672C4D /* ActivityIndicator.swift */,
 				33BB4EA91F2EAFA600DB49FD /* UserLocationPin.swift */,
 				330654D71F537AE400EC922F /* PickedUp.swift */,
 				330654DB1F56365E00EC922F /* Recept.swift */,
@@ -626,6 +628,7 @@
 				7EE6C5471FCB3AA600ABBAE8 /* String+Common.swift */,
 				7EE6C5491FCB3AFE00ABBAE8 /* UIColor+Common.swift */,
 				7E0718A81FDC78F800C1E669 /* PHAsset+Common.swift */,
+				84BBB5D31FE1AAF000672C4D /* ViewController+Common.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -722,7 +725,7 @@
 				TargetAttributes = {
 					338B202B1F2E9788005B6D2C = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = B3989CPB3T;
+						DevelopmentTeam = R632NVF27E;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -889,7 +892,6 @@
 				338B206A1F2E9F4C005B6D2C /* UIImageViewX.swift in Sources */,
 				33BB4EDE1F2EB1ED00DB49FD /* IQToolbar.swift in Sources */,
 				33BB4E921F2EA95600DB49FD /* Toys.swift in Sources */,
-				33BB4EB71F2EB0FE00DB49FD /* LoginNew.swift in Sources */,
 				338B206C1F2E9F4C005B6D2C /* UISliderX.swift in Sources */,
 				338B20711F2E9F4C005B6D2C /* UIView3.swift in Sources */,
 				338B20681F2E9F4C005B6D2C /* CustomizableTextfield.swift in Sources */,
@@ -928,6 +930,7 @@
 				33BB4EA71F2EAF8700DB49FD /* User.swift in Sources */,
 				33BB4E8F1F2EA95600DB49FD /* Furniture.swift in Sources */,
 				7ECD0EC71FD328D70035F77C /* CollectionTableViewCell.swift in Sources */,
+				84BBB5D41FE1AAF000672C4D /* ViewController+Common.swift in Sources */,
 				33BB4E9F1F2EA97800DB49FD /* PhotoCell.swift in Sources */,
 				338B20651F2E9F4C005B6D2C /* CustomizableView.swift in Sources */,
 				33BB4EDB1F2EB1ED00DB49FD /* IQBarButtonItem.swift in Sources */,
@@ -941,6 +944,7 @@
 				7E7B4F191FDDC964006C4617 /* ImageCollectionViewCell.swift in Sources */,
 				338B20701F2E9F4C005B6D2C /* UIViewX.swift in Sources */,
 				E13EC2301FDCEA2B008F23FD /* RoomCell.swift in Sources */,
+				84BBB5D61FE1B0AC00672C4D /* ActivityIndicator.swift in Sources */,
 				33BB4EAE1F2EAFA600DB49FD /* UserLocationPin.swift in Sources */,
 				7EE6C54A1FCB3AFE00ABBAE8 /* UIColor+Common.swift in Sources */,
 				335F50721F64E23600C30570 /* extensionViewPost.swift in Sources */,
@@ -1112,7 +1116,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3989CPB3T;
+				DEVELOPMENT_TEAM = R632NVF27E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1135,7 +1139,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3989CPB3T;
+				DEVELOPMENT_TEAM = R632NVF27E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
