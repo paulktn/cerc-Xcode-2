@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
 class User: NSObject {
     
@@ -100,6 +101,81 @@ class User: NSObject {
         })
     }
     
+    class func loginWithFB(viewController: UIViewController,
+                           completion: ((LoginResult) -> ())?) {
+        let manager = FBSDKLoginManager()
+        manager.logIn(withReadPermissions: ["public_profile", "email"], from: viewController) { (result, error) in
+            if error != nil {
+                completion?(.failed)
+            } else if (result?.isCancelled)! {
+                completion?(.cancelled)
+            } else {
+                let credential = FacebookAuthProvider.credential(withAccessToken: (result?.token.tokenString)!)
+                Auth.auth().signIn(with: credential) { (user, error) in
+                    if error == nil {
+                        let values = ["name": user?.displayName ?? "", "email": user?.email ?? ""]
+                        Database.database().reference().child("ios_users").child((user?.uid)!).child("credentials").setValue(values)
+                        AppDelegate.session.loginWith(id: user!.uid)
+                        completion?(.success)
+                    }
+                }
+            }
+        }
+        
+        
+        
+        
+    }
+    
+//    class func loginWithFacebook(viewController: UIViewController,
+//                                  completion: ((LoginResult) -> ())?) {
+//
+//        let manager = FBSDKLoginManager()
+//        manager.logIn([.publicProfile], viewController: viewController) { (result) in
+//                                switch result {
+//                                case .cancelled:
+//                                    completion?(.cancelled, nil)
+//                                case .failed:
+//                                    completion?(.failed, nil)
+//                                case .success(grantedPermissions: _,
+//                                              declinedPermissions: _,
+//                                              token: let token):
+//                                    self.fbToken = token.authenticationToken
+//                                    let credential = FacebookAuthProvider.credential(withAccessToken: token.authenticationToken)
+//                                    print(credential.provider, credential, token.authenticationToken)
+//                                    Auth.auth().signIn(with: credential) { (user, error) in
+//                                        if let error = error {
+//                                            return
+//                                        }
+//                                        completion?(.success)
+//                                    }
+//                                }
+//                        })
+//        }
+//            .logIn([.publicProfile, .email],
+//                   viewController: viewController,
+//                   completion: { result in
+//                    switch result {
+//                    case .cancelled:
+//                        completion?(.cancelled, nil)
+//                    case .failed:
+//                        completion?(.failed, nil)
+//                    case .success(grantedPermissions: _,
+//                                  declinedPermissions: _,
+//                                  token: let token):
+//                        self.fbToken = token.authenticationToken
+//                        let credential = FacebookAuthProvider.credential(withAccessToken: token.authenticationToken)
+//                        print(credential.provider, credential, token.authenticationToken)
+//                        Auth.auth().signIn(with: credential) { (user, error) in
+//                            if let error = error {
+//                                return
+//                            }
+//                            completion?(.success)
+//                        }
+//                    }
+//            })
+ //   }
+    
     
     
     class func checkUserVerification(completion: @escaping (Bool) -> Swift.Void) {
@@ -116,6 +192,12 @@ class User: NSObject {
         self.id = id
        
     }
+}
+
+public enum LoginResult {
+    case success
+    case cancelled
+    case failed
 }
 
 
