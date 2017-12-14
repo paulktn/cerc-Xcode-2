@@ -11,7 +11,6 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     @IBOutlet weak var antet: UIViewX!
     @IBOutlet weak var collectionViewCategory: UICollectionView!
     @IBOutlet var viewMap: UIView!
-    @IBOutlet weak var inputTextField: IQTextView!
     @IBOutlet weak var flagButton: UIButton!
     @IBOutlet weak var locationLabel: CustomLabel!
     @IBOutlet var pageControl: UIPageControl!
@@ -19,30 +18,30 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     @IBOutlet weak var tweeterButton: CustomizableButton!
     @IBOutlet weak var facebookButton: CustomizableButton!
     @IBOutlet weak var doneButton: CustomizableButton!
-    @IBOutlet weak var donButton: UIButtonX!
+    @IBOutlet weak var donButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var keywordLabel: UILabel!
-    @IBOutlet weak var aDouaHarta: MKMapView!
     @IBOutlet weak var toLargerMap: UIButton!
     @IBOutlet weak var titleFromCustCell: UILabel!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var shareOptions: UIButton!
     @IBOutlet weak var mapViewHidingView: UIView!
-    @IBOutlet var largerMapVIew: UIView!
+    @IBOutlet var largerMapView: UIView!
     @IBOutlet weak var largerMapMapView: MKMapView!
-    @IBOutlet var contactLabel: UILabel!
+    @IBOutlet var contactButtonOutlet: UIButton!
     
+    @IBOutlet var contactLabel: UILabel!
     @IBOutlet weak var imagesCollecionView: UICollectionView!
     
     @IBOutlet weak var mapViewHeight: NSLayoutConstraint!
     @IBOutlet weak var postDetailsHeight: NSLayoutConstraint!
     @IBOutlet weak var sharingHeight: NSLayoutConstraint!
     @IBOutlet weak var similarItemsHeight: NSLayoutConstraint!
+    @IBOutlet weak var similarItemsTitleHeight: NSLayoutConstraint!
     
     var passPost: Post!
     
-    var sweets: [Post] = [Post]()
-    var filteredSweets = [Post] ()
+    var similarPosts: [Post] = []
     var postDelegate: PostDelegate?
     
     let locationManager = CLLocationManager()
@@ -63,7 +62,6 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     @IBOutlet var postdetalii: UILabel!
 
     private enum OpenedOption {
-        case mapView
         case postDetails
         case sharing
         case similarItems
@@ -74,24 +72,31 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     
     @IBAction func close(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil)
-        //pushTomainView()
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchAllPost()
+        fetchSimilarPosts()
         self.collectionViewCategory.delegate = self
         self.collectionViewCategory.dataSource = self
         
-        self.facebookButton.alpha = 0
-        self.tweeterButton.alpha = 0
+        postDetailsHeight.constant = 0
+        sharingHeight.constant = 0
+        similarItemsHeight.constant = 0
+        similarItemsTitleHeight.constant = 0
         
-        postDetaliiView.alpha = 0
+        postdetalii.text = passPost.details
+        viewPostTitle.text = passPost.title
+        
+        if passPost.imageURLs.count > 1 {
+            pageControl.numberOfPages = passPost.imageURLs.count
+        } else {
+            pageControl.isHidden = true
+        }
+        
         keywordLabel.text! = "\((passPost?.title)!)"
         self.useridFromDatabase = "\((passPost?.ownerId)!)"
-        viewPostTitle.text! = "\((passPost?.category.rawValue) ?? "")"
         self.databaseRef.child("ios_users").child(self.useridFromDatabase).child("credentials").child("email").observe(.value, with: { (snapshot) in
             if snapshot.exists(){
                 let removal: [Character] = [".", "#", "$", "@"]
@@ -102,8 +107,6 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
                     if snapshot.exists(){
                         self.profilePic.sd_setImage(with: URL(string: "\(snapshot.value! as! String)"))
                     } else {
-                        
-                        
                         self.databaseRef.child("ios_users").child(self.useridFromDatabase).child("credentials").child("id").observe(.value, with: { (snapshot) in
                             if snapshot.exists() {
                                 self.profilePic.sd_setImage(with: URL(string: "https://graph.facebook.com/\(snapshot.value! as! String)/picture?type=small"))
@@ -116,20 +119,17 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
             }
         })
         
-        self.databaseRef.child("ios_users").child(self.useridFromDatabase).child("credentials").child("name").observe(.value, with: { (snapshot) in
+        self.databaseRef.child("ios_users").child(passPost.ownerId).child("credentials").child("name").observe(.value, with: { (snapshot) in
             if snapshot.exists(){
                 self.contactLabel.text = "contact \(snapshot.value as? String ?? "")"
             }
         })
-
-        inputTextField.alpha = 1
         
         mapView.delegate = self
-        aDouaHarta.delegate = self
         let fromDate = NSDate(timeIntervalSince1970: TimeInterval((passPost?.date)!))
         let toDate = NSDate()
         
-        let differenceOfDate = Calendar.current.dateComponents([.second,.minute,.hour,.day,.weekOfMonth], from: fromDate as Date, to: toDate as Date)
+        let differenceOfDate = Calendar.current.dateComponents([.second, .minute, .hour, .day, .weekOfMonth], from: fromDate as Date, to: toDate as Date)
         if differenceOfDate.second! <= 0 {
             titleFromCustCell.text = "     posted now"
         } else if differenceOfDate.second! > 0 && differenceOfDate.minute == 0 {
@@ -150,21 +150,11 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         }
         
         locationLabel.text! = "          \((passPost?.locationTitle)!)"
-        //       postUserId.text! = (passPost?.userId)!
-        postdetalii.text! = (passPost?.details)!
         
-        // self.postdetalii.isHidden = false
-        self.postdetalii.clipsToBounds = true
+        postdetalii.clipsToBounds = true
         viewMaps()
         
         mapView.alpha = 1
-        
-        func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            
-            let page = scrollView.contentOffset.x / scrollView.frame.size.width
-            pageControl.currentPage = Int(page)
-            
-        }
 
         pageControl.currentPage = 0
         
@@ -172,27 +162,39 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         pageControl.addTarget(self, action: Selector(("changePage:")), for: UIControlEvents.valueChanged)
     }
     
-    private func selectOption(_ newOption: OpenedOption) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         
-        defer {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.view.layoutIfNeeded()
-            })
-        }
+        // Adding map view
+        view.addSubview(largerMapView)
+        largerMapView.frame = CGRect.init(x: 0,
+                                          y: -UIScreen.main.bounds.height,
+                                          width: UIScreen.main.bounds.width,
+                                          height: UIScreen.main.bounds.height)
+        largerMapMapView.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        largerMapView.removeFromSuperview()
+    }
+    
+    private func selectOption(_ newOption: OpenedOption) {
         
         closeAllCollections()
         
         guard currentOption != newOption else {
             currentOption = .none
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
+
             return
         }
         
         switch newOption {
-        case .mapView:
-            mapViewHeight.constant = UIScreen.main.bounds.width
-            mapViewHidingView.alpha = 0
         case .postDetails:
-            postDetailsHeight.constant = UILabel.heightFor(text: passPost.details ?? "", font: postdetalii.font, width: postdetalii.frame.width)
+            postDetailsHeight.constant = UILabel.heightFor(text: passPost.details ?? "", font: postdetalii.font, width: postdetalii.frame.width) + 8
             postdetalii.alpha = 1
         case .sharing:
             sharingHeight.constant = 45
@@ -211,24 +213,11 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     }
     
     private func closeAllCollections() {
-        mapViewHeight.constant = imagesCollecionView.frame.height
-        mapViewHidingView.alpha = 0.5
         postDetailsHeight.constant = 0
         postdetalii.alpha = 0
         sharingHeight.constant = 0
         similarItemsHeight.constant = 0
         collectionViewCategory.alpha = 0
-    }
-    
-    func changePage(sender: AnyObject) -> () {
-        //let x = CGFloat(pageControl.currentPage) * scrollView.frame.size.width
-        //scrollView.setContentOffset(CGPoint(x: x,y :0), animated: true)
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
-        let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
-        pageControl.currentPage = Int(pageNumber)
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -243,88 +232,81 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         }
     }
     
-    func fetchAllPost(completion: @escaping ([Post])->()) {
+    func fetchSimilarPosts() {
         
-        let postsRef = databaseRef.child("posts").queryOrdered(byChild: "latit").queryStarting(atValue: ((self.passPost?.latitude)! - 1)).queryEnding(atValue: ((self.passPost?.latitude)! + 1))
-        postsRef.observe(.value, with: { (snapshot) in
-            
-            var postArray = [Post]()
-            for podddst in snapshot.children {
-                
-                if let postObject = Post(snapshot: podddst as! DataSnapshot) {
-                    postArray.append(postObject)
+        databaseRef
+            .child("ios_posts")
+//            .queryEqual(toValue: passPost.category.rawValue, childKey: "category")
+            .observe(.value, with: { (snapshot) in
+                print(snapshot.key)
+                if let data = snapshot.children.allObjects as? [DataSnapshot] {
+                    for post in data {
+                        if let postObject = Post(snapshot: post),
+                            postObject.id != self.passPost.id {
+                            self.similarPosts.append(postObject)
+                        }
+                    }
+                    
+                    if !self.similarPosts.isEmpty {
+                        self.similarItemsTitleHeight.constant = 45
+                        self.similarItemsHeight.constant = 139
+                        self.collectionViewCategory.reloadData()
+                    }
                 }
-            }
-            completion(postArray)
-            self.collectionViewCategory.reloadData()
-            
-            
-            
         }) { (error:Error) in
             print(error.localizedDescription)
-        }
-        
-    }
-    
-    private func fetchAllPost(){
-        fetchAllPost {(posts) in
-            self.sweets = posts
-            self.filteredSweets = self.sweets.filter {
-                $0.category == self.passPost?.category && $0.longitude.isLessThanOrEqualTo( ((self.passPost?.longitude)! + 1))
-                
-            }
-            
-            self.filteredSweets.sort(by: { (post1, post2) -> Bool in
-                Int(post1.date) > Int(post2.date)
-            })
-            
-            self.collectionViewCategory.reloadData()
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredSweets.count
+        
+        if collectionView === imagesCollecionView {
+            return passPost.imageURLs.count
+        }
+        
+        return similarPosts.count
     }
     
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if collectionView === imagesCollecionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCollectionViewCell", for: indexPath) as! ImageCollectionViewCell
+            
+            cell.cellImageView.sd_setImage(with: passPost.imageURLs[indexPath.row])
+            return cell
+        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "custCell", for: indexPath) as! custCell
         
         
-        let sweet = filteredSweets[indexPath.row]
+        let post = similarPosts[indexPath.row]
         
-        cell.titleCell.text = sweet.category.rawValue.capitalized
+        cell.titleCell.text = post.category.rawValue.capitalized
         
-        
-        cell.imageCell.sd_setImage(with: sweet.logoUrl)
-        cell.configureCell(post: self.filteredSweets[indexPath.item])
-        
+        cell.imageCell.sd_setImage(with: post.logoUrl)
+        cell.configureCell(post: post)
         
         cell.tag = indexPath.item
-        
-        
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        postDelegate?.selectedPost(post: self.filteredSweets[indexPath.item])
-        self.passPost = self.filteredSweets[indexPath.item]
+        if collectionView === imagesCollecionView {
+            return
+        }
+        
+        postDelegate?.selectedPost(post: self.similarPosts[indexPath.item])
+        self.passPost = self.similarPosts[indexPath.item]
     }
     
-    
-    
     func selectedPost(post: Post) {
-        
-        
         self.performSegue(withIdentifier: "fromSimilar   ", sender: post)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toReportPage" {
-            
-            
             let postDetailPage = segue.destination as? report
             postDetailPage?.passPostEdit = passPost
             
@@ -332,7 +314,7 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
             
             let toSimilarObjects = segue.destination as? ViewPostVC
             if let indexPath = self.collectionViewCategory?.indexPath(for: sender as! UICollectionViewCell) {
-                toSimilarObjects?.passPost = filteredSweets[indexPath.row]
+                toSimilarObjects?.passPost = similarPosts[indexPath.row]
             }
         } else if segue.identifier == "ShowChatVC",
             let vc = segue.destination as? ChatVC,
@@ -342,6 +324,22 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
             vc.roomId = chatId
             vc.currentUser = currentUser
         }
+    }
+    
+    @IBAction func removeLargerMap(_ sender: CustomizableButton) {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.largerMapView.frame = CGRect(x: 0,
+                                              y: -UIScreen.main.bounds.height,
+                                              width: UIScreen.main.bounds.width,
+                                              height: UIScreen.main.bounds.height)
+        })
+    }
+    
+    @IBAction func contactUserButtonPressed(_ sender: UIButtonX) {
+        ChatManager.shared.checkIfChatExists(post: passPost, completion: { (chatId) in
+            self.performSegue(withIdentifier: "ShowChatVC", sender: chatId ?? ChatManager.shared.initiateChat(with: self.passPost))
+        })
+        
     }
     
     @IBAction func saveToList(_ sender: Any) {
@@ -372,18 +370,27 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
     }
     
     @IBAction func toLargerMapAction(_ sender: Any) {
-        
-        selectOption(.mapView)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.largerMapView.frame = CGRect(x: 0,
+                                              y: 0,
+                                              width: UIScreen.main.bounds.width,
+                                              height: UIScreen.main.bounds.height)
+        })
         
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.04, 0.04)
         let location = passPost.location
         let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         
-        mapView.setRegion(region, animated: true)
+        largerMapMapView.setRegion(region, animated: true)
         let diskOverlay: MKCircle = MKCircle.init(center: location, radius: 700)
-        mapView.add(diskOverlay)
-        mapView.showsUserLocation = true
+        largerMapMapView.add(diskOverlay)
+        largerMapMapView.showsUserLocation = true
+    }
+    
+    @IBAction func selectPage(_ sender: UIPageControl) {
+        let page = sender.currentPage
+        imagesCollecionView.contentOffset.x = UIScreen.main.bounds.width * CGFloat(page)
     }
     
     func viewMaps() {
@@ -409,19 +416,6 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         }
     }
     
-    func postuploadMessage(withValues: [String: Any], toID: String, completion: @escaping (Bool) -> Swift.Void) {
-        if let currentUserID = Auth.auth().currentUser?.uid {
-            
-            Database.database().reference().child("conversations").childByAutoId().childByAutoId().setValue(withValues, withCompletionBlock: { (error, reference) in
-                let data = ["location": reference.parent!.key]
-                Database.database().reference().child("ios_users").child(currentUserID).child("conversations").child(toID).updateChildValues(data)
-                Database.database().reference().child("ios_users").child(toID).child("conversations").child(currentUserID).updateChildValues(data)
-                self.saveToWishList()
-                completion(true)
-            })
-        }
-    }
-    
     func takeToAccount(){
         let accountVC = self.storyboard?.instantiateViewController(withIdentifier: "MyAccountVC") as! AccountVC
         self.show(accountVC, sender: nil)
@@ -429,10 +423,33 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
 
     override func viewDidDisappear(_ animated: Bool) {
         
-        self.aDouaHarta.mapType = MKMapType.hybrid
-        self.aDouaHarta.showsUserLocation = false
         self.locationManager.delegate = nil
         self.viewMap = nil
+    }
+}
+
+extension ViewPostVC:  UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if collectionView === self.imagesCollecionView {
+            return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
+        }
+        
+        return CGSize(width: 139, height: 139)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 3
     }
 }
 

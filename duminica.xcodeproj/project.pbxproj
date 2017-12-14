@@ -13,7 +13,6 @@
 		33118AAF1F6B272C00D56606 /* OnboardingPresentationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33118AAE1F6B272C00D56606 /* OnboardingPresentationVC.swift */; };
 		331593EF1F5FE2AA00B8316A /* InformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331593EE1F5FE2AA00B8316A /* InformationVC.swift */; };
 		331EFE771F5DF44100A748E5 /* settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331EFE761F5DF44100A748E5 /* settings.swift */; };
-		335F50721F64E23600C30570 /* extensionViewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335F50711F64E23600C30570 /* extensionViewPost.swift */; };
 		338B20301F2E9788005B6D2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338B202F1F2E9788005B6D2C /* AppDelegate.swift */; };
 		338B20351F2E9788005B6D2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338B20331F2E9788005B6D2C /* Main.storyboard */; };
 		338B20371F2E9788005B6D2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338B20361F2E9788005B6D2C /* Assets.xcassets */; };
@@ -45,16 +44,6 @@
 		33BB4DD91F2EA8F000DB49FD /* UserHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4DD81F2EA8F000DB49FD /* UserHeaderTableViewCell.swift */; };
 		33BB4DDB1F2EA8FC00DB49FD /* locationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4DDA1F2EA8FC00DB49FD /* locationBar.swift */; };
 		33BB4DDD1F2EA90300DB49FD /* ViewPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4DDC1F2EA90300DB49FD /* ViewPostVC.swift */; };
-		33BB4E8C1F2EA95600DB49FD /* Appliances.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E811F2EA95600DB49FD /* Appliances.swift */; };
-		33BB4E8D1F2EA95600DB49FD /* Clothing & Accesories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E821F2EA95600DB49FD /* Clothing & Accesories.swift */; };
-		33BB4E8E1F2EA95600DB49FD /* Electronics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E831F2EA95600DB49FD /* Electronics.swift */; };
-		33BB4E8F1F2EA95600DB49FD /* Furniture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E841F2EA95600DB49FD /* Furniture.swift */; };
-		33BB4E901F2EA95600DB49FD /* Household .swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E851F2EA95600DB49FD /* Household .swift */; };
-		33BB4E911F2EA95600DB49FD /* Sporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E861F2EA95600DB49FD /* Sporting.swift */; };
-		33BB4E921F2EA95600DB49FD /* Toys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E871F2EA95600DB49FD /* Toys.swift */; };
-		33BB4E931F2EA95600DB49FD /* Auto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E881F2EA95600DB49FD /* Auto.swift */; };
-		33BB4E941F2EA95600DB49FD /* Construction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E891F2EA95600DB49FD /* Construction.swift */; };
-		33BB4E951F2EA95600DB49FD /* Mix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E8A1F2EA95600DB49FD /* Mix.swift */; };
 		33BB4E961F2EA95600DB49FD /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E8B1F2EA95600DB49FD /* Tools.swift */; };
 		33BB4E9C1F2EA97800DB49FD /* custCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E981F2EA97800DB49FD /* custCell.swift */; };
 		33BB4E9D1F2EA97800DB49FD /* accountCust.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB4E991F2EA97800DB49FD /* accountCust.swift */; };
@@ -150,7 +139,6 @@
 		33118AAE1F6B272C00D56606 /* OnboardingPresentationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPresentationVC.swift; sourceTree = "<group>"; };
 		331593EE1F5FE2AA00B8316A /* InformationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationVC.swift; sourceTree = "<group>"; };
 		331EFE761F5DF44100A748E5 /* settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settings.swift; sourceTree = "<group>"; };
-		335F50711F64E23600C30570 /* extensionViewPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensionViewPost.swift; sourceTree = "<group>"; };
 		338B202C1F2E9788005B6D2C /* duminica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = duminica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338B202F1F2E9788005B6D2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		338B20341F2E9788005B6D2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -185,16 +173,6 @@
 		33BB4DD81F2EA8F000DB49FD /* UserHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		33BB4DDA1F2EA8FC00DB49FD /* locationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = locationBar.swift; sourceTree = "<group>"; };
 		33BB4DDC1F2EA90300DB49FD /* ViewPostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPostVC.swift; sourceTree = "<group>"; };
-		33BB4E811F2EA95600DB49FD /* Appliances.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appliances.swift; sourceTree = "<group>"; };
-		33BB4E821F2EA95600DB49FD /* Clothing & Accesories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Clothing & Accesories.swift"; sourceTree = "<group>"; };
-		33BB4E831F2EA95600DB49FD /* Electronics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Electronics.swift; sourceTree = "<group>"; };
-		33BB4E841F2EA95600DB49FD /* Furniture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Furniture.swift; sourceTree = "<group>"; };
-		33BB4E851F2EA95600DB49FD /* Household .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Household .swift"; sourceTree = "<group>"; };
-		33BB4E861F2EA95600DB49FD /* Sporting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sporting.swift; sourceTree = "<group>"; };
-		33BB4E871F2EA95600DB49FD /* Toys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toys.swift; sourceTree = "<group>"; };
-		33BB4E881F2EA95600DB49FD /* Auto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auto.swift; sourceTree = "<group>"; };
-		33BB4E891F2EA95600DB49FD /* Construction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Construction.swift; sourceTree = "<group>"; };
-		33BB4E8A1F2EA95600DB49FD /* Mix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mix.swift; sourceTree = "<group>"; };
 		33BB4E8B1F2EA95600DB49FD /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		33BB4E981F2EA97800DB49FD /* custCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = custCell.swift; sourceTree = "<group>"; };
 		33BB4E991F2EA97800DB49FD /* accountCust.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = accountCust.swift; sourceTree = "<group>"; };
@@ -395,16 +373,6 @@
 		33BB4E801F2EA94400DB49FD /* CellCategories */ = {
 			isa = PBXGroup;
 			children = (
-				33BB4E811F2EA95600DB49FD /* Appliances.swift */,
-				33BB4E821F2EA95600DB49FD /* Clothing & Accesories.swift */,
-				33BB4E831F2EA95600DB49FD /* Electronics.swift */,
-				33BB4E841F2EA95600DB49FD /* Furniture.swift */,
-				33BB4E851F2EA95600DB49FD /* Household .swift */,
-				33BB4E861F2EA95600DB49FD /* Sporting.swift */,
-				33BB4E871F2EA95600DB49FD /* Toys.swift */,
-				33BB4E881F2EA95600DB49FD /* Auto.swift */,
-				33BB4E891F2EA95600DB49FD /* Construction.swift */,
-				33BB4E8A1F2EA95600DB49FD /* Mix.swift */,
 				33BB4E8B1F2EA95600DB49FD /* Tools.swift */,
 				7E7B4F1D1FE03B47006C4617 /* ReusableCell.swift */,
 			);
@@ -439,7 +407,6 @@
 				33BB4EA91F2EAFA600DB49FD /* UserLocationPin.swift */,
 				330654D71F537AE400EC922F /* PickedUp.swift */,
 				330654DB1F56365E00EC922F /* Recept.swift */,
-				335F50711F64E23600C30570 /* extensionViewPost.swift */,
 				33118AAE1F6B272C00D56606 /* OnboardingPresentationVC.swift */,
 			);
 			name = classes;
@@ -884,7 +851,6 @@
 				33BB4EA31F2EA99C00DB49FD /* PMAlertAction.swift in Sources */,
 				33BB4EDC1F2EB1ED00DB49FD /* IQPreviousNextView.swift in Sources */,
 				7E8C1B9B1FD5F47C00EAA156 /* QBAssetCell.m in Sources */,
-				33BB4E901F2EA95600DB49FD /* Household .swift in Sources */,
 				33BB4ED41F2EB1ED00DB49FD /* IQUIViewController+Additions.swift in Sources */,
 				33CC20C01FB10F9600CD8A79 /* ModernSearchBarIcon.swift in Sources */,
 				7E8C1B721FD5F04900EAA156 /* NewSessionVC.swift in Sources */,
@@ -898,11 +864,9 @@
 				330654D81F537AE400EC922F /* PickedUp.swift in Sources */,
 				33BB4EDD1F2EB1ED00DB49FD /* IQTitleBarButtonItem.swift in Sources */,
 				33BB4ED21F2EB1ED00DB49FD /* IQUITextFieldView+Additions.swift in Sources */,
-				33BB4E941F2EA95600DB49FD /* Construction.swift in Sources */,
 				33BB4EDA1F2EB1ED00DB49FD /* IQTextView.swift in Sources */,
 				338B206A1F2E9F4C005B6D2C /* UIImageViewX.swift in Sources */,
 				33BB4EDE1F2EB1ED00DB49FD /* IQToolbar.swift in Sources */,
-				33BB4E921F2EA95600DB49FD /* Toys.swift in Sources */,
 				33BB4EB71F2EB0FE00DB49FD /* LoginNew.swift in Sources */,
 				338B206C1F2E9F4C005B6D2C /* UISliderX.swift in Sources */,
 				338B20711F2E9F4C005B6D2C /* UIView3.swift in Sources */,
@@ -930,18 +894,14 @@
 				33BB4ED61F2EB1ED00DB49FD /* IQKeyboardManagerConstants.swift in Sources */,
 				33BB4DCD1F2EA8CD00DB49FD /* EditPost.swift in Sources */,
 				33BB4DD51F2EA8E200DB49FD /* AccountVC.swift in Sources */,
-				33BB4E8D1F2EA95600DB49FD /* Clothing & Accesories.swift in Sources */,
 				33A37D3D1F5AAFC30021365C /* SocialMedia.swift in Sources */,
 				33BB4E9C1F2EA97800DB49FD /* custCell.swift in Sources */,
-				33BB4E951F2EA95600DB49FD /* Mix.swift in Sources */,
 				33CC20BF1FB10F9600CD8A79 /* ModernSearchBarDelegate.swift in Sources */,
-				33BB4E8E1F2EA95600DB49FD /* Electronics.swift in Sources */,
 				33CC20C11FB10F9600CD8A79 /* ModernSearchBarModel.swift in Sources */,
 				7E8C1B971FD5F47C00EAA156 /* QBImagePickerController.m in Sources */,
 				33BB4EB01F2EAFA600DB49FD /* Conversation.swift in Sources */,
 				7E0718AB1FDCA50900C1E669 /* ChatManager.swift in Sources */,
 				33BB4EA71F2EAF8700DB49FD /* User.swift in Sources */,
-				33BB4E8F1F2EA95600DB49FD /* Furniture.swift in Sources */,
 				7ECD0EC71FD328D70035F77C /* CollectionTableViewCell.swift in Sources */,
 				33BB4E9F1F2EA97800DB49FD /* PhotoCell.swift in Sources */,
 				338B20651F2E9F4C005B6D2C /* CustomizableView.swift in Sources */,
@@ -958,7 +918,6 @@
 				E13EC2301FDCEA2B008F23FD /* RoomCell.swift in Sources */,
 				33BB4EAE1F2EAFA600DB49FD /* UserLocationPin.swift in Sources */,
 				7EE6C54A1FCB3AFE00ABBAE8 /* UIColor+Common.swift in Sources */,
-				335F50721F64E23600C30570 /* extensionViewPost.swift in Sources */,
 				33BB4ED71F2EB1ED00DB49FD /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				7EE6C5481FCB3AA600ABBAE8 /* String+Common.swift in Sources */,
 				338B206E1F2E9F4C005B6D2C /* UIViewAnchorPoint.swift in Sources */,
@@ -967,13 +926,10 @@
 				7E8C1B9A1FD5F47C00EAA156 /* QBSlomoIconView.m in Sources */,
 				338B20671F2E9F4C005B6D2C /* CustomLabel.swift in Sources */,
 				33BB4E9E1F2EA97800DB49FD /* TBCell.swift in Sources */,
-				33BB4E931F2EA95600DB49FD /* Auto.swift in Sources */,
 				7E8C1B981FD5F47C00EAA156 /* QBCheckmarkView.m in Sources */,
 				7E8C1B911FD5F47C00EAA156 /* QBVideoIconView.m in Sources */,
 				330654DA1F540B8D00EC922F /* recepts.swift in Sources */,
 				84BBB5D21FE0537000672C4D /* ChatRoom.swift in Sources */,
-				33BB4E911F2EA95600DB49FD /* Sporting.swift in Sources */,
-				33BB4E8C1F2EA95600DB49FD /* Appliances.swift in Sources */,
 				33BB4DDB1F2EA8FC00DB49FD /* locationBar.swift in Sources */,
 				338B20691F2E9F4C005B6D2C /* UIButtonX.swift in Sources */,
 				E1BA494B1FDC707C0040EB25 /* (null) in Sources */,

@@ -707,7 +707,7 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
                                  "details": postDetails,
                                  "title": self.postTitle.text ?? "",
                                  "owner_id": AppDelegate.session.user?.id ?? ""])
-
+            
             
             
             func delay(delay: Double, closure: @escaping () -> ()) {
@@ -784,39 +784,39 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
     }
 }
 
-    extension AddPostVC:  UICollectionViewDelegateFlowLayout {
+extension AddPostVC:  UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            
-            if collectionView == self.imagesCollection {
-                return CGSize(width: 139, height: 139)
-            }
-            
-            return CGSize(width: 150, height: 35)
+        if collectionView == self.imagesCollection {
+            return CGSize(width: 139, height: 139)
         }
         
-        func collectionView(_ collectionView: UICollectionView,
-                            layout collectionViewLayout: UICollectionViewLayout,
-                            insetForSectionAt section: Int) -> UIEdgeInsets {
-            let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            return sectionInsets
-        }
-        
-        func collectionView(_ collectionView: UICollectionView,
-                            layout collectionViewLayout: UICollectionViewLayout,
-                            minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-            return 3
-        }
+        return CGSize(width: 150, height: 35)
     }
     
-    extension AddPostVC: QBImagePickerControllerDelegate {
-        func qb_imagePickerController(_ imagePickerController: QBImagePickerController!, didFinishPickingAssets assets: [Any]!) {
-            guard let images = assets as? [PHAsset] else {
-                return
-            }
-            
-            DispatchQueue.global(qos: .userInitiated).async {
-                let images = images.flatMap({$0.uiImage})
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 3
+    }
+}
+
+extension AddPostVC: QBImagePickerControllerDelegate {
+    func qb_imagePickerController(_ imagePickerController: QBImagePickerController!, didFinishPickingAssets assets: [Any]!) {
+        guard let images = assets as? [PHAsset] else {
+            return
+        }
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            let images = images.flatMap({$0.uiImage})
             DispatchQueue.main.async {
                 images.forEach({self.addImageToCollection($0)})
             }

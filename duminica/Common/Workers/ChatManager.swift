@@ -29,12 +29,26 @@ class ChatManager {
         return chatId
     }
     
+    // Passes ChatId in completion, nil if not exists
+    public func checkIfChatExists(post: Post, completion: @escaping (String?) -> Void) {
+
+        guard let myId = Auth.auth().currentUser?.uid else {return}
+
+        databaseReference
+            .child(Session.FirebasePath.USERS_KEY)
+            .child(myId)
+            .child(Session.FirebasePath.USER_CONVERSATIONS_KEY)
+            .child(post.ownerId).observe(.value, with: { (snapshot) in
+                completion(snapshot.value as? String)
+            })
+    }
+    
     private func initChatFromUser(_ userFrom: String, to userTo: String, withChatId chatId: String) {
         databaseReference
             .child(Session.FirebasePath.USERS_KEY)
             .child(userFrom)
             .child(Session.FirebasePath.USER_CONVERSATIONS_KEY)
-            .child(chatId)
-            .setValue(userTo)
+            .child(userTo)
+            .setValue(chatId)
     }
 }

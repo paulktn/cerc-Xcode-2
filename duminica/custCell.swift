@@ -18,13 +18,13 @@ class custCell : UICollectionViewCell {
 
     @IBOutlet weak var imageCell: UIImageView!
     @IBOutlet weak var titleCell: UILabelX!
-    @IBOutlet weak var dateCell: UILabelX!
+    @IBOutlet weak var dateCell: UILabelX?
     
     func configureCell(post: Post) {
         self.titleCell.text = ("\(post.locationTitle)")
         self.imageCell.layer.cornerRadius = 8
         self.titleCell.alpha = 1
-        self.dateCell.alpha = 1
+        self.dateCell?.alpha = 1
     }
 }
     
