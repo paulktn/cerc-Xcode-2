@@ -19,10 +19,7 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     @IBOutlet var receivedItems: UIView!
     @IBOutlet var wishlist: UIView!
     @IBOutlet var picturesView: UIViewX3!
-    @IBOutlet weak var emailAdresButton: UIButton!
-    @IBOutlet weak var nameButton: UIButton!
     @IBOutlet weak var collectionPicturesProfile: UICollectionView!
-    @IBOutlet weak var nameField: IQTextView!
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var picSwitch: UISwitch!
     @IBOutlet weak var switchEmailReminders: UISwitch!
@@ -33,6 +30,32 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     @IBOutlet weak var myPostingsIcon: UIImageView!
     @IBOutlet weak var receivedIcon: UIImageView!
     @IBOutlet weak var savedIcon: UIImageView!
+
+    @IBOutlet weak var nnameLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var wishCollectionView: UICollectionView!
+    @IBOutlet weak var receivedCollectionView: UICollectionView!
+    
+    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var emailTextField: UITextField!
+    
+    //  MARK: - Collection View Height
+    
+    @IBOutlet weak var myPostingsHeight: NSLayoutConstraint!
+    @IBOutlet weak var receivedItemsHeight: NSLayoutConstraint!
+    @IBOutlet weak var savedItemsHeight: NSLayoutConstraint!
+    
+    
+    var sweets: [Post] = [Post]()
+    var Wishsweets: [Post] = [Post]()
+    var Receivedsweets: [PickedUp] = [PickedUp]()
+    var selectedPost1: Post?
+    var poza: String!
+    var link: String!
+    var nameLink: String!
+    var postDelegate: PostDelegate?
+    
+    var cellSelected : Int = 0
     
     private enum OpenedOption {
         case myPostings
@@ -52,28 +75,7 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         return Storage.storage().reference()
     }
     
-    @IBOutlet weak var nnameLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var wishCollectionView: UICollectionView!
-    @IBOutlet weak var receivedCollectionView: UICollectionView!
-    
-    //  MARK: - Collection View Height
-    
-    @IBOutlet weak var myPostingsHeight: NSLayoutConstraint!
-    @IBOutlet weak var receivedItemsHeight: NSLayoutConstraint!
-    @IBOutlet weak var savedItemsHeight: NSLayoutConstraint!
-    
-    
-    var sweets: [Post] = [Post]()
-    var Wishsweets: [Post] = [Post]()
-    var Receivedsweets: [PickedUp] = [PickedUp]()
-    var selectedPost1: Post?
-    var poza: String!
-    var link: String!
-    var nameLink: String!
-    var postDelegate: PostDelegate?
-    
-    var cellSelected : Int = 0
+
     
     //  MARK: - Controller Life Cycle
     
@@ -102,8 +104,12 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         getURL()
         getEmail()
         
-        nameField.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.changeNameAction))
-        nameField.alpha = 0
+//        nameTextField.addCancelDoneOnKeyboardWithTarget(<#T##target: AnyObject?##AnyObject?#>,
+//                                                        cancelAction: <#T##Selector#>,
+//                                                        doneAction: <#T##Selector#>, shouldShowPlaceholder: <#T##Bool#>)
+//
+//        nameField.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.changeNameAction))
+//        nameField.alpha = 0
     }
     
     //  MARK: - IBAction
@@ -187,11 +193,6 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     @IBAction func presentPicView(_ sender: Any) {
         self.view.addSubview(picturesView)
         self.picturesView.center = self.view.center
-    }
-    
-    @IBAction func changeName(_ sender: Any) {
-        self.nameField.alpha = 1
-        self.nameButton.alpha = 0
     }
     
     @IBAction func takePhoto(_ sender: AnyObject) {
@@ -318,8 +319,8 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         if let currentUser = Auth.auth().currentUser?.uid {
             databaseRef.child("ios_users").child(currentUser).child("credentials").child("name").observe(.value, with: { (snapshot) in
                 if snapshot.exists() {
-                    self.nameButton.setTitle("\(snapshot.value!)", for: .normal)
-                    self.nnameLabel.text! = snapshot.value! as! String
+                    self.nameTextField.text = snapshot.value as? String
+                    self.nnameLabel.text = snapshot.value as? String
                  
                     
                 }
@@ -332,25 +333,37 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     
     func getEmail() {
         if let currentUser = Auth.auth().currentUser?.uid {
-            databaseRef.child("ios_users").child(currentUser).child("credentials").child("email").observe(.value, with: { (snapshot) in
+            let credentials = databaseRef.child("ios_users").child(currentUser).child("credentials")
+            credentials.child("email").observe(.value, with: { (snapshot) in
                 if snapshot.exists() {
-                    self.emailAdresButton.setTitle("\(snapshot.value!)", for: .normal)
-                    self.adresaDeSchimbat = snapshot.value! as! String
+                    let text = snapshot.value as? String ?? ""
+                    self.emailTextField.text = text
+                    self.adresaDeSchimbat = text
                     // print(snapshot.value!)
+                }
+            })
+            credentials.child("avatar").observe(.value, with: {(snapshot) in
+                if snapshot.exists() {
+                    if let urlString = snapshot.value as? String,
+                        let url = URL.init(string: urlString) {
+                        self.profilePic.sd_setImage(with: url)
+                        self.editProfilePic.sd_setImage(with: url)
+                    }
                 }
             })
         }
     }
     
     func changeNameAction(){
-        if let currentUser = Auth.auth().currentUser?.uid {
-            databaseRef.child("ios_users").child(currentUser).child("credentials").child("name").setValue("\(nameField.text!)"){ (error, ref) in
+        if let currentUser = Auth.auth().currentUser?.uid,
+            let name = nameTextField.text {
+            databaseRef.child("ios_users").child(currentUser).child("credentials").child("name").setValue(name) { (error, ref) in
                 if let error = error {
                     print(error.localizedDescription)
-                }}}
-        self.nameField.alpha = 0
-        self.nameButton.setTitle("\(self.nameField.text!)", for: .normal)
-        self.nameButton.alpha = 1
+                }
+            }
+        }
+        
         view.endEditing(true)
     }
     
@@ -358,8 +371,12 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         
         self.profilePic.image = image
         self.editProfilePic.image = image
+        if let imgData = UIImageJPEGRepresentation(image, 0.2) {
+            uploadImageToFirebase(imageData1: imgData, completion: {(url) in
+                
+            })
+    }
         self.dismiss(animated: true, completion: nil)
-        
     }
     
     func outPictures() {
@@ -372,24 +389,22 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         self.button1.setTitle("", for: .normal) }
     
     func uploadImageToFirebase(imageData1: Data, completion: @escaping (URL)->()){
-        let postImagePath1 = "profileImages/\(String(describing: self.emailAdresButton.titleLabel?.text!))/image1.jpg"
+        
+        guard let currentUser = AppDelegate.session.user else {return}
+        
+        let postImagePath1 = "profileImages/\(currentUser.id)/image1.jpg"
         let postImageRef1 = storageRef.child(postImagePath1)
         let postImageMetadata = StorageMetadata()
         postImageMetadata.contentType = "image/jpeg"
+        
         
         postImageRef1.putData(imageData1, metadata: postImageMetadata) { (newPostImageMD, error) in
             if let error = error {
                 print(error.localizedDescription)
             }else {
-                if let postImageURL1 = newPostImageMD?.downloadURL()
-                {
-                    self.poza = "\(postImageURL1)"
-                    let removal: [Character] = [".", "#", "$", "@"]
-                    let unfilteredCharacters = self.adresaDeSchimbat
-                    let filteredCharacters = unfilteredCharacters?.filter { !removal.contains($0) }
-                    let filtered = String(describing: filteredCharacters)
-                    self.databaseRef.child("ios_users").child("emailProfilePictures").child("\(filtered)").setValue(self.poza)
-                    print(self.poza)
+                if let postImageURL1 = newPostImageMD?.downloadURL() {
+                    let imgUrl = postImageURL1.absoluteString
+                    self.databaseRef.child("ios_users").child(currentUser.id).child("credentials").child("avatar").setValue(imgUrl)
                     self.button1.setTitle("", for: .normal)
                     completion(postImageURL1)
                 }
@@ -565,7 +580,6 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       
         if collectionView == self.collectionView {
         
         return sweets.count
@@ -758,6 +772,26 @@ extension AccountVC : UICollectionViewDelegateFlowLayout {
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         let sectionInsets = UIEdgeInsets(top: 0, left: 1.0, bottom: 0, right: 1)
         return sectionInsets.left
+    }
+}
+
+extension AccountVC: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let currentUser = AppDelegate.session.user else {return}
+        let credentialsRef = databaseRef.child("ios_users").child(currentUser.id).child("credentials")
+        if textField === self.nameTextField {
+            guard let name = nameTextField.text else {return}
+            credentialsRef.child("name").setValue(name) { (error, ref) in
+                guard error == nil else {return}
+                currentUser.name = name
+                }
+        } else if textField === self.emailTextField {
+            guard let email = emailTextField.text else {return}
+            credentialsRef.child("email").setValue(email) { (error, ref) in
+                guard error == nil else {return}
+                currentUser.name = email
+            }
+        }
     }
 }
     

@@ -101,6 +101,7 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
         
         self.searchBarHeight.constant = 0
         searchBar.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.searchKey))
+        tableView.tableFooterView = UIView()
         
         useCurentLocation()
     }
@@ -152,11 +153,11 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
         }
         
         var latitudeQuery = ref.queryOrdered(byChild: "latitude")
-        if let location = AppDelegate.session.lastLocation {
-           latitudeQuery = latitudeQuery
-            .queryStarting(atValue: location.latitude - 1, childKey: "latitude")
-            .queryEnding(atValue: location.latitude + 1, childKey: "latitude")
-        }
+//        if let location = AppDelegate.session.lastLocation {
+//           latitudeQuery = latitudeQuery
+//            .queryStarting(atValue: location.latitude - 1, childKey: "latitude")
+//            .queryEnding(atValue: location.latitude + 1, childKey: "latitude")
+//        }
         
         latitudeQuery.observe(.value, with: { (snapshot) in
             if let data = snapshot.children.allObjects as? [DataSnapshot] {
@@ -170,11 +171,11 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
         })
         
         var longitudeQuery = ref.queryOrdered(byChild: "longitude")
-        if let location = AppDelegate.session.lastLocation {
-            longitudeQuery = longitudeQuery
-                .queryStarting(atValue: location.latitude - 1, childKey: "longitude")
-                .queryEnding(atValue: location.latitude + 1, childKey: "longitude")
-        }
+//        if let location = AppDelegate.session.lastLocation {
+//            longitudeQuery = longitudeQuery
+//                .queryStarting(atValue: location.latitude - 1, childKey: "longitude")
+//                .queryEnding(atValue: location.latitude + 1, childKey: "longitude")
+//        }
         
         longitudeQuery.observe(.value, with: { (snapshot) in
             if let data = snapshot.children.allObjects as? [DataSnapshot] {
@@ -199,7 +200,16 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
             if snapshot.exists(){
                 for posts in snapshot.children.allObjects as! [DataSnapshot]   {
                     if let householdObject = Post(snapshot: posts ) {
-                        allArray.append(householdObject)
+                        
+                        let postLocation = CLLocation(latitude: householdObject.latitude,
+                                                      longitude: householdObject.longitude)
+                        let userLocation = CLLocation(latitude: self.lati, longitude: self.longi)
+                        
+                        let distance = Int(userLocation.distance(from: postLocation))
+                        
+                        if distance < 30000 {
+                            allArray.append(householdObject)
+                        }
                     }
                 }
                 self.allPosts = allArray
@@ -606,12 +616,17 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let category = categoryForRow[indexPath.section] {
+            if allPosts.filter({ $0.category == category }).isEmpty {
+                return 0
+            }
+        }
         return 165
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let category = categoryForRow[section] {
-            return category.rawValue.capitalized
+            return allPosts.filter({ $0.category == category }).isEmpty ? nil : category.rawValue.capitalized
         } else {
             return "All posts"
         }

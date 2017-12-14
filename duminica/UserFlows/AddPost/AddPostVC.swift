@@ -562,9 +562,8 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
             
             switch self.chooseCategoryLabel.text! {
                 
-            case "     choose category":
+            case "choose category":
                 chooseKeywordLabel.text = "first choose category"
-                self.keyword.setTitle("first choose category", for: .normal)
             case "appliances":
                 chooseKeywordLabel.text = "\(self.appliancesWords[indexPath.item])"
                 keywordCollection.alpha = 0
@@ -669,7 +668,7 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
         
         // check save
         
-        if self.keyword.titleLabel!.text! == "   choose a keyword" {
+        if self.chooseKeywordLabel.text == "choose a keyword" {
             errorLabelCategory.text = "!"
             
             errorLabelCategory.isHidden = false
@@ -677,7 +676,7 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
         
         // check category
         
-        if self.chooseCategoryButton.titleLabel!.text! == "   choose category"   {
+        if self.chooseCategoryLabel.text == "choose category" {
             errorLabel.text = "!"
             errorLabel.isHidden = false
         } else {
@@ -690,12 +689,12 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
             errorLabelLocation.text = "!"
             errorLabelLocation.isHidden = false
         }
-        if keyword.titleLabel!.text! != "   choose a keyword" && self.chooseCategoryButton.titleLabel!.text! != "   choose category"  && self.locationButton.titleLabel!.text! != "Location" && !imageArray.isEmpty {
+        if chooseKeywordLabel.text != "choose a keyword" &&  self.chooseCategoryLabel.text != "choose category"  && self.locationButton.titleLabel?.text != "Location" && !imageArray.isEmpty {
             
             let allPosts = "allPosts"
-            let postTitle = keyword.titleLabel!.text!
-            let postDetails = details.text!
-            let postCategory = chooseCategoryButton.titleLabel!.text!
+            let postTitle = chooseKeywordLabel.text
+            let postDetails = details.text
+            let postCategory = chooseCategoryLabel.text
             let postId = NSUUID().uuidString
             let postDate = NSDate().timeIntervalSince1970 as NSNumber
             let city =  locationButton.titleLabel!.text!
@@ -704,9 +703,9 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
             iosPostRef.setValue(["location_title": city,
                                  "longitude": currentLocation.longitude,
                                  "latitude": currentLocation.latitude,
-                                 "category": postCategory,
+                                 "category": postCategory ?? "",
                                  "date": postDate,
-                                 "details": postDetails,
+                                 "details": postDetails ?? "",
                                  "title": self.postTitle.text ?? "",
                                  "owner_id": AppDelegate.session.user?.id ?? ""])
             
@@ -756,20 +755,11 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
                             {
                                 let iosPostRef = self.databaseRef.child(Session.FirebasePath.ALL_POSTS_KEY).child(postId)
                                 iosPostRef.child("logo_url").setValue(postThumbURL.absoluteString)
+                                
+                                self.dismiss(animated: true, completion: nil)
                             }
                         }
                     }
-                }
-                
-                delay(delay: 2) {
-                    self.savingBackground.alpha = 1
-                    self.checkMark.image = #imageLiteral(resourceName: "Done")
-                    self.savingPost.text! = "post saved succesfully"
-                    
-                    delay(delay: 3) {
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                    
                 }
             }
         }

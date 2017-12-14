@@ -15,8 +15,8 @@ class User: NSObject {
     
     // MARK: - Properties
     
-    let name: String
-    let email: String
+    var name: String
+    var email: String
     let id: String
     
     //MARK: Methods
@@ -121,10 +121,6 @@ class User: NSObject {
                 }
             }
         }
-        
-        
-        
-        
     }
     
 //    class func loginWithFacebook(viewController: UIViewController,
