@@ -24,7 +24,7 @@ class RoomVC: UIViewController {
         super.viewDidLoad()
         navigationItem.setLeftBarButton(UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(cancellPressed)), animated: true)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-        navigationItem.title = "Chat Rooms"
+        navigationItem.title = "Messages"
         tableView.register(UINib.init(nibName: "RoomCell", bundle: nil), forCellReuseIdentifier: "RoomCell")
         getChatRooms()
         
@@ -45,13 +45,13 @@ class RoomVC: UIViewController {
             return
         }
         chatLoaded = false
-        ActivityIndicator.shared.show(inView: view)
         let userRef = Database.database().reference().child("ios_users").child(id)
         let roomRef = Database.database().reference().child("ios_conversations")
         userRef.child("user_conversations").observe(.value, with: { (snapshot) in
             guard let data = snapshot.value as?  Dictionary<String, Any> else {
                 return
             }
+            ActivityIndicator.shared.show(inView: self.view)
             for (_, value) in data {
                 self.i += 1
                 self.roomCount = data.count
@@ -69,7 +69,9 @@ class RoomVC: UIViewController {
                 })
             }
             self.chatLoaded = true
-            ActivityIndicator.shared.hideWithDelay()
+            defer {
+                ActivityIndicator.shared.hideWithDelay()
+            }
         })
     }
     

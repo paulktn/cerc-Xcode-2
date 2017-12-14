@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="083-So-sAp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="083-So-sAp">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -103,7 +103,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXy-4u-LlN" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="14" width="25" height="25"/>
+                                        <rect key="frame" x="20" y="17.5" width="25" height="25"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="4bI-K4-xpC"/>
@@ -129,10 +129,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDM-aE-gp8" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                        <rect key="frame" x="136" y="6.5" width="103" height="40"/>
+                                        <rect key="frame" x="136" y="20" width="103" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="103" id="4AK-H6-AX2"/>
-                                            <constraint firstAttribute="height" constant="40" id="VZz-UL-krm"/>
+                                            <constraint firstAttribute="height" constant="20" id="VZz-UL-krm"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="23"/>
                                         <state key="normal" title="about cerc">
@@ -142,11 +142,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.45176254240000002" green="0.72824793779999997" blue="0.34026661879999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="GDM-aE-gp8" firstAttribute="centerY" secondItem="wxR-fX-tjB" secondAttribute="centerY" id="6cj-5S-r0e"/>
-                                    <constraint firstItem="YXy-4u-LlN" firstAttribute="centerY" secondItem="wxR-fX-tjB" secondAttribute="centerY" id="7WI-HV-FQa"/>
                                     <constraint firstItem="YXy-4u-LlN" firstAttribute="leading" secondItem="wxR-fX-tjB" secondAttribute="leading" constant="20" id="BJi-H3-Mx9"/>
+                                    <constraint firstItem="YXy-4u-LlN" firstAttribute="centerY" secondItem="GDM-aE-gp8" secondAttribute="centerY" id="RqF-ge-eMl"/>
                                     <constraint firstAttribute="height" constant="53" id="TTB-4W-hGA"/>
                                     <constraint firstItem="GDM-aE-gp8" firstAttribute="centerX" secondItem="wxR-fX-tjB" secondAttribute="centerX" id="XZF-in-hOh"/>
+                                    <constraint firstItem="GDM-aE-gp8" firstAttribute="top" secondItem="wxR-fX-tjB" secondAttribute="top" constant="20" id="lOY-m8-1Fy"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
@@ -225,7 +225,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zj-NB-0Wf" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="12.5" width="25" height="25"/>
+                                    <rect key="frame" x="20" y="17.5" width="25" height="25"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="StK-G8-bLn"/>
@@ -250,9 +250,9 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLR-BX-dcq" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                    <rect key="frame" x="133" y="5" width="109" height="40"/>
+                                    <rect key="frame" x="133" y="20" width="109" height="20"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="Oc2-x0-aoo"/>
+                                        <constraint firstAttribute="height" constant="20" id="Oc2-x0-aoo"/>
                                         <constraint firstAttribute="width" constant="109" id="gW6-Un-wPl"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
@@ -263,11 +263,11 @@
                             </subviews>
                             <color key="backgroundColor" red="0.45176254240000002" green="0.72824793779999997" blue="0.34026661879999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstItem="0zj-NB-0Wf" firstAttribute="centerY" secondItem="bI9-Vp-6eM" secondAttribute="centerY" id="28s-Av-j8s"/>
+                                <constraint firstItem="0zj-NB-0Wf" firstAttribute="centerY" secondItem="DLR-BX-dcq" secondAttribute="centerY" id="2bK-CN-U4v"/>
                                 <constraint firstItem="0zj-NB-0Wf" firstAttribute="leading" secondItem="bI9-Vp-6eM" secondAttribute="leading" constant="20" id="6aG-wE-RCh"/>
+                                <constraint firstItem="DLR-BX-dcq" firstAttribute="top" secondItem="bI9-Vp-6eM" secondAttribute="top" constant="20" id="YOA-NZ-wDp"/>
                                 <constraint firstItem="DLR-BX-dcq" firstAttribute="centerX" secondItem="bI9-Vp-6eM" secondAttribute="centerX" id="ihH-bB-tWy"/>
                                 <constraint firstAttribute="height" constant="50" id="xEC-1K-X0d"/>
-                                <constraint firstItem="DLR-BX-dcq" firstAttribute="centerY" secondItem="bI9-Vp-6eM" secondAttribute="centerY" id="yxx-Lf-V4g"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
@@ -314,7 +314,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7k-d3-zWZ" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="12.5" width="25" height="25"/>
+                                    <rect key="frame" x="20" y="17.5" width="25" height="25"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="49q-pZ-kkm"/>
@@ -339,9 +339,9 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nab-K8-UwP" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                    <rect key="frame" x="133" y="5" width="109" height="40"/>
+                                    <rect key="frame" x="133" y="20" width="109" height="20"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="ILs-b5-Bko"/>
+                                        <constraint firstAttribute="height" constant="20" id="ILs-b5-Bko"/>
                                         <constraint firstAttribute="width" constant="109" id="dRN-0b-aRJ"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
@@ -353,10 +353,10 @@
                             <color key="backgroundColor" red="0.45176254240000002" green="0.72824793779999997" blue="0.34026661879999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="1HS-Vx-JYu"/>
+                                <constraint firstItem="K7k-d3-zWZ" firstAttribute="centerY" secondItem="Nab-K8-UwP" secondAttribute="centerY" id="2yb-77-9PW"/>
                                 <constraint firstItem="K7k-d3-zWZ" firstAttribute="leading" secondItem="Vt7-XU-dwM" secondAttribute="leading" constant="20" id="Edl-9X-rja"/>
                                 <constraint firstItem="Nab-K8-UwP" firstAttribute="centerX" secondItem="Vt7-XU-dwM" secondAttribute="centerX" id="GXa-sd-ckc"/>
-                                <constraint firstItem="K7k-d3-zWZ" firstAttribute="centerY" secondItem="Vt7-XU-dwM" secondAttribute="centerY" id="Hsq-E1-f1e"/>
-                                <constraint firstItem="Nab-K8-UwP" firstAttribute="centerY" secondItem="Vt7-XU-dwM" secondAttribute="centerY" id="WJG-bx-QKH"/>
+                                <constraint firstItem="Nab-K8-UwP" firstAttribute="top" secondItem="Vt7-XU-dwM" secondAttribute="top" constant="20" id="LOM-KL-gA6"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
@@ -372,7 +372,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSY-qj-l8v">
-                            <rect key="frame" x="-0.5" y="68" width="375" height="599"/>
+                            <rect key="frame" x="7" y="50" width="360" height="617"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <attributedString key="attributedText">
                                 <fragment>
@@ -521,10 +521,10 @@ If you’d like to provide feedback to us about this Privacy Policy, or if you h
                     <constraints>
                         <constraint firstItem="Vt7-XU-dwM" firstAttribute="width" secondItem="wx7-9j-vot" secondAttribute="width" id="0nZ-Kg-YEs"/>
                         <constraint firstItem="FSY-qj-l8v" firstAttribute="centerX" secondItem="wx7-9j-vot" secondAttribute="centerX" id="FBo-Tj-2UV"/>
-                        <constraint firstItem="FSY-qj-l8v" firstAttribute="top" secondItem="Vt7-XU-dwM" secondAttribute="bottom" constant="18" id="IEZ-cy-Ybp"/>
+                        <constraint firstItem="FSY-qj-l8v" firstAttribute="top" secondItem="Vt7-XU-dwM" secondAttribute="bottom" id="IEZ-cy-Ybp"/>
                         <constraint firstItem="Vt7-XU-dwM" firstAttribute="centerX" secondItem="wx7-9j-vot" secondAttribute="centerX" id="ZHZ-ff-dj3"/>
                         <constraint firstAttribute="bottom" secondItem="FSY-qj-l8v" secondAttribute="bottom" id="iew-TB-ouK"/>
-                        <constraint firstItem="FSY-qj-l8v" firstAttribute="width" secondItem="wx7-9j-vot" secondAttribute="width" id="p0R-JI-syS"/>
+                        <constraint firstItem="FSY-qj-l8v" firstAttribute="width" secondItem="wx7-9j-vot" secondAttribute="width" multiplier="0.96" id="p0R-JI-syS"/>
                         <constraint firstItem="Vt7-XU-dwM" firstAttribute="top" secondItem="wx7-9j-vot" secondAttribute="top" id="vAd-pD-TCs"/>
                     </constraints>
                 </view>
@@ -536,7 +536,7 @@ If you’d like to provide feedback to us about this Privacy Policy, or if you h
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpD-9O-MRQ" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="12.5" width="25" height="25"/>
+                                    <rect key="frame" x="20" y="17.5" width="25" height="25"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="BTb-2D-lvr"/>
@@ -561,10 +561,10 @@ If you’d like to provide feedback to us about this Privacy Policy, or if you h
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luu-BD-TJp" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                    <rect key="frame" x="133" y="5" width="109" height="40"/>
+                                    <rect key="frame" x="133" y="20" width="109" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="109" id="Tvd-fk-51A"/>
-                                        <constraint firstAttribute="height" constant="40" id="aLg-xV-mEI"/>
+                                        <constraint firstAttribute="height" constant="20" id="aLg-xV-mEI"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
                                     <state key="normal" title="terms of use">
@@ -574,11 +574,11 @@ If you’d like to provide feedback to us about this Privacy Policy, or if you h
                             </subviews>
                             <color key="backgroundColor" red="0.45176254240000002" green="0.72824793779999997" blue="0.34026661879999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstItem="kpD-9O-MRQ" firstAttribute="centerY" secondItem="owJ-1j-l4h" secondAttribute="centerY" id="7WO-8G-nyd"/>
                                 <constraint firstItem="kpD-9O-MRQ" firstAttribute="leading" secondItem="owJ-1j-l4h" secondAttribute="leading" constant="20" id="8Of-95-nlL"/>
                                 <constraint firstAttribute="height" constant="50" id="I9g-tn-dyY"/>
+                                <constraint firstItem="luu-BD-TJp" firstAttribute="top" secondItem="owJ-1j-l4h" secondAttribute="top" constant="20" id="LeA-5C-Otp"/>
                                 <constraint firstItem="luu-BD-TJp" firstAttribute="centerX" secondItem="owJ-1j-l4h" secondAttribute="centerX" id="R8W-PS-u6r"/>
-                                <constraint firstItem="luu-BD-TJp" firstAttribute="centerY" secondItem="owJ-1j-l4h" secondAttribute="centerY" id="tdy-b4-PLU"/>
+                                <constraint firstItem="kpD-9O-MRQ" firstAttribute="centerY" secondItem="luu-BD-TJp" secondAttribute="centerY" id="sab-hO-Ko0"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
@@ -594,7 +594,7 @@ If you’d like to provide feedback to us about this Privacy Policy, or if you h
                             </userDefinedRuntimeAttributes>
                         </view>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jps-mu-EB8">
-                            <rect key="frame" x="-0.5" y="68" width="375" height="599"/>
+                            <rect key="frame" x="7" y="50" width="360" height="617"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <attributedString key="attributedText">
                                 <fragment>
@@ -948,9 +948,9 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <constraint firstAttribute="bottom" secondItem="Jps-mu-EB8" secondAttribute="bottom" id="QgF-kb-nbk"/>
                         <constraint firstItem="owJ-1j-l4h" firstAttribute="top" secondItem="6gp-z9-Ibh" secondAttribute="top" id="UJN-Y7-sbU"/>
                         <constraint firstItem="owJ-1j-l4h" firstAttribute="centerX" secondItem="6gp-z9-Ibh" secondAttribute="centerX" id="aqy-0U-Y2Z"/>
-                        <constraint firstItem="Jps-mu-EB8" firstAttribute="width" secondItem="6gp-z9-Ibh" secondAttribute="width" id="jOa-Ro-1ta"/>
+                        <constraint firstItem="Jps-mu-EB8" firstAttribute="width" secondItem="6gp-z9-Ibh" secondAttribute="width" multiplier="0.96" id="jOa-Ro-1ta"/>
                         <constraint firstItem="owJ-1j-l4h" firstAttribute="width" secondItem="6gp-z9-Ibh" secondAttribute="width" id="lCs-Mv-kLp"/>
-                        <constraint firstItem="Jps-mu-EB8" firstAttribute="top" secondItem="owJ-1j-l4h" secondAttribute="bottom" constant="18" id="pSE-U6-5N0"/>
+                        <constraint firstItem="Jps-mu-EB8" firstAttribute="top" secondItem="owJ-1j-l4h" secondAttribute="bottom" id="pSE-U6-5N0"/>
                     </constraints>
                 </view>
             </objects>
@@ -969,7 +969,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lxv-KJ-nBZ">
-                                <rect key="frame" x="0.0" y="113" width="375" height="505"/>
+                                <rect key="frame" x="0.0" y="113" width="375" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CollectionTableViewCell" rowHeight="165" id="C7U-BG-bgL" customClass="CollectionTableViewCell" customModule="duminica" customModuleProvider="target">
@@ -1068,7 +1068,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQt-Wd-7U1">
-                                <rect key="frame" x="90" y="570" width="40" height="40"/>
+                                <rect key="frame" x="90" y="569" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="Stq-aI-bNV"/>
                                     <constraint firstAttribute="height" constant="40" id="caN-Sj-EVN"/>
@@ -1079,7 +1079,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Hs-DU-fdW">
-                                <rect key="frame" x="45" y="570" width="40" height="40"/>
+                                <rect key="frame" x="45" y="569" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="n6w-Js-ZW4"/>
                                     <constraint firstAttribute="width" constant="40" id="tP8-I2-blV"/>
@@ -1090,7 +1090,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qf8-Fl-GrO" customClass="UIButtonX" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="570" width="40" height="40"/>
+                                <rect key="frame" x="0.0" y="569" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="J1f-MW-j2U"/>
                                     <constraint firstAttribute="width" constant="40" id="JWb-RN-IBw"/>
@@ -1117,10 +1117,9 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdo-GP-lqO" customClass="UIButtonX" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="618" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="5nN-OE-UBe"/>
                                     <constraint firstAttribute="height" constant="50" id="USj-RN-dam"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
@@ -1395,9 +1394,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <color key="backgroundColor" red="0.9823128172588832" green="0.9823128172588832" blue="0.9823128172588832" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lxv-KJ-nBZ" firstAttribute="top" secondItem="E3z-Tr-F8X" secondAttribute="bottom" id="8Cy-Qo-T9W"/>
-                            <constraint firstItem="zVn-VF-eiG" firstAttribute="height" secondItem="gdo-GP-lqO" secondAttribute="height" id="90C-5g-hru"/>
                             <constraint firstItem="zt2-eC-zgh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="HZG-oM-KaD"/>
-                            <constraint firstItem="zVn-VF-eiG" firstAttribute="width" secondItem="gdo-GP-lqO" secondAttribute="width" id="I39-Uh-XWL"/>
                             <constraint firstItem="lxv-KJ-nBZ" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="J67-7G-uBO"/>
                             <constraint firstItem="zVn-VF-eiG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="598" id="K4S-hU-25c"/>
                             <constraint firstItem="7NV-ug-5qQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KTf-s9-mSQ"/>
@@ -1406,23 +1403,20 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                             <constraint firstItem="gdo-GP-lqO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Q2K-pI-i8b"/>
                             <constraint firstItem="zt2-eC-zgh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="THl-CN-Ydg"/>
                             <constraint firstItem="E3z-Tr-F8X" firstAttribute="width" secondItem="zt2-eC-zgh" secondAttribute="width" id="Ufz-2a-P1d"/>
-                            <constraint firstItem="lqS-tV-Igk" firstAttribute="leading" secondItem="gdo-GP-lqO" secondAttribute="trailing" constant="-375" id="YNl-0q-lLR"/>
                             <constraint firstItem="gdo-GP-lqO" firstAttribute="top" secondItem="Qf8-Fl-GrO" secondAttribute="bottom" constant="8" id="Yiu-Vu-zl4"/>
                             <constraint firstItem="7NV-ug-5qQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="9" id="Z96-8Y-HJi"/>
                             <constraint firstItem="lxv-KJ-nBZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="b5M-eB-Xgm"/>
-                            <constraint firstItem="lqS-tV-Igk" firstAttribute="height" secondItem="gdo-GP-lqO" secondAttribute="height" id="csy-0N-bD6"/>
                             <constraint firstItem="zVn-VF-eiG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eYF-pZ-Peh"/>
                             <constraint firstItem="E3z-Tr-F8X" firstAttribute="centerX" secondItem="zt2-eC-zgh" secondAttribute="centerX" id="fdc-tD-6Ot"/>
                             <constraint firstItem="gdo-GP-lqO" firstAttribute="top" secondItem="6Hs-DU-fdW" secondAttribute="bottom" constant="8" id="gA3-7P-GHV"/>
                             <constraint firstItem="zt2-eC-zgh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="h5S-jF-8TF"/>
-                            <constraint firstItem="gdo-GP-lqO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="598" id="hFi-0v-Ips"/>
                             <constraint firstItem="Qf8-Fl-GrO" firstAttribute="leading" secondItem="gdo-GP-lqO" secondAttribute="leading" id="iiL-qn-9s4"/>
-                            <constraint firstItem="lqS-tV-Igk" firstAttribute="width" secondItem="gdo-GP-lqO" secondAttribute="width" id="jE1-tx-AOh"/>
                             <constraint firstItem="gdo-GP-lqO" firstAttribute="top" secondItem="lxv-KJ-nBZ" secondAttribute="bottom" id="nLh-Y6-TrQ"/>
                             <constraint firstItem="lqS-tV-Igk" firstAttribute="top" secondItem="gdo-GP-lqO" secondAttribute="top" id="nfV-8R-Fce"/>
                             <constraint firstItem="6Hs-DU-fdW" firstAttribute="leading" secondItem="Qf8-Fl-GrO" secondAttribute="trailing" constant="5" id="plj-jv-AJm"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gdo-GP-lqO" secondAttribute="bottom" id="rUk-00-5o8"/>
                             <constraint firstItem="gdo-GP-lqO" firstAttribute="top" secondItem="AQt-Wd-7U1" secondAttribute="bottom" constant="8" id="tUS-BI-BWD"/>
-                            <constraint firstItem="lqS-tV-Igk" firstAttribute="top" secondItem="gdo-GP-lqO" secondAttribute="bottom" constant="-50" id="xQm-Kg-qNM"/>
+                            <constraint firstItem="gdo-GP-lqO" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="u8s-qH-AeW"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
@@ -3103,7 +3097,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FREE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGb-1Y-B0B" customClass="UILabelX" customModule="duminica" customModuleProvider="target">
-                                                                            <rect key="frame" x="103.52334059711296" y="-12.476659402887016" width="74.953318805774046" height="74.953318805774032"/>
+                                                                            <rect key="frame" x="113" y="0.0" width="56" height="50"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="50" id="2zG-u5-iVP"/>
