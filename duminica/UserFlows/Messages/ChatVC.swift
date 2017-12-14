@@ -19,6 +19,7 @@ class ChatVC: JSQMessagesViewController {
     var messages = [JSQMessage]()
     var incomingBubble: JSQMessagesBubbleImage!
     var outgoingBubble: JSQMessagesBubbleImage!
+    var isPush: Bool = true
     
     private var messageRef: DatabaseReference?
     private var newMessageRefHandle: DatabaseHandle?
@@ -42,6 +43,9 @@ class ChatVC: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getCurrentUser()
+        if !isPush {
+            navigationItem.setLeftBarButton(UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(cancellPressed)), animated: true)
+        }
         navigationController?.navigationBar.tintColor = UIColor.black
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black]
         messageRef = Database.database().reference().child("ios_conversations").child(roomId)
@@ -56,6 +60,10 @@ class ChatVC: JSQMessagesViewController {
         outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.black)
         collectionView?.collectionViewLayout.incomingAvatarViewSize = .zero
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
+    }
+    
+    @objc private func cancellPressed() {
+        dismiss(animated: true, completion: nil)
     }
     
     private func getCurrentUser() {
