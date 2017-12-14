@@ -15,7 +15,7 @@ class ChatRoom {
     var id: String
     var post: Post?
     
-    init?(snapshot:DataSnapshot) {
+    init?(snapshot:DataSnapshot, completion: (() -> Void)? = nil) {
         guard let data = snapshot.value as? NSDictionary else {return nil}
         self.id = snapshot.key
         if let messageId = data["last_message_id"] as? String {
@@ -31,6 +31,7 @@ class ChatRoom {
             let postRef = Database.database().reference().child("ios_posts").child(postId)
             postRef.observe(.value, with: { (snapshot) in
                 self.post = Post.init(snapshot: snapshot)!
+                completion?()
             })
         }
     }

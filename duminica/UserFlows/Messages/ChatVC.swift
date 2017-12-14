@@ -19,6 +19,7 @@ class ChatVC: JSQMessagesViewController {
     var messages = [JSQMessage]()
     var incomingBubble: JSQMessagesBubbleImage!
     var outgoingBubble: JSQMessagesBubbleImage!
+    var isPush: Bool = true
     
     private var messageRef: DatabaseReference?
     private var newMessageRefHandle: DatabaseHandle?
@@ -42,10 +43,15 @@ class ChatVC: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getCurrentUser()
+        if !isPush {
+            navigationItem.setLeftBarButton(UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(cancellPressed)), animated: true)
+        }
+        navigationController?.navigationBar.tintColor = UIColor.black
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black]
         messageRef = Database.database().reference().child("ios_conversations").child(roomId)
         observeMessages()
-        self.userIsTypingRef = self.messageRef?.child("typingIndicator").child(self.senderId)
-        self.usersTypingQuery = self.messageRef?.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
+        self.userIsTypingRef = self.messageRef?.child("messages").child("typingIndicator").child(self.senderId)
+        self.usersTypingQuery = self.messageRef?.child("messages").child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
         self.inputToolbar.contentView?.leftBarButtonItem?.imageView?.contentMode = .scaleAspectFill
         self.inputToolbar.contentView?.leftBarButtonItemWidth = 40
         self.observeTyping()
@@ -54,6 +60,10 @@ class ChatVC: JSQMessagesViewController {
         outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.black)
         collectionView?.collectionViewLayout.incomingAvatarViewSize = .zero
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
+    }
+    
+    @objc private func cancellPressed() {
+        dismiss(animated: true, completion: nil)
     }
     
     private func getCurrentUser() {
@@ -83,7 +93,7 @@ class ChatVC: JSQMessagesViewController {
     }
     
     private func observeTyping() {
-        let typingIndicatorRef = messageRef?.child("typingIndicator")
+        let typingIndicatorRef = messageRef?.child("messages").child("typingIndicator")
         userIsTypingRef = typingIndicatorRef?.child(senderId)
         userIsTypingRef?.onDisconnectRemoveValue()
         usersTypingQuery?.observe(.value) { (data: DataSnapshot) in
