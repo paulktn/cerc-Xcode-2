@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class LoginVC: UIViewController {
 
@@ -20,6 +21,16 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func loginWithFBPressed(_ sender: Any) {
+        User.loginWithFB(viewController: self) { (result) in
+            switch result {
+            case .success:
+                self.dismiss(animated: true, completion: nil)
+            case .failed:
+                self.showAlertWith(title: "Error", message: "Something went wrong", handler: nil)
+            case .cancelled:
+                break
+            }
+        }
     }
     
     @IBAction func noAccountPressed(_ sender: Any) {

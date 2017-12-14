@@ -2617,7 +2617,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X0I-5M-8eJ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="288"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                                                 </imageView>
                                                             </subviews>
                                                         </view>
@@ -2837,9 +2837,6 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                         <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="contactUserButtonPressed:" destination="fcN-48-kFa" eventType="touchUpInside" id="5Pc-n7-20e"/>
@@ -2868,9 +2865,6 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                 <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="2"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
@@ -2963,9 +2957,6 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                 <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="2"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
@@ -3083,7 +3074,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FREE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGb-1Y-B0B" customClass="UILabelX" customModule="duminica" customModuleProvider="target">
-                                                                            <rect key="frame" x="113" y="0.0" width="56" height="50"/>
+                                                                            <rect key="frame" x="103.52334059711296" y="-12.476659402887016" width="74.953318805774046" height="74.953318805774032"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="50" id="2zG-u5-iVP"/>
@@ -3263,7 +3254,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXf-Qg-4ah">
-                                        <rect key="frame" x="169" y="31" width="37.5" height="19"/>
+                                        <rect key="frame" x="169" y="29.5" width="37.5" height="19"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -3272,11 +3263,11 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="9y2-lL-WCg"/>
-                                    <constraint firstAttribute="bottom" secondItem="NXf-Qg-4ah" secondAttribute="bottom" constant="8" id="L0V-1o-wdO"/>
                                     <constraint firstAttribute="bottom" secondItem="YnP-6V-ghl" secondAttribute="bottom" constant="4" id="QNP-1Z-HCS"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="58" id="dN7-3Z-ktc"/>
                                     <constraint firstItem="NXf-Qg-4ah" firstAttribute="centerX" secondItem="Yxw-cx-UeB" secondAttribute="centerX" id="fcg-9h-7YL"/>
                                     <constraint firstItem="YnP-6V-ghl" firstAttribute="leading" secondItem="Yxw-cx-UeB" secondAttribute="leading" constant="12" id="hPb-Hp-Hbx"/>
+                                    <constraint firstItem="NXf-Qg-4ah" firstAttribute="centerY" secondItem="YnP-6V-ghl" secondAttribute="centerY" id="tKj-gB-vdV"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="firstColor">

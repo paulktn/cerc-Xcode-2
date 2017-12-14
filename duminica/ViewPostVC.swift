@@ -285,6 +285,19 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         
         cell.imageCell.sd_setImage(with: post.logoUrl)
         cell.configureCell(post: post)
+        if let userPosition = AppDelegate.session.lastLocation {
+            let postLocation = CLLocation(latitude: post.latitude,
+                                          longitude: post.longitude)
+            let userLocation = CLLocation(latitude: userPosition.latitude, longitude: userPosition.longitude)
+            
+            let distance = Int(userLocation.distance(from: postLocation))
+            if distance > 1000 {
+                cell.titleCell.text = "\(distance/1000) km"
+            } else {
+                cell.titleCell.text = "\(distance) m"
+            }
+            
+        }
         
         cell.tag = indexPath.item
         

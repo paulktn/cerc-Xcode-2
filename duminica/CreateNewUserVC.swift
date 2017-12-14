@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 
 class CreateNewUserVC: UIViewController {
+    
+    var avatarChoosen: Bool = false
 
     @IBOutlet weak var emailField: UITextFieldX!
     @IBOutlet weak var passwordField: UITextFieldX!
@@ -56,20 +58,34 @@ class CreateNewUserVC: UIViewController {
     }
     
     @IBAction func createUser(_ sender: Any) {
-        Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!, completion: { (user, error) in
+        guard emailField.text != "" else {
+            showAlertWith(title: "Error", message: "Please enter email", handler: nil)
+            return
+        }
+        guard passwordField.text != "" else {
+            showAlertWith(title: "Error", message: "Please enter password", handler: nil)
+            return
+        }
+        guard nameField.text != "" else {
+            showAlertWith(title: "Error", message: "Please enter name", handler: nil)
+            return
+        }
+        guard avatarChoosen else {
+            showAlertWith(title: "Error", message: "Please choose an avatar", handler: nil)
+            return
+        }
+        
+        ActivityIndicator.shared.show(inView: view)
+        User.registerUser(withName: nameField.text!, email: emailField.text!, password: passwordField.text!, avatar: addPhotoImage.image!) { (error) in
             if error == nil {
-                
-                let values = ["name": self.nameField.text!, "email": self.emailField.text!, "password": self.passwordField.text!]
-                Database.database().reference().child("ios_users").child((user?.uid)!).child("credentials").updateChildValues(values, withCompletionBlock: { (errr, _) in
-                    if errr == nil {
-                        let userInfo = ["email" : self.emailField.text!, "password" : self.passwordField.text!]
-                        UserDefaults.standard.set(userInfo, forKey: "userInformation")
-                    }
-                })
-                
+                self.navigationController?.dismiss(animated: true, completion: nil)
+            } else {
+                self.showAlertWith(title: "Error", message: error!, handler: nil)
             }
-        })
-        navigationController?.dismiss(animated: true, completion: nil)
+            defer {
+                ActivityIndicator.shared.hideWithDelay()
+            }
+        }
     }
 }
 
@@ -80,6 +96,7 @@ extension CreateNewUserVC: QBImagePickerControllerDelegate {
         }
         
         let imgs = images.flatMap({$0.uiImage})
+        avatarChoosen = true
         self.addPhotoImage.image = imgs.first
         self.addPhotoOutlet.setTitle(nil, for: .normal)
         
@@ -99,7 +116,7 @@ extension CreateNewUserVC: UINavigationControllerDelegate, UIImagePickerControll
             guard let image = ((info[UIImagePickerControllerEditedImage] ?? info[UIImagePickerControllerOriginalImage]) as? UIImage) else {return}
             
             DispatchQueue.main.async {
-                
+                self.avatarChoosen = true
                 self.addPhotoImage.image = image
                 self.addPhotoOutlet.setTitle(nil, for: .normal)
                 
