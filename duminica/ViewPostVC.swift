@@ -337,6 +337,7 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
             vc.post = post
             vc.roomId = chatId
             vc.currentUser = currentUser
+            vc.isPush = false
         }
     }
     
