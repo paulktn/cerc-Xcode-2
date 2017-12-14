@@ -42,10 +42,12 @@ class ChatVC: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getCurrentUser()
+        navigationController?.navigationBar.tintColor = UIColor.black
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black]
         messageRef = Database.database().reference().child("ios_conversations").child(roomId)
         observeMessages()
-        self.userIsTypingRef = self.messageRef?.child("typingIndicator").child(self.senderId)
-        self.usersTypingQuery = self.messageRef?.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
+        self.userIsTypingRef = self.messageRef?.child("messages").child("typingIndicator").child(self.senderId)
+        self.usersTypingQuery = self.messageRef?.child("messages").child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
         self.inputToolbar.contentView?.leftBarButtonItem?.imageView?.contentMode = .scaleAspectFill
         self.inputToolbar.contentView?.leftBarButtonItemWidth = 40
         self.observeTyping()
@@ -83,7 +85,7 @@ class ChatVC: JSQMessagesViewController {
     }
     
     private func observeTyping() {
-        let typingIndicatorRef = messageRef?.child("typingIndicator")
+        let typingIndicatorRef = messageRef?.child("messages").child("typingIndicator")
         userIsTypingRef = typingIndicatorRef?.child(senderId)
         userIsTypingRef?.onDisconnectRemoveValue()
         usersTypingQuery?.observe(.value) { (data: DataSnapshot) in

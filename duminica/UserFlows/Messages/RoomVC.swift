@@ -13,6 +13,9 @@ import FirebaseDatabase
 class RoomVC: UIViewController {
 
     var rooms: [ChatRoom] = []
+    var chatLoaded: Bool!
+    var i = 0
+    var roomCount = 0
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,11 +23,18 @@ class RoomVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.setLeftBarButton(UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(cancellPressed)), animated: true)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         navigationItem.title = "Chat Rooms"
         tableView.register(UINib.init(nibName: "RoomCell", bundle: nil), forCellReuseIdentifier: "RoomCell")
         getChatRooms()
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+    }
     
     @objc private func cancellPressed() {
         dismiss(animated: true, completion: nil)
@@ -34,17 +44,32 @@ class RoomVC: UIViewController {
         guard let id = AppDelegate.session.user?.id else {
             return
         }
+        chatLoaded = false
+        ActivityIndicator.shared.show(inView: view)
         let userRef = Database.database().reference().child("ios_users").child(id)
         let roomRef = Database.database().reference().child("ios_conversations")
-        userRef.child("ios_conversations").observe(.value, with: { (snapshot) in
-            guard let data = snapshot.value as? [String: Any] else {
+        userRef.child("user_conversations").observe(.value, with: { (snapshot) in
+            guard let data = snapshot.value as?  Dictionary<String, Any> else {
                 return
             }
-            for (key, _) in data {
-                roomRef.child(key).observe(.value, with: { (snapshot) in
-                    self.rooms.append(ChatRoom.init(snapshot: snapshot)!)
+            for (_, value) in data {
+                self.i += 1
+                self.roomCount = data.count
+                guard let value = value as? String else {
+                    return
+                }
+                roomRef.child(value).observe(.value, with: { (snapshot) in
+                    self.rooms.append(ChatRoom.init(snapshot: snapshot, completion: {
+                        if self.i == self.roomCount {
+                            self.i = 0
+                            self.roomCount = 0
+                            self.tableView.reloadData()
+                        }
+                    })!)
                 })
             }
+            self.chatLoaded = true
+            ActivityIndicator.shared.hideWithDelay()
         })
     }
     
@@ -69,6 +94,12 @@ extension RoomVC: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         cell.setUpCell(room: rooms[indexPath.row])
+        i += 1
+        if i == roomCount {
+//            roomCount = 0
+            i = 0
+            rooms.removeAll()
+        }
         return cell
     }
     
@@ -76,11 +107,12 @@ extension RoomVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.cellForRow(at: indexPath) as? RoomCell else {
             return
         }
+        tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "showChatVC", sender: cell.room)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 70
     }
     
 }

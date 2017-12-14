@@ -367,7 +367,7 @@
 		83D170AC140A698A60E1CE243E534B6A /* PaperOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC4453FFE119E7272BD7BEF061961D /* PaperOnboarding.swift */; };
 		843166B023307AD37F03434FAC558E4F /* JSQMessagesCollectionViewCellOutgoing.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F3B7F0566C9615CA7A27C41CE249FF /* JSQMessagesCollectionViewCellOutgoing.m */; };
 		84A687CE6E1562A985549A1E45524815 /* FBSDKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588992E675560AB949BFA0584709694 /* FBSDKConstants.m */; };
-		84BBB5D01FE0449B00672C4D /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F19F77939AA669E90C19319B75519ECB /* FirebaseDatabase.framework */; };
+		84BBB5DE1FE21FBD00672C4D /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F19F77939AA669E90C19319B75519ECB /* FirebaseDatabase.framework */; };
 		8532AAF0FD8F197E283D181C6DAB5B46 /* UIImageView+WebCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A29770886125198491CBFAF0A33BF72 /* UIImageView+WebCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		85AF67280980FAEF2B57BDDC023429AC /* GTMDebugThreadValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = 025A5518876DECAC7CE3A80F61C66BD9 /* GTMDebugThreadValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		86362204FA92F6A663F363AE705EC71E /* FBSDKInternalUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E92FE75010A4F963ED321390B208FBA1 /* FBSDKInternalUtility.m */; };
@@ -1734,7 +1734,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84BBB5D01FE0449B00672C4D /* FirebaseDatabase.framework in Frameworks */,
+				84BBB5DE1FE21FBD00672C4D /* FirebaseDatabase.framework in Frameworks */,
 				72FB0A0B7CC16F19E94D1790A4C4FBCC /* CoreLocation.framework in Frameworks */,
 				25879CDBE7CF862BA00EEB95CD33F310 /* Foundation.framework in Frameworks */,
 				36897F1A564529FA0F6EDC6E56978E5A /* GoogleToolboxForMac.framework in Frameworks */,
