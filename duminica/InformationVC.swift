@@ -27,6 +27,11 @@ class InformationVC: UIViewController, MFMailComposeViewControllerDelegate {
     
     @IBAction func presentAboutUsView(_ sender: Any) {
         self.view.addSubview(aboutUsView)
+        aboutUsView.translatesAutoresizingMaskIntoConstraints = false
+        aboutUsView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
+        aboutUsView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        aboutUsView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
+        aboutUsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
     }
     @IBAction func dismissAboutUs(_ sender: Any) {
         self.aboutUsView.removeFromSuperview()
@@ -38,6 +43,11 @@ class InformationVC: UIViewController, MFMailComposeViewControllerDelegate {
 
     @IBAction func presentPrivacyPolicyView(_ sender: Any) {
         self.view.addSubview(privacyPolicyView)
+        privacyPolicyView.translatesAutoresizingMaskIntoConstraints = false
+        privacyPolicyView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
+        privacyPolicyView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        privacyPolicyView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
+        privacyPolicyView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
         }
     
     @IBAction func dismissPrivacyPolicyView(_ sender: Any) {
@@ -46,6 +56,11 @@ class InformationVC: UIViewController, MFMailComposeViewControllerDelegate {
     
     @IBAction func presentTermsOfUse(_ sender: Any) {
         self.view.addSubview(termsOfUse)
+        termsOfUse.translatesAutoresizingMaskIntoConstraints = false
+        termsOfUse.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
+        termsOfUse.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        termsOfUse.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
+        termsOfUse.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
     }
     
     @IBAction func presentContactUs(_ sender: Any) {
