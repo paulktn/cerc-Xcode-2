@@ -102,6 +102,8 @@
 		7E8C1B991FD5F47C00EAA156 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E8C1B8D1FD5F47C00EAA156 /* Info.plist */; };
 		7E8C1B9A1FD5F47C00EAA156 /* QBSlomoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C1B8E1FD5F47C00EAA156 /* QBSlomoIconView.m */; };
 		7E8C1B9B1FD5F47C00EAA156 /* QBAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C1B8F1FD5F47C00EAA156 /* QBAssetCell.m */; };
+		7E984F471FE2262900B14DF8 /* InboxHolderNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E984F461FE2262900B14DF8 /* InboxHolderNavigationController.swift */; };
+		7E984F491FE2323D00B14DF8 /* UILabel+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E984F481FE2323D00B14DF8 /* UILabel+Common.swift */; };
 		7EB163501FD4598F004C2F9C /* PostsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB1634F1FD4598F004C2F9C /* PostsCollectionDataSource.swift */; };
 		7ECD0EC71FD328D70035F77C /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECD0EC61FD328D70035F77C /* CollectionTableViewCell.swift */; };
 		7ECD0EC91FD32A030035F77C /* CollectionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECD0EC81FD32A030035F77C /* CollectionItemCell.swift */; };
@@ -250,6 +252,8 @@
 		7E8C1B8D1FD5F47C00EAA156 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E8C1B8E1FD5F47C00EAA156 /* QBSlomoIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBSlomoIconView.m; sourceTree = "<group>"; };
 		7E8C1B8F1FD5F47C00EAA156 /* QBAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAssetCell.m; sourceTree = "<group>"; };
+		7E984F461FE2262900B14DF8 /* InboxHolderNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxHolderNavigationController.swift; sourceTree = "<group>"; };
+		7E984F481FE2323D00B14DF8 /* UILabel+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Common.swift"; sourceTree = "<group>"; };
 		7EB1634F1FD4598F004C2F9C /* PostsCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsCollectionDataSource.swift; sourceTree = "<group>"; };
 		7ECD0EC61FD328D70035F77C /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		7ECD0EC81FD32A030035F77C /* CollectionItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionItemCell.swift; sourceTree = "<group>"; };
@@ -511,6 +515,7 @@
 			isa = PBXGroup;
 			children = (
 				7E7B4F1B1FE03B10006C4617 /* ViewPostImageCell.swift */,
+				7E984F461FE2262900B14DF8 /* InboxHolderNavigationController.swift */,
 			);
 			path = ViewPost;
 			sourceTree = "<group>";
@@ -609,6 +614,7 @@
 				7EE6C5491FCB3AFE00ABBAE8 /* UIColor+Common.swift */,
 				7E0718A81FDC78F800C1E669 /* PHAsset+Common.swift */,
 				84BBB5D31FE1AAF000672C4D /* ViewController+Common.swift */,
+				7E984F481FE2323D00B14DF8 /* UILabel+Common.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -870,8 +876,6 @@
 				33BB4EDA1F2EB1ED00DB49FD /* IQTextView.swift in Sources */,
 				338B206A1F2E9F4C005B6D2C /* UIImageViewX.swift in Sources */,
 				33BB4EDE1F2EB1ED00DB49FD /* IQToolbar.swift in Sources */,
-				33BB4EB71F2EB0FE00DB49FD /* LoginNew.swift in Sources */,
-				33BB4E921F2EA95600DB49FD /* Toys.swift in Sources */,
 				338B206C1F2E9F4C005B6D2C /* UISliderX.swift in Sources */,
 				338B20711F2E9F4C005B6D2C /* UIView3.swift in Sources */,
 				338B20681F2E9F4C005B6D2C /* CustomizableTextfield.swift in Sources */,
@@ -899,6 +903,7 @@
 				33BB4DCD1F2EA8CD00DB49FD /* EditPost.swift in Sources */,
 				33BB4DD51F2EA8E200DB49FD /* AccountVC.swift in Sources */,
 				33A37D3D1F5AAFC30021365C /* SocialMedia.swift in Sources */,
+				7E984F471FE2262900B14DF8 /* InboxHolderNavigationController.swift in Sources */,
 				33BB4E9C1F2EA97800DB49FD /* custCell.swift in Sources */,
 				33CC20BF1FB10F9600CD8A79 /* ModernSearchBarDelegate.swift in Sources */,
 				33CC20C11FB10F9600CD8A79 /* ModernSearchBarModel.swift in Sources */,
@@ -938,6 +943,7 @@
 				84BBB5D21FE0537000672C4D /* ChatRoom.swift in Sources */,
 				33BB4DDB1F2EA8FC00DB49FD /* locationBar.swift in Sources */,
 				338B20691F2E9F4C005B6D2C /* UIButtonX.swift in Sources */,
+				7E984F491FE2323D00B14DF8 /* UILabel+Common.swift in Sources */,
 				E1BA494B1FDC707C0040EB25 /* (null) in Sources */,
 				338B20641F2E9F4C005B6D2C /* CustomizableImageView.swift in Sources */,
 				338B20301F2E9788005B6D2C /* AppDelegate.swift in Sources */,

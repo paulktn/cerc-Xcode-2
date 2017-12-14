@@ -59,6 +59,10 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
     @IBOutlet weak var postTitle: UITextField!
     @IBOutlet weak var imagesCollection: UICollectionView!
     
+    @IBOutlet var chooseCategoryLabel: UILabel!
+    @IBOutlet var chooseKeywordLabel: UILabel!
+    @IBOutlet var itemDetailsLabel: UILabel!
+    
     //  MARK: - Collections Height
     
     @IBOutlet weak var categoryCollectionHeight: NSLayoutConstraint!
@@ -218,11 +222,12 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
     }
     
     func detailsAlpha() {
-        presentDetailView.setTitle("\(details.text!)", for: .normal)
+        itemDetailsLabel.text = details.text
         view.endEditing(true)
     }
     
     func doneClicked() {
+        itemDetailsLabel.text = details.text
         view.endEditing(true)
     }
     
@@ -407,7 +412,7 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
         if collectionView == self.collectionCategories  {
             return cellIdentifiers.count
         }  else  if collectionView == self.keywordCollection {
-            switch self.chooseCategoryButton.titleLabel!.text! {
+            switch self.chooseCategoryLabel.text! {
                 
             case "choose category":
                 return 1
@@ -457,7 +462,7 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "keywordCell", for: indexPath as IndexPath) as! keywordCell
             
-            switch self.chooseCategoryButton.titleLabel!.text! {
+            switch self.chooseCategoryLabel.text ?? "" {
                 
             case "appliances":
                 cell.keywords.text! = self.appliancesWords[indexPath.item]
@@ -493,10 +498,6 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
                 return cell
                 
             case "miscellaneous":
-                cell.keywords.text! = self.miscellaneousWords[indexPath.item]
-                return cell;
-                
-            case "choose category":
                 cell.keywords.text! = self.miscellaneousWords[indexPath.item]
                 return cell;
                 
@@ -559,68 +560,68 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
             
         else if collectionView == self.keywordCollection {
             
-            switch self.chooseCategoryButton.titleLabel!.text! {
+            switch self.chooseCategoryLabel.text! {
                 
             case "     choose category":
-                
+                chooseKeywordLabel.text = "first choose category"
                 self.keyword.setTitle("first choose category", for: .normal)
             case "appliances":
-                self.keyword.setTitle("\(self.appliancesWords[indexPath.item])", for: .normal)
+                chooseKeywordLabel.text = "\(self.appliancesWords[indexPath.item])"
                 keywordCollection.alpha = 0
                 presentDetailView.alpha = 1
                 detailsIcon.alpha = 1
                 errorLabelCategory.text = ""
             case "clothing & accesories":
-                self.keyword.setTitle("\(self.clothingWords[indexPath.item])", for: .normal)
+                chooseKeywordLabel.text = "\(self.clothingWords[indexPath.item])"
                 keywordCollection.alpha = 0
                 presentDetailView.alpha = 1
                 detailsIcon.alpha = 1
                 errorLabelCategory.text = ""
             case "electronics":
-                self.keyword.setTitle("\(self.electronicsWords[indexPath.item])", for: .normal)
+                chooseKeywordLabel.text = "\(self.electronicsWords[indexPath.item])"
                 keywordCollection.alpha = 0
                 presentDetailView.alpha = 1
                 detailsIcon.alpha = 1
                 errorLabelCategory.text = ""
             case "furniture":
-                self.keyword.setTitle("\(self.furnitureWords[indexPath.item])", for: .normal)
+                chooseKeywordLabel.text = "\(self.furnitureWords[indexPath.item])"
                 keywordCollection.alpha = 0
                 presentDetailView.alpha = 1
                 detailsIcon.alpha = 1
                 errorLabelCategory.text = ""
             case "household items":
-                self.keyword.setTitle("\(self.householdWords[indexPath.item])", for: .normal)
+                chooseKeywordLabel.text = "\(self.householdWords[indexPath.item])"
                 keywordCollection.alpha = 0
                 presentDetailView.alpha = 1
                 detailsIcon.alpha = 1
                 errorLabelCategory.text = ""
             case "sporting goods":
-                self.keyword.setTitle("\(self.sportingWords[indexPath.item])", for: .normal)
+                chooseKeywordLabel.text = "\(self.sportingWords[indexPath.item])"
                 keywordCollection.alpha = 0
                 presentDetailView.alpha = 1
                 detailsIcon.alpha = 1
                 errorLabelCategory.text = ""
             case "toys & games":
-                self.keyword.setTitle("\(self.toysWords[indexPath.item])", for: .normal)
+                chooseKeywordLabel.text = "\(self.toysWords[indexPath.item])"
                 keywordCollection.alpha = 0
                 presentDetailView.alpha = 1
                 detailsIcon.alpha = 1
                 errorLabelCategory.text = ""
             case "home improvement":
-                self.keyword.setTitle("\(self.homeimprovementWords[indexPath.item])", for: .normal)
+                chooseKeywordLabel.text = "\(self.homeimprovementWords[indexPath.item])"
                 keywordCollection.alpha = 0
                 presentDetailView.alpha = 1
                 detailsIcon.alpha = 1
                 errorLabelCategory.text = ""
             case "miscellaneous":
-                self.keyword.setTitle("\(self.miscellaneousWords[indexPath.item])", for: .normal)
+                chooseKeywordLabel.text = "\(self.miscellaneousWords[indexPath.item])"
                 keywordCollection.alpha = 0
                 presentDetailView.alpha = 1
                 detailsIcon.alpha = 1
                 errorLabelCategory.text = ""
                 
             default:
-                self.keyword.setTitle("\(self.cellIdentifiers[indexPath.item])", for: .normal)
+                chooseKeywordLabel.text = "\(self.cellIdentifiers[indexPath.item])"
                 keywordCollection.alpha = 0
                 presentDetailView.alpha = 1
                 detailsIcon.alpha = 1
@@ -632,7 +633,7 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
         }
             
         else if collectionView == self.collectionCategories {
-            self.chooseCategoryButton.setTitle("\(self.cellIdentifiers[indexPath.item])", for: .normal)
+            chooseCategoryLabel.text = "\(self.cellIdentifiers[indexPath.item])"
             self.collectionCategories.alpha = 0
             self.presentDetailView.alpha = 1
             self.detailsIcon.alpha = 1
@@ -650,8 +651,9 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
     }
     
     func pushTomainView() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeVC
-        self.show(vc, sender: nil)
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeVC
+//        self.show(vc, sender: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func takePhoto(_ sender: AnyObject) {
@@ -788,9 +790,50 @@ extension AddPostVC:  UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        if collectionView == self.imagesCollection {
+        if collectionView === self.imagesCollection {
             return CGSize(width: 139, height: 139)
         }
+        
+        // Will be fixed later
+        
+//        } else if collectionView === self.collectionCategories {
+//            let category =  cellIdentifiers[indexPath.item]
+//            let width = UILabel.widthFor(text: category, font: UIFont.systemFont(ofSize: 17), height: 35)
+//            return CGSize(width: width + 8, height: 35)
+//        } else if collectionView === self.keywordCollection {
+//
+//            var text = ""
+//
+//            switch self.chooseCategoryLabel.text! {
+//
+//        case "     choose category":
+//            text = "first choose category"
+//        case "appliances":
+//            text = "\(self.appliancesWords[indexPath.item])"
+//        case "clothing & accesories":
+//            text = "\(self.clothingWords[indexPath.item])"
+//        case "electronics":
+//            text = "\(self.electronicsWords[indexPath.item])"
+//        case "furniture":
+//            text = "\(self.furnitureWords[indexPath.item])"
+//        case "household items":
+//            text = "\(self.householdWords[indexPath.item])"
+//        case "sporting goods":
+//            text = "\(self.sportingWords[indexPath.item])"
+//        case "toys & games":
+//            text = "\(self.toysWords[indexPath.item])"
+//        case "home improvement":
+//            text = "\(self.homeimprovementWords[indexPath.item])"
+//        case "miscellaneous":
+//            text = "\(self.miscellaneousWords[indexPath.item])"
+//
+//        default:
+//            text = "\(self.cellIdentifiers[indexPath.item])"
+//            }
+//
+//            let width = UILabel.widthFor(text: text, font: UIFont.systemFont(ofSize: 17), height: 35)
+//            return CGSize(width: width + 8, height: 35)
+//        }
         
         return CGSize(width: 150, height: 35)
     }

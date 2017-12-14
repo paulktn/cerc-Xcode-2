@@ -330,7 +330,8 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
                 toSimilarObjects?.passPost = similarPosts[indexPath.row]
             }
         } else if segue.identifier == "ShowChatVC",
-            let vc = segue.destination as? ChatVC,
+            let navVc = segue.destination as? UINavigationController,
+            let vc = navVc.viewControllers.first as? ChatVC,
             let chatId = sender as? String,
             let post = self.passPost {
             vc.post = post
@@ -463,18 +464,5 @@ extension ViewPostVC:  UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 3
-    }
-}
-
-fileprivate extension UILabel {
-    static func heightFor(text:String, font:UIFont, width: CGFloat) -> CGFloat{
-        let label:UILabel = UILabel(frame: CGRect(x: 0,y: 0,width: width, height: CGFloat.greatestFiniteMagnitude))
-        label.numberOfLines = 0
-        label.lineBreakMode = NSLineBreakMode.byWordWrapping
-        label.font = font
-        label.text = text
-        
-        label.sizeToFit()
-        return label.frame.height
     }
 }

@@ -1238,8 +1238,8 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="horizontalGradient" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NV-ug-5qQ">
-                                <rect key="frame" x="176" y="29" width="23.5" height="19"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NV-ug-5qQ">
+                                <rect key="frame" x="162.5" y="29" width="50.5" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="qpX-4Y-n58"/>
                                 </constraints>
@@ -1763,7 +1763,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 <rect key="frame" x="0.0" y="150" width="375" height="46.5"/>
                                 <color key="backgroundColor" red="0.30441417479999999" green="0.49072017769999998" blue="0.229284131" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                <state key="normal" title="   choose category">
+                                <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -1810,7 +1810,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 <rect key="frame" x="0.0" y="263" width="375" height="46"/>
                                 <color key="backgroundColor" red="0.4028857946395874" green="0.64421039819717407" blue="0.29852771759033203" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                <state key="normal" title="   item details">
+                                <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -2175,7 +2175,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 <rect key="frame" x="0.0" y="206.5" width="375" height="46.5"/>
                                 <color key="backgroundColor" red="0.34963102089999998" green="0.56361040610000002" blue="0.26334136660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                <state key="normal" title="   choose a keyword">
+                                <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -2369,6 +2369,24 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                     <action selector="savePost:" destination="nZH-u1-jLd" eventType="touchUpInside" id="OdI-Nu-X8M"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="choose category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzw-Ic-nKG">
+                                <rect key="frame" x="19" y="164" width="115.5" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="choose a keyword" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snK-9v-qjI">
+                                <rect key="frame" x="19" y="221" width="126.5" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="item details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWm-re-zcl">
+                                <rect key="frame" x="19" y="277" width="78" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97633427577883947" green="0.9860009517766497" blue="0.9860009517766497" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -2393,6 +2411,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                             <constraint firstItem="jRZ-ML-uc2" firstAttribute="centerX" secondItem="4BS-X3-euq" secondAttribute="centerX" id="8J4-8Q-IZs"/>
                             <constraint firstItem="WCa-ol-Qp0" firstAttribute="centerY" secondItem="UQb-c2-dJb" secondAttribute="centerY" id="9eh-XY-0Qf"/>
                             <constraint firstItem="1qT-J9-rwq" firstAttribute="centerX" secondItem="f4N-wW-1gX" secondAttribute="centerX" id="A24-2F-4fr"/>
+                            <constraint firstItem="kzw-Ic-nKG" firstAttribute="centerY" secondItem="4BS-X3-euq" secondAttribute="centerY" id="C22-Mt-gDM"/>
                             <constraint firstItem="soY-ER-2ma" firstAttribute="centerY" secondItem="F0k-7p-ynp" secondAttribute="centerY" id="CgJ-4e-Xgr"/>
                             <constraint firstItem="F0k-7p-ynp" firstAttribute="width" secondItem="4BS-X3-euq" secondAttribute="height" multiplier="5:9" id="DJG-7i-xgI"/>
                             <constraint firstItem="WCa-ol-Qp0" firstAttribute="leading" secondItem="UQb-c2-dJb" secondAttribute="trailing" constant="-130" id="DJl-mr-On5"/>
@@ -2400,8 +2419,10 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                             <constraint firstItem="jRZ-ML-uc2" firstAttribute="height" secondItem="4BS-X3-euq" secondAttribute="height" id="Fgd-2Z-0D1"/>
                             <constraint firstItem="4BS-X3-euq" firstAttribute="centerX" secondItem="01Z-2Y-ygG" secondAttribute="centerX" id="Iu7-3R-OfO"/>
                             <constraint firstItem="J5h-Z5-sZg" firstAttribute="centerX" secondItem="UQb-c2-dJb" secondAttribute="centerX" id="Kbq-3x-9NM"/>
+                            <constraint firstItem="gWm-re-zcl" firstAttribute="leading" secondItem="ZOn-Bo-JsW" secondAttribute="leading" id="Khz-5S-LWw"/>
                             <constraint firstItem="hlm-wq-jHI" firstAttribute="height" secondItem="01Z-2Y-ygG" secondAttribute="height" id="MmJ-c2-1AL"/>
                             <constraint firstItem="F0k-7p-ynp" firstAttribute="trailing" secondItem="4BS-X3-euq" secondAttribute="trailing" constant="-10" id="NGR-On-oDW"/>
+                            <constraint firstItem="snK-9v-qjI" firstAttribute="leading" secondItem="ZOn-Bo-JsW" secondAttribute="leading" id="Pdy-Kb-GMG"/>
                             <constraint firstItem="ed2-me-5zZ" firstAttribute="centerY" secondItem="UQb-c2-dJb" secondAttribute="centerY" id="Q0v-z8-qvW"/>
                             <constraint firstItem="6cA-ha-hKS" firstAttribute="top" secondItem="bTI-im-waU" secondAttribute="bottom" id="RMr-jo-emj"/>
                             <constraint firstItem="I8Y-3P-fUE" firstAttribute="centerX" secondItem="kfx-YI-wdk" secondAttribute="centerX" id="RoX-8c-fzW"/>
@@ -2410,6 +2431,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                             <constraint firstItem="F0k-7p-ynp" firstAttribute="height" secondItem="4BS-X3-euq" secondAttribute="height" multiplier="0.5" id="U4g-og-dcI"/>
                             <constraint firstItem="WCa-ol-Qp0" firstAttribute="width" secondItem="UQb-c2-dJb" secondAttribute="height" multiplier="10:17" id="UOY-R5-mpw"/>
                             <constraint firstItem="lcu-Qv-JT8" firstAttribute="top" secondItem="1qT-J9-rwq" secondAttribute="bottom" id="US1-rb-TdX"/>
+                            <constraint firstItem="kzw-Ic-nKG" firstAttribute="leading" secondItem="ZOn-Bo-JsW" secondAttribute="leading" id="UkE-Wp-8Uc"/>
                             <constraint firstItem="dak-Ck-cSH" firstAttribute="height" secondItem="jRZ-ML-uc2" secondAttribute="height" multiplier="0.5" id="Wxs-j8-ZM2"/>
                             <constraint firstItem="6Bh-sS-yxn" firstAttribute="trailing" secondItem="f4N-wW-1gX" secondAttribute="trailing" constant="-10" id="X9b-bT-klx"/>
                             <constraint firstItem="I8Y-3P-fUE" firstAttribute="height" secondItem="UQb-c2-dJb" secondAttribute="height" id="XAa-Bs-498"/>
@@ -2431,6 +2453,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                             <constraint firstItem="Mk7-AR-U7n" firstAttribute="top" secondItem="jRZ-ML-uc2" secondAttribute="bottom" id="gdz-cY-nhe"/>
                             <constraint firstItem="f4N-wW-1gX" firstAttribute="width" secondItem="4BS-X3-euq" secondAttribute="width" id="gs0-ae-0YH"/>
                             <constraint firstItem="1qT-J9-rwq" firstAttribute="width" secondItem="f4N-wW-1gX" secondAttribute="width" id="iJy-ZT-cBb"/>
+                            <constraint firstItem="snK-9v-qjI" firstAttribute="centerY" secondItem="jRZ-ML-uc2" secondAttribute="centerY" id="jAC-n2-aUd"/>
                             <constraint firstItem="bTI-im-waU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="lcu-Qv-JT8" secondAttribute="bottom" id="jzk-Q6-Ssd"/>
                             <constraint firstItem="1qT-J9-rwq" firstAttribute="top" secondItem="f4N-wW-1gX" secondAttribute="bottom" id="lGl-Ry-OkJ"/>
                             <constraint firstItem="6Bh-sS-yxn" firstAttribute="height" secondItem="f4N-wW-1gX" secondAttribute="height" multiplier="0.5" id="mfg-ay-wjN"/>
@@ -2449,6 +2472,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                             <constraint firstItem="J5h-Z5-sZg" firstAttribute="centerY" secondItem="UQb-c2-dJb" secondAttribute="centerY" id="uIb-Qm-DAd"/>
                             <constraint firstItem="kfx-YI-wdk" firstAttribute="width" secondItem="01Z-2Y-ygG" secondAttribute="width" id="vjN-mb-wPa"/>
                             <constraint firstItem="dak-Ck-cSH" firstAttribute="trailing" secondItem="jRZ-ML-uc2" secondAttribute="trailing" constant="-10" id="w8E-Y7-e36"/>
+                            <constraint firstItem="gWm-re-zcl" firstAttribute="centerY" secondItem="f4N-wW-1gX" secondAttribute="centerY" id="xbd-i4-gNh"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
@@ -2468,6 +2492,8 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <outlet property="categoryCollectionHeight" destination="bzd-l5-lun" id="p7v-hL-gNt"/>
                         <outlet property="checkMark" destination="e73-Gh-wog" id="UCz-2Y-CcK"/>
                         <outlet property="chooseCategoryButton" destination="4BS-X3-euq" id="cmh-sD-lGe"/>
+                        <outlet property="chooseCategoryLabel" destination="kzw-Ic-nKG" id="M0w-FI-bmq"/>
+                        <outlet property="chooseKeywordLabel" destination="snK-9v-qjI" id="Nrg-y1-O5h"/>
                         <outlet property="collectionCategories" destination="6IU-aV-5tk" id="GCM-YS-Wh6"/>
                         <outlet property="details" destination="1qT-J9-rwq" id="0pl-e5-zQI"/>
                         <outlet property="detailsIcon" destination="6Bh-sS-yxn" id="egB-e5-AhD"/>
@@ -2478,6 +2504,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <outlet property="errorLabelLocation" destination="WCa-ol-Qp0" id="hai-gN-1zM"/>
                         <outlet property="hashtagIcon" destination="dak-Ck-cSH" id="hXM-gd-RZ4"/>
                         <outlet property="imagesCollection" destination="lcu-Qv-JT8" id="l9I-aq-DaY"/>
+                        <outlet property="itemDetailsLabel" destination="gWm-re-zcl" id="aF2-ui-gU8"/>
                         <outlet property="keyword" destination="jRZ-ML-uc2" id="8CK-AB-ZfB"/>
                         <outlet property="keywordCollection" destination="Mk7-AR-U7n" id="q2U-Ig-3GN"/>
                         <outlet property="keywordCollectionHeight" destination="Gky-la-V8g" id="Ncm-9L-lF0"/>
@@ -2573,10 +2600,12 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
         <!--ChatVCNew-->
         <scene sceneID="BT1-zP-3K0">
             <objects>
-                <viewControllerPlaceholder storyboardName="MessagesFlow" referencedIdentifier="ChatVCNew" id="6ky-gj-hPL" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="MessagesFlow" referencedIdentifier="ChatVCNew" id="6ky-gj-hPL" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="wXH-HY-CL3"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WhH-qs-Hq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4760" y="-114"/>
+            <point key="canvasLocation" x="-5446" y="-303"/>
         </scene>
         <!--View PostVC-->
         <scene sceneID="Krw-ej-EZl">
@@ -3342,7 +3371,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <outlet property="tweeterButton" destination="KCM-8j-bMj" id="qxQ-Bh-0ZI"/>
                         <outlet property="viewMap" destination="kFV-NQ-vW3" id="z8X-lG-XvK"/>
                         <outlet property="viewPostTitle" destination="NXf-Qg-4ah" id="K7m-CJ-SRM"/>
-                        <segue destination="6ky-gj-hPL" kind="show" identifier="ShowChatVC" id="VWI-ns-UHa"/>
+                        <segue destination="Vt3-5M-7Fe" kind="presentation" identifier="ShowChatVC" id="VWI-ns-UHa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lhv-Hc-OBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3385,7 +3414,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="-4172" y="111.54422788605699"/>
+            <point key="canvasLocation" x="-3832.8000000000002" y="111.54422788605699"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="Ma6-hD-Dhz">
@@ -5063,7 +5092,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                     </userDefinedRuntimeAttributes>
                 </view>
             </objects>
-            <point key="canvasLocation" x="-3474" y="-109"/>
+            <point key="canvasLocation" x="-3135.1999999999998" y="-109.29535232383809"/>
         </scene>
         <!--AccountVC-->
         <scene sceneID="AsN-mh-rpp">
@@ -5921,6 +5950,24 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
             </objects>
             <point key="canvasLocation" x="-3434" y="1198"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qGv-dw-rko">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vt3-5M-7Fe" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xni-wc-hyk">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6ky-gj-hPL" kind="relationship" relationship="rootViewController" id="Byt-6a-OPe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ALS-Uk-lx4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4760" y="-114.24287856071965"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Add" width="50" height="50"/>
@@ -5956,6 +6003,6 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
         <image name="up" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5OZ-HD-WZS"/>
+        <segue reference="kbW-IQ-aMf"/>
     </inferredMetricsTieBreakers>
 </document>

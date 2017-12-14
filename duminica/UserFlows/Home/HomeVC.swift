@@ -539,7 +539,10 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
     
     func searchKey() {
         self.view.addSubview(searchView)
-        self.searchView.frame.origin.y =  100
+        UIView.animate(withDuration: 0.4, animations: {
+            self.searchView.frame.origin.y =  100
+        })
+        
         
         fetchAllPosts {
             self.filteredPosts = self.allPosts.filter{
@@ -564,12 +567,12 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
                 let reviewPostVc = segue.destination as? ViewPostVC else {return}
             reviewPostVc.passPost = post            
         }
-//        if segue.identifier == "fromSearch" {
-//            let postDetailPage = segue.destination as? ViewPost
-//            if let indexPath = self.collectionView?.indexPath(for: sender as! UICollectionViewCell) {
-//                postDetailPage?.passPost = searchToDisplay[indexPath.row]
-//            }
-//        }
+    }
+}
+
+extension HomeVC {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
     }
 }
 
@@ -628,20 +631,10 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionItemCell", for: indexPath) as! CollectionItemCell
         let sweet = filteredPosts[indexPath.item]
         cell.itemImageView.sd_setImage(with: sweet.logoUrl)
-//        let fromDate = Date(timeIntervalSince1970: TimeInterval(sweet.postDate))
-//        let toDate = Date()
-//
-//        cell.itemDateLabel.text = getTextForDate(fromDate, toDate)
-        
         cell.tag = indexPath.item
         return cell
     }
-    
 }
-
-
-
-
 
 func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
  
