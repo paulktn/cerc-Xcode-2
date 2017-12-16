@@ -21,8 +21,9 @@ class InformationVC: UIViewController, MFMailComposeViewControllerDelegate {
     }
     
     func pushTomainView() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeVC
-        self.show(vc, sender: nil)
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Homes") as! HomeVC
+//        self.show(vc, sender: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func presentAboutUsView(_ sender: Any) {

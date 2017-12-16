@@ -48,11 +48,9 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
     var postDelegate: PostDelegate?
     var canSendLocation = true
     var textGhost: String!
-    var lati: Double!
-    var longi: Double!
+    var location: CLLocation?
     var items = [Conversation]()
     var key: String!
-    var blalocation: CLLocation!
     var locationManager = CLLocationManager()
     var mCenter: CGPoint!
     var aboutCenter: CGPoint!
@@ -112,6 +110,12 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
         customizeHome()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        fetchAllPosts()
+    }
+    
     // MARK: - Private
     
     private func configureSearchBar(){
@@ -153,11 +157,11 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
         }
         
         var latitudeQuery = ref.queryOrdered(byChild: "latitude")
-//        if let location = AppDelegate.session.lastLocation {
-//           latitudeQuery = latitudeQuery
-//            .queryStarting(atValue: location.latitude - 1, childKey: "latitude")
-//            .queryEnding(atValue: location.latitude + 1, childKey: "latitude")
-//        }
+        if let location = location {
+           latitudeQuery = latitudeQuery
+            .queryStarting(atValue: location.coordinate.latitude - 1, childKey: "latitude")
+            .queryEnding(atValue: location.coordinate.latitude + 1, childKey: "latitude")
+        }
         
         latitudeQuery.observe(.value, with: { (snapshot) in
             if let data = snapshot.children.allObjects as? [DataSnapshot] {
@@ -171,11 +175,11 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
         })
         
         var longitudeQuery = ref.queryOrdered(byChild: "longitude")
-//        if let location = AppDelegate.session.lastLocation {
-//            longitudeQuery = longitudeQuery
-//                .queryStarting(atValue: location.latitude - 1, childKey: "longitude")
-//                .queryEnding(atValue: location.latitude + 1, childKey: "longitude")
-//        }
+        if let location = location {
+            longitudeQuery = longitudeQuery
+                .queryStarting(atValue: location.coordinate.latitude - 1, childKey: "longitude")
+                .queryEnding(atValue: location.coordinate.latitude + 1, childKey: "longitude")
+        }
         
         longitudeQuery.observe(.value, with: { (snapshot) in
             if let data = snapshot.children.allObjects as? [DataSnapshot] {
@@ -193,21 +197,24 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
     private func fetchAllPosts(completion: (() -> Void)? = nil) {
         var allArray = [Post]()
         
-        print("\(lati)")
         let finalRef = self.databaseRef.child("ios_posts").queryOrdered(byChild: "latitude")
-        print(lati)
         finalRef.observe(.value, with: { (snapshot) in
             if snapshot.exists(){
                 for posts in snapshot.children.allObjects as! [DataSnapshot]   {
                     if let householdObject = Post(snapshot: posts ) {
                         
-                        let postLocation = CLLocation(latitude: householdObject.latitude,
-                                                      longitude: householdObject.longitude)
-                        let userLocation = CLLocation(latitude: self.lati, longitude: self.longi)
-                        
-                        let distance = Int(userLocation.distance(from: postLocation))
-                        
-                        if distance < 30000 {
+                        if let userLocation = self.location {
+                            
+                            let postLocation = CLLocation(latitude: householdObject.latitude,
+                                                          longitude: householdObject.longitude)
+                            
+                            
+                            let distance = Int(userLocation.distance(from: postLocation))
+                            
+                            if distance < 30000 {
+                                allArray.append(householdObject)
+                            }
+                        } else {
                             allArray.append(householdObject)
                         }
                     }
@@ -215,30 +222,6 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
                 self.allPosts = allArray
                 self.tableView.reloadData()
                 completion?()
-            }
-        })
-    }
-    
-    private func fetchSearchPosts(completion: @escaping ([Post])->()) {
-        var allArray = [Post]()
-        
-        print("\(lati)")
-        let finalRef = self.databaseRef.child("posts").queryOrdered(byChild: "latit").queryStarting(atValue: lati - 1).queryEnding(atValue: (lati + 1))
-        print(lati)
-        finalRef.observe(.value, with: { (snapshot) in
-            
-            if snapshot.exists(){
-                
-                
-                for posts in snapshot.children.allObjects as! [DataSnapshot]   {
-                    if let householdObject = Post(snapshot: posts ) {
-                        allArray.append(householdObject)
-                    }
-                    
-                    completion(allArray)
-                    self.allPosts = allArray
-                    
-                }
             }
         })
     }
@@ -352,18 +335,13 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation:CLLocation = locations[0] as CLLocation
+        guard let userLocation = locations.first else {return}
         
         AppDelegate.session.lastLocation = userLocation.coordinate
         
-        lati = userLocation.coordinate.latitude
-        longi = userLocation.coordinate.longitude
-        
-        print("user latitude = \(userLocation.coordinate.latitude)")
-        print("user longitude = \(userLocation.coordinate.longitude)")
+        location = userLocation
         
         fetchAllPosts()
-        //getAllPosts()
         
         self.stopUpdatingLocation()
     }
@@ -550,20 +528,52 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
     func searchKey() {
         self.view.addSubview(searchView)
         UIView.animate(withDuration: 0.4, animations: {
-            self.searchView.frame.origin.y =  100
+            self.searchView.frame.origin.y =  self.searchBar.frame.origin.y + self.searchBar.frame.height
         })
         
+        self.filteredPosts.removeAll()
         
-        fetchAllPosts {
-            self.filteredPosts = self.allPosts.filter{
-                $0.title.contains(String(describing: self.searchBar.text!)) && $0.longitude.isLessThanOrEqualTo((self.longi + 1))
-                }.sorted{ (post1, post2) -> Bool in
-                Int(post1.date) > Int(post2.date)
+        var requestCounter = 2 {
+            didSet {
+                if requestCounter == 0 {
+                    self.collectionView.reloadData()
+                }
             }
-            
-            self.collectionView.reloadData()
         }
         
+        let text = searchBar.text ?? ""
+        databaseRef
+            .child("ios_posts")
+            .queryOrdered(byChild: "title")
+            .queryStarting(atValue: text)
+            .queryEnding(atValue: "\(text)\\uf8ff")
+            .observe(.value, with: {(snapshot) in
+                if snapshot.exists(){
+                    for postData in snapshot.children.allObjects as! [DataSnapshot]   {
+                        if let post = Post(snapshot: postData) {
+                            self.filteredPosts.append(post)
+                        }
+                    }
+                }
+                
+                requestCounter += -1
+            })
+        databaseRef
+            .child("ios_posts")
+            .queryOrdered(byChild: "keywords")
+            .queryStarting(atValue: text)
+            .queryEnding(atValue: "\(text)\\uf8ff")
+            .observe(.value, with: {(snapshot) in
+                if snapshot.exists(){
+                    for postData in snapshot.children.allObjects as! [DataSnapshot]   {
+                        if let post = Post(snapshot: postData) {
+                            self.filteredPosts.append(post)
+                        }
+                    }
+                }
+                
+                requestCounter += -1
+            })
         self.view.endEditing(true)
     }
     
@@ -583,6 +593,9 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
 extension HomeVC {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
+        UIView.animate(withDuration: 0.4, animations: {
+            self.searchView.frame.origin.y = UIScreen.main.bounds.height
+        })
     }
 }
 
@@ -649,12 +662,12 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.tag = indexPath.item
         return cell
     }
-}
 
-func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
- 
-    // TODO: - Perform some segue
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let post = filteredPosts[indexPath.item]
+        performSegue(withIdentifier: "ViewPostSegue", sender: post)
     
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -662,12 +675,12 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
 extension HomeVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.collectionView {
-            let itemsPerRow: CGFloat = 2.08
-            let sectionInsets = UIEdgeInsets(top: 1, left: 1.0, bottom: 1, right: 1)
-            let paddingSpace = sectionInsets.top * (itemsPerRow + 1)
-            let availableWidth = collectionView.frame.width - paddingSpace
-            let widthPerItem = availableWidth / itemsPerRow
-            return CGSize(width: widthPerItem, height: widthPerItem)
+//            let itemsPerRow: CGFloat = 2.08
+//            let sectionInsets = UIEdgeInsets(top: 1, left: 1.0, bottom: 1, right: 1)
+//            let paddingSpace = sectionInsets.top * (itemsPerRow + 1)
+//            let availableWidth = collectionView.frame.width - paddingSpace
+//            let widthPerItem = availableWidth / itemsPerRow
+            return CGSize(width: 180, height: 180)
             
         }  else {
             let sectionInsets = UIEdgeInsets(top: 0, left: 1.0, bottom: 0, right: 1)
@@ -683,7 +696,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        let sectionInsets = UIEdgeInsets(top: 1, left: 1.0, bottom: 1, right: 1)
+        let sectionInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
         return sectionInsets
     }
     
@@ -702,8 +715,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
     func maximumNumberOfColumns(for collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout) -> Int {
         
         if collectionView == self.collectionView {
-            let numColumns: Int = Int(2.0)
-            return numColumns
+            return 2
         } else {
             return 1
         }

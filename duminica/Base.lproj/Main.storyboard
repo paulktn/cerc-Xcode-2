@@ -1463,22 +1463,24 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                     <rect key="frame" x="0.0" y="0.0" width="376" height="600"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                     <subviews>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XuU-pK-5SI">
-                            <rect key="frame" x="10" y="0.0" width="356" height="600"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XuU-pK-5SI">
+                            <rect key="frame" x="98" y="0.0" width="180" height="600"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="180" id="99u-7N-aEj"/>
+                            </constraints>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="10" id="XfQ-ZY-JNv">
-                                <size key="itemSize" width="174" height="180"/>
+                                <size key="itemSize" width="180" height="180"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                             <cells>
                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionItemCell" id="mbe-cy-xbt" customClass="CollectionItemCell" customModule="duminica" customModuleProvider="target">
-                                    <rect key="frame" x="91" y="0.0" width="174" height="180"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                        <rect key="frame" x="0.0" y="0.0" width="174" height="180"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g7A-gE-n3U">
@@ -1541,6 +1543,11 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="XuU-pK-5SI" firstAttribute="top" secondItem="abG-if-Lve" secondAttribute="top" id="MPJ-SC-IZ4"/>
+                        <constraint firstItem="XuU-pK-5SI" firstAttribute="centerX" secondItem="abG-if-Lve" secondAttribute="centerX" id="XAr-Wj-Gb4"/>
+                        <constraint firstAttribute="bottom" secondItem="XuU-pK-5SI" secondAttribute="bottom" id="egH-5n-mNU"/>
+                    </constraints>
                 </view>
             </objects>
             <point key="canvasLocation" x="-5111.1999999999998" y="607.64617691154433"/>
@@ -2600,7 +2607,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WhH-qs-Hq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5446" y="-303"/>
+            <point key="canvasLocation" x="-2086" y="197"/>
         </scene>
         <!--View PostVC-->
         <scene sceneID="Krw-ej-EZl">
@@ -4134,7 +4141,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="emptyCell" rowHeight="35" id="zHA-8a-Mfl" userLabel="Empty">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="emptyCell" rowHeight="35" id="zHA-8a-Mfl" userLabel="Empty">
                                         <rect key="frame" x="0.0" y="28" width="414" height="35"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zHA-8a-Mfl" id="wTN-3h-nN7">
@@ -4153,7 +4160,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemCell" rowHeight="150" id="EEd-GX-IV9" userLabel="ItemCell" customClass="itemReceptCell" customModule="duminica" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemCell" rowHeight="150" id="EEd-GX-IV9" userLabel="ItemCell" customClass="itemReceptCell" customModule="duminica" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="63" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EEd-GX-IV9" id="7r3-gs-i6r">
@@ -5087,7 +5094,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                     </userDefinedRuntimeAttributes>
                 </view>
             </objects>
-            <point key="canvasLocation" x="-3135.1999999999998" y="-109.29535232383809"/>
+            <point key="canvasLocation" x="-2587" y="1925"/>
         </scene>
         <!--AccountVC-->
         <scene sceneID="AsN-mh-rpp">
@@ -5945,7 +5952,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALS-Uk-lx4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4760" y="-114.24287856071965"/>
+            <point key="canvasLocation" x="-2823" y="198"/>
         </scene>
     </scenes>
     <resources>

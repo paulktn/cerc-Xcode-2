@@ -40,6 +40,7 @@ class Post {
     var imageURLs: [URL] = []
     var ownerId: String
     var date: NSNumber
+    var keywords: String?
     
     var location: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -55,6 +56,7 @@ class Post {
         self.latitude = data["latitude"] as! Double
         self.longitude = data["longitude"] as! Double
         self.date = data["date"] as! NSNumber
+        self.keywords = data["keywords"] as? String
         if let categoryString = data["category"] as? String,
             let category = Category(string: categoryString) {
             self.category = category

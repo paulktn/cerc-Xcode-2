@@ -236,7 +236,8 @@ class ViewPostVC: UIViewController, UIScrollViewDelegate, CLLocationManagerDeleg
         
         databaseRef
             .child("ios_posts")
-//            .queryEqual(toValue: passPost.category.rawValue, childKey: "category")
+            .queryOrdered(byChild: "category")
+            .queryEqual(toValue: passPost.category.rawValue, childKey: "category")
             .observe(.value, with: { (snapshot) in
                 print(snapshot.key)
                 if let data = snapshot.children.allObjects as? [DataSnapshot] {

@@ -707,7 +707,8 @@ class AddPostVC: UIViewController, UICollectionViewDataSource, CLLocationManager
                                  "date": postDate,
                                  "details": postDetails ?? "",
                                  "title": self.postTitle.text ?? "",
-                                 "owner_id": AppDelegate.session.user?.id ?? ""])
+                                 "owner_id": AppDelegate.session.user?.id ?? "",
+                                 "keywords": chooseKeywordLabel.text ?? ""])
             
             
             

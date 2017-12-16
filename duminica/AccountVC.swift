@@ -50,6 +50,7 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     var Wishsweets: [Post] = [Post]()
     var Receivedsweets: [PickedUp] = [PickedUp]()
     var selectedPost1: Post?
+    
     var poza: String!
     var link: String!
     var nameLink: String!
