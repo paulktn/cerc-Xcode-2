@@ -26,6 +26,15 @@ class Session {
     
     var lastLocation: CLLocationCoordinate2D?
     
+    public var locationRadius: Int? {
+        get {
+            return UserDefaults.standard.value(forKey: "locationRadius") as? Int
+        }
+        set {
+            UserDefaults.standard.set(newValue ?? 0, forKey: "locationRadius")
+        }
+    }
+    
     public init() {
         if let dict = UserDefaults.standard.value(forKey: "SessionUser") as? [String: String],
             let name = dict["name"],

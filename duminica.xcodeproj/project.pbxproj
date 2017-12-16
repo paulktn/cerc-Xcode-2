@@ -111,6 +111,7 @@
 		7EE6C5481FCB3AA600ABBAE8 /* String+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C5471FCB3AA600ABBAE8 /* String+Common.swift */; };
 		7EE6C54A1FCB3AFE00ABBAE8 /* UIColor+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C5491FCB3AFE00ABBAE8 /* UIColor+Common.swift */; };
 		7EE6C54C1FCB3B7000ABBAE8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6C54B1FCB3B7000ABBAE8 /* Post.swift */; };
+		84364AA81FE5B58F00C8CDA1 /* LocationRadiusVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84364AA71FE5B58F00C8CDA1 /* LocationRadiusVC.swift */; };
 		84BBB5D21FE0537000672C4D /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBB5D11FE0537000672C4D /* ChatRoom.swift */; };
 		84BBB5D41FE1AAF000672C4D /* ViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBB5D31FE1AAF000672C4D /* ViewController+Common.swift */; };
 		84BBB5D61FE1B0AC00672C4D /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BBB5D51FE1B0AC00672C4D /* ActivityIndicator.swift */; };
@@ -261,6 +262,7 @@
 		7EE6C5471FCB3AA600ABBAE8 /* String+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Common.swift"; sourceTree = "<group>"; };
 		7EE6C5491FCB3AFE00ABBAE8 /* UIColor+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Common.swift"; sourceTree = "<group>"; };
 		7EE6C54B1FCB3B7000ABBAE8 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		84364AA71FE5B58F00C8CDA1 /* LocationRadiusVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRadiusVC.swift; sourceTree = "<group>"; };
 		84BBB5D11FE0537000672C4D /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		84BBB5D31FE1AAF000672C4D /* ViewController+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Common.swift"; sourceTree = "<group>"; };
 		84BBB5D51FE1B0AC00672C4D /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 				33BB4DDA1F2EA8FC00DB49FD /* locationBar.swift */,
 				330654D91F540B8D00EC922F /* recepts.swift */,
 				331EFE761F5DF44100A748E5 /* settings.swift */,
+				84364AA71FE5B58F00C8CDA1 /* LocationRadiusVC.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -887,6 +890,7 @@
 				33BB4DDD1F2EA90300DB49FD /* ViewPostVC.swift in Sources */,
 				33BB4ED31F2EB1ED00DB49FD /* IQUIView+Hierarchy.swift in Sources */,
 				7E8C1B921FD5F47C00EAA156 /* QBVideoIndicatorView.m in Sources */,
+				84364AA81FE5B58F00C8CDA1 /* LocationRadiusVC.swift in Sources */,
 				33BB4DC91F2EA8CD00DB49FD /* report.swift in Sources */,
 				7E8C1B701FD5F01500EAA156 /* CreateNewUserVC.swift in Sources */,
 				33118AAF1F6B272C00D56606 /* OnboardingPresentationVC.swift in Sources */,
