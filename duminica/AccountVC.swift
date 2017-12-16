@@ -30,8 +30,8 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     @IBOutlet weak var myPostingsIcon: UIImageView!
     @IBOutlet weak var receivedIcon: UIImageView!
     @IBOutlet weak var savedIcon: UIImageView!
-
     @IBOutlet weak var nnameLabel: UILabel!
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var wishCollectionView: UICollectionView!
     @IBOutlet weak var receivedCollectionView: UICollectionView!
@@ -46,8 +46,8 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     @IBOutlet weak var savedItemsHeight: NSLayoutConstraint!
     
     
-    var sweets: [Post] = [Post]()
-    var Wishsweets: [Post] = [Post]()
+    var myPostings: [Post] = []
+    var savedPotsts: [Post] = []
     var Receivedsweets: [PickedUp] = [PickedUp]()
     var selectedPost1: Post?
     
@@ -76,13 +76,10 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         return Storage.storage().reference()
     }
     
-
-    
     //  MARK: - Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         manageItemsView.alpha = 0
         receivedItems.alpha = 0
@@ -95,22 +92,14 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         customization()
         collectionView.delegate = self
         collectionView.dataSource = self
-        fetchAllPost()
-        fetchAllWishPost()
-        fetchAllReceivedPost()
+        fetchSavedPosts()
+        fetchMyPosts()
         grabPhotos()
         
         wishCollectionView.delegate = self
         wishCollectionView.dataSource = self
         getURL()
         getEmail()
-        
-//        nameTextField.addCancelDoneOnKeyboardWithTarget(<#T##target: AnyObject?##AnyObject?#>,
-//                                                        cancelAction: <#T##Selector#>,
-//                                                        doneAction: <#T##Selector#>, shouldShowPlaceholder: <#T##Bool#>)
-//
-//        nameField.addCancelDoneOnKeyboardWithTarget(self, cancelAction: #selector(self.doneClicked), doneAction: #selector(self.changeNameAction))
-//        nameField.alpha = 0
     }
     
     //  MARK: - IBAction
@@ -448,21 +437,21 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     }
     
     
-    func fetchAllPost(completion: @escaping ([Post])->()) {
+    func fetchMyPosts() {
         
-        let currentUser = Auth.auth().currentUser!.uid
+        guard let currentUser = Auth.auth().currentUser?.uid else {return}
         
         databaseRef.child("posts").queryOrdered(byChild: "userId").queryEqual(toValue: currentUser).observe(.value, with: { (snapshot) in
             
             var postArray = [Post]()
-            for podddst in snapshot.children {
+            for post in snapshot.children {
                 
-                if let postObject = Post(snapshot: podddst as! DataSnapshot) {
+                if let postObject = Post(snapshot: post as! DataSnapshot) {
                     postArray.append(postObject)
                 }
                 
             }
-            self.sweets = postArray
+            self.myPostings = postArray
             self.collectionView.reloadData()
             }) { (error:Error) in
             print(error.localizedDescription)
@@ -480,23 +469,6 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         self.present(navVC, animated: true)
     }
 
-    private func fetchAllPost(){
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if user != nil {
-        self.fetchAllPost {(posts) in
-            self.sweets = posts
-            self.sweets.sort(by: { (post1, post2) -> Bool in
-                Int(post1.date) > Int(post2.date)
-            })
-            
-            self.collectionView.reloadData()
-                }
-            }  else {
-                self.takeToLogin()
-            }
-        }
-    }
-    
     func fetchAllWishPost(completion: @escaping ([Post])->()) {
         let currentUser = Auth.auth().currentUser!.uid
         databaseRef.child("wishlist").child(currentUser).observe(.value, with: { (snapshot) in
@@ -509,7 +481,8 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
                 }
                 
             }
-            self.Wishsweets = WishpostArray
+            
+            self.savedPotsts = WishpostArray
             self.wishCollectionView.reloadData()
             
         }) { (error:Error) in
@@ -526,25 +499,8 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         self.manageItemsView.alpha = 0
     }
     
-    private func fetchAllWishPost(){
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if user != nil {
-                
-                self.fetchAllWishPost {(Wishposts) in
-                    self.Wishsweets = Wishposts
-                    self.Wishsweets.sort(by: { (post1, post2) -> Bool in
-                        Int(post1.date) > Int(post2.date)
-                    })
-                    
-                    self.wishCollectionView.reloadData()
-                }}  else {
-                self.takeToLogin()
-            }
-        }
-    }
-    
-    func fetchAllReceivedPost(completion: @escaping ([PickedUp])->()) {
-
+    func fetchSavedPosts() {
+        
         let currentUser = Auth.auth().currentUser!.uid
         
         databaseRef.child("pickedup").child(currentUser).observe(.value, with: { (snapshot) in
@@ -554,42 +510,40 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
                 
                 let postObject = PickedUp(snapshot: podddst as! DataSnapshot)
                 ReceivedpostArray.append(postObject)
-                
             }
-            self.Receivedsweets = ReceivedpostArray
-            self.receivedCollectionView.reloadData()
+            self.wishCollectionView.reloadData()
         }) { (error:Error) in
             print(error.localizedDescription)
         }
     }
-  
-    private func fetchAllReceivedPost(){
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if user != nil {
-                self.fetchAllReceivedPost {(posts) in
-                    self.Receivedsweets = posts
-                    self.Receivedsweets.sort(by: { (post1, post2) -> Bool in
-                        Int(post1.pickedDate) > Int(post2.pickedDate)
-                    })
-                    
-                    self.receivedCollectionView.reloadData()
-                }
-            }  else {
-                self.takeToLogin()
-            }
-        }
-    }
-    
+//
+//    private func fetchAllReceivedPost(){
+//        Auth.auth().addStateDidChangeListener { auth, user in
+//            if user != nil {
+//                self.fetchAllReceivedPost {(posts) in
+//                    self.Receivedsweets = posts
+//                    self.Receivedsweets.sort(by: { (post1, post2) -> Bool in
+//                        Int(post1.pickedDate) > Int(post2.pickedDate)
+//                    })
+//
+//                    self.receivedCollectionView.reloadData()
+//                }
+//            }  else {
+//                self.takeToLogin()
+//            }
+//        }
+//    }
+//
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionView {
         
-        return sweets.count
+        return myPostings.count
         } else if collectionView == self.receivedCollectionView {
             return Receivedsweets.count
         } else if collectionView == self.collectionPicturesProfile {
             return imageArray.count
         } else {
-             return Wishsweets.count
+             return savedPotsts.count
         }
     }
     
@@ -598,11 +552,11 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "accountCust", for: indexPath) as! accountCust
         
-        let sweet = sweets[indexPath.row]
+        let post = myPostings[indexPath.row]
         
-      cell.imageCell.sd_setImage(with: sweet.logoUrl)
+        cell.imageCell.sd_setImage(with: post.logoUrl)
         
-        let fromDate = NSDate(timeIntervalSince1970: TimeInterval(sweet.date))
+            let fromDate = NSDate(timeIntervalSince1970: TimeInterval(post.date))
         let toDate = NSDate()
         
         let differenceOfDate = Calendar.current.dateComponents([.second,.minute,.hour,.day,.weekOfMonth], from: fromDate as Date, to: toDate as Date)
@@ -645,11 +599,11 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         else {
              let Wishcell = collectionView.dequeueReusableCell(withReuseIdentifier: "accountCust", for: indexPath) as! accountCust
         
-        let wishsweet = Wishsweets[indexPath.row]
+        let wishedPost = savedPotsts[indexPath.row]
         
-        Wishcell.imageCell.sd_setImage(with: wishsweet.logoUrl)
+        Wishcell.imageCell.sd_setImage(with: wishedPost.logoUrl)
         
-        let fromDate = NSDate(timeIntervalSince1970: TimeInterval(wishsweet.date))
+        let fromDate = NSDate(timeIntervalSince1970: TimeInterval(wishedPost.date))
         let toDate = NSDate()
         
         let differenceOfDate = Calendar.current.dateComponents([.second,.minute,.hour,.day,.weekOfMonth], from: fromDate as Date, to: toDate as Date)
@@ -667,7 +621,7 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
             Wishcell.dateCell.text = "posted \(differenceOfDate.weekOfMonth!)weeks ago"
             
         }
-        Wishcell.configureCell(post: self.Wishsweets[indexPath.item])
+        Wishcell.configureCell(post: self.savedPotsts[indexPath.item])
         Wishcell.tag = indexPath.item
         return Wishcell
             
@@ -676,10 +630,10 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
-        postDelegate?.selectedPost(post: self.sweets[indexPath.item])
-        self.selectedPost1 = self.sweets[indexPath.item]
+        postDelegate?.selectedPost(post: self.savedPotsts[indexPath.item])
+        self.selectedPost1 = self.savedPotsts[indexPath.item]
         } else if collectionView == self.wishCollectionView {
-           let Wishsweet = Wishsweets[indexPath.row]
+           let Wishsweet = savedPotsts[indexPath.row]
             
             let currentUser = Auth.auth().currentUser!.uid
             let fromUser = Wishsweet.id
@@ -731,7 +685,7 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
             
             let postDetailPage = segue.destination as? EditPost
             if let indexPath = self.collectionView?.indexPath(for: sender as! UICollectionViewCell) {
-                postDetailPage?.passPostEdit = sweets[indexPath.row]
+                postDetailPage?.passPostEdit = self.myPostings[indexPath.row]
             }
         }
             
