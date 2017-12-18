@@ -134,6 +134,17 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         }
     }
     
+    @IBAction func chooseRadius(_ sender: Any) {
+        let radiusVC = self.storyboard?.instantiateViewController(withIdentifier: "LocationRadiusVC") as! LocationRadiusVC
+        let navVC = UINavigationController(rootViewController: radiusVC)
+        navVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navVC.navigationBar.tintColor = UIColor.white
+        navVC.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        navVC.navigationBar.shadowImage = UIImage()
+        navVC.navigationBar.isTranslucent = true
+        self.present(navVC, animated: true)
+    }
+    
     @IBAction func emailMessages(_ sender: Any) {
         if let currentUser = Auth.auth().currentUser?.uid {
             switch self.switchEmailMessages.isOn {

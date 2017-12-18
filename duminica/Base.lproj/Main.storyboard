@@ -22,6 +22,92 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Location RadiusVC-->
+        <scene sceneID="7CV-xJ-FDI">
+            <objects>
+                <viewController storyboardIdentifier="LocationRadiusVC" id="8bO-5D-Jdb" customClass="LocationRadiusVC" customModule="duminica" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aL1-rN-aRs"/>
+                        <viewControllerLayoutGuide type="bottom" id="XbY-4j-DqN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="olm-ak-0L0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Q6-Fa-oqc" customClass="UIViewX" customModule="duminica" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="-44" width="414" height="60"/>
+                                <color key="backgroundColor" red="0.48698419329999998" green="0.67733496429999995" blue="0.45169532299999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="TfK-qV-zAK"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
+                                        <color key="value" red="0.24128654599999999" green="0.39989075060000001" blue="0.19111400840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
+                                        <color key="value" red="0.34963102089999998" green="0.56361040610000002" blue="0.26334136660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="thirdColor">
+                                        <color key="value" red="0.44705882349999998" green="0.62352941179999999" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="horizontalGradient" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose radius" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBE-wA-5nc">
+                                <rect key="frame" x="0.0" y="36" width="414" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="HdA-Pd-6Cg">
+                                <rect key="frame" x="80.666666666666671" y="77" width="252.66666666666663" height="31"/>
+                                <connections>
+                                    <action selector="radiusChanged:" destination="8bO-5D-Jdb" eventType="valueChanged" id="1ZU-uh-LmS"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aM6-rk-fup">
+                                <rect key="frame" x="186" y="115" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HdA-Pd-6Cg" firstAttribute="width" secondItem="olm-ak-0L0" secondAttribute="width" multiplier="0.6" id="C2w-V8-hNL"/>
+                            <constraint firstItem="IBE-wA-5nc" firstAttribute="centerX" secondItem="olm-ak-0L0" secondAttribute="centerX" id="Ggb-yV-siP"/>
+                            <constraint firstItem="7Q6-Fa-oqc" firstAttribute="top" secondItem="aL1-rN-aRs" secondAttribute="bottom" constant="-64" id="KKn-Xb-uoP"/>
+                            <constraint firstItem="IBE-wA-5nc" firstAttribute="top" secondItem="7Q6-Fa-oqc" secondAttribute="bottom" constant="20" id="Ldb-1v-N7V"/>
+                            <constraint firstItem="aM6-rk-fup" firstAttribute="top" secondItem="HdA-Pd-6Cg" secondAttribute="bottom" constant="8" id="Qmv-SI-JKF"/>
+                            <constraint firstItem="7Q6-Fa-oqc" firstAttribute="width" secondItem="olm-ak-0L0" secondAttribute="width" id="TrT-Z6-J3u"/>
+                            <constraint firstItem="HdA-Pd-6Cg" firstAttribute="centerX" secondItem="olm-ak-0L0" secondAttribute="centerX" id="Udl-Ql-qfg"/>
+                            <constraint firstItem="aM6-rk-fup" firstAttribute="centerX" secondItem="HdA-Pd-6Cg" secondAttribute="centerX" id="WG9-H5-pQ8"/>
+                            <constraint firstItem="7Q6-Fa-oqc" firstAttribute="centerX" secondItem="olm-ak-0L0" secondAttribute="centerX" id="bcA-XN-PF2"/>
+                            <constraint firstItem="HdA-Pd-6Cg" firstAttribute="top" secondItem="IBE-wA-5nc" secondAttribute="bottom" constant="20" id="dTX-Da-eai"/>
+                            <constraint firstItem="IBE-wA-5nc" firstAttribute="width" secondItem="olm-ak-0L0" secondAttribute="width" id="qje-8V-iR4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="locationSlider" destination="HdA-Pd-6Cg" id="Rby-MO-xYF"/>
+                        <outlet property="radiusValue" destination="aM6-rk-fup" id="0ve-34-vce"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pHX-FD-hBV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2684" y="1197"/>
+        </scene>
         <!--infoVC-->
         <scene sceneID="X2l-T8-Xaw">
             <objects>
@@ -953,7 +1039,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="-2438" y="1218"/>
+            <point key="canvasLocation" x="-1930" y="1197"/>
         </scene>
         <!--Homes-->
         <scene sceneID="tne-QT-ifu">
@@ -3104,7 +3190,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FREE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGb-1Y-B0B" customClass="UILabelX" customModule="duminica" customModuleProvider="target">
-                                                                            <rect key="frame" x="103.52334059711296" y="-12.476659402887016" width="74.953318805774046" height="74.953318805774032"/>
+                                                                            <rect key="frame" x="113" y="0.0" width="56" height="50"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="50" id="2zG-u5-iVP"/>
@@ -5521,6 +5607,9 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                 <state key="normal" title="search radius settings">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="chooseRadius:" destination="988-xW-H6u" eventType="touchUpInside" id="Eb3-4S-YjA"/>
+                                                </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location2" translatesAutoresizingMaskIntoConstraints="NO" id="yYn-Hl-Ibl">
                                                 <rect key="frame" x="320" y="63" width="27" height="27"/>
