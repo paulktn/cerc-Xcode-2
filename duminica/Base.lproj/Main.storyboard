@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="083-So-sAp">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -13,7 +13,6 @@
     <customFonts key="customFonts">
         <array key="HelveticaNeue.ttc">
             <string>HelveticaNeue</string>
-            <string>HelveticaNeue-Bold</string>
             <string>HelveticaNeue-Medium</string>
         </array>
         <array key="HelveticaNeueLights.ttc">
@@ -32,14 +31,14 @@
                         <viewControllerLayoutGuide type="bottom" id="MZH-OU-6SI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8Iu-gz-0jG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="QC2-zm-D4N">
-                                <rect key="frame" x="0.0" y="79" width="414" height="200"/>
+                                <rect key="frame" x="0.0" y="79" width="375" height="200"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyF-w0-CVi">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="37.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="37.5"/>
                                         <color key="backgroundColor" red="0.90642845812182737" green="0.90642845812182737" blue="0.90642845812182737" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
                                         <state key="normal" title="   About Us">
@@ -50,7 +49,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wo-IX-wVL">
-                                        <rect key="frame" x="0.0" y="40.666666666666671" width="414" height="37.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="40.5" width="375" height="37.5"/>
                                         <color key="backgroundColor" red="0.90642845809999995" green="0.90642845809999995" blue="0.90642845809999995" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
                                         <state key="normal" title="   Privacy Policy">
@@ -61,7 +60,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fw-50-yDR">
-                                        <rect key="frame" x="0.0" y="81.333333333333343" width="414" height="37.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="81" width="375" height="38"/>
                                         <color key="backgroundColor" red="0.90642845809999995" green="0.90642845809999995" blue="0.90642845809999995" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
                                         <state key="normal" title="   Terms of Use">
@@ -72,7 +71,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VpK-tq-lJE">
-                                        <rect key="frame" x="0.0" y="121.66666666666667" width="414" height="37.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="122" width="375" height="37.5"/>
                                         <color key="backgroundColor" red="0.90642845809999995" green="0.90642845809999995" blue="0.90642845809999995" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
                                         <state key="normal" title="   Open Source Libraries">
@@ -80,7 +79,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJg-A7-ov9">
-                                        <rect key="frame" x="0.0" y="162.33333333333334" width="414" height="37.666666666666657"/>
+                                        <rect key="frame" x="0.0" y="162.5" width="375" height="37.5"/>
                                         <color key="backgroundColor" red="0.90642845809999995" green="0.90642845809999995" blue="0.90642845809999995" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
                                         <state key="normal" title="   App Version                        v1.2.2(1221)">
@@ -93,17 +92,17 @@
                                 </constraints>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icond" translatesAutoresizingMaskIntoConstraints="NO" id="Jwg-VA-3n3">
-                                <rect key="frame" x="143" y="458" width="128" height="128"/>
+                                <rect key="frame" x="123.5" y="389" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="7h5-0c-bN3"/>
                                     <constraint firstAttribute="width" constant="128" id="FG8-zG-lY3"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxR-fX-tjB">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="53"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXy-4u-LlN" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="17.666666666666668" width="25" height="25.000000000000004"/>
+                                        <rect key="frame" x="20" y="17.5" width="25" height="25"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="4bI-K4-xpC"/>
@@ -129,7 +128,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDM-aE-gp8" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                        <rect key="frame" x="156" y="20" width="103" height="20"/>
+                                        <rect key="frame" x="136.5" y="20" width="103" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="103" id="4AK-H6-AX2"/>
                                             <constraint firstAttribute="height" constant="20" id="VZz-UL-krm"/>
@@ -162,7 +161,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4WM-bo-4Pe" customClass="UIButtonX" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="701.66666666666663" width="414" height="34.333333333333371"/>
+                                <rect key="frame" x="0.0" y="632.5" width="375" height="34.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -225,7 +224,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zj-NB-0Wf" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="17.666666666666668" width="25" height="25.000000000000004"/>
+                                    <rect key="frame" x="20" y="17.5" width="25" height="25"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="StK-G8-bLn"/>
@@ -314,7 +313,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7k-d3-zWZ" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="17.666666666666668" width="25" height="25.000000000000004"/>
+                                    <rect key="frame" x="20" y="17.5" width="25" height="25"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="49q-pZ-kkm"/>
@@ -536,7 +535,7 @@ If you’d like to provide feedback to us about this Privacy Policy, or if you h
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpD-9O-MRQ" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="17.666666666666668" width="25" height="25.000000000000004"/>
+                                    <rect key="frame" x="20" y="17.5" width="25" height="25"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="BTb-2D-lvr"/>
@@ -976,7 +975,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         <rect key="frame" x="0.0" y="28" width="375" height="165"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="C7U-BG-bgL" id="3kQ-cR-Ay2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="164.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pQU-fO-YCd">
@@ -1238,7 +1237,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NV-ug-5qQ">
-                                <rect key="frame" x="162.66666666666666" y="29" width="50.333333333333343" height="19"/>
+                                <rect key="frame" x="162.5" y="29" width="50.5" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="qpX-4Y-n58"/>
                                 </constraints>
@@ -1561,7 +1560,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <viewControllerLayoutGuide type="bottom" id="D0O-AP-HTB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dmp-ZF-h4s">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Lz-eO-Tqy" customClass="UIViewX" customModule="duminica" customModuleProvider="target">
@@ -1599,7 +1598,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   save     earn     reuse   " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fys-2I-5e2" customClass="CustomLabel" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="0qu-0e-UVN"/>
                                 </constraints>
@@ -1657,11 +1656,11 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <viewControllerLayoutGuide type="bottom" id="6cA-ha-hKS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="01Z-2Y-ygG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hlm-wq-jHI">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="one moment please" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APe-99-KRT">
                                         <rect key="frame" x="0.0" y="312" width="378" height="32"/>
@@ -1678,10 +1677,10 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 <color key="backgroundColor" red="0.10590498096446699" green="0.10590498096446699" blue="0.10590498096446699" alpha="0.6974261558219178" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sanFranMap" translatesAutoresizingMaskIntoConstraints="NO" id="UQb-c2-dJb">
-                                <rect key="frame" x="0.0" y="108.33333333333333" width="414" height="51.333333333333329"/>
+                                <rect key="frame" x="0.0" y="103.5" width="375" height="47"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcu-Qv-JT8">
-                                <rect key="frame" x="0.0" y="342.33333333333331" width="414" height="139"/>
+                                <rect key="frame" x="0.0" y="321.5" width="375" height="139"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="999" constant="139" id="ia9-fb-adl"/>
@@ -1694,7 +1693,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCollectionViewCell" id="9lt-l3-D7G" customClass="ImageCollectionViewCell" customModule="duminica" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.66666666666666663" width="139" height="138"/>
+                                        <rect key="frame" x="0.0" y="0.5" width="139" height="138"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="139" height="138"/>
@@ -1739,7 +1738,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5h-Z5-sZg" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="108.33333333333333" width="414" height="51.333333333333329"/>
+                                <rect key="frame" x="0.0" y="103.5" width="375" height="47"/>
                                 <color key="backgroundColor" red="0.073414198223074212" green="0.073782519035533012" blue="0.063680999219838844" alpha="0.57071382705479456" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="Location">
@@ -1761,7 +1760,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4BS-X3-euq" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="159" width="414" height="51.666666666666657"/>
+                                <rect key="frame" x="0.0" y="150.5" width="375" height="47"/>
                                 <color key="backgroundColor" red="0.30441417479999999" green="0.49072017769999998" blue="0.229284131" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal">
@@ -1783,10 +1782,10 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location2" translatesAutoresizingMaskIntoConstraints="NO" id="ed2-me-5zZ">
-                                <rect key="frame" x="371.66666666666669" y="121.33333333333331" width="34.333333333333314" height="26"/>
+                                <rect key="frame" x="336" y="115.5" width="31" height="23.5"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1qT-J9-rwq" customClass="IQTextView" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="332.33333333333331" width="414" height="10"/>
+                                <rect key="frame" x="0.0" y="311.5" width="375" height="10"/>
                                 <color key="backgroundColor" red="0.90238636259639793" green="0.89802700818771963" blue="0.90674571700507611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="r4Q-2b-1Qf"/>
@@ -1808,7 +1807,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4N-wW-1gX" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="281.33333333333331" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="264.5" width="375" height="47"/>
                                 <color key="backgroundColor" red="0.4028857946395874" green="0.64421039819717407" blue="0.29852771759033203" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal">
@@ -1830,31 +1829,31 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tag" translatesAutoresizingMaskIntoConstraints="NO" id="F0k-7p-ynp">
-                                <rect key="frame" x="375.66666666666669" y="172.33333333333334" width="28.333333333333314" height="25.333333333333343"/>
+                                <rect key="frame" x="339.5" y="162.5" width="25.5" height="23.5"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit2white" translatesAutoresizingMaskIntoConstraints="NO" id="6Bh-sS-yxn">
-                                <rect key="frame" x="380" y="293.66666666666669" width="24" height="25.666666666666686"/>
+                                <rect key="frame" x="342" y="276" width="23" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="6Bh-sS-yxn" secondAttribute="height" multiplier="24:25" id="kQk-aE-SGJ"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCa-ol-Qp0" customClass="CustomLabel" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="284" y="115.66666666666669" width="30.333333333333314" height="36"/>
+                                <rect key="frame" x="245" y="110.5" width="27.5" height="32.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
                                 <color key="textColor" red="0.98086347110000005" green="0.99598902460000005" blue="0.1227064128" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5r-H0-7v9">
-                                <rect key="frame" x="284" y="227.33333333333334" width="29.666666666666686" height="37.000000000000028"/>
+                                <rect key="frame" x="245" y="214.5" width="27.5" height="33.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
                                 <color key="textColor" red="0.98086347110000005" green="0.99598902460000005" blue="0.1227064128" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8Y-3P-fUE">
-                                <rect key="frame" x="-0.66666666666665719" y="57" width="414.33333333333326" height="51.333333333333343"/>
+                                <rect key="frame" x="-0.5" y="57" width="375" height="46.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter title..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AQB-6A-8aC">
-                                        <rect key="frame" x="16.333333333333343" y="0.0" width="382" height="51.333333333333336"/>
+                                        <rect key="frame" x="16" y="0.0" width="343" height="46.5"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1869,7 +1868,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6IU-aV-5tk">
-                                <rect key="frame" x="0.0" y="210.66666666666666" width="414" height="10"/>
+                                <rect key="frame" x="0.0" y="197.5" width="375" height="10"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="bzd-l5-lun"/>
@@ -1882,7 +1881,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="appliances" id="osV-ex-IgM">
-                                        <rect key="frame" x="0.0" y="-12.666666666666666" width="150" height="35"/>
+                                        <rect key="frame" x="0.0" y="-12.5" width="150" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
@@ -1910,7 +1909,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </view>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="furniture" id="Fwo-bn-bsy">
-                                        <rect key="frame" x="155" y="-12.666666666666666" width="150" height="35"/>
+                                        <rect key="frame" x="155" y="-12.5" width="150" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
@@ -1939,7 +1938,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="toys &amp; games" id="6Uc-Du-Yph">
-                                        <rect key="frame" x="310" y="-12.666666666666666" width="150" height="35"/>
+                                        <rect key="frame" x="310" y="-12.5" width="150" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
@@ -1967,7 +1966,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </view>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="miscellaneous" id="B2M-YA-gOE">
-                                        <rect key="frame" x="465" y="-12.666666666666666" width="150" height="35"/>
+                                        <rect key="frame" x="465" y="-12.5" width="150" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
@@ -1995,7 +1994,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </view>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="electronics" id="9Hc-co-YZs">
-                                        <rect key="frame" x="620" y="-12.666666666666666" width="150" height="35"/>
+                                        <rect key="frame" x="620" y="-12.5" width="150" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
@@ -2024,7 +2023,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="household items" id="JNb-F9-Xdu">
-                                        <rect key="frame" x="775" y="-12.666666666666666" width="150" height="35"/>
+                                        <rect key="frame" x="775" y="-12.5" width="150" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
@@ -2052,7 +2051,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </view>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="home improvement" id="J20-td-4dW">
-                                        <rect key="frame" x="930" y="-12.666666666666666" width="150" height="35"/>
+                                        <rect key="frame" x="930" y="-12.5" width="150" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
@@ -2080,7 +2079,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </view>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sporting goods" id="UAh-Nb-BhV">
-                                        <rect key="frame" x="1085" y="-12.666666666666666" width="150" height="35"/>
+                                        <rect key="frame" x="1085" y="-12.5" width="150" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
@@ -2108,7 +2107,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </view>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="clothing &amp; accesories" id="weN-Ka-jYY">
-                                        <rect key="frame" x="1240" y="-12.666666666666666" width="150" height="35"/>
+                                        <rect key="frame" x="1240" y="-12.5" width="150" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
@@ -2138,7 +2137,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </cells>
                             </collectionView>
                             <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tn-ZZ-DkZ">
-                                <rect key="frame" x="0.0" y="108.33333333333333" width="414" height="51.333333333333329"/>
+                                <rect key="frame" x="0.0" y="103.5" width="375" height="47"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1r-4u-hJt">
                                         <rect key="frame" x="162" y="0.0" width="42" height="45"/>
@@ -2173,7 +2172,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 <color key="backgroundColor" red="0.26731877361250683" green="0.37718115482233505" blue="0.24385311620952607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRZ-ML-uc2" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="220.66666666666666" width="414" height="50.666666666666657"/>
+                                <rect key="frame" x="0.0" y="207.5" width="375" height="47"/>
                                 <color key="backgroundColor" red="0.34963102089999998" green="0.56361040610000002" blue="0.26334136660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal">
@@ -2195,7 +2194,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mk7-AR-U7n">
-                                <rect key="frame" x="0.0" y="271.33333333333331" width="414" height="10"/>
+                                <rect key="frame" x="0.0" y="254.5" width="375" height="10"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="Gky-la-V8g"/>
@@ -2208,7 +2207,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="keywordCell" id="GRx-lW-jF5" customClass="keywordCell" customModule="duminica" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-12.666666666666666" width="150" height="35"/>
+                                        <rect key="frame" x="0.0" y="-12.5" width="150" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
@@ -2246,29 +2245,29 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="soY-ER-2ma" customClass="CustomLabel" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="284" y="172.33333333333334" width="29.666666666666686" height="25.333333333333343"/>
+                                <rect key="frame" x="245" y="162.5" width="27.5" height="23.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
                                 <color key="textColor" red="0.98086347110000005" green="0.99598902460000005" blue="0.1227064128" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hashtag" translatesAutoresizingMaskIntoConstraints="NO" id="dak-Ck-cSH">
-                                <rect key="frame" x="377" y="233" width="27" height="25"/>
+                                <rect key="frame" x="339.5" y="219" width="25.5" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dak-Ck-cSH" secondAttribute="height" multiplier="25:23" id="xLm-xe-vb8"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfx-YI-wdk" customClass="UIViewX" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="57"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="donate items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1T-sQ-xPX">
-                                        <rect key="frame" x="157" y="30.666666666666671" width="101" height="21.333333333333329"/>
+                                        <rect key="frame" x="137.5" y="30.5" width="101" height="21.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOn-Bo-JsW" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                        <rect key="frame" x="19" y="23.666666666666671" width="28.666666666666671" height="28.333333333333329"/>
+                                        <rect key="frame" x="19" y="23.5" width="28.5" height="28.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ZOn-Bo-JsW" secondAttribute="height" multiplier="1:1" id="xA7-7U-eG8"/>
@@ -2333,7 +2332,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTI-im-waU" customClass="UIButtonX" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="686" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="0Pq-cX-Mfa"/>
@@ -2371,19 +2370,19 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="choose category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzw-Ic-nKG">
-                                <rect key="frame" x="19.000000000000007" y="175.66666666666666" width="115.66666666666669" height="19"/>
+                                <rect key="frame" x="19" y="165" width="115.5" height="19"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="choose a keyword" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snK-9v-qjI">
-                                <rect key="frame" x="19.000000000000007" y="237" width="126.66666666666669" height="19"/>
+                                <rect key="frame" x="19" y="222" width="126.5" height="19"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="item details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWm-re-zcl">
-                                <rect key="frame" x="19" y="298" width="78" height="19"/>
+                                <rect key="frame" x="19" y="278.5" width="78" height="19"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2533,11 +2532,11 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <viewControllerLayoutGuide type="bottom" id="0dE-Kr-Iip"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="msb-xN-ba8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRP-nz-eE8">
-                                <rect key="frame" x="360" y="25" width="34" height="30"/>
+                                <rect key="frame" x="321" y="25" width="34" height="30"/>
                                 <state key="normal" title="send">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -2546,14 +2545,14 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nA2-2v-jsz">
-                                <rect key="frame" x="0.0" y="66" width="414" height="670"/>
+                                <rect key="frame" x="0.0" y="66" width="375" height="601"/>
                                 <color key="backgroundColor" red="0.45176254240000002" green="0.72824793779999997" blue="0.34026661879999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reportCell" id="nA9-xP-zym">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reportCell" id="nA9-xP-zym">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nA9-xP-zym" id="DgQ-y1-jYw">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
@@ -2673,7 +2672,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                 <rect key="frame" x="0.0" y="595" width="375" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnm-Fe-T87" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="187.66666666666666" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="40"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                                         <state key="normal" title="share on Facebook">
@@ -2684,7 +2683,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCM-8j-bMj" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                                        <rect key="frame" x="187.66666666666663" y="0.0" width="187.33333333333337" height="40"/>
+                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="40"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                                         <state key="normal" title="share on Twitter">
                                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2720,7 +2719,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                         </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location2" translatesAutoresizingMaskIntoConstraints="NO" id="NnS-PB-nCs">
-                                                        <rect key="frame" x="340.66666666666669" y="12.000000000000002" width="22.333333333333314" height="22.666666666666671"/>
+                                                        <rect key="frame" x="340.5" y="12" width="22.5" height="22.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="NnS-PB-nCs" secondAttribute="height" multiplier="1:1" id="wXI-bZ-1D4"/>
@@ -2826,14 +2825,14 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haI-iB-1C0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="187.66666666666666" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZ0-K6-BaO">
-                                                        <rect key="frame" x="187.66666666666663" y="0.0" width="187.33333333333337" height="30"/>
+                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
@@ -2903,7 +2902,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                         </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down" translatesAutoresizingMaskIntoConstraints="NO" id="gYo-JV-AtU" customClass="CustomizableImageView" customModule="duminica" customModuleProvider="target">
-                                                        <rect key="frame" x="340.66666666666669" y="11.666666666666627" width="22.333333333333314" height="22.333333333333329"/>
+                                                        <rect key="frame" x="340.5" y="11.5" width="22.5" height="22.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="gYo-JV-AtU" secondAttribute="height" id="lHT-Wk-gfF"/>
                                                         </constraints>
@@ -2946,7 +2945,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                         </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="share" translatesAutoresizingMaskIntoConstraints="NO" id="dx8-td-gGH" customClass="CustomizableImageView" customModule="duminica" customModuleProvider="target">
-                                                        <rect key="frame" x="340.66666666666669" y="12.000000000000002" width="22.333333333333314" height="22.666666666666671"/>
+                                                        <rect key="frame" x="340.5" y="12" width="22.5" height="22.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="dx8-td-gGH" secondAttribute="height" multiplier="1:1" id="KKd-lr-duJ"/>
                                                         </constraints>
@@ -2995,7 +2994,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                         </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flag" translatesAutoresizingMaskIntoConstraints="NO" id="05K-DC-Ve5" customClass="CustomizableImageView" customModule="duminica" customModuleProvider="target">
-                                                        <rect key="frame" x="340.66666666666669" y="12.000000000000002" width="22.333333333333314" height="22.666666666666671"/>
+                                                        <rect key="frame" x="340.5" y="12" width="22.5" height="22.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="05K-DC-Ve5" secondAttribute="height" id="Tbe-3k-Wc5"/>
                                                         </constraints>
@@ -3177,7 +3176,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucz-M6-zFi">
-                                                <rect key="frame" x="45" y="388.66666666666669" width="37.666666666666657" height="19"/>
+                                                <rect key="frame" x="45" y="388.5" width="37.5" height="19"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -3285,7 +3284,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXf-Qg-4ah">
-                                        <rect key="frame" x="169" y="29.666666666666671" width="37.666666666666657" height="19"/>
+                                        <rect key="frame" x="169" y="29.5" width="37.5" height="19"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -3427,11 +3426,11 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <viewControllerLayoutGuide type="bottom" id="OMu-SD-sbV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TBq-08-edl" customClass="UIViewX" customModule="duminica" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfK-DZ-ERX" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="676" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="607" width="375" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="VfY-sR-7Xu"/>
                                 </constraints>
@@ -3452,7 +3451,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rny-ZD-K4V" customClass="UIButtonX" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="300.66666666666669" width="414" height="45"/>
+                                <rect key="frame" x="0.0" y="266" width="375" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
                                 <state key="normal" title="login with email">
@@ -3477,7 +3476,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwZ-1w-na9" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="345.66666666666669" width="414" height="45"/>
+                                <rect key="frame" x="0.0" y="311" width="375" height="45"/>
                                 <color key="backgroundColor" red="0.29535632899999997" green="0.35660684370000001" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="rxh-GC-3VR"/>
@@ -3505,7 +3504,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIa-32-MAZ" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="390.66666666666669" width="414" height="45"/>
+                                <rect key="frame" x="0.0" y="356" width="375" height="45"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="No account?">
@@ -3560,14 +3559,14 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <viewControllerLayoutGuide type="bottom" id="jAL-Du-Ium"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CC6-Ih-4fD" customClass="UIViewX" customModule="duminica" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FMG-1K-JIt">
-                                <rect key="frame" x="0.0" y="35" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="35" width="375" height="90"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U7K-N5-Ppp" customClass="UITextFieldX" customModule="duminica" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="26.666666666666668"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="26.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
@@ -3579,7 +3578,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yH9-1V-Xhw" customClass="UITextFieldX" customModule="duminica" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="31.666666666666671" width="414" height="26.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="31.5" width="375" height="27"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
@@ -3594,7 +3593,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k8j-qD-7c5" userLabel="name" customClass="UITextFieldX" customModule="duminica" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="63.333333333333321" width="414" height="26.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="63.5" width="375" height="26.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
@@ -3614,10 +3613,10 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </constraints>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Add Photo_Icon" translatesAutoresizingMaskIntoConstraints="NO" id="16z-hG-lzx" customClass="RoundedImageView" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="124.33333333333333" y="135" width="165.33333333333337" height="165.33333333333337"/>
+                                <rect key="frame" x="112.5" y="135" width="150" height="150"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mWq-bR-9sI">
-                                <rect key="frame" x="124.33333333333333" y="135" width="165.33333333333337" height="165.33333333333337"/>
+                                <rect key="frame" x="112.5" y="135" width="150" height="150"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="mWq-bR-9sI" secondAttribute="height" multiplier="1:1" id="pkZ-TR-xgo"/>
@@ -3632,7 +3631,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MgB-I5-L8T">
-                                <rect key="frame" x="156.66666666666666" y="315.33333333333331" width="99.999999999999972" height="40"/>
+                                <rect key="frame" x="137" y="300" width="100" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="egj-DF-kCD"/>
                                     <constraint firstAttribute="height" constant="40" id="mlz-fW-r9G"/>
@@ -3691,14 +3690,14 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <viewControllerLayoutGuide type="bottom" id="fnb-89-zqb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Udv-vE-JUn" customClass="UIViewX" customModule="duminica" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NOz-IB-q4U">
-                                <rect key="frame" x="0.0" y="35" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="35" width="375" height="60"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OXg-bL-sIB" customClass="UITextFieldX" customModule="duminica" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="27.666666666666668"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="27.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
@@ -3710,7 +3709,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m1p-2O-ZXS" customClass="UITextFieldX" customModule="duminica" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="32.666666666666671" width="414" height="27.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="32.5" width="375" height="27.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
@@ -3730,7 +3729,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWf-ui-zzB">
-                                <rect key="frame" x="184" y="110" width="46" height="30"/>
+                                <rect key="frame" x="164.5" y="110" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="9Fm-c6-TDM"/>
                                     <constraint firstAttribute="width" constant="46" id="rdq-4M-Blo"/>
@@ -3779,7 +3778,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <viewControllerLayoutGuide type="bottom" id="Yfy-8a-obx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WTK-kI-9Ep" customClass="UIViewX" customModule="duminica" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ajp-pd-h7O" customClass="UITextFieldX" customModule="duminica" customModuleProvider="target">
@@ -3975,7 +3974,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                             </collectionViewFlowLayout>
                             <cells>
                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="wLd-O1-AbV" customClass="PhotoCell" customModule="duminica" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="2.6666666666666665" width="123" height="123"/>
+                                    <rect key="frame" x="0.0" y="2.5" width="123" height="123"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                         <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
@@ -4029,11 +4028,11 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <viewControllerLayoutGuide type="bottom" id="Jsq-75-hDv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Tj6-rh-LAG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pEA-k4-zmU">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" Your receipt will arrive shortly" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNF-e1-Zvd">
                                         <rect key="frame" x="0.0" y="323" width="375" height="46"/>
@@ -4050,7 +4049,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 <color key="backgroundColor" red="0.14968670685279184" green="0.14968670685279184" blue="0.14968670685279184" alpha="0.82132919520547942" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vNt-5i-0jE" customClass="UIViewX" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1g7-7q-vSb" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
                                         <rect key="frame" x="8" y="24" width="30" height="30"/>
@@ -4077,13 +4076,13 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="requests" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Iz-2Q-Im4">
-                                        <rect key="frame" x="177.33333333333334" y="29.666666666666671" width="59.666666666666657" height="19"/>
+                                        <rect key="frame" x="158" y="29.5" width="59.5" height="19"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGb-5N-FKO">
-                                        <rect key="frame" x="364" y="24.666666666666671" width="34" height="29"/>
+                                        <rect key="frame" x="325" y="24.5" width="34" height="29"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                                         <state key="normal" title="home">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4137,15 +4136,15 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DXz-hj-y8w">
-                                <rect key="frame" x="0.0" y="68" width="414" height="618"/>
+                                <rect key="frame" x="0.0" y="68" width="375" height="549"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="emptyCell" rowHeight="35" id="zHA-8a-Mfl" userLabel="Empty">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="35"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="emptyCell" rowHeight="35" id="zHA-8a-Mfl" userLabel="Empty">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="35"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zHA-8a-Mfl" id="wTN-3h-nN7">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No picked up items yet." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sio-0v-CsW">
@@ -4161,10 +4160,10 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemCell" rowHeight="150" id="EEd-GX-IV9" userLabel="ItemCell" customClass="itemReceptCell" customModule="duminica" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="63" width="414" height="150"/>
+                                        <rect key="frame" x="0.0" y="63" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EEd-GX-IV9" id="7r3-gs-i6r">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rZF-vZ-Rye" customClass="UIViewX" customModule="duminica" customModuleProvider="target">
@@ -4216,7 +4215,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                     </connections>
                                                 </button>
                                                 <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fq-13-6Vl">
-                                                    <rect key="frame" x="302" y="30" width="114" height="120"/>
+                                                    <rect key="frame" x="302" y="30" width="75" height="120"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </pickerView>
@@ -4248,7 +4247,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o9Q-6z-t8i" customClass="UIButtonX" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="686" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="GcO-5U-exj"/>
@@ -4433,7 +4432,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <viewControllerLayoutGuide type="bottom" id="FHW-5k-jC3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="R5u-Qr-oMa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFx-JW-TTo">
@@ -5052,7 +5051,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                     </collectionViewFlowLayout>
                                     <cells>
                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="PBG-vv-jgb" customClass="PhotoCell" customModule="duminica" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="2.6666666666666665" width="123" height="123"/>
+                                            <rect key="frame" x="0.0" y="2.5" width="123" height="123"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                 <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
@@ -5105,11 +5104,11 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                         <viewControllerLayoutGuide type="bottom" id="HBj-Rf-b04"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="A5g-wp-hwb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPy-AW-eyU" customClass="UIButtonX" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="686" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="KHR-59-45c"/>
@@ -5137,10 +5136,10 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cYe-9s-2Tn">
-                                <rect key="frame" x="0.0" y="60" width="414" height="626"/>
+                                <rect key="frame" x="0.0" y="60" width="375" height="557"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6g-fC-eTd">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                         <color key="backgroundColor" red="0.26599417850000001" green="0.44551654369999999" blue="0.21332321230000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="MMt-1h-JdU"/>
@@ -5154,7 +5153,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxg-2M-Jb5">
-                                        <rect key="frame" x="0.66666666666665719" y="45" width="414" height="45"/>
+                                        <rect key="frame" x="0.5" y="45" width="375" height="45"/>
                                         <color key="backgroundColor" red="0.30441417479999999" green="0.49072017769999998" blue="0.229284131" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <state key="normal" title="   received items">
@@ -5165,7 +5164,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uST-YN-bFs">
-                                        <rect key="frame" x="0.66666666666665719" y="90" width="414" height="45"/>
+                                        <rect key="frame" x="0.5" y="90" width="375" height="45"/>
                                         <color key="backgroundColor" red="0.34963102089999998" green="0.56361040610000002" blue="0.26334136660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <state key="normal" title="   saved items">
@@ -5176,7 +5175,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQa-g9-u6X">
-                                        <rect key="frame" x="0.66666666666665719" y="135" width="414" height="45"/>
+                                        <rect key="frame" x="0.5" y="135" width="375" height="45"/>
                                         <color key="backgroundColor" red="0.40288579460000001" green="0.64421039820000003" blue="0.29852771760000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <state key="normal" title="   donation recepts">
@@ -5188,22 +5187,22 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down" translatesAutoresizingMaskIntoConstraints="NO" id="f99-de-Eq8">
-                                        <rect key="frame" x="376.66666666666669" y="146.66666666666666" width="22" height="22"/>
+                                        <rect key="frame" x="337.5" y="146.5" width="22" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="f99-de-Eq8" secondAttribute="height" multiplier="1:1" id="old-vd-D3a"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down" translatesAutoresizingMaskIntoConstraints="NO" id="k07-co-sge">
-                                        <rect key="frame" x="376.66666666666669" y="56.666666666666671" width="22" height="22"/>
+                                        <rect key="frame" x="337.5" y="56.5" width="22" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="k07-co-sge" secondAttribute="height" multiplier="1:1" id="7e4-dB-vzL"/>
                                         </constraints>
                                     </imageView>
-                                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PwZ-1g-iQf" userLabel="wishlist">
-                                        <rect key="frame" x="0.66666666666665719" y="135" width="414" height="0.0"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PwZ-1g-iQf" userLabel="wishlist">
+                                        <rect key="frame" x="0.5" y="135" width="375" height="0.0"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y5Y-jE-eb9">
-                                                <rect key="frame" x="-0.66666666666665719" y="0.0" width="414" height="0.0"/>
+                                                <rect key="frame" x="-0.5" y="0.0" width="375" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cP2-Mh-msf">
                                                     <size key="itemSize" width="145" height="132"/>
@@ -5282,11 +5281,11 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                             <constraint firstItem="Y5Y-jE-eb9" firstAttribute="leading" secondItem="PwZ-1g-iQf" secondAttribute="leading" id="vpj-OY-R00"/>
                                         </constraints>
                                     </view>
-                                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4He-Vn-uOQ" userLabel="Received Items">
-                                        <rect key="frame" x="0.0" y="90" width="414" height="0.0"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4He-Vn-uOQ" userLabel="Received Items">
+                                        <rect key="frame" x="0.0" y="90" width="375" height="0.0"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5Zo-iq-zqH">
-                                                <rect key="frame" x="-0.66666666666665719" y="0.0" width="414.33333333333326" height="0.0"/>
+                                                <rect key="frame" x="-0.5" y="0.0" width="375" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="svq-HO-4DM">
                                                     <size key="itemSize" width="138" height="132"/>
@@ -5345,11 +5344,11 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                             <constraint firstItem="5Zo-iq-zqH" firstAttribute="leading" secondItem="4He-Vn-uOQ" secondAttribute="leading" id="qVL-zI-PTH"/>
                                         </constraints>
                                     </view>
-                                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8y8-sS-b0l">
-                                        <rect key="frame" x="0.0" y="45" width="414" height="0.0"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8y8-sS-b0l">
+                                        <rect key="frame" x="0.0" y="45" width="375" height="0.0"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aSU-RN-eR3">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                                 <color key="backgroundColor" red="0.82269194160000003" green="0.82269194160000003" blue="0.82269194160000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0k3-0g-iHL">
                                                     <size key="itemSize" width="136" height="131"/>
@@ -5358,38 +5357,24 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="accountCust" id="TdG-qC-Wi2" customClass="accountCust" customModule="duminica" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ViewPostImageCell" id="gJc-CP-ukY" customClass="ViewPostImageCell" customModule="duminica" customModuleProvider="target">
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gd1-S6-Xr4">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="130" height="131"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zy7-Jq-3Cb">
+                                                                    <rect key="frame" x="0.0" y="-0.5" width="136" height="131"/>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAT-f1-NxH">
-                                                                    <rect key="frame" x="0.0" y="97" width="116" height="21"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="EDIT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jN-SA-wkz" customClass="CustomLabel" customModule="duminica" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="130" height="26"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <size key="shadowOffset" width="1" height="0.0"/>
-                                                                </label>
                                                             </subviews>
                                                         </view>
+                                                        <constraints>
+                                                            <constraint firstItem="zy7-Jq-3Cb" firstAttribute="centerX" secondItem="gJc-CP-ukY" secondAttribute="centerX" id="06r-Y1-wbC"/>
+                                                            <constraint firstItem="zy7-Jq-3Cb" firstAttribute="centerY" secondItem="gJc-CP-ukY" secondAttribute="centerY" id="Vw8-5H-7dK"/>
+                                                            <constraint firstItem="zy7-Jq-3Cb" firstAttribute="width" secondItem="gJc-CP-ukY" secondAttribute="width" id="WSp-61-h7y"/>
+                                                            <constraint firstItem="zy7-Jq-3Cb" firstAttribute="height" secondItem="gJc-CP-ukY" secondAttribute="height" id="hzg-jE-To5"/>
+                                                        </constraints>
                                                         <connections>
-                                                            <outlet property="dateCell" destination="TAT-f1-NxH" id="rLI-7W-vmT"/>
-                                                            <outlet property="imageCell" destination="Gd1-S6-Xr4" id="s4u-ge-Zqb"/>
-                                                            <outlet property="titleCell" destination="7jN-SA-wkz" id="12W-rK-aCW"/>
+                                                            <outlet property="cellImageView" destination="zy7-Jq-3Cb" id="0SX-og-wLx"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
@@ -5409,7 +5394,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CKL-YZ-Ah1">
-                                        <rect key="frame" x="0.66666666666665719" y="180" width="414" height="45"/>
+                                        <rect key="frame" x="0.5" y="180" width="375" height="45"/>
                                         <color key="backgroundColor" red="0.45176254240000002" green="0.72824793779999997" blue="0.34026661879999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <state key="normal" title="   settings">
@@ -5421,13 +5406,13 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settings" translatesAutoresizingMaskIntoConstraints="NO" id="fHw-oG-crg">
-                                        <rect key="frame" x="376.66666666666669" y="191.66666666666666" width="22" height="22"/>
+                                        <rect key="frame" x="337.5" y="191.5" width="22" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="fHw-oG-crg" secondAttribute="height" multiplier="1:1" id="6FU-Ng-he7"/>
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W22-sG-ueW">
-                                        <rect key="frame" x="0.66666666666665719" y="225" width="414" height="274"/>
+                                        <rect key="frame" x="0.5" y="225" width="375" height="274"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile" translatesAutoresizingMaskIntoConstraints="NO" id="RjV-1Y-DOF" customClass="RoundedImageView" customModule="duminica" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="10" width="100" height="100"/>
@@ -5449,14 +5434,14 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit2white" translatesAutoresizingMaskIntoConstraints="NO" id="BtG-oY-tZr">
-                                                <rect key="frame" x="362" y="9" width="22" height="22"/>
+                                                <rect key="frame" x="323" y="9" width="22" height="22"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="22" id="Vzc-ZS-fqW"/>
                                                     <constraint firstAttribute="height" constant="22" id="pho-PH-N7Y"/>
                                                 </constraints>
                                             </imageView>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Dl-lF-wsV">
-                                                <rect key="frame" x="348" y="98" width="51" height="31"/>
+                                                <rect key="frame" x="309" y="98" width="51" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="31" id="V2a-c5-3B9"/>
                                                     <constraint firstAttribute="width" constant="49" id="a9s-U3-kfM"/>
@@ -5465,70 +5450,70 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                 <color key="thumbTintColor" red="0.98477157360000001" green="0.98477157360000001" blue="0.98477157360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email reminders" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Aa-8c-RU2">
-                                                <rect key="frame" x="8" y="132" width="324" height="33"/>
+                                                <rect key="frame" x="8" y="132" width="285" height="33"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email user messages" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqG-0l-QLH">
-                                                <rect key="frame" x="8" y="165" width="324" height="33"/>
+                                                <rect key="frame" x="8" y="165" width="285" height="33"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="push up notification messages" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzO-Mq-y9A">
-                                                <rect key="frame" x="8" y="198" width="324" height="33"/>
+                                                <rect key="frame" x="8" y="198" width="285" height="33"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="push up notification new items" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJA-To-zLf">
-                                                <rect key="frame" x="8" y="231" width="324" height="33"/>
+                                                <rect key="frame" x="8" y="231" width="285" height="33"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gWS-Iy-n1Y">
-                                                <rect key="frame" x="348" y="133" width="51" height="31"/>
+                                                <rect key="frame" x="309" y="133" width="51" height="31"/>
                                                 <color key="onTintColor" red="0.34963102089999998" green="0.56361040610000002" blue="0.26334136660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="emailRemainders:" destination="988-xW-H6u" eventType="valueChanged" id="Tpd-70-q9Q"/>
                                                 </connections>
                                             </switch>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PK9-WO-r9t">
-                                                <rect key="frame" x="348" y="166" width="51" height="31"/>
+                                                <rect key="frame" x="309" y="166" width="51" height="31"/>
                                                 <color key="onTintColor" red="0.34963102089999998" green="0.56361040610000002" blue="0.26334136660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="emailMessages:" destination="988-xW-H6u" eventType="valueChanged" id="bbV-B5-nHC"/>
                                                 </connections>
                                             </switch>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rfS-kM-eNN">
-                                                <rect key="frame" x="348" y="199" width="51" height="31"/>
+                                                <rect key="frame" x="309" y="199" width="51" height="31"/>
                                                 <color key="onTintColor" red="0.34963102089999998" green="0.56361040610000002" blue="0.26334136660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="PushNotifications:" destination="988-xW-H6u" eventType="valueChanged" id="40m-KM-lG3"/>
                                                 </connections>
                                             </switch>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sxw-Gd-uNq">
-                                                <rect key="frame" x="348" y="232" width="51" height="31"/>
+                                                <rect key="frame" x="309" y="232" width="51" height="31"/>
                                                 <color key="onTintColor" red="0.34963102089999998" green="0.56361040610000002" blue="0.26334136660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="PushNewItems:" destination="988-xW-H6u" eventType="valueChanged" id="dz6-7e-jAF"/>
                                                 </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="show my profile picture" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tB9-7r-9Mk">
-                                                <rect key="frame" x="8" y="97" width="324" height="33"/>
+                                                <rect key="frame" x="8" y="97" width="285" height="33"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5x-Pg-Ohn">
-                                                <rect key="frame" x="8" y="60" width="324" height="33"/>
+                                                <rect key="frame" x="8" y="60" width="285" height="33"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="33" id="Np4-Um-wGT"/>
                                                 </constraints>
@@ -5538,21 +5523,21 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                 </state>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location2" translatesAutoresizingMaskIntoConstraints="NO" id="yYn-Hl-Ibl">
-                                                <rect key="frame" x="359" y="63" width="27" height="27"/>
+                                                <rect key="frame" x="320" y="63" width="27" height="27"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="27" id="Yjg-rb-QgP"/>
                                                     <constraint firstAttribute="width" constant="27" id="sHb-Vr-0y6"/>
                                                 </constraints>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit2white" translatesAutoresizingMaskIntoConstraints="NO" id="vsF-iB-oQN">
-                                                <rect key="frame" x="362" y="34.666666666666686" width="22" height="22"/>
+                                                <rect key="frame" x="323" y="34.5" width="22" height="22"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="22" id="gfG-cg-5md"/>
                                                     <constraint firstAttribute="height" constant="22" id="ucp-oT-Ld2"/>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="email" placeholder="email" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9NW-xv-i5i">
-                                                <rect key="frame" x="116" y="35" width="216" height="21"/>
+                                                <rect key="frame" x="116" y="35" width="177" height="21"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -5561,7 +5546,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="name" placeholder="name" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Jf-yd-8os">
-                                                <rect key="frame" x="124" y="10" width="208" height="21"/>
+                                                <rect key="frame" x="124" y="10" width="169" height="21"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -5635,13 +5620,13 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </constraints>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down" translatesAutoresizingMaskIntoConstraints="NO" id="doq-0x-v8O">
-                                        <rect key="frame" x="375.66666666666669" y="10.666666666666671" width="22.333333333333314" height="23"/>
+                                        <rect key="frame" x="336.5" y="10.5" width="22.5" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="doq-0x-v8O" secondAttribute="height" id="ffa-FR-ScG"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down" translatesAutoresizingMaskIntoConstraints="NO" id="b1L-JA-C0l">
-                                        <rect key="frame" x="376.66666666666669" y="101.66666666666666" width="22" height="22"/>
+                                        <rect key="frame" x="337.5" y="101.5" width="22" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="b1L-JA-C0l" secondAttribute="height" multiplier="1:1" id="A0g-ER-BZB"/>
                                         </constraints>
@@ -5698,7 +5683,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1P-xU-NOK" customClass="UIViewX" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1F-e4-dSf" customClass="CustomizableButton" customModule="duminica" customModuleProvider="target">
                                         <rect key="frame" x="16" y="24" width="30" height="30"/>
@@ -5725,13 +5710,13 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MbC-U5-Yb3" customClass="RoundedImageView" customModule="duminica" customModuleProvider="target">
-                                        <rect key="frame" x="368" y="24" width="30" height="30"/>
+                                        <rect key="frame" x="329" y="24" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="MbC-U5-Yb3" secondAttribute="height" multiplier="1:1" id="KLc-hC-NYw"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Z3-87-3CK">
-                                        <rect key="frame" x="165" y="28.666666666666671" width="85.333333333333314" height="21.333333333333329"/>
+                                        <rect key="frame" x="145.5" y="28.5" width="85.5" height="21.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -5942,7 +5927,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vt3-5M-7Fe" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xni-wc-hyk">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

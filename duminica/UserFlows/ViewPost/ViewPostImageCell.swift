@@ -9,5 +9,5 @@
 import UIKit
 
 class ViewPostImageCell: UICollectionViewCell, ReusableCell {
-    
+    @IBOutlet var cellImageView: UIImageView!
 }
