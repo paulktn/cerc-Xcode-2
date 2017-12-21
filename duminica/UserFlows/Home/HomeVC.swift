@@ -211,7 +211,7 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, PostDelegate, UITextF
                             
                             let distance = Int(userLocation.distance(from: postLocation))
                             
-                            if distance < 30000 {
+                            if  distance < (AppDelegate.session.locationRadius ?? 30) * 1000 {
                                 allArray.append(householdObject)
                             }
                         } else {

@@ -46,12 +46,16 @@ class Post {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
-    init?(snapshot:DataSnapshot) {
+    convenience init?(snapshot:DataSnapshot) {
         guard let data = snapshot.value as? NSDictionary else {return nil}
-        self.id = snapshot.key
+        self.init(dict: data, id: snapshot.key)
+    }
+    
+    init?(dict data: NSDictionary, id: String) {
+        self.id = id
         self.details = data["details"] as? String
         self.locationTitle = data["location_title"] as? String
-        self.title = data["title"] as! String
+        self.title = data["title"] as? String ?? ""
         self.ownerId = data["owner_id"] as! String
         self.latitude = data["latitude"] as! Double
         self.longitude = data["longitude"] as! Double

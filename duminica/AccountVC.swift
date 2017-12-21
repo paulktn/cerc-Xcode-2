@@ -485,20 +485,37 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         
         guard let currentUser = AppDelegate.session.user?.id else {return}
         
-        databaseRef.child("ios_wishlist")
-            .queryOrderedByKey()
-//            .queryEqual(toValue: currentUser)
+        databaseRef
+            .child("ios_wishlist")
+            .child(currentUser)
             .observe(.value, with: { (snapshot) in
+                
+                var count = snapshot.children.allObjects.count {
+                    didSet {
+                        if count == 0 {
+                            self.wishCollectionView.reloadData()
+                        }
+                    }
+                }
                 
                 var postArray = [String]()
                 print(currentUser)
                 print(snapshot.children.allObjects.count)
                 for post in snapshot.children.allObjects as! [DataSnapshot] {
                     
-                    postArray.append(post.key)
+                    postArray.append(post.value as! String)
+                    self.databaseRef
+                        .child("ios_posts")
+                        .child(post.value as! String).observe(.value, with: {(snapshot) in
+                            
+                            if let post = Post(snapshot: snapshot) {
+                                self.savedPosts.append(post)
+                            }
+                            
+                            count += -1
+                        })
                 }
                 
-                print(postArray)
             }) { (error:Error) in
                 print(error.localizedDescription)
         }
@@ -514,7 +531,7 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         navVC.navigationBar.isTranslucent = true
         self.present(navVC, animated: true)
     }
-
+    
     func fetchAllWishPost(completion: @escaping ([Post])->()) {
         let currentUser = Auth.auth().currentUser!.uid
         databaseRef.child("wishlist").child(currentUser).observe(.value, with: { (snapshot) in
@@ -537,20 +554,20 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
         
     }
     
-//
-//    private func fetchAllReceivedPost(){
-//        Auth.auth().addStateDidChangeListener { auth, user in
-//            if user != nil {
-//                self.fetchAllReceivedPost {(posts) in
-//                    self.Receivedsweets = posts
-//                    self.Receivedsweets.sort(by: { (post1, post2) -> Bool in
-//                        Int(post1.pickedDate) > Int(post2.pickedDate)
-//                    })
-//
-//                    self.receivedCollectionView.reloadData()
-//                }
-//            }  else {
-//                self.takeToLogin()
+    //
+    //    private func fetchAllReceivedPost(){
+    //        Auth.auth().addStateDidChangeListener { auth, user in
+    //            if user != nil {
+    //                self.fetchAllReceivedPost {(posts) in
+    //                    self.Receivedsweets = posts
+    //                    self.Receivedsweets.sort(by: { (post1, post2) -> Bool in
+    //                        Int(post1.pickedDate) > Int(post2.pickedDate)
+    //                    })
+    //
+    //                    self.receivedCollectionView.reloadData()
+    //                }
+    //            }  else {
+    //                self.takeToLogin()
 //            }
 //        }
 //    }
@@ -618,33 +635,32 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
             
             
         else {
-             let Wishcell = collectionView.dequeueReusableCell(withReuseIdentifier: "accountCust", for: indexPath) as! accountCust
+             let wishCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ViewPostImageCell", for: indexPath) as! ViewPostImageCell
         
         let wishedPost = savedPosts[indexPath.row]
         
-        Wishcell.imageCell.sd_setImage(with: wishedPost.logoUrl)
-        
-        let fromDate = NSDate(timeIntervalSince1970: TimeInterval(wishedPost.date))
-        let toDate = NSDate()
-        
-        let differenceOfDate = Calendar.current.dateComponents([.second,.minute,.hour,.day,.weekOfMonth], from: fromDate as Date, to: toDate as Date)
-        if differenceOfDate.second! <= 0 {
-            Wishcell.dateCell.text = "posted now"
-        } else if differenceOfDate.second! > 0 && differenceOfDate.minute == 0 {
-            Wishcell.dateCell.text = "posted \(differenceOfDate.second!)seconds ago"
-            }else if differenceOfDate.minute! > 0 && differenceOfDate.hour! == 0 {
-            Wishcell.dateCell.text = "posted \(differenceOfDate.minute!)mins. ago"
-            }else if differenceOfDate.hour! > 0 && differenceOfDate.day! == 0 {
-            Wishcell.dateCell.text = "posted \(differenceOfDate.hour!)hrs. ago"
-            }else if differenceOfDate.day! > 0 && differenceOfDate.weekOfMonth! == 0 {
-            Wishcell.dateCell.text = "posted \(differenceOfDate.day!)days ago"
-            }else if differenceOfDate.weekOfMonth! > 0 {
-            Wishcell.dateCell.text = "posted \(differenceOfDate.weekOfMonth!)weeks ago"
+        wishCell.cellImageView.sd_setImage(with: wishedPost.logoUrl)
+//
+//        let fromDate = NSDate(timeIntervalSince1970: TimeInterval(wishedPost.date))
+//        let toDate = NSDate()
+//
+//        let differenceOfDate = Calendar.current.dateComponents([.second,.minute,.hour,.day,.weekOfMonth], from: fromDate as Date, to: toDate as Date)
+//        if differenceOfDate.second! <= 0 {
+//            Wishcell.dateCell.text = "posted now"
+//        } else if differenceOfDate.second! > 0 && differenceOfDate.minute == 0 {
+//            Wishcell.dateCell.text = "posted \(differenceOfDate.second!)seconds ago"
+//            }else if differenceOfDate.minute! > 0 && differenceOfDate.hour! == 0 {
+//            Wishcell.dateCell.text = "posted \(differenceOfDate.minute!)mins. ago"
+//            }else if differenceOfDate.hour! > 0 && differenceOfDate.day! == 0 {
+//            Wishcell.dateCell.text = "posted \(differenceOfDate.hour!)hrs. ago"
+//            }else if differenceOfDate.day! > 0 && differenceOfDate.weekOfMonth! == 0 {
+//            Wishcell.dateCell.text = "posted \(differenceOfDate.day!)days ago"
+//            }else if differenceOfDate.weekOfMonth! > 0 {
+//            Wishcell.dateCell.text = "posted \(differenceOfDate.weekOfMonth!)weeks ago"
+//
+//        }
             
-        }
-        Wishcell.configureCell(post: self.savedPosts[indexPath.item])
-        Wishcell.tag = indexPath.item
-        return Wishcell
+        return wishCell
             
         }
     }
@@ -652,30 +668,8 @@ class AccountVC : UIViewController, UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
         postDelegate?.selectedPost(post: self.savedPosts[indexPath.item])
-        self.selectedPost1 = self.savedPosts[indexPath.item]
-        } else if collectionView == self.wishCollectionView {
-           let Wishsweet = savedPosts[indexPath.row]
-            
-            let currentUser = Auth.auth().currentUser!.uid
-            let fromUser = Wishsweet.id
-            let itemValue =  "70"
-            let pickedDate =  NSDate().timeIntervalSince1970 as NSNumber
-            let itemName = Wishsweet.title
-            let picture = Wishsweet.logoUrl?.absoluteString ?? ""
-            let postId = Wishsweet.id
-            
-            let pickedUpItem = PickedUp(byUser: currentUser, fromUser: fromUser, itemValue: itemValue, pickedDate: pickedDate, itemName: itemName,  postImageURL1: picture, postId: postId)
-            
-            
-            let postRef = databaseRef.child("pickedup").child(currentUser).child(Wishsweet.id)
-            postRef.setValue(pickedUpItem.toAnyObject()) { (error, ref) in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    self.dismiss(animated: true, completion: nil)
-                }
-            }
-        } else if collectionView == self.collectionPicturesProfile {
+        self.selectedPost1 = self.myPostings[indexPath.item]
+        }  else if collectionView == self.collectionPicturesProfile {
             if collectionView.cellForItem(at: indexPath) != nil {
                 
                 self.profilePic.image = self.imageArray[indexPath.item]

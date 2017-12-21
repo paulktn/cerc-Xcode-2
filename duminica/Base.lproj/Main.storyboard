@@ -31,11 +31,11 @@
                         <viewControllerLayoutGuide type="bottom" id="XbY-4j-DqN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="olm-ak-0L0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Q6-Fa-oqc" customClass="UIViewX" customModule="duminica" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="-44" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="-44" width="375" height="60"/>
                                 <color key="backgroundColor" red="0.48698419329999998" green="0.67733496429999995" blue="0.45169532299999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="TfK-qV-zAK"/>
@@ -66,19 +66,19 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose radius" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBE-wA-5nc">
-                                <rect key="frame" x="0.0" y="36" width="414" height="21"/>
+                                <rect key="frame" x="0.0" y="36" width="375" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="HdA-Pd-6Cg">
-                                <rect key="frame" x="80.666666666666671" y="77" width="252.66666666666663" height="31"/>
+                                <rect key="frame" x="73" y="77" width="229" height="31"/>
                                 <connections>
                                     <action selector="radiusChanged:" destination="8bO-5D-Jdb" eventType="valueChanged" id="1ZU-uh-LmS"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aM6-rk-fup">
-                                <rect key="frame" x="186" y="115" width="42" height="21"/>
+                                <rect key="frame" x="166.5" y="115" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2634,7 +2634,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 <rect key="frame" x="0.0" y="66" width="375" height="601"/>
                                 <color key="backgroundColor" red="0.45176254240000002" green="0.72824793779999997" blue="0.34026661879999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reportCell" id="nA9-xP-zym">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reportCell" id="nA9-xP-zym">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nA9-xP-zym" id="DgQ-y1-jYw">
@@ -3190,7 +3190,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FREE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGb-1Y-B0B" customClass="UILabelX" customModule="duminica" customModuleProvider="target">
-                                                                            <rect key="frame" x="113" y="0.0" width="56" height="50"/>
+                                                                            <rect key="frame" x="103.52334059711296" y="-12.476659402887016" width="74.953318805774046" height="74.953318805774032"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="50" id="2zG-u5-iVP"/>
@@ -4226,7 +4226,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="emptyCell" rowHeight="35" id="zHA-8a-Mfl" userLabel="Empty">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="emptyCell" rowHeight="35" id="zHA-8a-Mfl" userLabel="Empty">
                                         <rect key="frame" x="0.0" y="28" width="375" height="35"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zHA-8a-Mfl" id="wTN-3h-nN7">
@@ -5297,58 +5297,22 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="accountCust" id="OjG-JG-46v" customClass="accountCust" customModule="duminica" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ViewPostImageCell" id="8Go-g8-cc8" customClass="ViewPostImageCell" customModule="duminica" customModuleProvider="target">
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7CW-pP-vQB">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRL-Gk-dLA">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="130" height="21"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgt-sw-alH">
-                                                                    <rect key="frame" x="0.0" y="98" width="90" height="21"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKi-rh-tYm">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="130" height="40"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <state key="normal" title="mark as picked up">
-                                                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    </state>
-                                                                    <connections>
-                                                                        <action selector="markAsPicked:" destination="988-xW-H6u" eventType="touchUpInside" id="Txs-JI-rzA"/>
-                                                                    </connections>
-                                                                </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNQ-he-54y">
-                                                                    <rect key="frame" x="0.0" y="86" width="130" height="40"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <state key="normal" title="view">
-                                                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    </state>
-                                                                    <connections>
-                                                                        <action selector="viewItem:" destination="988-xW-H6u" eventType="touchUpInside" id="a09-H0-m08"/>
-                                                                    </connections>
-                                                                </button>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nDX-bp-LeJ"/>
                                                             </subviews>
                                                         </view>
-                                                        <size key="customSize" width="132" height="132"/>
+                                                        <constraints>
+                                                            <constraint firstItem="nDX-bp-LeJ" firstAttribute="centerX" secondItem="8Go-g8-cc8" secondAttribute="centerX" id="2Wb-hT-bUk"/>
+                                                            <constraint firstItem="nDX-bp-LeJ" firstAttribute="centerY" secondItem="8Go-g8-cc8" secondAttribute="centerY" id="L1a-sb-zVZ"/>
+                                                            <constraint firstItem="nDX-bp-LeJ" firstAttribute="height" secondItem="8Go-g8-cc8" secondAttribute="height" id="UIp-JU-LfL"/>
+                                                            <constraint firstItem="nDX-bp-LeJ" firstAttribute="width" secondItem="8Go-g8-cc8" secondAttribute="width" id="bFt-Kq-ZGL"/>
+                                                        </constraints>
                                                         <connections>
-                                                            <outlet property="dateCell" destination="XRL-Gk-dLA" id="EPP-sK-0nT"/>
-                                                            <outlet property="imageCell" destination="7CW-pP-vQB" id="lvz-JG-A3m"/>
-                                                            <outlet property="markAsPickedUp" destination="rKi-rh-tYm" id="hx8-ON-iBD"/>
-                                                            <outlet property="titleCell" destination="mgt-sw-alH" id="m6P-0w-nm5"/>
-                                                            <outlet property="viewItem" destination="cNQ-he-54y" id="j4A-Nu-lm1"/>
+                                                            <outlet property="cellImageView" destination="nDX-bp-LeJ" id="T94-4n-MUP"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
@@ -5449,7 +5413,7 @@ You and Cerc agree that these Terms are the complete and exclusive statement of 
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zy7-Jq-3Cb">
-                                                                    <rect key="frame" x="0.0" y="-0.5" width="136" height="131"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                                                 </imageView>
                                                             </subviews>
                                                         </view>
